@@ -1,0 +1,31 @@
+.card {
+    width: 100%;
+    max-width: 40%;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background: #0B090A;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6.8px);   
+    -webkit-backdrop-filter: blur(6.8px);
+    border: 1px solid rgba(225, 225, 225, 0.3);
+    color: white;
+}
+
+
+@media screen and (max-width: 768px) {
+    .card {
+        width: 100%;
+        max-width: 40%;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 8px;
+        background: #0B090A;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(0px);   
+        -webkit-backdrop-filter: blur(0px);
+        border: 1px solid rgba(225, 225, 225, 0.3);
+        color: white;
+    }
+    
+}

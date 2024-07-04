@@ -1,0 +1,91 @@
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0B090A;
+    padding: 10px 20px;
+}
+
+.navbar-logo img {
+    height: 50px;
+}
+
+.menu-icon {
+    display: none;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
+.navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.navbar-links li {
+    display: inline;
+}
+
+.navbar-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    position: relative; 
+    padding: 10px;
+    border-radius: 50%; 
+}
+
+
+
+.navbar-links a:hover {
+    text-decoration: none; 
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+
+
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex;
+        width: 100%;
+    }
+    .menu-icon {
+        display: block;
+    }
+
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar-links.mobile {
+        display: block;
+    }
+
+    .navbar-links li {
+        display: block;
+        margin: 10px 0;
+    }
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: white;
+}
+
+.Logo{
+    filter: invert(1);
+}
