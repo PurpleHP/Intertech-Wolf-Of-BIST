@@ -10,10 +10,9 @@ function App() {
       <Menu>
             <h1>Menu Content</h1>
             <p>This is the content inside the Menu.</p>
-            <div className='flex flex-row'>
+            <div className='flex'>
                 <Card>
-                    <h1>Card1 Content</h1>
-                    <p>This is the content inside the card.</p>
+                  
                 </Card>
                 <Card>
                     <h1>Card2 Content</h1>
