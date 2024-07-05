@@ -2,6 +2,7 @@ import './Home.css';
 import NavbarComponent from './Navbar.jsx';
 import Menu from './Menu.jsx';
 import Card from './Card.jsx';
+import Footer from './Footer.jsx';
 
 function App() {
   return (
@@ -49,7 +50,18 @@ function App() {
                     <p>This is the content inside the card.</p>
                 </Card>
             </div>
+            <div className='flex'>
+                <Card>
+                    <h1>Card1 Content</h1>
+                    <p>This is the content inside the card.</p>
+                </Card>
+                <Card>
+                    <h1>Card2 Content</h1>
+                    <p>This is the content inside the card.</p>
+                </Card>
+            </div>
       </Menu>
+      <Footer></Footer>
     </div>
   );
 }

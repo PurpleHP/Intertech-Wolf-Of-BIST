@@ -7,7 +7,7 @@ const Card = ({ children }) => {
         <div className="card">
                  <img src="https://blenderartists.org/uploads/default/original/4X/d/d/c/ddce8741a5e3e6ad835c2cb296edcd650c1ce88f.jpeg" 
          className="card-logo" alt='logo'/>
-                <div className="card-text">Your Text Here</div>
+                <div className="card-text">Yatırım</div>
 
             {children}
         </div>
