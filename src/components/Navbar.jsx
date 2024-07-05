@@ -28,10 +28,10 @@ const Navbar = () => {
                 <FontAwesomeIcon icon={faBars} />
             </div>
             <ul className={isMobile ? "navbar-links mobile" : "navbar-links"}>
-                <li><a href="#home"><FontAwesomeIcon icon={faHome} /> Home</a></li>
-                <li><a href="#about"><FontAwesomeIcon icon={faInfoCircle} /> About</a></li>
-                <li><a href="#contact"><FontAwesomeIcon icon={faEnvelope} /> Contact</a></li>
-                <li><a href="#login"><FontAwesomeIcon icon={faSignInAlt} /> Login</a></li>
+                <li><a href="home"><FontAwesomeIcon icon={faHome} /> Home</a></li>
+                <li><a href="about"><FontAwesomeIcon icon={faInfoCircle} /> About</a></li>
+                <li><a href="contact"><FontAwesomeIcon icon={faEnvelope} /> Contact</a></li>
+                <li><a href="login"><FontAwesomeIcon icon={faSignInAlt} /> Login</a></li>
             </ul>
         </nav>
     );
