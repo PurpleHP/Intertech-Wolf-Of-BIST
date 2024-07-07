@@ -1,4 +1,3 @@
-import React from 'react';
 
 function Login() {
   return (
@@ -18,7 +17,7 @@ function Login() {
         </form>
       </div>
       <h3 className="text-white text-xl mt-10">Hesabınız Yok Mu?</h3>
-      <a href="signup" className="text-white bg-[#161A1D] p-3 rounded-lg text-xl mt-2">Tıklayarak Kayıt Olun</a>
+      <a href="signup" className="text-white bg-[#161A1D] p-3 rounded-lg text-xl mt-2">Kayıt Olun</a>
 
     </div>
   );

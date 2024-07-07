@@ -18,7 +18,7 @@ function Signup() {
         </form>
       </div>
       <h3 className="text-white text-xl mt-10">Zaten Bir Hesabınız Mı Var?</h3>
-      <a href="login" className="text-white bg-[#161A1D] p-3 rounded-lg text-xl mt-2">Tıklayarak Giriş Yapın</a>
+      <a href="login" className="text-white bg-[#161A1D] p-3 rounded-lg text-xl mt-2">Giriş Yapın</a>
 
     </div>
   );
