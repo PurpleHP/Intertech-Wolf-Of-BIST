@@ -28,9 +28,9 @@ const Navbar = () => {
                 <FontAwesomeIcon icon={faBars} />
             </div>
             <ul className={isMobile ? "navbar-links mobile" : "navbar-links"}>
-                <li><a href="home"><FontAwesomeIcon icon={faHome} /> Ana Menu</a></li>
-                <li><a href="about"><FontAwesomeIcon icon={faInfoCircle} /> Hakkımızda</a></li>
-                <li><a href="contact"><FontAwesomeIcon icon={faEnvelope} /> Bize Ulaşın</a></li>
+                <li><a href="#home"><FontAwesomeIcon icon={faHome} /> Ana Menu</a></li>
+                <li><a href="#about"><FontAwesomeIcon icon={faInfoCircle} /> Hakkımızda</a></li>
+                <li><a href="#contact"><FontAwesomeIcon icon={faEnvelope} /> Bize Ulaşın</a></li>
                 <li><a href="login"><FontAwesomeIcon icon={faSignInAlt} /> Giriş Yap</a></li>
             </ul>
         </nav>

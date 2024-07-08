@@ -3,10 +3,11 @@ import NavbarComponent from './Navbar.jsx';
 import Menu from './Menu.jsx';
 import Card from './Card.jsx';
 import Footer from './Footer.jsx';
+import ContactForm from './ContactForm.jsx';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" id='home'>
       <NavbarComponent></NavbarComponent>
       <Menu>
             <h1>Menu Content</h1>
@@ -61,7 +62,11 @@ function App() {
                 </Card>
             </div>
       </Menu>
-      <Footer></Footer>
+      <div id='contact'>
+      <ContactForm></ContactForm>
+
+        <Footer></Footer>
+      </div>
     </div>
   );
 }
