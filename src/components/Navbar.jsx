@@ -11,18 +11,18 @@ const Navbar = () => {
     const handleMenuClick = () => {
         setIsMobile(!isMobile);
     };
-  /*
-    const navigate = useNavigate(); // Using the useNavigate hook
-
-    const navigateTo = (path) => {
-        navigate(path);
-    };
-*/
+    /*
+      const navigate = useNavigate(); // Using the useNavigate hook
+  
+      const navigateTo = (path) => {
+          navigate(path);
+      };
+  */
     return (
         <nav className="navbar">
             <div className="navbar-logo">
-                <p> Wolf Of BIST </p> 
-                <img src={Logo} className="Logo"  alt='logo'/>
+                <img src={Logo} className="Logo" alt='logo' />
+                <p> Finans Dostu ile Geleceğinize Yatırım Yapın! </p>
             </div>
             <div className="menu-icon" onClick={handleMenuClick}>
                 <FontAwesomeIcon icon={faBars} />
