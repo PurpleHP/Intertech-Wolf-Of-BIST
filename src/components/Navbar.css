@@ -49,14 +49,13 @@
 
 
 
-
-
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column;
-        align-items: flex;
+        display: flex;
+        flex-direction: row;
         width: 100%;
     }
+
     .menu-icon {
         display: block;
     }
@@ -70,13 +69,20 @@
 
     .navbar-links.mobile {
         display: block;
+        flex-direction: column;
+        width: 100%;
     }
 
     .navbar-links li {
         display: block;
         margin: 10px 0;
     }
+
+    .navbar.expanded {
+        flex-direction: column;
+    }
 }
+
 
 .navbar-logo {
     display: flex;

@@ -7,9 +7,10 @@ import Logo from '../assets/logo.svg';
 
 const Navbar = () => {
     const [isMobile, setIsMobile] = useState(false);
-
+    const [menuClick, setMenuClick] = useState(false);
     const handleMenuClick = () => {
         setIsMobile(!isMobile);
+        setMenuClick(!menuClick);
     };
   /*
     const navigate = useNavigate(); // Using the useNavigate hook
@@ -19,7 +20,7 @@ const Navbar = () => {
     };
 */
     return (
-        <nav className="navbar">
+        <nav className={`navbar ${menuClick ? 'expanded' : ''}`}>
             <div className="navbar-logo">
                 <p> Wolf Of BIST </p> 
                 <img src={Logo} className="Logo"  alt='logo'/>
