@@ -75,3 +75,4 @@ const ContactForm = () => {
 export default ContactForm;                
 //Google reCaptcha eklenebilir hem login hem contact formuna (key lazım)
 //<div className="turnstile" data-sitekey="YOUR_TURNSTILE_SITE_KEY"></div> -> cloudflare turnstile alternative
+
