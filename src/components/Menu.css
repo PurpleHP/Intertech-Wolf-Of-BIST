@@ -4,17 +4,14 @@
     margin: 20px auto;
     padding: 20px;
     border-radius: 8px;
-    background: #161A1D;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    overflow: hidden;
+    border-color: grey;
 }
 
 .Menu > div {

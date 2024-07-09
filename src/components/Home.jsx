@@ -14,51 +14,44 @@ function App() {
             <p>This is the content inside the Menu.</p>
             <div className='flex'>
                 <Card>
-                  
+                   Bankacilik
+                   <Card to="/login"></Card>
                 </Card>
                 <Card>
-                    <h1>Card2 Content</h1>
-                    <p>This is the content inside the card.</p>
+                    Borsa
+                </Card>
+            </div>
+            <h1>Menu Content</h1>
+            <div className='flex'>
+                <Card>
+                    
+                </Card>
+                <Card>
+                    
                 </Card>
             </div>
             <div className='flex'>
                 <Card>
-                    <h1>Card3 Content</h1>
-                    <p>This is the content inside the card.</p>
+                    
                 </Card>
                 <Card>
-                    <h1>Card4 Content</h1>
-                    <p>This is the content inside the card.</p>
+                    
                 </Card>
             </div>
             <div className='flex'>
                 <Card>
-                    <h1>Card1 Content</h1>
-                    <p>This is the content inside the card.</p>
+                    
                 </Card>
                 <Card>
-                    <h1>Card2 Content</h1>
-                    <p>This is the content inside the card.</p>
+                    
                 </Card>
             </div>
             <div className='flex'>
                 <Card>
-                    <h1>Card1 Content</h1>
-                    <p>This is the content inside the card.</p>
+                    
                 </Card>
                 <Card>
-                    <h1>Card2 Content</h1>
-                    <p>This is the content inside the card.</p>
-                </Card>
-            </div>
-            <div className='flex'>
-                <Card>
-                    <h1>Card1 Content</h1>
-                    <p>This is the content inside the card.</p>
-                </Card>
-                <Card>
-                    <h1>Card2 Content</h1>
-                    <p>This is the content inside the card.</p>
+                    
                 </Card>
             </div>
       </Menu>
