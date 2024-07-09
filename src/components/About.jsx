@@ -6,7 +6,9 @@ import Footer from './Footer.jsx';
 
 function About() {
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-[#0B090A] p-8">
+        <div>
+            <NavbarComponent></NavbarComponent>
+            <div className="min-h-screen flex flex-col items-center justify-center bg-[#0B090A] p-8">
             <div className="bg-[#161A1D] p-8 rounded-lg shadow-md w-11/12 md:w-2/3 lg:w-1/2 text-white">
                 <h2 className="text-2xl mb-6">Hakkımızda</h2>
                 <p className="mb-4">
@@ -23,6 +25,8 @@ function About() {
                 </p>
             </div>
         </div>
+        </div>
+        
     );
 }
 

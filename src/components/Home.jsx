@@ -56,7 +56,6 @@ function App() {
             </div>
       </Menu>
       <div id='contact'>
-      <ContactForm></ContactForm>
 
         <Footer></Footer>
       </div>

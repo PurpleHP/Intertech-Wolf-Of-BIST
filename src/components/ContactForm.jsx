@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Navbar from './Navbar';
 
 const ContactForm = () => {
     const [formData, setFormData] = useState({
@@ -25,50 +26,56 @@ const ContactForm = () => {
     };
 
     return (
-        <div className="min-h-40vh max-h-50vh flex flex-col items-center justify-center bg-[#0B090A] text-[#D3D3D3]">
-            <form className='flex flex-col w-[90vw] mt-5 text-[#0B090A] text-2xl' onSubmit={handleSubmit}>
-                <label className='text-[#D3D3D3] my-2' htmlFor="name">İsim</label>
-                <input
-                    id="name"
-                    name="name"
-                    className='bg-[#161A1D] text-[#D3D3D3] p-2 rounded text-xl'
-                    type="text"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                />
+        <div>
+            <Navbar></Navbar>
+            <div className="min-h-screen flex flex-col items-center justify-center bg-[#0B090A]">
+                <div className="bg-[#161A1D] p-8 rounded-lg shadow-md w-96">            
+                    <form className='flex flex-col mt-5 text-[#0B090A] text-2xl' onSubmit={handleSubmit}>
+                        <label className=' text-[#D3D3D3] my-2' htmlFor="name">İsim</label>
+                        <input
+                            id="name"
+                            name="name"
+                            className='bg-[#D3D3D3] text-[#0B090A] p-2 border-2 rounded text-xl'
+                            type="text"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
+                        />
 
-                <label  className='text-[#D3D3D3] my-2' htmlFor="email">Email</label>
-                <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    className='bg-[#161A1D] text-[#D3D3D3] p-2 rounded text-xl'
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                />
+                        <label  className='text-[#D3D3D3] my-2' htmlFor="email">Email</label>
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            className='bg-[#D3D3D3] text-[#0B090A] p-2 border-2 rounded text-xl'
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                        />
 
-                <label className='text-[#D3D3D3] my-2' htmlFor="message">Mesajınız</label>
-                <textarea
-                    id="message"
-                    color='black'
-                    name="message"
-                    className='bg-[#161A1D] text-[#D3D3D3] p-2 rounded text-xl h-40vh w-full'
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                />
+                        <label className='text-[#D3D3D3] my-2' htmlFor="message">Mesajınız</label>
+                        <textarea
+                            id="message"
+                            color='black'
+                            name="message"
+                            className='bg-[#D3D3D3] text-[#0B090A] p-2 border-2 rounded text-xl'
+                            value={formData.message}
+                            onChange={handleChange}
+                            required
+                        />
+                        
+                        <div className='flex my-2 flex-row items-center justify-center'> 
+                    
+                            <button type="submit" className="mt-4 mx-2 text-[#161A1D] bg-[#D3D3D3] hover:bg-white px-4 py-2 rounded">
+                                Gönder
+                            </button>
+                        </div>
                 
-                <div className='flex my-2 flex-row items-center justify-center'> 
-            
-                    <button type="submit" className="mt-4 mx-2 text-[#161A1D] bg-[#D3D3D3] hover:bg-white px-4 py-2 rounded">
-                        Gönder
-                    </button>
+                    </form>
                 </div>
-              
-            </form>
+            </div>
         </div>
+        
     );
 };
 

@@ -1,7 +1,10 @@
+import Navbar from "./Navbar";
 
 function Login() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#0B090A]">
+    <div>
+      <Navbar></Navbar>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-[#0B090A]">
       <div className="bg-[#161A1D] p-8 rounded-lg shadow-md w-96">
         <h2 className="text-[#D3D3D3] text-2xl mb-6">Giriş Yap</h2>
         <form>
@@ -20,6 +23,8 @@ function Login() {
       <a href="signup" className="text-white bg-[#161A1D] p-3 rounded-lg text-xl mt-2">Kayıt Olun</a>
 
     </div>
+    </div>
+  
   );
 }
 

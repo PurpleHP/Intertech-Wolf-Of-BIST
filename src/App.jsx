@@ -8,6 +8,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import NotFoundPage from './components/NotFound';
 import About from './components/About';
+import Contact from './components/ContactForm';
 
 function App() {
   return (
@@ -20,8 +21,7 @@ function App() {
           <Route path='/Signup' element={<Signup />} />
           <Route path='/*' element={<NotFoundPage />} />
           <Route path='/About' element={<About />} />
-
-
+          <Route path='/Contact' element={<Contact />} />
         </Routes>
       </div>
     </>
