@@ -1,14 +1,15 @@
 import React from 'react';
 import './Card.css';
 import Logo from '../assets/logo.svg';
+import { useNavigate } from 'react-router-dom';
 
-const Card = ({ children }) => {
+const Card = ({ children, to, cardName }) => { 
+    const navigate = useNavigate();
+
     return (
-        <div className="card">
-                 <img src="https://blenderartists.org/uploads/default/original/4X/d/d/c/ddce8741a5e3e6ad835c2cb296edcd650c1ce88f.jpeg" 
-         className="card-logo" alt='logo'/>
-                <div className="card-text">Yatırım</div>
-
+        <div className="card" onClick={() => navigate(to)}>
+             <img src="src/assets/bank.png" className="card-logo" alt='logo' />
+            <div className="card-text">{cardName}</div>
             {children}
         </div>
     );

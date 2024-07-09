@@ -1,16 +1,16 @@
 .card {
     width: 100%;
     max-width: 40%;
-    max-height: 180px;
+    max-height: 250px;
     margin: 20px auto;
     border-radius: 8px;
     background: #0B090A;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(6.8px);   
+    backdrop-filter: blur(6.8px);
     -webkit-backdrop-filter: blur(6.8px);
     border: 1px solid rgba(225, 225, 225, 0.3);
     color: white;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 
@@ -30,7 +30,8 @@
 
 .card-text {
     position: absolute;
-    top: 80%; /* Adjusted to center vertically within the card */
+    top: 80%;
+    /* Adjusted to center vertically within the card */
     left: 15%;
     transform: translate(-50%, -50%);
     color: white;
@@ -38,22 +39,31 @@
     text-align: center;
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 8px;
 }
 
 @media screen and (max-width: 768px) {
     .card {
         width: 100%;
-        max-width: 40%;
+        max-width: 50%;
+
         margin: 20px auto;
-        padding: 20px;
+        
         border-radius: 8px;
         background: #0B090A;
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(0px);   
+        backdrop-filter: blur(0px);
         -webkit-backdrop-filter: blur(0px);
         border: 1px solid rgba(225, 225, 225, 0.3);
         color: white;
+        
     }
-    
+
+    .card-text{
+        font-size: medium;
+        
+    }
+
 }
