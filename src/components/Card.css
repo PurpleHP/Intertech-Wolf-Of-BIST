@@ -31,7 +31,6 @@
 .card-text {
     position: absolute;
     top: 80%;
-    /* Adjusted to center vertically within the card */
     left: 15%;
     transform: translate(-50%, -50%);
     color: white;
