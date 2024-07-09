@@ -12,25 +12,25 @@ const Navbar = () => {
         setIsMobile(!isMobile);
         setMenuClick(!menuClick);
     };
-  /*
-    const navigate = useNavigate(); // Using the useNavigate hook
-
-    const navigateTo = (path) => {
-        navigate(path);
-    };
-*/
+    /*
+      const navigate = useNavigate(); // Using the useNavigate hook
+  
+      const navigateTo = (path) => {
+          navigate(path);
+      };
+  */
     return (
         <nav className={`navbar ${menuClick ? 'expanded' : ''}`}>
             <div className="navbar-logo">
-                <p> Wolf Of BIST </p> 
-                <img src={Logo} className="Logo"  alt='logo'/>
+                <p> Wolf Of BIST </p>
+                <img src={Logo} className="Logo" alt='logo' />
             </div>
             <div className="menu-icon" onClick={handleMenuClick}>
                 <FontAwesomeIcon icon={faBars} />
             </div>
             <ul className={isMobile ? "navbar-links mobile" : "navbar-links"}>
                 <li><a href="#home"><FontAwesomeIcon icon={faHome} /> Ana Menu</a></li>
-                <li><a href="#about"><FontAwesomeIcon icon={faInfoCircle} /> Hakkımızda</a></li>
+                <li><a href="about"><FontAwesomeIcon icon={faInfoCircle} /> Hakkımızda</a></li>
                 <li><a href="#contact"><FontAwesomeIcon icon={faEnvelope} /> Bize Ulaşın</a></li>
                 <li><a href="login"><FontAwesomeIcon icon={faSignInAlt} /> Giriş Yap</a></li>
             </ul>
