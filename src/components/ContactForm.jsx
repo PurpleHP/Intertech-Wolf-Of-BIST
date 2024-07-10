@@ -29,13 +29,13 @@ const ContactForm = () => {
         <div>
             <Navbar></Navbar>
             <div className="min-h-screen flex flex-col items-center justify-center bg-[#0B090A]">
-                <div className="bg-[#161A1D] p-8 rounded-lg shadow-md w-96">            
+                <div className="bg-[#161A1D] w-[40vw]  p-8 rounded-lg shadow-md ">            
                     <form className='flex flex-col mt-5 text-[#0B090A] text-2xl' onSubmit={handleSubmit}>
                         <label className=' text-[#D3D3D3] my-2' htmlFor="name">İsim</label>
                         <input
                             id="name"
                             name="name"
-                            className='bg-[#D3D3D3] text-[#0B090A] p-2 border-2 rounded text-xl'
+                            className='bg-[#D3D3D3] text-[#0B090A] p-2 border-2 rounded text-base'
                             type="text"
                             value={formData.name}
                             onChange={handleChange}
@@ -47,7 +47,7 @@ const ContactForm = () => {
                             id="email"
                             name="email"
                             type="email"
-                            className='bg-[#D3D3D3] text-[#0B090A] p-2 border-2 rounded text-xl'
+                            className='bg-[#D3D3D3] text-[#0B090A] p-2 border-2 rounded text-base'
                             value={formData.email}
                             onChange={handleChange}
                             required
@@ -58,7 +58,7 @@ const ContactForm = () => {
                             id="message"
                             color='black'
                             name="message"
-                            className='bg-[#D3D3D3] text-[#0B090A] p-2 border-2 rounded text-xl'
+                            className='bg-[#D3D3D3] text-[#0B090A] p-2 border-2 rounded text-base'
                             value={formData.message}
                             onChange={handleChange}
                             required
