@@ -30,7 +30,7 @@ const ContactForm = () => {
             <Navbar></Navbar>
             <div className="min-h-screen flex flex-col items-center justify-center bg-[#0B090A]">
                 <div className="bg-[#161A1D] w-[40vw]  p-8 rounded-lg shadow-md ">            
-                    <form className='flex flex-col mt-5 text-[#0B090A] text-2xl' onSubmit={handleSubmit}>
+                    <form action='https://formsubmit.co/wolfofbist123@proton.me' method="POST" className='flex flex-col mt-5 text-[#0B090A] text-2xl'>
                         <label className=' text-[#D3D3D3] my-2' htmlFor="name">İsim</label>
                         <input
                             id="name"
@@ -42,7 +42,7 @@ const ContactForm = () => {
                             required
                         />
 
-                        <label  className='text-[#D3D3D3] my-2' htmlFor="email">Email</label>
+                        <label className='text-[#D3D3D3] my-2' htmlFor="email">Email</label>
                         <input
                             id="email"
                             name="email"
