@@ -10,21 +10,19 @@ function App() {
     <div className="App" id='home'>
       <NavbarComponent></NavbarComponent>
       <Menu>
-            <h1>Menu Content</h1>
-            <p>This is the content inside the Menu.</p>
+      <h1 className='text-2xl'>Your Progress</h1>
             <div className='flex'>
-                <Card>
-                   Bankacilik
-                   <Card to="/login"></Card>
+                <Card cardName="Finansal Temeller" to="/FinansalOkuryazarliginTemelleri" >
                 </Card>
                 <Card>
-                    Borsa
                 </Card>
             </div>
-            <h1>Menu Content</h1>
+      </Menu>
+      <Menu>
+       
+            <h1 className='text-2xl'>All Courses</h1>
             <div className='flex'>
                 <Card>
-                    
                 </Card>
                 <Card>
                     

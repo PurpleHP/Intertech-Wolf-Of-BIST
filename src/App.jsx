@@ -9,7 +9,7 @@ import Signup from './components/Signup';
 import NotFoundPage from './components/NotFound';
 import About from './components/About';
 import Contact from './components/ContactForm';
-
+import FinansalOkuryazarliginTemelleri from './components/FinansalOkuryazarliginTemelleri';
 function App() {
   return (
     <>
@@ -22,6 +22,7 @@ function App() {
           <Route path='/*' element={<NotFoundPage />} />
           <Route path='/About' element={<About />} />
           <Route path='/Contact' element={<Contact />} />
+          <Route path='/FinansalOkuryazarliginTemelleri' element={<FinansalOkuryazarliginTemelleri />} />
         </Routes>
       </div>
     </>

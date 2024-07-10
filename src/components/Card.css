@@ -31,8 +31,7 @@
 .card-text {
     position: absolute;
     top: 80%;
-
-    left: 15%;
+    left: 25%;
     transform: translate(-50%, -50%);
     color: white;
     font-size: 20px;
@@ -41,7 +40,7 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     background-color: rgba(0, 0, 0, 0.5);
     padding: 5px 10px;
-
+    margin-left: 5px;
     border-radius: 8px;
 
 }
@@ -52,7 +51,6 @@
         max-width: 50%;
 
         margin: 20px auto;
-        
         border-radius: 8px;
         background: #0B090A;
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -65,7 +63,7 @@
 
 
     .card-text{
-        font-size: medium;
+        font-size: small;
         
     }
 
