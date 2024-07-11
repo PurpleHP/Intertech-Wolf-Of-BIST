@@ -10,11 +10,13 @@ import NotFoundPage from './components/NotFound';
 import About from './components/About';
 import Contact from './components/ContactForm';
 import FinansalOkuryazarliginTemelleri from './components/FinansalOkuryazarliginTemelleri';
+import Welcome from './components/Welcome';
 function App() {
   return (
     <>
       <div>
         <Routes>
+        <Route path='/Welcome' element={<Welcome />} />
           <Route path='/' element={<Home />} />
           <Route path='/Test' element={<Test />} />
           <Route path='/Login' element={<Login />} />
