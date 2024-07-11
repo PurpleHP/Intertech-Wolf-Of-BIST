@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faInfoCircle, faEnvelope, faSignInAlt, faBars } from '@fortawesome/free-solid-svg-icons';
 import './Navbar.css';
-import Logo from '../assets/logo.svg';
+import Logo from '../assets/logo.png';
 
 const Navbar = () => {
     const [isMobile, setIsMobile] = useState(false);
@@ -15,7 +15,7 @@ const Navbar = () => {
     return (
         <nav className={`navbar ${menuClick ? 'expanded' : ''}`}>
             <div className="navbar-logo">
-                <p> Wolf Of BIST </p>
+                <p className='text-xl'> Eğitim Denizi </p>
                 <img src={Logo} className="Logo" alt='logo' />
             </div>
             <div className="menu-icon" onClick={handleMenuClick}>

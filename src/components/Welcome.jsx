@@ -1,7 +1,6 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 
-
 function Welcome() {
 
   const comp = useRef(null);
@@ -44,8 +43,6 @@ function Welcome() {
           <h1 
           id="title-2"
           className='text-7xl text-[#D3D3D3]'>IPSUM!!</h1>
-
-
       </div>
       <div className="flex flex-col bg-[#0B090A] justify-center place-items-center h-screen">
       <a
@@ -53,15 +50,15 @@ function Welcome() {
         id="welcome" 
         className="font-bold text-8xl text-[#D3D3D3]">Hoşgeldiniz</a>
         <div className="flex flex-row gap-5">
-        <h1
-          id="login" 
-          className='text-7xl my-6 bg-[#161A1D] p-3 rounded-lg  mx-3 border-2 text-[#D3D3D3]'>Giriş Yap</h1>
+          <a
+            href="login"
+            id="login" 
+            className='text-7xl my-6 bg-[#161A1D] p-3 rounded-lg  mx-3 border-2 text-[#D3D3D3]'>Giriş Yap</a>
           <a 
-          href="signup"
-          id="signup"
-          className='text-7xl my-6 bg-[#161A1D] p-3 rounded-lg  mx-3 border-2 text-[#D3D3D3]'>Kayıt Ol</a>
+            href="signup"
+            id="signup"
+            className='text-7xl my-6 bg-[#161A1D] p-3 rounded-lg  mx-3 border-2 text-[#D3D3D3]'>Kayıt Ol</a>
         </div>
-      
       </div>
     </div>
  
@@ -69,9 +66,3 @@ function Welcome() {
 }
 
 export default Welcome;
-
-/*      <a href="signup" className="text-white bg-[#161A1D] p-3 rounded-lg text-xl mt-2">Kayıt Olun</a>
-
- <p className='text-white justify-center font-mono items-center text-5xl mb-10'>Merhaba</p>
-      <p className='text-white font-sans justify-center w-[80vw] text-wrap break-words  text-justify   items-center text-3xl'>Finansal okuryazarlık dünyasına hoş geldiniz! Sitemizde, yapay zeka destekli eğitimlerle finansal bilginizi artırabilir, paranızı daha iyi yönetmeyi öğrenebilir ve geleceğinizi güvence altına alabilirsiniz. Hedefimiz, herkesin finansal konularda bilinçli ve özgüvenli kararlar almasını sağlamaktır. Eğitimlerimize katılmak ve daha fazlasını keşfetmek için hemen başlayın!</p>
-*/
