@@ -40,10 +40,10 @@ function Welcome() {
       className='h-screen bg-[#161A1D] p-10 justify-center absolute top-0 left-0 z-10 w-full flex flex-col gap-10 tracking-tight place-items-center'>
            <h1
           id="title-1" 
-          className='text-7xl text-[#D3D3D3]'>Lorem</h1>
+          className='text-7xl text-bold text-[#D3D3D3]'>Eğitim</h1>
           <h1 
           id="title-2"
-          className='text-7xl text-[#D3D3D3]'>IPSUM!!</h1>
+          className='text-7xl  text-bold text-[#D3D3D3]'>Denizi!</h1>
       </div>
       <div id="bg-image"
     style={{
