@@ -3,6 +3,7 @@ import gsap from "gsap";
 import Logo from '../assets/logo.png';
 
 function Welcome() {
+  
 
   const comp = useRef(null);
 
@@ -11,8 +12,8 @@ function Welcome() {
       const t1 = gsap.timeline();
       t1.from('#intro-slider', {
         xPercent: "-100", //nereden başlayacağı
-        duration: 1.8, //slide animasyon süresi
-        delay: 1, //slide olmadan önceki süre
+        duration: 1, //slide animasyon süresi
+        delay: 0.3, //slide olmadan önceki süre
       }).from(['#title-1', '#title-2'], {
         opacity: 0, //opacity 0'dan başlat
         y: "+=30", //yukarı çıkması
@@ -25,7 +26,7 @@ function Welcome() {
       }).to('#intro-slider', {
         xPercent: "-100",
         duration: 1.8,
-    }).from(['#welcome', "#login", "#signup", "#bg-image"], {
+    }).from(['#welcome', "#login", "#signup", "#courses", "#bg-image"], {
       opacity: 0,
       duration: 0.5,stagger: 0.5
     })
@@ -40,15 +41,15 @@ function Welcome() {
       className='h-screen bg-[#161A1D] p-10 justify-center absolute top-0 left-0 z-10 w-full flex flex-col gap-10 tracking-tight place-items-center'>
            <h1
           id="title-1" 
-          className='text-7xl text-bold text-[#D3D3D3]'>Eğitim</h1>
+          className='text-7xl font-bold text-[#D3D3D3]'>Eğitim</h1>
           <h1 
           id="title-2"
-          className='text-7xl  text-bold text-[#D3D3D3]'>Denizi!</h1>
+          className='text-7xl font-bold text-[#D3D3D3]'>Denizi</h1>
       </div>
       <div id="bg-image"
     style={{
       backgroundImage: `url(${Logo})`,
-      opacity: 0.3,
+      opacity: 0.05,
       top: 0,
       left: 0,
       bottom: 0,
@@ -56,6 +57,7 @@ function Welcome() {
       position: 'absolute',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
+      pointerEvents: 'none',
     }}
   ></div>
       <div 
@@ -73,6 +75,10 @@ function Welcome() {
               id="signup"
               className='text-7xl my-6 bg-[#161A1D] p-3 rounded-lg  mx-3 border-2 text-[#D3D3D3]'>Kayıt Ol</a>
           </div>
+          <a
+              href="/"
+              id="courses" 
+              className='text-7xl my-6 bg-[#161A1D] p-3 rounded-lg  mx-3 border-2 text-[#D3D3D3]'>Eğitime Gidin</a>
       </div>
     </div>
  

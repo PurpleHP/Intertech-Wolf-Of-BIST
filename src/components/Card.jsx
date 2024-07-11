@@ -1,6 +1,6 @@
 import React from 'react';
 import './Card.css';
-import Logo from '../assets/logo.svg';
+import Logo from '../assets/logo.png';
 import TestImage from "../assets/bank.png";
 import { useNavigate } from 'react-router-dom';
 
