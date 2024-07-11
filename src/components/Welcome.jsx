@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
+import Logo from '../assets/logo.png';
 
 function Welcome() {
 
@@ -24,7 +25,7 @@ function Welcome() {
       }).to('#intro-slider', {
         xPercent: "-100",
         duration: 1.8,
-    }).from(['#welcome', "#login", "#signup"], {
+    }).from(['#welcome', "#login", "#signup", "#bg-image"], {
       opacity: 0,
       duration: 0.5,stagger: 0.5
     })
@@ -44,21 +45,34 @@ function Welcome() {
           id="title-2"
           className='text-7xl text-[#D3D3D3]'>IPSUM!!</h1>
       </div>
-      <div className="flex flex-col bg-[#0B090A] justify-center place-items-center h-screen">
-      <a
-        href="signup"
-        id="welcome" 
-        className="font-bold text-8xl text-[#D3D3D3]">Hoşgeldiniz</a>
-        <div className="flex flex-row gap-5">
-          <a
-            href="login"
-            id="login" 
-            className='text-7xl my-6 bg-[#161A1D] p-3 rounded-lg  mx-3 border-2 text-[#D3D3D3]'>Giriş Yap</a>
-          <a 
-            href="signup"
-            id="signup"
-            className='text-7xl my-6 bg-[#161A1D] p-3 rounded-lg  mx-3 border-2 text-[#D3D3D3]'>Kayıt Ol</a>
-        </div>
+      <div id="bg-image"
+    style={{
+      backgroundImage: `url(${Logo})`,
+      opacity: 0.3,
+      top: 0,
+      left: 0,
+      bottom: 0,
+      right: 0,
+      position: 'absolute',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    }}
+  ></div>
+      <div 
+        className="flex flex-col bg-[#0B090A] justify-center place-items-center h-screen">
+        <a
+          id="welcome" 
+          className="font-bold text-8xl text-[#D3D3D3]">Hoşgeldiniz</a>
+          <div className="flex flex-row gap-5">
+            <a
+              href="login"
+              id="login" 
+              className='text-7xl my-6 bg-[#161A1D] p-3 rounded-lg  mx-3 border-2 text-[#D3D3D3]'>Giriş Yap</a>
+            <a 
+              href="signup"
+              id="signup"
+              className='text-7xl my-6 bg-[#161A1D] p-3 rounded-lg  mx-3 border-2 text-[#D3D3D3]'>Kayıt Ol</a>
+          </div>
       </div>
     </div>
  

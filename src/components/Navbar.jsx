@@ -15,8 +15,10 @@ const Navbar = () => {
     return (
         <nav className={`navbar ${menuClick ? 'expanded' : ''}`}>
             <div className="navbar-logo">
-                <p className='text-xl'> Eğitim Denizi </p>
+                <a href="/" className='text-xl font-bold'> Eğitim Denizi </a>
+                <a href="/">
                 <img src={Logo} className="Logo" alt='logo' />
+                </a>            
             </div>
             <div className="menu-icon" onClick={handleMenuClick}>
                 <FontAwesomeIcon icon={faBars} />
