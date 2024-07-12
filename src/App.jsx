@@ -11,6 +11,7 @@ import About from './components/About';
 import Contact from './components/ContactForm';
 import FinansalOkuryazarliginTemelleri from './components/FinansalOkuryazarliginTemelleri';
 import Welcome from './components/Welcome';
+import GelirveVergiYonetimi from './components/GelirveVergiYonetimi';
 function App() {
   return (
     <>
@@ -25,6 +26,7 @@ function App() {
           <Route path='/About' element={<About />} />
           <Route path='/Contact' element={<Contact />} />
           <Route path='/FinansalOkuryazarliginTemelleri' element={<FinansalOkuryazarliginTemelleri />} />
+          <Route path='/GelirveVergiYonetimi' element={<GelirveVergiYonetimi/>} />
         </Routes>
       </div>
     </>
