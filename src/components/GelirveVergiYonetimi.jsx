@@ -21,36 +21,29 @@ function GelirveVergiYonetimi(){
     const [btnPrevVisible, setBtnPrevVisible] = useState(false); //geri butonunu göstermek için
 
     const changeParagraph = () => {
-        if(currentParagraph ==  allParagraphs.length-2){
-            setBtnNextVisible(true);
-
-        }
-        if(currentParagraph !=  allParagraphs.length-1){
-            setBtnNextVisible(true);
-            setBtnPrevVisible(true);
-            setParagraphs(allParagraphs[currentParagraph+1]);
-            setCurrentParagraph(currentParagraph+1);
-           
-        }
-        else{
+        if (currentParagraph == allParagraphs.length - 2) {
             setBtnNextVisible(false);
+        } else if (currentParagraph != allParagraphs.length - 1) {
+            setBtnNextVisible(true);
+        }
+        if (currentParagraph != allParagraphs.length - 1) {
             setBtnPrevVisible(true);
-            //Quiz başlat, eğitim bitti
+            setParagraphs(allParagraphs[currentParagraph + 1]);
+            setCurrentParagraph(currentParagraph + 1);
         }
     }
     const changeToPrevParagraph = () => {
-        if(currentParagraph !=  0){
-            setBtnPrevVisible(true);
-            setBtnNextVisible(true);
-            setParagraphs(allParagraphs[currentParagraph-1]);
-            setCurrentParagraph(currentParagraph-1);
-            
-        }
-        else{
+        if (currentParagraph == 1) {
             setBtnPrevVisible(false);
-            setBtnNextVisible(true);
+        } else {
+            setBtnPrevVisible(true);
         }
-       
+        setBtnNextVisible(true);
+    
+        if (currentParagraph != 0) {
+            setParagraphs(allParagraphs[currentParagraph - 1]);
+            setCurrentParagraph(currentParagraph - 1);
+        }
     }
     
     return(
