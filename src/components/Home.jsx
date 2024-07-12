@@ -3,9 +3,11 @@ import NavbarComponent from './Navbar.jsx';
 import Menu from './Menu.jsx';
 import Card from './Card.jsx';
 import Footer from './Footer.jsx';
-import ContactForm from './ContactForm.jsx';
+
+//Image'ler burada import edilecek
 import TestImage from "../assets/bank.png";
 import VergiGelir from "../assets/vergi-gelir.png";
+//-------------------------
 
 function App() {
   return (
@@ -17,7 +19,7 @@ function App() {
                 <Card cardName="Finansal Temeller" to="/FinansalOkuryazarliginTemelleri" imgSrc={TestImage}>
                 </Card>
                 <Card cardName="Gelir ve Vergi Yönetimi" to="/GelirveVergiYonetimi" imgSrc={VergiGelir} >
-                                </Card>
+                </Card>
                
             </div>
       </Menu>
