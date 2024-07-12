@@ -4,6 +4,8 @@ import Menu from './Menu.jsx';
 import Card from './Card.jsx';
 import Footer from './Footer.jsx';
 import ContactForm from './ContactForm.jsx';
+import TestImage from "../assets/bank.png";
+import VergiGelir from "../assets/vergi-gelir.png";
 
 function App() {
   return (
@@ -12,9 +14,9 @@ function App() {
       <Menu>
       <h1 className='text-2xl'>Your Progress</h1>
             <div className='flex'>
-                <Card cardName="Finansal Temeller" to="/FinansalOkuryazarliginTemelleri" >
+                <Card cardName="Finansal Temeller" to="/FinansalOkuryazarliginTemelleri" imgSrc={TestImage}>
                 </Card>
-                <Card cardName="Gelir ve Vergi Yönetimi" to="/GelirveVergiYonetimi" >
+                <Card cardName="Gelir ve Vergi Yönetimi" to="/GelirveVergiYonetimi" imgSrc={VergiGelir} >
                                 </Card>
                
             </div>
