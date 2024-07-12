@@ -5,9 +5,10 @@ import Card from './Card.jsx';
 import Footer from './Footer.jsx';
 
 //Image'ler burada import edilecek
-import TestImage from "../assets/bank.png";
+import TestImage from "../assets/finansal-okuryazarlik.jpg";
 import VergiGelir from "../assets/vergi-gelir.png";
 import DebtImage from "../assets/DebtManagement.png";
+import yatirimstrateji from "../assets/kisisel-yatirim-stratejisi.jpg";
 //-------------------------
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
             <div className='flex'>
                 <Card cardName="Borç Yönetimi" imgSrc={DebtImage}>
                 </Card>
-                <Card>
+                <Card cardName="Kişisel Yatırım Stratejisi" imgSrc={yatirimstrateji}>
                     
                 </Card>
             </div>
