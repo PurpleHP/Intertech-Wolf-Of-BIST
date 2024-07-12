@@ -14,8 +14,9 @@ function App() {
             <div className='flex'>
                 <Card cardName="Finansal Temeller" to="/FinansalOkuryazarliginTemelleri" >
                 </Card>
-                <Card>
-                </Card>
+                <Card cardName="Gelir ve Vergi Yönetimi" to="/GelirveVergiYonetimi" >
+                                </Card>
+               
             </div>
       </Menu>
       <Menu>
