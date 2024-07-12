@@ -1,11 +1,41 @@
-import { useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
+import { useLayoutEffect, useRef, useState, useEffect } from "react";
+import {gsap} from "gsap";
 import Logo from '../assets/logo.png';
 
 function Welcome() {
   
+  const [allowScroll, setAllowScroll] = useState(false); 
+  const [activeDiv, setActiveDiv] = useState(0);
 
   const comp = useRef(null);
+  useEffect(() => {
+    const handleScroll = (event) => {
+      // Determine scroll direction
+      const direction = event.deltaY > 0 ? 'down' : 'up';
+
+      // Change active div based on direction
+      setActiveDiv(prevActiveDiv => {
+        if (direction === 'down' && prevActiveDiv < 3) { // Assuming there are 3 divs (0, 1, 2)
+          return prevActiveDiv + 1;
+        } else if (direction === 'up' && prevActiveDiv > 0) {
+          return prevActiveDiv - 1;
+        }
+        return prevActiveDiv;
+      });
+    };
+
+    window.addEventListener('wheel', handleScroll);
+
+    return () => window.removeEventListener('wheel', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    // Animate div transition using GSAP or similar
+    gsap.to('.content-div', { opacity: 0, duration: 0.5 })
+      .then(() => {
+        gsap.to(`#div${activeDiv}`, { opacity: 1, duration: 0.5 });
+      });
+  }, [activeDiv]);
 
   useLayoutEffect(() => {
     let ctx = gsap.context(()=> {
@@ -28,12 +58,21 @@ function Welcome() {
         duration: 1.8,
     }).from(['#welcome', "#login", "#signup", "#courses", "#bg-image"], {
       opacity: 0,
-      duration: 0.5,stagger: 0.5
+      duration: 0.5,stagger: 0.5,
+      //onComplete: () => setAllowScroll(true) //animation finished
     })
     }, comp)
     return () => ctx.revert(); //animations will be removed when the component is unmounted
   },[]);
-
+/*
+  useLayoutEffect(() => {
+    if (allowScroll) {
+      document.body.style.overflow = 'auto'; // Enable scrolling
+    } else {
+      document.body.style.overflow = 'hidden'; // Disable scrolling
+    }
+  }, [allowScroll]);
+*/
   return (
     <div className='relative' ref={comp}>
       <div 
@@ -46,22 +85,23 @@ function Welcome() {
           id="title-2"
           className='text-7xl font-bold text-[#D3D3D3]'>Denizi</h1>
       </div>
+
+      <div className={`content-div ${activeDiv === 0 ? 'visible' : 'hidden'} flex flex-col bg-[#0B090A] justify-center place-items-center h-screen`} id="div0">   
       <div id="bg-image"
-    style={{
-      backgroundImage: `url(${Logo})`,
-      opacity: 0.05,
-      top: 0,
-      left: 0,
-      bottom: 0,
-      right: 0,
-      position: 'absolute',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      pointerEvents: 'none',
-    }}
-  ></div>
-      <div 
-        className="flex flex-col bg-[#0B090A] justify-center place-items-center h-screen">
+          style={{
+            backgroundImage: `url(${Logo})`,
+            opacity: 0.05,
+            top: 0,
+            left: 0,
+            bottom: 0,
+            right: 0,
+            position: 'absolute',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            pointerEvents: 'none',
+          }}>
+
+      </div>
         <a
           id="welcome" 
           className="font-bold text-8xl text-[#D3D3D3]">Hoşgeldiniz</a>
@@ -76,9 +116,21 @@ function Welcome() {
               className='text-7xl my-6 bg-[#161A1D] p-3 rounded-lg  mx-3 border-2 text-[#D3D3D3]'>Kayıt Ol</a>
           </div>
           <a
-              href="/"
+              href="home"
               id="courses" 
               className='text-7xl my-6 bg-[#161A1D] p-3 rounded-lg  mx-3 border-2 text-[#D3D3D3]'>Eğitime Gidin</a>
+      </div>
+      <div className={`content-div ${activeDiv === 1 ? 'visible' : 'hidden'} flex flex-col bg-[#0B090A] justify-center place-items-center h-screen`} id="div1">   
+      <a
+          className="font-bold text-8xl text-[#D3D3D3]">Naber Ben 1. Div Memnun Oldum</a>
+      </div>
+      <div className={`content-div ${activeDiv === 2 ? 'visible' : 'hidden'} flex flex-col bg-[#0B090A] justify-center place-items-center h-screen`} id="div2">   
+      <a
+          className="font-bold text-8xl text-[#D3D3D3]">Naber Ben 2. Div!</a>
+      </div>
+      <div className={`content-div ${activeDiv === 3 ? 'visible' : 'hidden'} flex flex-col bg-[#0B090A] justify-center place-items-center h-screen`} id="div3">   
+      <a
+          className="font-bold text-8xl text-[#D3D3D3]">LOREM!</a>
       </div>
     </div>
  

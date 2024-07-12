@@ -15,8 +15,8 @@ const Navbar = () => {
     return (
         <nav className={`navbar ${menuClick ? 'expanded' : ''}`}>
             <div className="navbar-logo">
-                <a href="/" className='text-xl font-bold'> Eğitim Denizi </a>
-                <a href="/">
+                <a href="home" className='text-xl font-bold'> Eğitim Denizi </a>
+                <a href="home">
                 <img src={Logo} className="Logo" alt='logo' />
                 </a>            
             </div>
@@ -24,7 +24,7 @@ const Navbar = () => {
                 <FontAwesomeIcon icon={faBars} />
             </div>
             <ul className={isMobile ? "navbar-links mobile" : "navbar-links"}>
-                <li><a href="/"><FontAwesomeIcon icon={faHome} />Ana Menu</a></li>
+                <li><a href="home"><FontAwesomeIcon icon={faHome} />Ana Menu</a></li>
                 <li><a href="about"><FontAwesomeIcon icon={faInfoCircle} />Hakkımızda</a></li>
                 <li><a href="contact"><FontAwesomeIcon icon={faEnvelope} />Bize Ulaşın</a></li>
                 <li><a href="login"><FontAwesomeIcon icon={faSignInAlt} />Giriş Yap</a></li>
