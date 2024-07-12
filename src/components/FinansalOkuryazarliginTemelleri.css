@@ -1,0 +1,11 @@
+/* FinansalOkuryazarliginTemelleri.css */
+
+dfn.fon:hover::after {
+    content: 'Fonlar çok havalı şeylerdir.';
+    position: absolute;
+    z-index: 9999;
+    background-color: white;
+    border: 1px solid red;
+    padding: 5px;
+    white-space: nowrap;
+}
