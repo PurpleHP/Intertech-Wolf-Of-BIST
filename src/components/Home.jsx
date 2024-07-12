@@ -7,6 +7,7 @@ import Footer from './Footer.jsx';
 //Image'ler burada import edilecek
 import TestImage from "../assets/bank.png";
 import VergiGelir from "../assets/vergi-gelir.png";
+import DebtImage from "../assets/DebtManagement.png";
 //-------------------------
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
        
             <h1 className='text-2xl'>All Courses</h1>
             <div className='flex'>
-                <Card>
+                <Card cardName="Borç Yönetimi" imgSrc={DebtImage}>
                 </Card>
                 <Card>
                     
