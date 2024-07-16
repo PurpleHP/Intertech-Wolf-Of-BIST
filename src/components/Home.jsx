@@ -10,6 +10,8 @@ import VergiGelir from "../assets/vergi-gelir.png";
 import DebtImage from "../assets/DebtManagement.png";
 import yatirimstrateji from "../assets/kisisel-yatirim-stratejisi.jpg";
 import kredi from "../assets/kredi.jpg"
+import kisiselFinansalPlanlama from "../assets/kisisel-finansal-planlama.jpg"
+import paraSermayePiyasasi from "../assets/para-sermaye-piyasasi.png"
 //-------------------------
 
 function App() {
@@ -40,12 +42,12 @@ function App() {
                 <Card cardName="Kredi" imgSrc={kredi} difficulty="medium">
                     
                 </Card>
-                <Card>
+                <Card cardName="Kişisel finansal Planlama" imgSrc={kisiselFinansalPlanlama} difficulty="medium">
                     
                 </Card>
             </div>
             <div className='flex'>
-                <Card>
+                <Card cardName="Para Sermaye Piyasası" imgSrc={paraSermayePiyasasi} difficulty="medium">
                     
                 </Card>
                 <Card>
