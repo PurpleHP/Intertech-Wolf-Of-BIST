@@ -31,8 +31,8 @@
 .card-text {
     position: absolute;
     top: 85%;
-    left: 0%;
-    transform: translate(0, -85%);
+    left: 5%;
+    transform: translate(-5%, -85%);
     color: white;
     font-size: 20px;
     text-align: left;
