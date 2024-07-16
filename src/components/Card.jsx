@@ -1,6 +1,5 @@
 import React from 'react';
 import './Card.css';
-import Logo from '../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -23,7 +22,7 @@ const Card = ({ children, to, cardName, imgSrc, difficulty}) => {
 
     return (
         <div className="card" onClick={() => navigate(to)} id={getCardId(difficulty)}>
-             <img src={imgSrc} className="card-logo" alt='logo' />
+            <img src={imgSrc} className="card-logo" alt='logo' />
 
             <div className="card-text">{cardName}</div>
 

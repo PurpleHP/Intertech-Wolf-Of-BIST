@@ -1,12 +1,11 @@
 import Footer from "./Footer";
 import { useState } from "react";
-import TextWithLineBreaks from './TextWithLineBreaks';
+
 
 
 
 function GelirveVergiYonetimi(){
     
-  
     
     //MARK: Paragraf Bölümü
     const allParagraphs = [

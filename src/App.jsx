@@ -12,6 +12,7 @@ import Contact from './components/ContactForm';
 import FinansalOkuryazarliginTemelleri from './components/FinansalOkuryazarliginTemelleri';
 import Welcome from './components/Welcome';
 import GelirveVergiYonetimi from './components/GelirveVergiYonetimi';
+
 function App() {
   return (
     <>

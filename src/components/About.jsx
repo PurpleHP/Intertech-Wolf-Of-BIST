@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import './Home.css';
 import NavbarComponent from './Navbar.jsx';
 import Footer from './Footer.jsx';
@@ -27,7 +28,6 @@ function About() {
                     </div>
                 
                 </div>
-          
             </div>
             <Footer></Footer>
         </div>

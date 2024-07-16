@@ -23,11 +23,11 @@ function App() {
                 </Card>
                 <Card cardName="Gelir ve Vergi Yönetimi" to="/GelirveVergiYonetimi" imgSrc={VergiGelir} difficulty="medium" >
                 </Card>
-               
+              
             </div>
       </Menu>
       <Menu>
-       
+
             <h1 className='text-2xl'>All Courses</h1>
             <div className='flex'>
                 <Card cardName="Borç Yönetimi" imgSrc={DebtImage} difficulty="medium">
