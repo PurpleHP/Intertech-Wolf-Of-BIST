@@ -4,14 +4,33 @@ import Menu from './Menu.jsx';
 import Card from './Card.jsx';
 import Footer from './Footer.jsx';
 
-//Image'ler burada import edilecek
-import TestImage from "../assets/finansal-okuryazarlik.jpg";
-import VergiGelir from "../assets/vergi-gelir.png";
-import DebtImage from "../assets/DebtManagement.png";
-import yatirimstrateji from "../assets/kisisel-yatirim-stratejisi.jpg";
-import kredi from "../assets/kredi.jpg"
-import kisiselFinansalPlanlama from "../assets/kisisel-finansal-planlama.jpg"
-import paraSermayePiyasasi from "../assets/para-sermaye-piyasasi.png"
+
+//--------------------------
+//MARK: Images
+
+//Easy Images
+import okuryazarlik from "../assets/kolay/finansal-okuryazarlik.jpg";
+import bankacilikHizmetleri from "../assets/kolay/bankacilik-hizmetleri.jpg";
+import butceharcama from "../assets/kolay/butce-harcama.jpg";
+import kredikartlari from "../assets/kolay/kredi-kartlari.jpg";
+import tasarruf from "../assets/kolay/tasarruf-acil-durum-fonlari.jpg";
+
+
+//Medium Images
+import VergiGelir from "../assets/orta/vergi-gelir.png"; 
+import DebtImage from "../assets/orta/borc-yonetimi.png"; 
+import kredi from "../assets/orta/kredi.jpg" 
+import kisiselFinansalPlanlama from "../assets/orta/kisisel-finansal-planlama.jpg" 
+import paraSermayePiyasasi from "../assets/orta/para-sermaye-piyasasi.png" 
+
+
+//Hard Images
+import yatirimstrateji from "../assets/zor/kisisel-yatirim-stratejisi.jpg"; //ok
+import borsa from "../assets/zor/borsa.jpg"; //ok
+import kripto from "../assets/zor/kripto.jpg";
+import risk from "../assets/zor/risk.jpg";
+
+
 //-------------------------
 
 function App() {
@@ -21,7 +40,7 @@ function App() {
       <Menu>
       <h1 className='text-2xl'>Your Progress</h1>
             <div className='flex'>
-                <Card cardName="Finansal Temeller" to="/FinansalOkuryazarliginTemelleri" imgSrc={TestImage} difficulty="easy">
+                <Card cardName="Finansal Okuryazarlık" to="/FinansalOkuryazarliginTemelleri" imgSrc={okuryazarlik} difficulty="easy">
                 </Card>
                 <Card cardName="Gelir ve Vergi Yönetimi" to="/GelirveVergiYonetimi" imgSrc={VergiGelir} difficulty="medium" >
                 </Card>
@@ -29,38 +48,58 @@ function App() {
             </div>
       </Menu>
       <Menu>
+        
+
 
             <h1 className='text-2xl'>All Courses</h1>
             <div className='flex'>
+                <Card cardName="Finansal Okuryazarlık" imgSrc={okuryazarlik} difficulty="easy">
+                </Card>
+                <Card cardName="Bankacılık Hizmetleri" imgSrc={bankacilikHizmetleri} difficulty="easy">
+                    
+                </Card>
+            </div>
+            <div className='flex'>
+                <Card cardName="Bütçe ve Harcama" imgSrc={butceharcama} difficulty="easy">
+                </Card>
+                <Card cardName="Kredi Kartları" imgSrc={kredikartlari} difficulty="easy">
+                    
+                </Card>
+            </div>
+            <div className='flex'>
+                <Card cardName="Tasarruf ve Acil Durum Fonları" imgSrc={tasarruf} difficulty="easy">
+                </Card>
                 <Card cardName="Borç Yönetimi" imgSrc={DebtImage} difficulty="medium">
                 </Card>
-                <Card cardName="Kişisel Yatırım Stratejisi" imgSrc={yatirimstrateji} difficulty="hard">
-                    
-                </Card>
             </div>
+
             <div className='flex'>
+                
                 <Card cardName="Kredi" imgSrc={kredi} difficulty="medium">
-                    
-                </Card>
-                <Card cardName="Kişisel finansal Planlama" imgSrc={kisiselFinansalPlanlama} difficulty="medium">
-                    
-                </Card>
+                    </Card>
+                        
+                <Card cardName="Kişisel Finansal Planlama" imgSrc={kisiselFinansalPlanlama} difficulty="medium">
+  
+              </Card>
             </div>
             <div className='flex'>
-                <Card cardName="Para Sermaye Piyasası" imgSrc={paraSermayePiyasasi} difficulty="medium">
+            <Card cardName="Gelir ve Vergi Yönetimi" imgSrc={VergiGelir} difficulty="medium">
+                    </Card>
+                    <Card cardName="Para ve Sermaye Piyasası" imgSrc={paraSermayePiyasasi} difficulty="medium">
                     
-                </Card>
-                <Card>
-                    
-                </Card>
+                    </Card>
             </div>
             <div className='flex'>
-                <Card>
-                    
-                </Card>
-                <Card>
-                    
-                </Card>
+              <Card cardName="Kişisel Yatırım Stratejisi" imgSrc={yatirimstrateji} difficulty="hard">
+              </Card>
+              <Card cardName="Borsa" imgSrc={borsa} difficulty="hard">
+              </Card>
+            </div>
+            <div className='flex'>
+              <Card cardName="Kripto" imgSrc={kripto} difficulty="hard">
+              </Card>
+              <Card cardName="Risk" imgSrc={risk} difficulty="hard">
+              </Card>
             </div>
       </Menu>
       <div id='contact'>
