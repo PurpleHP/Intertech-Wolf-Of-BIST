@@ -18,9 +18,9 @@ function App() {
       <Menu>
       <h1 className='text-2xl'>Your Progress</h1>
             <div className='flex'>
-                <Card cardName="Finansal Temeller" to="/FinansalOkuryazarliginTemelleri" imgSrc={TestImage}>
+                <Card cardName="Finansal Temeller" to="/FinansalOkuryazarliginTemelleri" imgSrc={TestImage} difficulty="easy">
                 </Card>
-                <Card cardName="Gelir ve Vergi Yönetimi" to="/GelirveVergiYonetimi" imgSrc={VergiGelir} >
+                <Card cardName="Gelir ve Vergi Yönetimi" to="/GelirveVergiYonetimi" imgSrc={VergiGelir} difficulty="medium" >
                 </Card>
                
             </div>
@@ -29,9 +29,9 @@ function App() {
        
             <h1 className='text-2xl'>All Courses</h1>
             <div className='flex'>
-                <Card cardName="Borç Yönetimi" imgSrc={DebtImage}>
+                <Card cardName="Borç Yönetimi" imgSrc={DebtImage} difficulty="medium">
                 </Card>
-                <Card cardName="Kişisel Yatırım Stratejisi" imgSrc={yatirimstrateji}>
+                <Card cardName="Kişisel Yatırım Stratejisi" imgSrc={yatirimstrateji} difficulty="hard">
                     
                 </Card>
             </div>
