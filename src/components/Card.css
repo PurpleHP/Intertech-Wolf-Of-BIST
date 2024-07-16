@@ -46,6 +46,7 @@
     white-space: nowrap; /* Remove or adjust if you want text wrapping */
     overflow: hidden; /* Hide overflow */
     text-overflow: ellipsis; /* Add ellipsis if text overflows */
+    pointer-events: none;
 }
 
 @media screen and (max-width: 768px) {
