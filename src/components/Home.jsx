@@ -9,6 +9,7 @@ import TestImage from "../assets/finansal-okuryazarlik.jpg";
 import VergiGelir from "../assets/vergi-gelir.png";
 import DebtImage from "../assets/DebtManagement.png";
 import yatirimstrateji from "../assets/kisisel-yatirim-stratejisi.jpg";
+import kredi from "../assets/kredi.jpg"
 //-------------------------
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
                 </Card>
             </div>
             <div className='flex'>
-                <Card>
+                <Card cardName="Kredi" imgSrc={kredi} difficulty="medium">
                     
                 </Card>
                 <Card>
