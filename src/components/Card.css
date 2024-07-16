@@ -30,9 +30,9 @@
 
 .card-text {
     position: absolute;
-    top: 80%;
-    left: 25%;
-    transform: translate(-50%, -50%);
+    top: 85%;
+    left: 0%;
+    transform: translate(0, -85%);
     color: white;
     font-size: 20px;
     text-align: left;
@@ -42,7 +42,10 @@
     padding: 5px 10px;
     margin-left: 5px;
     border-radius: 8px;
-
+    max-width: 95%; /* Adjust based on the card size */
+    white-space: nowrap; /* Remove or adjust if you want text wrapping */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis if text overflows */
 }
 
 @media screen and (max-width: 768px) {
