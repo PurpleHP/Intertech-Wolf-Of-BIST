@@ -36,13 +36,13 @@ function FinansalOkuryazarliginTemelleri() {
             setBtnPrevVisible(true);
         }
         setBtnNextVisible(true);
-    
+
         if (currentParagraph != 0) {
             setParagraphs(allParagraphs[currentParagraph - 1]);
             setCurrentParagraph(currentParagraph - 1);
         }
     }
-    
+
 
     return (
         <div>
@@ -51,19 +51,29 @@ function FinansalOkuryazarliginTemelleri() {
                     <h1>Finans</h1>
                 </div>
                 <div className="col-span-3 grid grid-cols-10 grid-rows-10 p-4 m-4 bg-white h-[90vh]">
-                    <p id="baslik"  className="break-words font-bold text-justify rounded-md font-sans text-[28px] col-span-8 row-span-1 col-start-2 border-4 ">
+                    <p id="baslik" className="break-words font-bold text-justify rounded-md font-sans text-[28px] col-span-8 row-span-1 col-start-2 border-4 ">
                         Finansal Okuryazarlığın Temelleri
                     </p>
                     <div className="break-words text-justify rounded-md font-sans text-[26px] col-span-8 row-span-8 col-start-2  p-3 ">
                         {paragraphs}
                     </div>
                     {btnNextVisible && (
-                    <a onClick={changeParagraph} className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 text-center bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2">İleri</a>
+                        <a
+                            onClick={changeParagraph}
+                            className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 text-center bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 cursor-pointer hover:bg-[#1d2327] hover:scale-105 transition duration-300"
+                        >
+                            İleri
+                        </a>
                     )}
 
                     {btnPrevVisible && (
-                    <a   onClick={changeToPrevParagraph} className="text-white row-start-10 row-end-10 row-span-1 
-                        col-start-1 col-span-2 text-center bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2">Geri</a>)}
+                        <a
+                            onClick={changeToPrevParagraph}
+                            className="text-white row-start-10 row-end-10 row-span-1 col-start-1 col-span-2 text-center bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 cursor-pointer hover:bg-[#1d2327] hover:scale-105 transition duration-300"
+                        >
+                            Geri
+                        </a>
+                    )}
                 </div>
             </div>
             <Footer />
