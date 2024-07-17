@@ -53,19 +53,21 @@ function GelirveVergiYonetimi(){
     return(
         <div>
             <div className="items-center justify-center grid grid-cols-4 gap-x-4 gap-y-2">
-                <div className="col-span-1 p-4 m-4 bg-black h-[90vh]">
-                    <h1>Gelir Kaynakları ve Çeşitleri</h1>
-                    <h1>Vergi Temel Bilgileri</h1>
-                    <h1>Vergi Beyanı ve İndirimler</h1>
-                    <h1>Vergi Beyannamesi Nasıl Hazırlanır?</h1>
-                    <h1>Vergi İndirimleri ve İstisnalar</h1>
-                    <h1>Vergi Beyanı ve İndirimleri Uygulama</h1>
-                    <h1>Vergi Türleri ve Avantajları</h1>
+                <div className="col-span-1 p-4 m-4 h-[90vh] rounded-lg font-bold text-[20px] text-white font-sans list-disc border-4 border-white shadow-black shadow-2xl background-color:#2b3236;  ">
+                    <ul>
+                    <li>Gelir Kaynakları ve Çeşitleri</li>
+                    <li>Vergi Temel Bilgileri</li>
+                    <li>Vergi Beyanı ve İndirimler</li>
+                    <li>Vergi Beyannamesi Nasıl Hazırlanır?</li>
+                    <li>Vergi İndirimleri ve İstisnalar</li>
+                    <li>Vergi Beyanı ve İndirimleri Uygulama</li>
+                    <li>Vergi Türleri ve Avantajları</li>
+                    </ul>
                 </div>
-                <div className="col-span-3 grid grid-cols-10  grid-rows-10 p-4 m-4 bg-white h-[90vh]">
-                <p className="break-words font-bold	 text-justify	 rounded-md font-sans text-[28px] col-span-8 row-span-1 col-start-2 border-4 p-3  row-start-1">
+                <div className="col-span-3 grid grid-cols-10  grid-rows-10 p-4 m-4  h-[90vh] rounded-lg text-white border-4 shadow-black shadow-2xl background-color:#2b3236;">
+                <p className="break-words font-bold	 text-justify	 rounded-md font-sans text-[28px] col-span-8 row-span-1 col-start-2  p-3  row-start-1">
                     Gelir ve Vergi Yönetimi</p>
-                    <p  className="break-words text-justify whitespace-pre-line	 rounded-md font-sans text-[24px] col-span-8 row-span-8 col-start-2 border-4 p-3  row-start-2">
+                    <p  className="break-words text-justify whitespace-pre-line	 rounded-md font-sans text-[24px] col-span-8 row-span-8 col-start-2  p-3  row-start-2">
                     {paragraphs}</p>
 
                     
