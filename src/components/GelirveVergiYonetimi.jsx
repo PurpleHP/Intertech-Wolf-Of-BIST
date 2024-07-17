@@ -79,9 +79,9 @@ function GelirveVergiYonetimi(){
                             <li><button onClick={() => handleSetParagraph(7)}>Vergi Türleri ve Avantajları 2</button></li>
                         </ul>
                     </div>
-                    <div className="row-start-6 row-span-1 grid grid-cols-2">
-                        <button className="col-start-1 col-span-2" onClick={mainMenu}>Ana Sayfa</button>
-                        <button className="col-start-1 col-span-2" onClick={skipTheQuiz}>Bu Testi Atlayın</button>
+                    <div className="row-start-6 row-span-1 grid grid-cols-2 ">
+                        <button className="col-start-1 col-span-2 border-4 rounded-lg shadow-2xl mb-2" onClick={mainMenu}>Ana Sayfa</button>
+                        <button className="col-start-1 col-span-2 border-4 rounded-lg shadow-2xl" onClick={skipTheQuiz}>Bu Testi Atlayın</button>
                     </div>
                 
                 </div>
