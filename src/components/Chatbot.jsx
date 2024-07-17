@@ -37,7 +37,7 @@ const ChatBot = () => {
         <div id="chatbot-bubble" className='overflow-auto p-4 my-2 flex flex-col gap-2'>
                 <ul className="flex flex-col w-full">
                     {messages.map((message, index) => (
-                        <li key={index} className={`border-2 break-words p-2 m-2 ${message.type === 'user' ? 'self-end bg-gray-500 text-white' : 'self-start bg-orange-600 text-white'} inline-block`}>
+                        <li key={index} className={`border-2 max-w-[50%] break-words p-2 m-2 ${message.type === 'user' ? 'self-end bg-gray-500 text-white' : 'self-start bg-orange-600 text-white'} inline-block`}>
                             {message.text}
                         </li>
                     ))}
