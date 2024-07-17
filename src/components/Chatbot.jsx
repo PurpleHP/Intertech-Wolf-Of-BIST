@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect, useRef  } from 'react';
 
 const ChatBot = () => {
 
@@ -6,19 +6,28 @@ const ChatBot = () => {
         "Hello! How can I help you today?",
         "What's up?",
         "How can I assist you today?",
-        "Lorem"
+        "How are you doing today?",
+        "What can I do for you today?",
+        "How are you today?",
+        "What's new?",
+        "What's going on?",
+        "Lorem",
+        "Ipsum",
+
     ]
 
     //  { type: 'user', text: 'Hello, how are you?' },
     //  { type: 'ai', text: 'I am fine, thank you!' },
     const [messages, setMessages] = useState([]);
 
-    const [aiResponse, setAiResponse] = useState(randomMessage[Math.floor(Math.random() * randomMessage.length)]);
-
     const sendMessage = () => { //Post request to the server
         const messageText = document.querySelector('input').value;
         if(messageText.trim().length === 0) {
             alert("Please enter a message to send.");
+            return;
+        }
+        if(messageText.trim().length >= 500) {
+            alert("Please enter a message shorter than 500 characters.");
             return;
         }
 
@@ -30,23 +39,33 @@ const ChatBot = () => {
         setMessages(messages => [...messages, newUserMessage, newAiResponse]);
         document.querySelector('input').value = '';
     }
+    const messagesEndRef = useRef(null);
 
+    const scrollToBottom = () => {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
+  
+    useEffect(() => {
+      scrollToBottom();
+    }, [messages]); //runs every time after entering a message
+  
     return (
         <div className='flex flex-col h-screen w-screen items-center justify-center'>
         <div className='border-red-300 border-2 flex flex-col h-[90vh] w-[90vw] justify-between'>
-        <div id="chatbot-bubble" className='overflow-auto p-4 my-2 flex flex-col gap-2'>
+            <div id="chatbot-bubble" className='overflow-auto p-4 my-2 flex flex-col gap-2'>
                 <ul className="flex flex-col w-full">
                     {messages.map((message, index) => (
-                        <li key={index} className={`border-2 max-w-[50%] break-words p-2 m-2 ${message.type === 'user' ? 'self-end bg-gray-500 text-white' : 'self-start bg-orange-600 text-white'} inline-block`}>
-                            {message.text}
-                        </li>
+                    <li key={index} className={`border-2 max-w-[50%] break-words p-2 m-2 ${message.type === 'user' ? 'self-start bg-gray-500 text-white' : 'self-end bg-orange-600 text-white'} inline-block`}>
+                        {message.text}
+                    </li>
                     ))}
+                    <div ref={messagesEndRef} />
                 </ul>
             </div>
             
             <div className='w-full flex justify-center pb-4'>
                 <div className='flex flex-row w-[85vw]'>
-                    <input required type="text" className='flex p-2 w-full mx-2 border-2 border-gray-300 rounded-md focus:border-orange-500 focus:outline-none'></input>
+                    <input required type="text" className='flex break-words p-2 w-full mx-2 border-2 border-gray-300 rounded-md focus:border-orange-500 focus:outline-none'></input>
                     <button className='flex px-4 mx-2 py-2 bg-orange-500 text-white rounded hover:bg-orange-700' onClick={sendMessage}>Send</button>
                 </div>
             </div>

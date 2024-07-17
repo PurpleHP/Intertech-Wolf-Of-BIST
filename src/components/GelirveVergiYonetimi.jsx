@@ -1,9 +1,6 @@
 import Footer from "./Footer";
 import { useState } from "react";
 
-
-
-
 function GelirveVergiYonetimi(){
     
     
@@ -58,21 +55,35 @@ function GelirveVergiYonetimi(){
     };
     
 
+    const skipTheQuiz = () => { //post request atılacak kursu skip etmek için
+        window.location.href = "/home";
+    }
+
+    const mainMenu = () => {
+        window.location.href = "/home";
+    }
 
     return(
         <div>
             <div className="items-center justify-center grid grid-cols-4 gap-x-4 gap-y-2">
-                <div className="col-span-1 p-4 m-4 h-[90vh] rounded-lg font-bold text-[20px] text-white font-sans border-4 border-white shadow-black shadow-2xl background-color:#2b3236;  ">
-                    <ul>
-                    <li><button onClick={() => handleSetParagraph(0)}>Gelir Kaynakları ve Çeşitleri</button></li>
-                    <li><button onClick={() => handleSetParagraph(1)}>Vergi Temel Bilgileri</button></li>
-                    <li><button onClick={() => handleSetParagraph(2)}>Vergi Beyanı ve İndirimler</button></li>
-                    <li><button onClick={() => handleSetParagraph(3)}>Vergi Beyannamesi Nasıl Hazırlanır?</button></li>
-                    <li><button onClick={() => handleSetParagraph(4)}>Vergi İndirimleri ve İstisnalar</button></li>
-                    <li><button onClick={() => handleSetParagraph(5)}>Vergi Beyanı ve İndirimleri Uygulama</button></li>
-                    <li><button onClick={() => handleSetParagraph(6)}>Vergi Türleri ve Avantajları</button></li>
-                    <li><button onClick={() => handleSetParagraph(7)}>Vergi Türleri ve Avantajları 2</button></li>
-                    </ul>
+                <div className="col-span-1 grid grid-rows-6  p-4 m-4 h-[90vh] rounded-lg font-bold text-[20px] text-white font-sans border-4 break-words border-white shadow-black shadow-2xl background-color:#2b3236;  ">
+                    <div className="row-span-4 row-start-1 text-left items-start">
+                        <ul>
+                            <li><button onClick={() => handleSetParagraph(0)}>Gelir Kaynakları ve Çeşitleri</button></li>
+                            <li><button onClick={() => handleSetParagraph(1)}>Vergi Temel Bilgileri</button></li>
+                            <li><button onClick={() => handleSetParagraph(2)}>Vergi Beyanı ve İndirimler</button></li>
+                            <li><button onClick={() => handleSetParagraph(3)}>Vergi Beyannamesi Nasıl Hazırlanır?</button></li>
+                            <li><button onClick={() => handleSetParagraph(4)}>Vergi İndirimleri ve İstisnalar</button></li>
+                            <li><button onClick={() => handleSetParagraph(5)}>Vergi Beyanı ve İndirimleri Uygulama</button></li>
+                            <li><button onClick={() => handleSetParagraph(6)}>Vergi Türleri ve Avantajları</button></li>
+                            <li><button onClick={() => handleSetParagraph(7)}>Vergi Türleri ve Avantajları 2</button></li>
+                        </ul>
+                    </div>
+                    <div className="row-start-6 row-span-1 grid grid-cols-2">
+                        <button className="col-start-1 col-span-2" onClick={mainMenu}>Ana Sayfa</button>
+                        <button className="col-start-1 col-span-2" onClick={skipTheQuiz}>Bu Testi Atlayın</button>
+                    </div>
+                
                 </div>
                 <div className="col-span-3 grid grid-cols-10  grid-rows-10 p-4 m-4  h-[90vh] rounded-lg text-white border-4 shadow-black shadow-2xl background-color:#2b3236;">
                 <p className="break-words font-bold	 text-justify	 rounded-md font-sans text-[28px] col-span-8 row-span-1 col-start-2  p-3  row-start-1">
