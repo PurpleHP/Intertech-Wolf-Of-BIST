@@ -1,6 +1,6 @@
 /* FinansalOkuryazarliginTemelleri.css */
 
-p {
+#yazi {
     border: 3px solid lightgray;
     max-height: 500px;
     padding: 10px;
@@ -41,6 +41,20 @@ p {
     }
 }
 
+
+#baslik {
+    border: 3px solid lightgray;
+    max-height: 500px;
+    padding: 10px;
+    margin-bottom: 10px;
+    overflow: auto;
+}
+
+@media (max-height: 900px) {
+    baslik {
+        max-height: 520px;
+    }
+}
 
 dfn.fon {
     position: relative;
