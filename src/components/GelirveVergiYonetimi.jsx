@@ -50,18 +50,28 @@ function GelirveVergiYonetimi(){
         }
     }
     
+    const handleSetParagraph = (index) => {
+        setParagraphs(allParagraphs[index]);
+        setBtnNextVisible(index < allParagraphs.length - 1); // Assuming you want to hide the next button if it's the last paragraph
+        setBtnPrevVisible(index > 0); // Hide the prev button if it's the first paragraph
+        setCurrentParagraph(index);
+    };
+    
+
+
     return(
         <div>
             <div className="items-center justify-center grid grid-cols-4 gap-x-4 gap-y-2">
-                <div className="col-span-1 p-4 m-4 h-[90vh] rounded-lg font-bold text-[20px] text-white font-sans list-disc border-4 border-white shadow-black shadow-2xl background-color:#2b3236;  ">
+                <div className="col-span-1 p-4 m-4 h-[90vh] rounded-lg font-bold text-[20px] text-white font-sans border-4 border-white shadow-black shadow-2xl background-color:#2b3236;  ">
                     <ul>
-                    <li>Gelir Kaynakları ve Çeşitleri</li>
-                    <li>Vergi Temel Bilgileri</li>
-                    <li>Vergi Beyanı ve İndirimler</li>
-                    <li>Vergi Beyannamesi Nasıl Hazırlanır?</li>
-                    <li>Vergi İndirimleri ve İstisnalar</li>
-                    <li>Vergi Beyanı ve İndirimleri Uygulama</li>
-                    <li>Vergi Türleri ve Avantajları</li>
+                    <li><button onClick={() => handleSetParagraph(0)}>Gelir Kaynakları ve Çeşitleri</button></li>
+                    <li><button onClick={() => handleSetParagraph(1)}>Vergi Temel Bilgileri</button></li>
+                    <li><button onClick={() => handleSetParagraph(2)}>Vergi Beyanı ve İndirimler</button></li>
+                    <li><button onClick={() => handleSetParagraph(3)}>Vergi Beyannamesi Nasıl Hazırlanır?</button></li>
+                    <li><button onClick={() => handleSetParagraph(4)}>Vergi İndirimleri ve İstisnalar</button></li>
+                    <li><button onClick={() => handleSetParagraph(5)}>Vergi Beyanı ve İndirimleri Uygulama</button></li>
+                    <li><button onClick={() => handleSetParagraph(6)}>Vergi Türleri ve Avantajları</button></li>
+                    <li><button onClick={() => handleSetParagraph(7)}>Vergi Türleri ve Avantajları 2</button></li>
                     </ul>
                 </div>
                 <div className="col-span-3 grid grid-cols-10  grid-rows-10 p-4 m-4  h-[90vh] rounded-lg text-white border-4 shadow-black shadow-2xl background-color:#2b3236;">
