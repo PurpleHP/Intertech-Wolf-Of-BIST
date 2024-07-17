@@ -1,5 +1,61 @@
 /* FinansalOkuryazarliginTemelleri.css */
 
+#yazi {
+    border: 3px solid lightgray;
+    max-height: 500px;
+    padding: 10px;
+    margin-bottom: 10px;
+    overflow: auto;
+}
+
+/* Monitor */
+@media (max-height: 1500px) {
+    p {
+        max-height: 850px;
+    }
+}
+@media (max-height: 1200px) {
+    p {
+        max-height: 650px;
+    }
+}
+
+/* Laptop-Tablet */
+@media (max-height: 900px) {
+    p {
+        max-height: 520px;
+    }
+}
+
+/* Tel */
+@media (max-height: 700px) {
+    p {
+        max-height: 450px;
+    }
+}
+
+/* Min */
+@media (max-height: 600px) {
+    p {
+        max-height: 250px;
+    }
+}
+
+
+#baslik {
+    border: 3px solid lightgray;
+    max-height: 500px;
+    padding: 10px;
+    margin-bottom: 10px;
+    overflow: auto;
+}
+
+@media (max-height: 900px) {
+    baslik {
+        max-height: 520px;
+    }
+}
+
 dfn.fon {
     position: relative;
     font-style: italic;
@@ -30,3 +86,4 @@ dfn.fon:hover::after {
     left: 50%;
     transform: translate(-50%, -8px);
 }
+
