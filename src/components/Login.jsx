@@ -31,6 +31,9 @@ function Login() {
               <input id="girisinput" type="password" name="passw" placeholder="Şifre" required />
 
               <button id="girisbutton">Giriş Yap</button>
+
+              <label id="pass-forgot" htmlFor="chk-pass" aria-hidden="true">Şifremi Unuttum</label>
+              
             </form>
           </div>
         </div>
