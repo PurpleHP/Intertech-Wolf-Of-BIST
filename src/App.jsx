@@ -13,6 +13,7 @@ import FinansalOkuryazarliginTemelleri from './components/FinansalOkuryazarligin
 import Welcome from './components/Welcome';
 import GelirveVergiYonetimi from './components/GelirveVergiYonetimi';
 import ChatBot from './components/Chatbot';
+import GelirveVergiYonetimiQuiz from './components/GelirveVergiYonetimiQuiz';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path='/Chatbot' element={<ChatBot />} />
           <Route path='/FinansalOkuryazarliginTemelleri' element={<FinansalOkuryazarliginTemelleri />} />
           <Route path='/GelirveVergiYonetimi' element={<GelirveVergiYonetimi/>} />
+          <Route path='/GelirveVergiYonetimiQuiz' element={<GelirveVergiYonetimiQuiz/>} />
         </Routes>
       </div>
     </>
