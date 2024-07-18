@@ -57,6 +57,7 @@ function GelirveVergiYonetimi(){
         setBtnNextVisible(index < allParagraphs.length - 1); // Assuming you want to hide the next button if it's the last paragraph
         setBtnPrevVisible(index > 0); // Hide the prev button if it's the first paragraph
         setCurrentParagraph(index);
+        setBtnQuizVisible(index == allParagraphs.length - 1); // Show the quiz button if it's the last paragraph
     };
     
 
