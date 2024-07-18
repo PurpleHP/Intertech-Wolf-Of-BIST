@@ -1,9 +1,12 @@
 import React, { useState,useEffect, useRef  } from 'react';
+import { useNavigate } from "react-router-dom";
+
 import AILogo from '../assets/imageKurt.png';
 import AIGif from '../assets/kurt.gif';
 import UserLogo from "../assets/nerd.png";
 
 const ChatBot = () => {
+
 
     const randomMessage = [
         "Hello! How can I help you today?",
@@ -18,6 +21,7 @@ const ChatBot = () => {
         "Ipsum",
     ]
 
+    const navigate = useNavigate();
     //  { type: 'user', text: 'Hello, how are you?' },
     //  { type: 'ai', text: 'I am fine, thank you!' },
     const [messages, setMessages] = useState([]);
@@ -52,27 +56,31 @@ const ChatBot = () => {
         setMessages(messages => [...messages, newUserMessage, newAiResponse]);
         document.querySelector('input').value = '';
     }
-    const messagesEndRef = useRef(null);
 
-    const scrollToBottom = () => {
-      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    };
+    
+    const messagesEndRef = useRef(null);
   
     useEffect(() => {
-      scrollToBottom();
-    }, [messages]); //runs every time after entering a message
+        const scrollToBottom = () => {
+          const chatContainer = document.getElementById('chatbot-bubble');
+          if (chatContainer) {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+          }
+        };
+        scrollToBottom();
+      }, [messages])
   
     return (
         <div className='flex flex-col h-screen w-screen items-center justify-center'>
-        <div className='border-red-300 border-2 flex flex-col h-[90vh] w-[90vw] justify-between'>
+        <div className='border-red-300 rounded-xl border-2 flex flex-col h-[90vh] w-[90vw] justify-between'>
                 <div id="chatbot-bubble" className='overflow-auto p-4 my-2 flex flex-col gap-2'>
                     <ul className="flex flex-col w-full">
                         {messages.map((message, index) => (
-                            <div key={index} className={`flex  items-center ${message.type === 'user' ? 'justify-start' : 'justify-end'}`}>
+                            <div key={index} className={`flex rounded-xl items-center ${message.type === 'user' ? 'justify-start' : 'justify-end'}`}>
                                 {message.type === 'user' && (
                                         <img src={UserLogo} alt="AI" className="items-center lg:w-16 w-6 lg:h-16 h-6  rounded-full ml-2"/>
                                     )}
-                                <li className={`border-2 max-w-[50%] break-words p-2 m-2 ${message.type === 'user' ? 'bg-gray-500 text-white' : 'bg-orange-600 text-white'}`}>
+                                <li className={`border-2 rounded-xl	 max-w-[50%] break-words p-2 m-2 ${message.type === 'user' ? 'bg-gray-500 text-white' : 'bg-orange-600 text-white'}`}>
                                     {message.text}
                                 </li>
                                 {message.type === 'ai' && (
@@ -86,8 +94,9 @@ const ChatBot = () => {
             
             <div className='w-full flex justify-center pb-4'>
                 <div className='flex flex-row w-[85vw]'>
-                    <input required type="text" className='flex break-words p-2 w-full mx-2 border-2 border-gray-300 rounded-md focus:border-orange-500 focus:outline-none'></input>
-                    <button className='flex px-4 mx-2 py-2 bg-orange-500 text-white rounded hover:bg-orange-700' onClick={sendMessage}>Send</button>
+                    <button  className='flex whitespace-nowrap px-4 mx-2 py-2 w- bg-orange-500 text-white rounded hover:bg-orange-700' onClick={() => navigate("/home")}>Ana Sayfa</button>
+                    <input required type="text" onKeyDown={e => e.key  === "Enter" ? sendMessage() : ""} className='flex break-words p-2 w-full mx-2 border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none'></input>
+                    <button  className='flex  px-4 mx-2 py-2 text-center items-center justify-center bg-orange-500 text-white rounded hover:bg-orange-700' onClick={sendMessage}>Sor</button>
                 </div>
             </div>
         </div>
