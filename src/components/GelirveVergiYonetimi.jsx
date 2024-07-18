@@ -65,6 +65,10 @@ function GelirveVergiYonetimi(){
         window.location.href = "/home";
     }
 
+    const goToQuiz = () => { 
+        window.location.href = "/GelirveVergiYonetimiQuiz";
+    }
+
     const mainMenu = () => {
         window.location.href = "/home";
     }
@@ -75,19 +79,19 @@ function GelirveVergiYonetimi(){
                 <div className="col-span-1 grid grid-rows-6  p-4 m-4 h-[90vh] rounded-lg font-bold text-[20px] text-white font-sans border-4 break-words border-white shadow-black shadow-2xl background-color:#2b3236;  ">
                     <div className="row-span-4 row-start-1 text-left items-start">
                         <ul>
-                            <li className={currentParagraph == 0 ? 'text-[#161A1D]' : ''}><button className=" transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(0)} >Gelir Kaynakları ve Çeşitleri</button></li>
-                            <li className={currentParagraph == 1 ? 'text-[#161A1D]' : ''}><button className=" transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(1)}>Vergi Temel Bilgileri</button></li>
-                            <li className={currentParagraph == 2 ? 'text-[#161A1D]' : ''}><button className=" transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(2)}>Vergi Beyanı ve İndirimler</button></li>
-                            <li className={currentParagraph == 3 ? 'text-[#161A1D]' : ''}><button className=" transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(3)}>Vergi Beyannamesi Nasıl Hazırlanır?</button></li>
-                            <li className={currentParagraph == 4 ? 'text-[#161A1D]' : ''}><button className=" transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(4)}>Vergi İndirimleri ve İstisnalar</button></li>
-                            <li className={currentParagraph == 5 ? 'text-[#161A1D]' : ''}><button className=" transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(5)}>Vergi Beyanı ve İndirimleri Uygulama</button></li>
-                            <li className={currentParagraph == 6 ? 'text-[#161A1D]' : ''}><button className=" transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(6)}>Vergi Türleri ve Avantajları</button></li>
-                            <li className={currentParagraph == 7 ? 'text-[#161A1D]' : ''}><button className=" transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(7)}>Vergi Türleri ve Avantajları 2</button></li>
+                            <li className={currentParagraph == 0 ? 'text-[#FFB22C]' : ''}><button className=" transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(0)}>Gelir Kaynakları ve Çeşitleri</button></li>
+                            <li className={currentParagraph == 1 ? 'text-[#FFB22C]' : ''}><button className=" transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(1)}>Vergi Temel Bilgileri</button></li>
+                            <li className={currentParagraph == 2 ? 'text-[#FFB22C]' : ''}><button className=" transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(2)}>Vergi Beyanı ve İndirimler</button></li>
+                            <li className={currentParagraph == 3 ? 'text-[#FFB22C]' : ''}><button className=" transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(3)}>Vergi Beyannamesi Nasıl Hazırlanır?</button></li>
+                            <li className={currentParagraph == 4 ? 'text-[#FFB22C]' : ''}><button className=" transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(4)}>Vergi İndirimleri ve İstisnalar</button></li>
+                            <li className={currentParagraph == 5 ? 'text-[#FFB22C]' : ''}><button className=" transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(5)}>Vergi Beyanı ve İndirimleri Uygulama</button></li>
+                            <li className={currentParagraph == 6 ? 'text-[#FFB22C]' : ''}><button className=" transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(6)}>Vergi Türleri ve Avantajları</button></li>
+                            <li className={currentParagraph == 7 ? 'text-[#FFB22C]' : ''}><button className=" transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(7)}>Vergi Türleri ve Avantajları 2</button></li>
                         </ul>
                     </div>
                     <div className="row-start-6 row-span-1 grid grid-cols-2 ">
-                        <button className="col-start-1 col-span-2 border-4 rounded-lg shadow-2xl mb-2" onClick={mainMenu}>Ana Sayfa</button>
-                        <button className="col-start-1 col-span-2 border-4 rounded-lg shadow-2xl" onClick={skipTheQuiz}>Bu Testi Atlayın</button>
+                        <button className="col-start-1 col-span-2 border-4 rounded-lg shadow-2xl mb-2 transform transition duration-500 hover:scale-105" onClick={mainMenu}>Ana Sayfa</button>
+                        <button className="col-start-1 col-span-2 border-4 rounded-lg shadow-2xl transform transition duration-500 hover:scale-105" onClick={goToQuiz} >Teste Atla</button>
                     </div>
                 
                 </div>
@@ -99,13 +103,12 @@ function GelirveVergiYonetimi(){
 
                     
                     {btnNextVisible && (
-                    <a onClick={changeParagraph} className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 text-center bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2">İleri</a>
+                    <a onClick={changeParagraph} className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center">İleri</a>
                     )}
-                    {btnQuizVisible && <a onClick={ () => window.location.href = '/GelirveVergiYonetimiQuiz' }className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 text-center bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2">Go to Quiz</a>}
+                    {btnQuizVisible && <a onClick={goToQuiz} className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center">Quize git</a>}
 
                     {btnPrevVisible && (
-                    <a   onClick={changeToPrevParagraph} className="text-white row-start-10 row-end-10 row-span-1 
-                        col-start-1 col-span-2 text-center bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2">Geri</a>)}
+                    <a   onClick={changeToPrevParagraph} className="text-white row-start-10 row-end-10 row-span-1 col-start-1 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center">Geri</a>)}
                 </div>
             </div>
             <Footer></Footer>
