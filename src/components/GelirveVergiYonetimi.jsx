@@ -20,12 +20,17 @@ function GelirveVergiYonetimi(){
     const [currentParagraph, setCurrentParagraph] = useState(0); //hangi paragrafta olduğumuzu belirtmek için
     const [btnNextVisible, setBtnNextVisible] = useState(true); //ileri butonunu göstermek için
     const [btnPrevVisible, setBtnPrevVisible] = useState(false); //geri butonunu göstermek için
+    const [btnQuizVisible, setBtnQuizVisible] = useState(false); 
+
+
 
     const changeParagraph = () => {
         if (currentParagraph == allParagraphs.length - 2) {
             setBtnNextVisible(false);
+            setBtnQuizVisible(true);
         } else if (currentParagraph != allParagraphs.length - 1) {
             setBtnNextVisible(true);
+
         }
         if (currentParagraph != allParagraphs.length - 1) {
             setBtnPrevVisible(true);
@@ -95,6 +100,7 @@ function GelirveVergiYonetimi(){
                     {btnNextVisible && (
                     <a onClick={changeParagraph} className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 text-center bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2">İleri</a>
                     )}
+                    {btnQuizVisible && <a onClick={ () => window.location.href = '/GelirveVergiYonetimiQuiz' }className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 text-center bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2">Go to Quiz</a>}
 
                     {btnPrevVisible && (
                     <a   onClick={changeToPrevParagraph} className="text-white row-start-10 row-end-10 row-span-1 
