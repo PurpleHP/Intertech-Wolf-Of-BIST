@@ -69,14 +69,14 @@ function GelirveVergiYonetimi(){
                 <div className="col-span-1 grid grid-rows-6  p-4 m-4 h-[90vh] rounded-lg font-bold text-[20px] text-white font-sans border-4 break-words border-white shadow-black shadow-2xl background-color:#2b3236;  ">
                     <div className="row-span-4 row-start-1 text-left items-start">
                         <ul>
-                            <li><button onClick={() => handleSetParagraph(0)}>Gelir Kaynakları ve Çeşitleri</button></li>
-                            <li><button onClick={() => handleSetParagraph(1)}>Vergi Temel Bilgileri</button></li>
-                            <li><button onClick={() => handleSetParagraph(2)}>Vergi Beyanı ve İndirimler</button></li>
-                            <li><button onClick={() => handleSetParagraph(3)}>Vergi Beyannamesi Nasıl Hazırlanır?</button></li>
-                            <li><button onClick={() => handleSetParagraph(4)}>Vergi İndirimleri ve İstisnalar</button></li>
-                            <li><button onClick={() => handleSetParagraph(5)}>Vergi Beyanı ve İndirimleri Uygulama</button></li>
-                            <li><button onClick={() => handleSetParagraph(6)}>Vergi Türleri ve Avantajları</button></li>
-                            <li><button onClick={() => handleSetParagraph(7)}>Vergi Türleri ve Avantajları 2</button></li>
+                            <li className={currentParagraph == 0 ? 'text-[#161A1D]' : ''}><button className=" transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(0)} >Gelir Kaynakları ve Çeşitleri</button></li>
+                            <li className={currentParagraph == 1 ? 'text-[#161A1D]' : ''}><button className=" transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(1)}>Vergi Temel Bilgileri</button></li>
+                            <li className={currentParagraph == 2 ? 'text-[#161A1D]' : ''}><button className=" transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(2)}>Vergi Beyanı ve İndirimler</button></li>
+                            <li className={currentParagraph == 3 ? 'text-[#161A1D]' : ''}><button className=" transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(3)}>Vergi Beyannamesi Nasıl Hazırlanır?</button></li>
+                            <li className={currentParagraph == 4 ? 'text-[#161A1D]' : ''}><button className=" transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(4)}>Vergi İndirimleri ve İstisnalar</button></li>
+                            <li className={currentParagraph == 5 ? 'text-[#161A1D]' : ''}><button className=" transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(5)}>Vergi Beyanı ve İndirimleri Uygulama</button></li>
+                            <li className={currentParagraph == 6 ? 'text-[#161A1D]' : ''}><button className=" transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(6)}>Vergi Türleri ve Avantajları</button></li>
+                            <li className={currentParagraph == 7 ? 'text-[#161A1D]' : ''}><button className=" transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(7)}>Vergi Türleri ve Avantajları 2</button></li>
                         </ul>
                     </div>
                     <div className="row-start-6 row-span-1 grid grid-cols-2 ">
