@@ -14,6 +14,7 @@ import Welcome from './components/Welcome';
 import GelirveVergiYonetimi from './components/GelirveVergiYonetimi';
 import ChatBot from './components/Chatbot';
 import GelirveVergiYonetimiQuiz from './components/GelirveVergiYonetimiQuiz';
+import ApiRequest from './components/ApiRequest';
 
 function App() {
   return (
@@ -32,6 +33,8 @@ function App() {
           <Route path='/FinansalOkuryazarliginTemelleri' element={<FinansalOkuryazarliginTemelleri />} />
           <Route path='/GelirveVergiYonetimi' element={<GelirveVergiYonetimi/>} />
           <Route path='/GelirveVergiYonetimiQuiz' element={<GelirveVergiYonetimiQuiz/>} />
+          <Route path='/Api' element={<ApiRequest/>} />
+
         </Routes>
       </div>
     </>
