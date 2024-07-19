@@ -18,14 +18,17 @@ const ApiRequest = () => {
               headers: {
                 'Content-Type': 'application/json',
               },
-                            body: raw,
+                body: raw,
               redirect: "follow"
               
             };
             const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Chapter/getChaptersByEducationId';
             fetch(targetUrl, requestOptions)
                 .then(response => response.json())
-                .then(data => console.log(data))
+                .then(data => {
+                    console.log(data)
+                    setApiResponse(JSON.stringify(data));
+        })
                 .catch(error =>{
                     console.error('Error:', error);
                     setApiResponse(error.message);
