@@ -72,7 +72,7 @@ const ChatBot = () => {
   
     return (
         <div className='flex flex-col h-screen w-screen items-center justify-center'>
-        <div className='border-red-300 rounded-xl border-2 flex flex-col h-[90vh] w-[90vw] justify-between'>
+        <div className='border-[#e28109] rounded-xl border-2 flex flex-col h-[90vh] w-[90vw] justify-between'>
                 <div id="chatbot-bubble" className='overflow-auto p-4 my-2 flex flex-col gap-2'>
                     <ul className="flex flex-col w-full">
                         {messages.map((message, index) => (
@@ -80,7 +80,7 @@ const ChatBot = () => {
                                 {message.type === 'user' && (
                                         <img src={UserLogo} alt="AI" className="items-center lg:w-16 w-6 lg:h-16 h-6  rounded-full ml-2"/>
                                     )}
-                                <li className={`border-2 rounded-xl	 max-w-[50%] break-words p-2 m-2 ${message.type === 'user' ? 'bg-gray-500 text-white' : 'bg-orange-600 text-white'}`}>
+                                <li className={`border-2 rounded-xl	 max-w-[50%] break-words p-2 m-2 ${message.type === 'user' ? 'bg-gray-500 text-white' : 'bg-[#e28109] text-white'}`}>
                                     {message.text}
                                 </li>
                                 {message.type === 'ai' && (
@@ -94,9 +94,9 @@ const ChatBot = () => {
             
             <div className='w-full flex justify-center pb-4'>
                 <div className='flex flex-row w-[85vw]'>
-                    <button  className='flex whitespace-nowrap px-4 mx-2 py-2 w- bg-orange-500 text-white rounded hover:bg-orange-700' onClick={() => navigate("/home")}>Ana Sayfa</button>
+                    <button  className='flex whitespace-nowrap px-4 mx-2 py-2 w- bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={() => navigate("/home")}>Ana Sayfa</button>
                     <input required type="text" onKeyDown={e => e.key  === "Enter" ? sendMessage() : ""} className='flex break-words p-2 w-full mx-2 border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none'></input>
-                    <button  className='flex  px-4 mx-2 py-2 text-center items-center justify-center bg-orange-500 text-white rounded hover:bg-orange-700' onClick={sendMessage}>Sor</button>
+                    <button  className='flex  px-4 mx-2 py-2 text-center items-center justify-center bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105 ' onClick={sendMessage}>Sor</button>
                 </div>
             </div>
         </div>
