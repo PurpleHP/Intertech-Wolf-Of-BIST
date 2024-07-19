@@ -8,33 +8,39 @@ const ApiRequest = () => {
 
     const fetchData = async () => {
         try {
-          const response = await fetch('https://financialtrainerfinal120240716125722.azurewebsites.net/api/Chapter/getChaptersByEducationId', {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              "eduId": 4,
-            }),
-          });
-      
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-      
-          const data = await response.json();
-          setApiResponse(data);
+          
+            const raw = JSON.stringify({
+              "eduId": 4
+            });
+            
+            const requestOptions = {
+              method: "POST",
+              headers: {
+                'Content-Type': 'application/json',
+              },
+                            body: raw,
+              redirect: "follow"
+              
+            };
+            const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Chapter/getChaptersByEducationId';
+            fetch(targetUrl, requestOptions)
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error =>{
+                    console.error('Error:', error);
+                    setApiResponse(error.message);
+                });
         } catch (error) {
           setError(error.message);
+          setApiResponse(error.message);
         }
       };
         
     
     return (
         <div>
-        <button onClick={fetchData}>Fetch Data</button>
-            <p>{apiResponse}</p>
+        <button className='text-white border-2 m-4 p-4 rounded-lg' onClick={fetchData}>Fetch Data</button>
+            <p className='text-white m-4 p-4'>{apiResponse}</p>
         </div>
     );
 }
