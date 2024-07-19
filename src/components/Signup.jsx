@@ -1,15 +1,32 @@
 import React from 'react';
 import Navbar from './Navbar';
+import { useState } from 'react';
 
 function Signup() {
+
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    setName(e.target.firstName.value);
+    setSurname(e.target.lastName.value);
+    setEmail(e.target.email.value);
+    setPassword(e.target.password.value);
+    console.log(name, surname, email, password);
+  }
+
+
   return (
     <div>
       <Navbar></Navbar>
 <div className="min-h-screen flex flex-col items-center justify-center bg-[#0B090A]">
       <div className="bg-[#161A1D] p-8 rounded-lg shadow-md w-96">
         <h2 className="text-[#D3D3D3] text-2xl mb-6">Kayıt Ol</h2>
-        <form>
-        <div className="mb-2 flex justify-center space-x-4"> {/* Adjusted this line */}
+        <form onSubmit={handleRegister}>
+        <div className="mb-2 flex justify-center space-x-4">
             <div>
               <label className="block text-[#D3D3D3] mb-2" htmlFor="firstName">Ad</label>
               <input type="text" id="firstName" className="w-full p-2 rounded bg-[#0B090A] text-[#D3D3D3]" />

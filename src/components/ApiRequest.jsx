@@ -2,7 +2,6 @@ import React from 'react';
 import {useState} from 'react';
 
 const ApiRequest = () => {
-    const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [apiResponse, setApiResponse] = useState(null);
 
@@ -18,7 +17,7 @@ const ApiRequest = () => {
               headers: {
                 'Content-Type': 'application/json',
               },
-                body: raw,
+              body: raw,
               redirect: "follow"
               
             };
