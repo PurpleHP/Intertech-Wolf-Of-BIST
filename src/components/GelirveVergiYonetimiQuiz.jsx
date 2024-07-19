@@ -40,7 +40,6 @@ const GelirveVergiYonetimiQuiz = () => {
             });
         }, 1000);
 
-
         return () => clearInterval(timerInterval);
     }, []);
 
@@ -58,8 +57,8 @@ const GelirveVergiYonetimiQuiz = () => {
     };
 
     return (
-        <div className='app min-h-screen flex flex-col items-center justify-center text-white background-color: #2b3236;'>
-            {timer > 0 && (
+        <div className='app min-h-screen flex flex-col items-center justify-center text-white' style={{ backgroundColor: '#2b3236' }}>
+            {!showScore && timer > 0 && (
                 <div className="timer-section absolute top-0 left-0 m-4 px-2 py-1 bg-gray-800 rounded-md">
                     Kalan zaman: {timer} saniye
                 </div>
@@ -67,7 +66,7 @@ const GelirveVergiYonetimiQuiz = () => {
             {showScore ? (
                 <>
                     <div className='score-section animate-pulse text-3xl'>
-                    Toplam {questions.length} sorudan {score} doğru cevap verdiniz.
+                        Toplam {questions.length} sorudan {score} doğru cevap verdiniz.
                     </div>
                     <div className="flex space-x-4 mt-4">
                         <button
@@ -97,7 +96,7 @@ const GelirveVergiYonetimiQuiz = () => {
                             <button
                                 key={index}
                                 onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}
-                                className="text-white font-bold py-4 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109]  bg-[#161A1D]"
+                                className="text-white font-bold py-4 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109] bg-[#161A1D]"
                                 style={{ transition: 'background-color 0.5s ease' }}
                             >
                                 {answerOption.answerText}
