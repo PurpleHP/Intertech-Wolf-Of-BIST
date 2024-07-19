@@ -10,6 +10,7 @@ const ApiRequest = () => {
         try {
           const response = await fetch('https://financialtrainerfinal120240716125722.azurewebsites.net/api/Chapter/getChaptersByEducationId', {
             method: 'POST',
+            mode: 'no-cors',
             headers: {
               'Content-Type': 'application/json',
             },
