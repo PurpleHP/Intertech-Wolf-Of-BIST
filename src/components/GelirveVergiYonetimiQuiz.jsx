@@ -46,12 +46,25 @@ const GelirveVergiYonetimiQuiz = () => {
                 <div className='score-section animate-pulse text-3xl'>
                     You scored {score} out of {questions.length}
                 </div>
-                <button
-                    onClick={ () => window.location.href = '/chatbot' }
-                    className="mt-4 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109]"
-                >
-                    Return to Main Menu
-                </button>
+
+
+
+                <div className="flex space-x-4 mt-4">
+                    <button
+                        onClick={() => window.location.href = '/chatbot'} 
+                        className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109]"
+                    >
+                        ChatBot'a Soru Sor
+                    </button>
+                    <button
+                        onClick={() => window.location.href = '/home'}
+                        className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109]"
+                    >
+                        Ana Sayfaya Dön
+                    </button>
+                </div>
+
+
             </>
             ) : (
                 <>
