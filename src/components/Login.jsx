@@ -31,7 +31,7 @@ function Login() {
       setApiResponse(data);
       console.log(data);
       // Kullanıcı başarılı bir şekilde kaydolduğunda yönlendirme
-      navigate('/register');
+      navigate('/quiz');
     } catch (error){
       console.error(error);
     }
