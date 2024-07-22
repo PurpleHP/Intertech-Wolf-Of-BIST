@@ -11,8 +11,8 @@
     border: 1px solid rgba(225, 225, 225, 0.3);
     color: white;
     overflow: hidden;
+    position: relative;
 }
-
 
 .card img {
     width: 100%;
@@ -27,12 +27,10 @@
     opacity: 0.5;
 }
 
-
 .card-text {
     position: absolute;
-    top: 85%;
-    left: 5%;
-    transform: translate(-5%, -85%);
+    bottom: 10px;
+    left: 10px;
     color: white;
     font-size: 20px;
     text-align: left;
@@ -40,48 +38,48 @@
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     background-color: rgba(0, 0, 0, 0.5);
     padding: 5px 10px;
-    margin-left: 5px;
     border-radius: 8px;
-    max-width: 95%; /* Adjust based on the card size */
-    white-space: nowrap; /* Remove or adjust if you want text wrapping */
-    overflow: hidden; /* Hide overflow */
-    text-overflow: ellipsis; /* Add ellipsis if text overflows */
+    max-width: calc(100% - 20px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     pointer-events: none;
 }
 
 @media screen and (max-width: 768px) {
     .card {
-        width: 100%;
-        max-width: 50%;
-
-        margin: 20px auto;
-        border-radius: 8px;
-        background: #0B090A;
+        width: 90%;
+        max-width: none;
+        margin-bottom: 16px;
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(0px);
         -webkit-backdrop-filter: blur(0px);
-        border: 1px solid rgba(225, 225, 225, 0.3);
-        color: white;
-        
     }
 
-
-    .card-text{
+    .card-text {
         font-size: small;
-        
     }
+}
 
-
+@media screen and (min-width: 769px) {
+    .card-text {
+        bottom: 20px;
+        left: 20px;
+        /* desktop icin */
+    }
 }
 
 #cardEasy:hover {
-    box-shadow: 0 10px 40px rgba(0, 255, 0, 0.5); /* Green shadow for easy */
+    box-shadow: 0 10px 40px rgba(0, 255, 0, 0.5);
+    /* Green shadow for easy */
 }
 
 #cardMedium:hover {
-    box-shadow: 0 10px 40px rgba(255, 165, 0, 0.5); /* Orange shadow for medium */
+    box-shadow: 0 10px 40px rgba(255, 165, 0, 0.5);
+    /* Orange shadow for medium */
 }
 
 #cardHard:hover {
-    box-shadow: 0 10px 40px rgba(255, 0, 0, 0.5); /* Red shadow for hard */
+    box-shadow: 0 10px 40px rgba(255, 0, 0, 0.5);
+    /* Red shadow for hard */
 }
