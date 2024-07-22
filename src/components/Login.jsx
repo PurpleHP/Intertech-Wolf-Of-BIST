@@ -39,7 +39,7 @@ function Login() {
 
   async function loginUser(email, password){
     try{
-      const response = await fetch('https://financialtrainerfinal120240716125722.azurewebsites.net/api/Login/login', {
+      const response = await fetch('https://financialtrainerfinal120240716125722.azurewebsites.net/api/Login/verify', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
