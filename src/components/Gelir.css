@@ -12,16 +12,18 @@
     }
 
     .fixed-button-ileri {
+        height: 5em;
         position: fixed;
-        bottom: 20px;
-        right: 20px;
+        bottom: calc(40%);
+        left: calc(0%);
         z-index: 1000;
     }
 
     .fixed-button-geri {
+        height: 5em;
         position: fixed;
-        bottom: 20px;
-        right: 300px;
+        bottom: calc(55%);
+        left: calc(0%);
         z-index: 1000;
     }
 
