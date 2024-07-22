@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faInfoCircle, faEnvelope, faSignInAlt, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faInfoCircle, faEnvelope, faSignInAlt, faBars, faRobot } from '@fortawesome/free-solid-svg-icons';
 import './Navbar.css';
 import Logo from '../assets/logo.png';
 
@@ -25,6 +25,7 @@ const Navbar = () => {
             </div>
             <ul className={isMobile ? "navbar-links mobile" : "navbar-links"}>
                 <li><a href="home"><FontAwesomeIcon icon={faHome} />Ana Menu</a></li>
+                <li><a href="chatbot"><FontAwesomeIcon icon={faRobot} />ChatBot</a></li>
                 <li><a href="about"><FontAwesomeIcon icon={faInfoCircle} />Hakkımızda</a></li>
                 <li><a href="contact"><FontAwesomeIcon icon={faEnvelope} />Bize Ulaşın</a></li>
                 <li><a href="login"><FontAwesomeIcon icon={faSignInAlt} />Giriş Yap</a></li>
