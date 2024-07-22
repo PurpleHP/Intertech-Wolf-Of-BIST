@@ -8,7 +8,7 @@
 /* mobil */
 @media screen and (max-width: 767px) {
     .title {
-        font-size: 5vw;
+        font-size: 4vw;
     }
 
     .fixed-button-ileri {
@@ -38,14 +38,29 @@
 @media screen and (min-width: 768px) {
     .scrollable-mobile {
         font-size: 24px;
-        overflow-y: visible;
+        overflow-y:  hidden;
         height: auto;
         padding-bottom: 0;
+        overflow-y: auto;
     }
 
     .hidden-mobile {
         visibility: visible;
         height: auto;
         overflow: visible;
+    }
+
+    .fixed-button-ileri{
+        position: absolute;
+        bottom: calc(10%);
+        right: calc(3.5%);
+        z-index: 1000;
+    }
+    
+    .fixed-button-geri{
+        position: absolute;
+        bottom: calc(10%);
+        left: calc(25%);
+        z-index: 1000;
     }
 }
