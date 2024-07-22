@@ -63,20 +63,15 @@ function Login() {
   
 
 
-  const handleRegister = (e) => {
-      e.preventDefault();
-      const newName = e.target.ad.value+ " " + e.target.soyad.value;;
-      const newEmail = e.target.email.value;
-      const newPassword = e.target.passw.value;
-        
-      setName(newName);
-      setEmail(newEmail);
-      setPassword(newPassword);
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    const newName = e.target.ad.value + " " + e.target.soyad.value;
+    const newEmail = e.target.email.value;
+    const newPassword = e.target.passw.value;
 
-      //send post request to the server
-      registerUser(name, email, password);
-  
-  }
+    // Directly use newName, newEmail, and newPassword here
+    await registerUser(newName, newEmail, newPassword);
+}
 
   const handleLogin = (e) => {
     e.preventDefault();
