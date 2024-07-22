@@ -22,7 +22,7 @@
     .fixed-button-geri {
         height: 5em;
         position: fixed;
-        bottom: calc(55%);
+        bottom: calc(60%);
         left: calc(0%);
         z-index: 1000;
     }
