@@ -1,9 +1,10 @@
 import Footer from "./Footer";
 import { useState } from "react";
+import "./Gelir.css";
 
-function GelirveVergiYonetimi(){
-    
-    
+function GelirveVergiYonetimi() {
+
+
     //MARK: Paragraf Bölümü
     const allParagraphs = [
         "Gelir kaynakları, bireylerin veya ailelerin yaşam giderlerini karşılamak için elde ettikleri finansal kaynaklardır. Gelir kaynakları farklı kategorilere ayrılabilir:\n1.	Aktif Gelir: Bu, bir kişinin aktif olarak çalışarak kazandığı gelirdir. Maaş, ücret, komisyon ve serbest meslek kazançları bu kategoriye girer. Aktif gelir, sürekli çalışmayı gerektirir. \n 2.	Pasif Gelir: Bu, bireyin aktif olarak çalışmadan kazandığı gelirdir. Kiralık mülklerden elde edilen kira gelirleri, telif hakları, patent gelirleri ve yatırım gelirleri pasif gelir kaynaklarına örnektir. Pasif gelir, zaman içinde artabilir ve mali bağımsızlık sağlamada önemli bir rol oynar.\n3.	Portföy Geliri: Bu gelir, yatırım faaliyetlerinden elde edilir. Hisse senetleri, tahviller, yatırım fonları ve diğer finansal araçlardan elde edilen gelirler portföy geliri olarak sınıflandırılır. Portföy geliri, yatırımın getirisini yansıtır ve finansal planlamada önemli bir unsurdur.\n4.	Emeklilik Geliri: Emeklilik planları ve sosyal güvenlik ödemeleri gibi kaynaklardan elde edilen gelirlerdir. Bu gelirler, bireylerin emeklilik döneminde mali güvence sağlamalarına yardımcı olur.",
@@ -20,7 +21,7 @@ function GelirveVergiYonetimi(){
     const [currentParagraph, setCurrentParagraph] = useState(0); //hangi paragrafta olduğumuzu belirtmek için
     const [btnNextVisible, setBtnNextVisible] = useState(true); //ileri butonunu göstermek için
     const [btnPrevVisible, setBtnPrevVisible] = useState(false); //geri butonunu göstermek için
-    const [btnQuizVisible, setBtnQuizVisible] = useState(false); 
+    const [btnQuizVisible, setBtnQuizVisible] = useState(false);
 
 
 
@@ -45,13 +46,13 @@ function GelirveVergiYonetimi(){
             setBtnPrevVisible(true);
         }
         setBtnNextVisible(true);
-    
+
         if (currentParagraph != 0) {
             setParagraphs(allParagraphs[currentParagraph - 1]);
             setCurrentParagraph(currentParagraph - 1);
         }
     }
-    
+
     const handleSetParagraph = (index) => {
         setParagraphs(allParagraphs[index]);
         setBtnNextVisible(index < allParagraphs.length - 1); // Assuming you want to hide the next button if it's the last paragraph
@@ -59,13 +60,13 @@ function GelirveVergiYonetimi(){
         setCurrentParagraph(index);
         setBtnQuizVisible(index == allParagraphs.length - 1); // Show the quiz button if it's the last paragraph
     };
-    
+
 
     const skipTheQuiz = () => { //post request atılacak kursu skip etmek için
         window.location.href = "/home";
     }
 
-    const goToQuiz = () => { 
+    const goToQuiz = () => {
         window.location.href = "/GelirveVergiYonetimiQuiz";
     }
 
@@ -73,10 +74,10 @@ function GelirveVergiYonetimi(){
         window.location.href = "/home";
     }
 
-    return(
+    return (
         <div>
             <div className="items-center justify-center grid grid-cols-4 gap-x-4 gap-y-2">
-                <div className="col-span-1 grid grid-rows-6  p-4 m-4 h-[90vh] rounded-lg font-bold text-[20px] text-white font-sans border-4 break-words border-white shadow-black shadow-2xl background-color:#2b3236;  ">
+                <div className="col-span-1 grid grid-rows-6 p-4 m-4 h-[90vh] rounded-lg font-bold text-[20px] text-white font-sans border-4 break-words border-white shadow-black shadow-2xl background-color:#2b3236 hidden-mobile">
                     <div className="row-span-4 row-start-1 text-left items-start">
                         <ul>
                             <li className={currentParagraph == 0 ? 'text-[#FFB22C]' : ''}><button className=" transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(0)}>Gelir Kaynakları ve Çeşitleri</button></li>
@@ -93,22 +94,25 @@ function GelirveVergiYonetimi(){
                         <button className="col-start-1 col-span-2 border-4 rounded-lg shadow-2xl mb-2 transform transition duration-500 hover:scale-105" onClick={mainMenu}>Ana Sayfa</button>
                         <button className="col-start-1 col-span-2 border-4 rounded-lg shadow-2xl transform transition duration-500 hover:scale-105" onClick={goToQuiz} >Teste Atla</button>
                     </div>
-                
+
                 </div>
-                <div className="col-span-3 grid grid-cols-10  grid-rows-10 p-4 m-4  h-[90vh] rounded-lg text-white border-4 shadow-black shadow-2xl background-color:#2b3236;">
-                <p className="break-words font-bold	 text-justify	 rounded-md font-sans text-[28px] col-span-8 row-span-1 col-start-2  p-3  row-start-1">
-                    Gelir ve Vergi Yönetimi</p>
-                    <p  className="break-words text-justify whitespace-pre-line	 rounded-md font-sans text-[24px] col-span-8 row-span-8 col-start-2  p-3  row-start-2">
-                    {paragraphs}</p>
+                <div className="col-span-3 grid grid-cols-10 grid-rows-10 p-4 m-4 h-[90vh] rounded-lg text-white border-4 shadow-black shadow-2xl background-color:#2b3236 scrollable-mobile">
+                    <p className="title break-words font-bold text-justify rounded-md font-sans col-span-8 row-span-1 col-start-2 p-3 row-start-1">
+                        Gelir ve Vergi Yönetimi
+                    </p>
+                    <p className="break-words text-justify whitespace-pre-line rounded-md font-sans col-span-8 row-span-8 col-start-2 p-3 row-start-2">
+                        {paragraphs}
+                    </p>
 
-                    
                     {btnNextVisible && (
-                    <a onClick={changeParagraph} className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center">İleri</a>
+                        <a onClick={changeParagraph} className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-ileri">İleri</a>
                     )}
-                    {btnQuizVisible && <a onClick={goToQuiz} className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center">Quize git</a>}
-
+                    {btnQuizVisible && (
+                        <a onClick={goToQuiz} className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-ileri">Quize git</a>
+                    )}
                     {btnPrevVisible && (
-                    <a   onClick={changeToPrevParagraph} className="text-white row-start-10 row-end-10 row-span-1 col-start-1 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center">Geri</a>)}
+                        <a onClick={changeToPrevParagraph} className="text-white row-start-10 row-end-10 row-span-1 col-start-1 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-geri">Geri</a>
+                    )}
                 </div>
             </div>
             <Footer></Footer>

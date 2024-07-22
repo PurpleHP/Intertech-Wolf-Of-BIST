@@ -1,0 +1,51 @@
+/* mobilde soldaki divi hidden yapiyor */
+.hidden-mobile {
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+}
+
+/* mobil */
+@media screen and (max-width: 767px) {
+    .title {
+        font-size: 5vw;
+    }
+
+    .fixed-button-ileri {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+
+    .fixed-button-geri {
+        position: fixed;
+        bottom: 20px;
+        right: 300px;
+        z-index: 1000;
+    }
+
+    .scrollable-mobile {
+        font-size: 16px;
+        overflow-y: auto;
+        height: calc(100vh - 80px);
+        padding-bottom: 60px;
+    }
+}
+
+
+/* desktop */
+@media screen and (min-width: 768px) {
+    .scrollable-mobile {
+        font-size: 24px;
+        overflow-y: visible;
+        height: auto;
+        padding-bottom: 0;
+    }
+
+    .hidden-mobile {
+        visibility: visible;
+        height: auto;
+        overflow: visible;
+    }
+}
