@@ -59,27 +59,6 @@ function Login() {
     } catch (error){
       console.error(error);
     }
-<<<<<<< HEAD
-  
-  }
-  
-
-
-  const handleRegister = (e) => {
-      e.preventDefault();
-      const newName = e.target.ad.value+ " " + e.target.soyad.value;;
-      const newEmail = e.target.email.value;
-      const newPassword = e.target.passw.value;
-        
-      setName(newName);
-      setEmail(newEmail);
-      setPassword(newPassword);
-
-      //send post request to the server
-      registerUser(newName, newEmail, newPassword);
-  
-=======
->>>>>>> 13c23969bdd58bd9a68c73cc4c1b74ddcf799092
   }
 
   const handleRegister = async (e) => {
@@ -98,14 +77,8 @@ function Login() {
     const newPassword = e.target.passw.value;
     
     //send post request to the server
-<<<<<<< HEAD
-    loginUser(newEmail, newPassword);
-
-}
-=======
     await loginUser(newEmail, newPassword);
   }
->>>>>>> 13c23969bdd58bd9a68c73cc4c1b74ddcf799092
 
   return (
     <div>
