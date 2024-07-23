@@ -93,7 +93,6 @@ const questions = [
     },
 ];
 
-
 const Quiz = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [showScore, setShowScore] = useState(false);
@@ -159,6 +158,9 @@ const Quiz = () => {
                         <>
                             <div className='score-section animate-pulse text-3xl'>
                                 Toplam {questions.length} sorudan {score} doğru cevap verdiniz.
+                            </div>
+                            <div className="text-2xl mt-4">
+                                {score >= 5 && score <= 6 ? "Beginner" : score >= 7 && score <= 9 ? "Advanced" : ""}
                             </div>
                             <div className="flex space-x-4 mt-4">
                                 <button
