@@ -30,9 +30,9 @@ const ApiRequest = () => {
                     console.log(data)
                     let newEducation = []; // Step 1: Initialize an empty array
                     for (let i = 0; i < data.length; i++) {
-                      let chapterHeader = data[i].chapterHeader;
-                      let chapterDescription = data[i].chapterDescription;
-                      let temp = chapterHeader + "\n" + chapterDescription;
+                      let chapterHeader = data[i].chapterHeader.replace("\\n", "\n").replace("?", "");
+                      let chapterDescription = data[i].chapterDescription.replace("\\n", "\n").replace("?", "");
+                      let temp = chapterHeader + ":\n" + chapterDescription +  "\n\n";
                       newEducation.push(temp); // Step 2: Append temp to the array
                     }
                     setEducation(newEducation); // Step 3: Update the state with the array
