@@ -28,12 +28,17 @@ const ApiRequest = () => {
                 .then(response => response.json())
                 .then(data => {
                     console.log(data)
+                    let newEducation = []; // Step 1: Initialize an empty array
                     for (let i = 0; i < data.length; i++) {
-                      setEducation(prev => `${prev}\n${data[i].chapterDescription}`);
+                      let chapterHeader = data[i].chapterHeader;
+                      let chapterDescription = data[i].chapterDescription;
+                      let temp = chapterHeader + "\n" + chapterDescription;
+                      newEducation.push(temp); // Step 2: Append temp to the array
                     }
-                    setApiResponse(education);
-        })
-                .catch(error =>{
+                    setEducation(newEducation); // Step 3: Update the state with the array
+                    setApiResponse(newEducation);
+                  })
+                    .catch(error =>{
                     console.error('Error:', error);
                     setApiResponse(error.message);
                 });
@@ -47,7 +52,7 @@ const ApiRequest = () => {
     return (
         <div>
         <button className='text-white border-2 m-4 p-4 rounded-lg' onClick={fetchData}>Fetch Data</button>
-            <p className='text-white m-4 p-4'>{apiResponse}</p>
+            <p className='text-white m-4 p-4 break-words whitespace-pre-line'>{apiResponse}</p>
         </div>
     );
 }
