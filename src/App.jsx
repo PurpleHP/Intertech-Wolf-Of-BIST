@@ -10,6 +10,7 @@ import NotFoundPage from './components/NotFound';
 import About from './components/About';
 import Contact from './components/ContactForm';
 import FinansalOkuryazarliginTemelleri from './components/Courses/FinansalOkuryazarliginTemelleri';
+import FinansalOkuryazarliginTemelleriQuiz from './components/Courses/FinansalOkuryazarliginTemelleriQuiz';
 import Welcome from './components/Welcome';
 import GelirveVergiYonetimi from './components/Courses/GelirveVergiYonetimi';
 import ChatBot from './components/Chatbot';
@@ -32,6 +33,7 @@ function App() {
           <Route path='/Contact' element={<Contact />} />
           <Route path='/Chatbot' element={<ChatBot />} />
           <Route path='/FinansalOkuryazarliginTemelleri' element={<FinansalOkuryazarliginTemelleri />} />
+          <Route path='/FinansalOkuryazarliginTemelleriQuiz' element={<FinansalOkuryazarliginTemelleriQuiz />} />
           <Route path='/GelirveVergiYonetimi' element={<GelirveVergiYonetimi/>} />
           <Route path='/GelirveVergiYonetimiQuiz' element={<GelirveVergiYonetimiQuiz/>} />
           <Route path='/Api' element={<ApiRequest/>} />

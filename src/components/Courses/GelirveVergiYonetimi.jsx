@@ -1,6 +1,6 @@
 import Footer from "../Footer";
 import { useState } from "react";
-import "./Gelir.css";
+import "./Course.css";
 
 function GelirveVergiYonetimi() {
     //MARK: Paragraf Bölümü
