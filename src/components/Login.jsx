@@ -74,7 +74,7 @@ function Login() {
       setPassword(newPassword);
 
       //send post request to the server
-      registerUser(name, email, password);
+      registerUser(newName, newEmail, newPassword);
   
   }
 
@@ -87,11 +87,9 @@ function Login() {
     setPassword(newPassword);
 
     //send post request to the server
-    loginUser(email, password);
+    loginUser(newEmail, newPassword);
 
 }
-
-//              
 
   return (
     <div>
