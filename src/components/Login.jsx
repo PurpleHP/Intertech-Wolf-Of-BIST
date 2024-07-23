@@ -1,15 +1,14 @@
 import './Login.css';
 import Navbar from "./Navbar";
 import React, { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [apiResponse, setApiResponse] = useState(null);
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
 
   async function registerUser(name, email, password){
     try{
@@ -24,21 +23,23 @@ function Login() {
           password,
         }),
       });
-  
+
       if(!response.ok){
         throw new Error('Signup failed');
       }
       const data = await response.json();
       setApiResponse(data);
       console.log(data);
+      // Kullanıcı başarılı bir şekilde kaydolduğunda yönlendirme
+      navigate('/quiz');
     } catch (error){
       console.error(error);
     }
   }
-  
+
   async function loginUser(email, password){
     try{
-      const response = await fetch('https://financialtrainerfinal120240716125722.azurewebsites.net/api/Login/login', {
+      const response = await fetch('https://financialtrainerfinal120240716125722.azurewebsites.net/api/Login/verify', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -48,7 +49,7 @@ function Login() {
           password,
         }),
       });
-  
+
       if(!response.ok){
         throw new Error('Login failed');
       }
@@ -58,6 +59,7 @@ function Login() {
     } catch (error){
       console.error(error);
     }
+<<<<<<< HEAD
   
   }
   
@@ -76,20 +78,34 @@ function Login() {
       //send post request to the server
       registerUser(newName, newEmail, newPassword);
   
+=======
+>>>>>>> 13c23969bdd58bd9a68c73cc4c1b74ddcf799092
   }
 
-  const handleLogin = (e) => {
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    const newName = e.target.ad.value + " " + e.target.soyad.value;
+    const newEmail = e.target.email.value;
+    const newPassword = e.target.passw.value;
+
+    // Directly use newName, newEmail, and newPassword here
+    await registerUser(newName, newEmail, newPassword);
+  }
+
+  const handleLogin = async (e) => {
     e.preventDefault();
     const newEmail = e.target.email.value;
     const newPassword = e.target.passw.value;
-      
-    setEmail(newEmail);
-    setPassword(newPassword);
-
+    
     //send post request to the server
+<<<<<<< HEAD
     loginUser(newEmail, newPassword);
 
 }
+=======
+    await loginUser(newEmail, newPassword);
+  }
+>>>>>>> 13c23969bdd58bd9a68c73cc4c1b74ddcf799092
 
   return (
     <div>
@@ -99,32 +115,26 @@ function Login() {
           <input type="checkbox" id="chk" aria-hidden="true" />
           <div className="signup">
             <form onSubmit={handleRegister}>
-              <label id="girislabel" htmlFor="chk" aria-hidden="true">Kayıt Ol</label> 
-              <input id="girisinput" type="text" name="ad" placeholder="Ad" required />
-              <input id="girisinput" type="text" name="soyad" placeholder="Soyad" required />
-              <input id="girisinput" type="email" name="email" placeholder="Email" required />
-              <input id="girisinput" type="password" name="passw" placeholder="Şifre" required />
-              <button  id="girisbutton" >Kayıt Ol</button>
+              <label className="girislabel" htmlFor="chk" aria-hidden="true">Kayıt Ol</label> 
+              <input className="girisinput" type="text" name="ad" placeholder="Ad" required />
+              <input className="girisinput" type="text" name="soyad" placeholder="Soyad" required />
+              <input className="girisinput" type="email" name="email" placeholder="Email" required />
+              <input className="girisinput" type="password" name="passw" placeholder="Şifre" required />
+              <button  className="girisbutton" >Kayıt Ol</button>
             </form>
           </div>
 
-
           <div className="login">
             <form onSubmit={handleLogin}>
-              <label id="girislabel" htmlFor="chk" aria-hidden="true">Giriş Yap</label>
-
-              <input id="girisinput" type="email" name="email" placeholder="Email" required />
-              <input id="girisinput" type="password" name="passw" placeholder="Şifre" required />
-
-              <button id="girisbutton">Giriş Yap</button>
-
-              <label id="pass-forgot" htmlFor="chk-pass" aria-hidden="true">Şifremi Unuttum</label>
-              
+              <label className="girislabel" htmlFor="chk" aria-hidden="true">Giriş Yap</label>
+              <input className="girisinput" type="email" name="email" placeholder="Email" required />
+              <input className="girisinput" type="password" name="passw" placeholder="Şifre" required />
+              <button className="girisbutton">Giriş Yap</button>
+              <label className="pass-forgot" htmlFor="chk-pass" aria-hidden="true">Şifremi Unuttum</label>
             </form>
           </div>
         </div>
       </div>
-
     </div>
   );
 }

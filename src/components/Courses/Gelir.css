@@ -1,0 +1,68 @@
+/* mobilde soldaki divi hidden yapiyor */
+.hidden-mobile {
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+}
+
+/* mobil */
+@media screen and (max-width: 767px) {
+    .title {
+        font-size: 4vw;
+    }
+
+    .fixed-button-ileri {
+        height: 5em;
+        position: fixed;
+        bottom: calc(40%);
+        left: calc(0%);
+        z-index: 1000;
+    }
+
+    .fixed-button-geri {
+        height: 5em;
+        position: fixed;
+        bottom: calc(60%);
+        left: calc(0%);
+        z-index: 1000;
+    }
+
+    .scrollable-mobile {
+        font-size: 16px;
+        overflow-y: auto;
+        height: calc(100vh - 80px);
+        padding-bottom: 60px;
+    }
+}
+
+
+/* desktop */
+@media screen and (min-width: 768px) {
+    .scrollable-mobile {
+        font-size: 24px;
+        overflow-y:  hidden;
+        height: auto;
+        padding-bottom: 0;
+        overflow-y: auto;
+    }
+
+    .hidden-mobile {
+        visibility: visible;
+        height: auto;
+        overflow: visible;
+    }
+
+    .fixed-button-ileri{
+        position: absolute;
+        bottom: calc(10%);
+        right: calc(3.5%);
+        z-index: 1000;
+    }
+    
+    .fixed-button-geri{
+        position: absolute;
+        bottom: calc(10%);
+        left: calc(25%);
+        z-index: 1000;
+    }
+}

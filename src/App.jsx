@@ -9,12 +9,13 @@ import Signup from './components/Signup';
 import NotFoundPage from './components/NotFound';
 import About from './components/About';
 import Contact from './components/ContactForm';
-import FinansalOkuryazarliginTemelleri from './components/FinansalOkuryazarliginTemelleri';
+import FinansalOkuryazarliginTemelleri from './components/Courses/FinansalOkuryazarliginTemelleri';
 import Welcome from './components/Welcome';
-import GelirveVergiYonetimi from './components/GelirveVergiYonetimi';
+import GelirveVergiYonetimi from './components/Courses/GelirveVergiYonetimi';
 import ChatBot from './components/Chatbot';
-import GelirveVergiYonetimiQuiz from './components/GelirveVergiYonetimiQuiz';
+import GelirveVergiYonetimiQuiz from './components/Courses/GelirveVergiYonetimiQuiz';
 import ApiRequest from './components/ApiRequest';
+import Quiz from './components/Quiz';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path='/GelirveVergiYonetimi' element={<GelirveVergiYonetimi/>} />
           <Route path='/GelirveVergiYonetimiQuiz' element={<GelirveVergiYonetimiQuiz/>} />
           <Route path='/Api' element={<ApiRequest/>} />
+          <Route path='/Quiz' element={<Quiz/>} />
 
         </Routes>
       </div>
