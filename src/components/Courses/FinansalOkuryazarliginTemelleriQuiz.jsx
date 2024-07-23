@@ -168,7 +168,7 @@ const FinansalOkuryazarliginTemelleriQuiz = () => {
                             <button
                                 key={index}
                                 onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}
-                                className="text-white font-bold py-4 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109] bg-[#161A1D]"
+                                className="text-white font-bold py-4 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#65B741] bg-[#161A1D]"
                                 style={{ transition: 'background-color 0.5s ease' }}
                             >
                                 {answerOption.answerText}

@@ -79,14 +79,14 @@ function GelirveVergiYonetimi() {
                 <div className="col-span-1 grid grid-rows-6 p-4 m-4 h-[90vh] rounded-lg font-bold text-[20px] text-white font-sans border-4 break-words border-white shadow-black shadow-2xl background-color:#2b3236 hidden-mobile">
                     <div className="row-span-4 row-start-1 text-left items-start">
                         <ul>
-                            <li className={currentParagraph === 0 ? 'text-[#FFB22C]' : ''}>
-                                <button className="transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(0)}>Finansal Okuryazarligin Temelleri 1</button>
+                            <li className={currentParagraph === 0 ? 'text-[#79d866]' : ''}>
+                                <button className="transform transition duration-500 hover:scale-105 hover:text-[#1c8208]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(0)}>Finansal Okuryazarligin Temelleri 1</button>
                             </li>
-                            <li className={currentParagraph === 1 ? 'text-[#FFB22C]' : ''}>
-                                <button className="transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(1)}>Finansal Okuryazarligin Temelleri 2</button>
+                            <li className={currentParagraph === 1 ? 'text-[#79d866]' : ''}>
+                                <button className="transform transition duration-500 hover:scale-105 hover:text-[#1c8208]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(1)}>Finansal Okuryazarligin Temelleri 2</button>
                             </li>
-                            <li className={currentParagraph === 2 ? 'text-[#FFB22C]' : ''}>
-                                <button className="transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(2)}>Finansal Okuryazarligin Temelleri 3</button>
+                            <li className={currentParagraph === 2 ? 'text-[#79d866]' : ''}>
+                                <button className="transform transition duration-500 hover:scale-105 hover:text-[#1c8208]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(2)}>Finansal Okuryazarligin Temelleri 3</button>
                             </li>
                         </ul>
                     </div>
