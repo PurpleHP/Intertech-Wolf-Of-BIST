@@ -5,6 +5,8 @@ const ApiRequest = () => {
     const [error, setError] = useState(null);
     const [apiResponse, setApiResponse] = useState(null);
 
+    const [education, setEducation] = useState([]);
+
     const fetchData = async () => {
         try {
           
@@ -26,7 +28,10 @@ const ApiRequest = () => {
                 .then(response => response.json())
                 .then(data => {
                     console.log(data)
-                    setApiResponse(JSON.stringify(data));
+                    for (let i = 0; i < data.length; i++) {
+                      setEducation(prev => `${prev}\n${data[i].chapterDescription}`);
+                    }
+                    setApiResponse(education);
         })
                 .catch(error =>{
                     console.error('Error:', error);
