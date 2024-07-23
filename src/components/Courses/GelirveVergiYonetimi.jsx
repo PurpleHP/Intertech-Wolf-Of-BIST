@@ -1,4 +1,4 @@
-import Footer from "./Footer";
+import Footer from "../Footer";
 import { useState } from "react";
 import "./Gelir.css";
 
