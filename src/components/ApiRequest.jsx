@@ -11,7 +11,7 @@ const ApiRequest = () => {
         try {
           
             const raw = JSON.stringify({
-              "eduId": 4
+              "eduId": 11
             });
             
             const requestOptions = {
