@@ -21,6 +21,7 @@ import Risk from './components/Courses/Risk';
 import RiskQuiz from './components/Courses/RiskQuiz';
 import CourseTest from './components/Courses/Coursetest';
 import BankacilikHizmetleri from './components/Courses/BankacilikHizmetleri';
+import ButceveHarcama from './components/Courses/ButceveHarcama';
 
 function App() {
   return (
@@ -41,8 +42,9 @@ function App() {
           <Route path='/GelirveVergiYonetimi' element={<GelirveVergiYonetimi/>} />
           <Route path='/GelirveVergiYonetimiQuiz' element={<GelirveVergiYonetimiQuiz/>} />
           <Route path='/Risk' element={<Risk/>} />
-          <Route path='/BankacilikHizmetleri' element={<BankacilikHizmetleri/>} />
           <Route path='/RiskQuiz' element={<RiskQuiz/>} />
+          <Route path='/BankacilikHizmetleri' element={<BankacilikHizmetleri/>} />
+          <Route path='/ButceveHarcama' element={<ButceveHarcama/>} />
           <Route path='/Api' element={<ApiRequest/>} />
           <Route path='/Quiz' element={<Quiz/>} />
           <Route path='/CourseTest' element={<CourseTest/>} />
