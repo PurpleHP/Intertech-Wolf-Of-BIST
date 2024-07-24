@@ -61,23 +61,45 @@ const ChatBot = () => {
            prompt: messageText // Use the user's message text
         };
       
+        try {
+          
+            const raw = JSON.stringify({
+                payload
+            });
+            
+            const requestOptions = {
+              method: "POST",
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: raw,
+              redirect: "follow"
+              
+            };
+            const targetUrl = 'https://mysite-281y.onrender.com/process_prompt';
+            fetch(targetUrl, requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    console.log(data.result)
+                    const newAiResponse = {
+                        type: 'ai',
+                        text: data.result // Update this based on the actual API response structure
+                    };
+                    setMessages(messages => [...messages, newAiResponse]);
+                  })
+                    .catch(error =>{
+                    console.error('Error:', error);
+                });
+        } catch (error) {
+            console.error("Failed to fetch AI response:", error);
+        }
     
+        /*
         // Perform the POST request
         try {
 
-            const raw = JSON.stringify({
-                payload
-              });
-              
-              const requestOptions = {
-                method: "POST",
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: raw,
-                redirect: "follow"
-                
-              };
+    
             const targetUrl = 'https://mysite-281y.onrender.com/process_prompt';
             const response = await fetch(targetUrl, requestOptions)
             .then(response => response.json())
@@ -90,14 +112,13 @@ const ChatBot = () => {
                 })
 
     
-            //const data = await response.json();
     
            
         } catch (error) {
             console.error("Failed to fetch AI response:", error);
             setApiResponse("Failed to fetch AI response:", error)
         }
-    
+        */
     }
 
     
