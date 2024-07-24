@@ -9,6 +9,8 @@
 @media screen and (max-width: 767px) {
     .title {
         font-size: 4vw;
+        border-bottom: 2px solid #ffffff;
+        padding-bottom: 5px;
     }
 
     .fixed-button-ileri {
