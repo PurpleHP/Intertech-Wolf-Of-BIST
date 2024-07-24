@@ -15,10 +15,11 @@ function GelirveVergiYonetimi() {
 
     allParagraphs.push(...education);    
 
-    const allHeaders = [
-        "Özet",
-    ];
+    const summary = { title: "Özet", index: 0 }
 
+    const allHeaders = [
+        summary,
+    ];
     allHeaders.push(...Header);
 
     const [paragraphs, setParagraphs] = useState([allParagraphs[0]]); //paragrafı değiştirmek için

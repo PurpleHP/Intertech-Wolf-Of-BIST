@@ -19,7 +19,7 @@ function Banank() {
 
     allParagraphs.push(...education);    
 
-    const sumamry = { title: "Özet", index: 0 }
+    const summary = { title: "Özet", index: 0 }
 
     const allHeaders = [
         summary,
