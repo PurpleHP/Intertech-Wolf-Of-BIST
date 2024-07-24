@@ -8,7 +8,7 @@ function GelirveVergiYonetimi() {
     //MARK: Paragraf Bölümü
     const { education, Header } = useApiRequest(14);
     
-    const summary = { title: "Özet", index: -1 }; // Özetin indexini -1 yapıyoruz.
+    const summary = { title: "Özet", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
     
     const allParagraphs = [
         "Gelir ve Vergi Yönetimi dersi, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir.",
@@ -62,7 +62,7 @@ function GelirveVergiYonetimi() {
     };
 
     const handleSetParagraph = (index) => {
-        if (index === -1) {
+        if (index === 0) {
             setParagraphs([allParagraphs[0]]);
         } else {
             setParagraphs([allParagraphs[index]]);
@@ -90,7 +90,7 @@ function GelirveVergiYonetimi() {
             <div className="items-center justify-center grid grid-cols-4 gap-x-4 gap-y-2">
                 <div className="col-span-1 grid grid-rows-6 p-4 m-4 h-[90vh] rounded-lg font-bold text-[20px] text-white font-sans border-4 break-words border-white shadow-black shadow-2xl background-color:#2b3236 hidden-mobile">
                     <div className="row-span-4 row-start-1 text-left items-start">
-                    <ul>
+                        <ul>
                             {allHeaders.map((header, index) => (
                                 <li key={index} className={currentParagraph === header.index ? 'text-[#FFB22C]' : ''}>
                                     <button className="transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(header.index)}>{header.title}</button>
