@@ -48,11 +48,46 @@ const ApiRequest = () => {
         }
       };
         
+      const fetchData2 = async () => {
+        try {
+          
+            const inputPrompt = document.querySelector('input').value;
+            const raw = JSON.stringify({
+              "prompt": inputPrompt
+            });
+            
+            const requestOptions = {
+              method: "POST",
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: raw,
+              redirect: "follow"
+              
+            };
+            const targetUrl = 'https://mysite-281y.onrender.com/process_prompt';
+            fetch(targetUrl, requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    setApiResponse(data.result);
+                  })
+                    .catch(error =>{
+                    console.error('Error:', error);
+                    setApiResponse(error.message);
+                });
+        } catch (error) {
+          setError(error.message);
+          setApiResponse(error.message);
+        }
+      };
+        
     
     return (
         <div>
-        <button className='text-white border-2 m-4 p-4 rounded-lg' onClick={fetchData}>Fetch Data</button>
+        <button className='text-white border-2 m-4 p-4 rounded-lg' onClick={fetchData2}>Fetch Data</button>
             <p className='text-white m-4 p-4 break-words whitespace-pre-line'>{apiResponse}</p>
+            <input type="text" className='text-black border-2 m-4 p-4 rounded-lg' placeholder="Enter your prompt" />
         </div>
     );
 }
