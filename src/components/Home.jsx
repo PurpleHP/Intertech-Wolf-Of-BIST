@@ -53,9 +53,9 @@ function App() {
 
             <h1 className='text-2xl'>All Courses</h1>
             <div className='flex'>
-                <Card cardName="Finansal Okuryazarlık" imgSrc={okuryazarlik} difficulty="easy">
+                <Card cardName="Finansal Okuryazarlık" to="/FinansalOkuryazarliginTemelleri" imgSrc={okuryazarlik} difficulty="easy">
                 </Card>
-                <Card cardName="Bankacılık Hizmetleri" imgSrc={bankacilikHizmetleri} difficulty="easy">
+                <Card cardName="Bankacılık Hizmetleri" to="/BankacilikHizmetleri" imgSrc={bankacilikHizmetleri} difficulty="easy">
                     
                 </Card>
             </div>

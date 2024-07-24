@@ -4,14 +4,14 @@ import "./Course.css";
 
 import useApiRequest from './CoursesAPI'; // Adjust the import path as necessary
 
-function FinansalOkuryazarliginTemelleri() {
+function BankacilikHizmetleri() {
     //MARK: Paragraf Bölümü
-    const { education, Header } = useApiRequest(1);
+    const { education, Header } = useApiRequest(7);
     
-    const summary = { title: "Finansal Okuryazarlığın Temelleri Özet", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
+    const summary = { title: "Bankacılık Hizmetleri Özet", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
     
     const allParagraphs = [
-        "Finansal okuryazarlık, bireylerin kişisel finans yönetimi, yatırım, tasarruf, borçlanma ve bütçeleme konularında bilgi ve becerilere sahip olmalarını ifade eder. Bu kavram, bireylerin finansal kararlarını bilinçli bir şekilde alabilmeleri ve ekonomik hedeflerine ulaşabilmeleri için gerekli temel bilgi ve becerileri kazandırmayı amaçlar.",
+        "Bankacılık hizmetleri, bireylerin ve işletmelerin finansal ihtiyaçlarını karşılamak amacıyla bankalar tarafından sunulan çeşitli hizmetleri kapsar. Bu hizmetler, kişisel finans yönetiminden kurumsal finansal işlemlere kadar geniş bir yelpazeyi içerir ve ekonomik istikrarın sağlanmasında kritik bir rol oynar.",
     ];
 
     allParagraphs.push(...education);    
@@ -78,7 +78,7 @@ function FinansalOkuryazarliginTemelleri() {
     };
 
     const goToQuiz = () => {
-        window.location.href = "/FinansalOkuryazarliginTemelleriQuiz";
+        window.location.href = "/home"; //Quiz Eklenecek
     };
 
     const mainMenu = () => {
@@ -130,4 +130,4 @@ function FinansalOkuryazarliginTemelleri() {
     );
 }
 
-export default FinansalOkuryazarliginTemelleri;
+export default BankacilikHizmetleri;
