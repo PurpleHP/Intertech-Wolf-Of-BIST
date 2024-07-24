@@ -85,9 +85,18 @@ const ApiRequest = () => {
     
     return (
         <div>
-        <button className='text-white border-2 m-4 p-4 rounded-lg' onClick={fetchData2}>Fetch Data</button>
-            <p className='text-white m-4 p-4 break-words whitespace-pre-line'>{apiResponse}</p>
-            <input type="text" className='text-black border-2 m-4 p-4 rounded-lg' placeholder="Enter your prompt" />
+          <div className='flex flex-row'>
+            <div>
+              <button className='text-white border-2 m-4 p-4 rounded-lg' onClick={fetchData2}>Fetch AI Data</button>
+              <input type="text" className='text-black border-2 m-4 p-4 rounded-lg' placeholder="Enter your prompt" />
+              <p className='text-white m-4 p-4 break-words whitespace-pre-line'>{apiResponse}</p>
+            </div>
+            <div>
+              <button className='text-white border-2 m-4 p-4 rounded-lg' onClick={fetchData}>Fetch Backend Data</button>
+              <p className='text-white m-4 p-4 break-words whitespace-pre-line'>{apiResponse}</p>
+            </div>
+          </div>
+         
         </div>
     );
 }
