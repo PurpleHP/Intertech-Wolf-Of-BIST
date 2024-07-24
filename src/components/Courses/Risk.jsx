@@ -2,20 +2,26 @@ import Footer from "../Footer";
 import { useState } from "react";
 import "./Course.css";
 
-function GelirveVergiYonetimi() {
-    //MARK: Paragraf Bölümü
-    const allParagraphs = [
-        "Finansal okuryazarlık, bireylerin finansal kararlar alırken riskleri anlamalarını ve yönetmelerini sağlar. Risk, bir yatırımın beklenen getirilerinin gerçekleşmeme olasılığıdır ve her türlü finansal karar bir miktar risk içerir. Bu riskler, yatırımın türüne, piyasa koşullarına ve bireyin risk toleransına bağlı olarak değişebilir.",
-        "Yatırım riskleri, farklı şekillerde ortaya çıkabilir. Örneğin, hisse senedi yatırımları piyasa dalgalanmalarına maruz kalabilir, bu da hisse senedi fiyatlarının hızla düşebileceği anlamına gelir. Tahvil yatırımları, faiz oranlarındaki değişikliklerden etkilenebilir ve faiz oranları yükseldiğinde tahvil fiyatları düşebilir.",
-        "Bireylerin finansal riskleri yönetmek için çeşitli stratejileri vardır. Portföy çeşitlendirme, risk yönetiminde yaygın bir yaklaşımdır. Farklı varlık sınıflarına yatırım yaparak, bir varlığın kötü performansı diğerlerinin iyi performansı ile dengelenebilir. Bunun yanı sıra, riskleri minimize etmek için finansal danışmanlardan yardım almak ve düzenli olarak finansal planlama yapmak da önemlidir.",
-        "Sonuç olarak, finansal okuryazarlık, bireylerin riskleri anlamalarına ve uygun önlemler almalarına yardımcı olur. Riskler tamamen ortadan kaldırılamasa da, iyi bir finansal bilgiye sahip olmak, bireylerin daha bilinçli ve güvenli finansal kararlar almasını sağlar."
-    ];
-    
+import useApiRequest from './CoursesAPI'; // Adjust the import path as necessary
 
-    const [paragraphs, setParagraphs] = useState([allParagraphs[0]]); //paragrafı değiştirmek için
-    const [currentParagraph, setCurrentParagraph] = useState(0); //hangi paragrafta olduğumuzu belirtmek için
-    const [btnNextVisible, setBtnNextVisible] = useState(true); //ileri butonunu göstermek için
-    const [btnPrevVisible, setBtnPrevVisible] = useState(false); //geri butonunu göstermek için
+function Risk() {
+    //MARK: Paragraf Bölümü
+    const { education, Header } = useApiRequest(11);
+    
+    const summary = { title: "Risk Özet", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
+    
+    const allParagraphs = [
+        "Risk, belirsizlik ve olası kayıplar anlamında kullanılan genel bir terimdir ve finansal kararlar, yatırımlar, iş yönetimi gibi birçok alanda önemli bir kavramdır. Riskin doğru bir şekilde anlaşılması ve yönetilmesi, sağlıklı kararlar almak ve hedeflere ulaşmak için kritik öneme sahiptir.",
+    ];
+
+    allParagraphs.push(...education);    
+
+    const allHeaders = [summary, ...Header.map((header, index) => ({ ...header, index: index + 1 }))]; // Başlıkların indexlerini 1'den başlatıyoruz.
+
+    const [paragraphs, setParagraphs] = useState([allParagraphs[0]]);
+    const [currentParagraph, setCurrentParagraph] = useState(0);
+    const [btnNextVisible, setBtnNextVisible] = useState(true);
+    const [btnPrevVisible, setBtnPrevVisible] = useState(false);
     const [btnQuizVisible, setBtnQuizVisible] = useState(false);
 
     const changeParagraph = () => {
@@ -56,7 +62,11 @@ function GelirveVergiYonetimi() {
     };
 
     const handleSetParagraph = (index) => {
-        setParagraphs([allParagraphs[index]]);
+        if (index === 0) {
+            setParagraphs([allParagraphs[0]]);
+        } else {
+            setParagraphs([allParagraphs[index]]);
+        }
         setCurrentParagraph(index);
         setBtnNextVisible(index < allParagraphs.length - 1);
         setBtnPrevVisible(index > 0);
@@ -68,12 +78,15 @@ function GelirveVergiYonetimi() {
     };
 
     const goToQuiz = () => {
-        window.location.href = "/RiskQuiz";
+        window.location.href = "/RiskQuiz"; //Quiz eklenecek
     };
 
     const mainMenu = () => {
         window.location.href = "/home";
     };
+
+    // Geçerli paragrafa ait başlığı al
+    const currentHeader = allHeaders.find(header => header.index === currentParagraph) || summary;
 
     return (
         <div>
@@ -81,18 +94,11 @@ function GelirveVergiYonetimi() {
                 <div className="col-span-1 grid grid-rows-6 p-4 m-4 h-[90vh] rounded-lg font-bold text-[20px] text-white font-sans border-4 break-words border-white shadow-black shadow-2xl background-color:#2b3236 hidden-mobile">
                     <div className="row-span-4 row-start-1 text-left items-start">
                         <ul>
-                            <li className={currentParagraph === 0 ? 'text-[#EE4E4E]' : ''}>
-                                <button className="transform transition duration-500 hover:scale-105 hover:text-[#C80036]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(0)}>Riskin Tanımı ve Önemi</button>
-                            </li>
-                            <li className={currentParagraph === 1 ? 'text-[#EE4E4E]' : ''}>
-                                <button className="transform transition duration-500 hover:scale-105 hover:text-[#C80036]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(1)}>Yatırım Riskleri</button>
-                            </li>
-                            <li className={currentParagraph === 2 ? 'text-[#EE4E4E]' : ''}>
-                                <button className="transform transition duration-500 hover:scale-105 hover:text-[#C80036]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(2)}>Risk Yönetim Stratejileri</button>
-                            </li>
-                            <li className={currentParagraph === 3 ? 'text-[#EE4E4E]' : ''}>
-                                <button className="transform transition duration-500 hover:scale-105 hover:text-[#C80036]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(3)}>Risk Yönetim Stratejileri</button>
-                            </li>
+                            {allHeaders.map((header, index) => (
+                                <li key={index} className={currentParagraph === header.index ? 'text-[#EE4E4E]' : ''}>
+                                    <button className="transform transition duration-500 hover:scale-105 hover:text-[#C80036]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(header.index)}>{header.title}</button>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                     <div className="row-start-6 row-span-1 grid grid-cols-2">
@@ -101,8 +107,8 @@ function GelirveVergiYonetimi() {
                     </div>
                 </div>
                 <div className="col-span-3 grid grid-cols-10 grid-rows-10 p-4 m-4 h-[90vh] rounded-lg text-white border-4 shadow-black shadow-2xl background-color:#2b3236 scrollable-mobile">
-                    <p className="title break-words font-bold text-justify rounded-md font-sans col-span-8 row-span-1 col-start-2 p-3 row-start-1">
-                        Risk
+                    <p className="title break-words font-bold text-justify rounded-md font-sans col-span-8 row-span-1 col-start-2 p-3 row-start-1 underline" style={{ textDecorationColor: '#FFB22C', textDecorationThickness: '2px' }}>
+                        {currentHeader.title}
                     </p>
                     <p className="break-words text-justify whitespace-pre-line rounded-md font-sans col-span-8 row-span-8 col-start-2 p-3 row-start-2">
                         {paragraphs}
@@ -124,4 +130,4 @@ function GelirveVergiYonetimi() {
     );
 }
 
-export default GelirveVergiYonetimi;
+export default Risk;
