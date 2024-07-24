@@ -7,7 +7,8 @@ import useApiRequest from './CoursesAPI'; // Adjust the import path as necessary
 function GelirveVergiYonetimi() {
     //MARK: Paragraf Bölümü
     const { education, Header } = useApiRequest(14);
-
+    
+    const summary = { title: "Özet", index: 0 };
     
     const allParagraphs = [
         "Gelir ve Vergi Yönetimi dersi, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir.",
@@ -15,12 +16,7 @@ function GelirveVergiYonetimi() {
 
     allParagraphs.push(...education);    
 
-    const summary = { title: "Özet", index: 0 }
-
-    const allHeaders = [
-        summary,
-    ];
-    allHeaders.push(...Header);
+    const allHeaders = [summary, ...Header];
 
     const [paragraphs, setParagraphs] = useState([allParagraphs[0]]); //paragrafı değiştirmek için
     const [currentParagraph, setCurrentParagraph] = useState(0); //hangi paragrafta olduğumuzu belirtmek için
@@ -67,9 +63,9 @@ function GelirveVergiYonetimi() {
 
     const handleSetParagraph = (index) => {
         if (index === 0) {
-            setParagraphs([allParagraphs[index]]);
+            setParagraphs([allParagraphs[0]]);
         } else {
-            setParagraphs([education[index - 1]]); // API'den gelen paragraflar education arrayinde saklanıyor, elle girilen özetin index'i 0 olduğu için 1 çıkardım.
+            setParagraphs([allParagraphs[index]]);
         }
         setCurrentParagraph(index);
         setBtnNextVisible(index < allParagraphs.length - 1);
