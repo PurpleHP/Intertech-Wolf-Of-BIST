@@ -65,7 +65,7 @@ function GelirveVergiYonetimi() {
         if (index === 0) {
             setParagraphs([allParagraphs[0]]);
         } else {
-            setParagraphs([allParagraphs[index]]);
+            setParagraphs([allParagraphs[index+1]]);
         }
         setCurrentParagraph(index);
         setBtnNextVisible(index < allParagraphs.length - 1);
