@@ -16,7 +16,10 @@ function Banank() {
     const allParagraphs = [
     ];
 
-    allParagraphs.push(education);    
+    for (let i = 0; i < education.length; i++) {
+        allParagraphs.push(education[i]);
+    }
+    //allParagraphs.push(education);    
 
     const allHeaders = [
     ];
@@ -88,7 +91,7 @@ function Banank() {
     };
 /*
  <ul>
-                        {Headers.map((header, index) => (
+                        {allHeaders.map((header, index) => (
                             <li key={index} className={currentParagraph === header.index ? 'text-[#FFB22C]' : ''}>
                                 <button className="transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(header.index)}>{header.title}</button>
                             </li>
