@@ -90,7 +90,7 @@ const ChatBot = () => {
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert("Failed to fetch AI response: " + error.message);
+                    alert("Server is down. Please try again later.");
                 });
         } catch (error) {
             console.error("Failed to fetch AI response:", error);
