@@ -25,7 +25,7 @@ const useApiRequest = (eduId) => {
           let chapterHeader = data[i].chapterHeader.replaceAll("\\n", "\n").replaceAll("?\t", "\t");
           newHeader.push({ title: chapterHeader, index: i });
           let chapterDescription = data[i].chapterDescription.replaceAll("\\n", "\n").replaceAll("?\t", "\t");
-          let temp = chapterHeader + ":\n" + chapterDescription + "\n\n";
+          let temp =":\n" + chapterDescription + "\n\n";
           newEducation.push(temp);
         }
         setEducation(newEducation);
