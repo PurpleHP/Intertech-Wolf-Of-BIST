@@ -9,9 +9,6 @@
 @media screen and (max-width: 767px) {
     .title {
         font-size: 4vw;
-        text-decoration: underline;
-        text-decoration-color: #e28109;
-        text-decoration-thickness: 2px;
     }
 
     .fixed-button-ileri {
@@ -43,9 +40,6 @@
 @media screen and (min-width: 768px) {
     .title{
         font-size: 2vw;
-        text-decoration: underline;
-        text-decoration-color: #FFB22C;
-        text-decoration-thickness: 2px;
     }
 
     .scrollable-mobile {

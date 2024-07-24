@@ -107,7 +107,7 @@ function GelirveVergiYonetimi() {
                     </div>
                 </div>
                 <div className="col-span-3 grid grid-cols-10 grid-rows-10 p-4 m-4 h-[90vh] rounded-lg text-white border-4 shadow-black shadow-2xl background-color:#2b3236 scrollable-mobile">
-                    <p className="title break-words font-bold text-justify rounded-md font-sans col-span-8 row-span-1 col-start-2 p-3 row-start-1">
+                    <p className="title break-words font-bold text-justify rounded-md font-sans col-span-8 row-span-1 col-start-2 p-3 row-start-1 underline" style={{ textDecorationColor: '#FFB22C', textDecorationThickness: '2px' }}>
                         {currentHeader.title}
                     </p>
                     <p className="break-words text-justify whitespace-pre-line rounded-md font-sans col-span-8 row-span-8 col-start-2 p-3 row-start-2">
