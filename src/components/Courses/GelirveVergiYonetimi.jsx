@@ -8,7 +8,7 @@ function GelirveVergiYonetimi() {
     //MARK: Paragraf Bölümü
     const { education, Header } = useApiRequest(14);
     
-    const summary = { title: "Özet", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
+    const summary = { title: "Gelir ve Vergi Özet", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
     
     const allParagraphs = [
         "Gelir ve Vergi Yönetimi dersi, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir.",
@@ -85,6 +85,9 @@ function GelirveVergiYonetimi() {
         window.location.href = "/home";
     };
 
+    // Geçerli paragrafa ait başlığı al
+    const currentHeader = allHeaders.find(header => header.index === currentParagraph) || summary;
+
     return (
         <div>
             <div className="items-center justify-center grid grid-cols-4 gap-x-4 gap-y-2">
@@ -105,7 +108,7 @@ function GelirveVergiYonetimi() {
                 </div>
                 <div className="col-span-3 grid grid-cols-10 grid-rows-10 p-4 m-4 h-[90vh] rounded-lg text-white border-4 shadow-black shadow-2xl background-color:#2b3236 scrollable-mobile">
                     <p className="title break-words font-bold text-justify rounded-md font-sans col-span-8 row-span-1 col-start-2 p-3 row-start-1">
-                        Gelir ve Vergi Yönetimi
+                        {currentHeader.title}
                     </p>
                     <p className="break-words text-justify whitespace-pre-line rounded-md font-sans col-span-8 row-span-8 col-start-2 p-3 row-start-2">
                         {paragraphs}
