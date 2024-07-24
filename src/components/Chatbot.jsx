@@ -78,7 +78,7 @@ const ChatBot = () => {
                 redirect: "follow"
                 
               };
-            const targetUrl = 'https://mysite-281y.onrender.com/';
+            const targetUrl = 'https://mysite-281y.onrender.com/process_prompt';
             const response = await fetch(targetUrl, requestOptions)
             .then(response => response.json())
                 .then(data => {
