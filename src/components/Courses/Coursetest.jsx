@@ -3,21 +3,25 @@ import {useState, useEffect} from 'react';
 import Footer from "../Footer";
 import "./Course.css";
 
-import CourseAPI from './CoursesAPI';
+import useApiRequest from './CoursesAPI'; // Adjust the import path as necessary
 
 
 
 function Banank() {
     //MARK: Paragraf Bölümü
+
+    const { education, Header } = useApiRequest(11);
+
+    
     const allParagraphs = [
     ];
 
-    allParagraphs.push(...CourseAPI.ApiRequest(11).Education);    
+    allParagraphs.push(...education);    
 
     const allHeaders = [
     ];
 
-    allHeaders.push(...CourseAPI.ApiRequest(11).Header);
+    allHeaders.push(...Header);
 
 
     const [paragraphs, setParagraphs] = useState([allParagraphs[0]]); //paragrafı değiştirmek için
@@ -82,19 +86,21 @@ function Banank() {
     const mainMenu = () => {
         window.location.href = "/home";
     };
-
-    return (
-        <div>
-            <div className="items-center justify-center grid grid-cols-4 gap-x-4 gap-y-2">
-                <div className="col-span-1 grid grid-rows-6 p-4 m-4 h-[90vh] rounded-lg font-bold text-[20px] text-white font-sans border-4 break-words border-white shadow-black shadow-2xl background-color:#2b3236 hidden-mobile">
-                    <div className="row-span-4 row-start-1 text-left items-start">
-                    <ul>
+/*
+ <ul>
                         {Headers.map((header, index) => (
                             <li key={index} className={currentParagraph === header.index ? 'text-[#FFB22C]' : ''}>
                                 <button className="transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(header.index)}>{header.title}</button>
                             </li>
                         ))}
                     </ul>
+*/
+    return (
+        <div>
+            <div className="items-center justify-center grid grid-cols-4 gap-x-4 gap-y-2">
+                <div className="col-span-1 grid grid-rows-6 p-4 m-4 h-[90vh] rounded-lg font-bold text-[20px] text-white font-sans border-4 break-words border-white shadow-black shadow-2xl background-color:#2b3236 hidden-mobile">
+                    <div className="row-span-4 row-start-1 text-left items-start">
+                   
                     </div>
                     <div className="row-start-6 row-span-1 grid grid-cols-2">
                         <button className="col-start-1 col-span-2 border-4 rounded-lg shadow-2xl mb-2 transform transition duration-500 hover:scale-105" onClick={mainMenu}>Ana Sayfa</button>
