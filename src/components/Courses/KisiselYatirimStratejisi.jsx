@@ -4,14 +4,14 @@ import "./Course.css";
 
 import useApiRequest from './CoursesAPI'; // Adjust the import path as necessary
 
-function Risk() {
+function KisiselYatirimStratejisi() {
     //MARK: Paragraf Bölümü
-    const { education, Header } = useApiRequest(19);
+    const { education, Header } = useApiRequest(16);
     
-    const summary = { title: "Risk Özet", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
+    const summary = { title: "Kişisel Yatırım Stratejisi", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
     
     const allParagraphs = [
-        "Risk, belirsizlik ve olası kayıplar anlamında kullanılan genel bir terimdir ve finansal kararlar, yatırımlar, iş yönetimi gibi birçok alanda önemli bir kavramdır. Riskin doğru bir şekilde anlaşılması ve yönetilmesi, sağlıklı kararlar almak ve hedeflere ulaşmak için kritik öneme sahiptir.",
+        "Kişisel yatırım stratejisi, bireylerin finansal hedeflerine ulaşmak için planladıkları ve uyguladıkları bir yatırım yaklaşımıdır. Bu strateji, bireylerin risk toleransını, yatırım sürelerini ve finansal hedeflerini göz önünde bulundurarak oluşturulur ve kişisel finans yönetiminin önemli bir parçasıdır.",
     ];
 
     allParagraphs.push(...education);    
@@ -78,7 +78,7 @@ function Risk() {
     };
 
     const goToQuiz = () => {
-        window.location.href = "/RiskQuiz";
+        window.location.href = "/home"; //Quiz eklenecek
     };
 
     const mainMenu = () => {
@@ -130,4 +130,4 @@ function Risk() {
     );
 }
 
-export default Risk;
+export default KisiselYatirimStratejisi;

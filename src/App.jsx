@@ -28,6 +28,7 @@ import BorcYonetimi from './components/Courses/BorcYonetimi';
 import Kredi from './components/Courses/Kredi';
 import KisiselFinansalPlanlama from './components/Courses/KisiselFinansalPlanlama';
 import ParaveSermayePiyasasi from './components/Courses/ParaveSermayePiyasasi';
+import KisiselYatirimStratejisi from './components/Courses/KisiselYatirimStratejisi';
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
           <Route path='/Kredi' element={<Kredi/>} />
           <Route path='/KisiselFinansalPlanlama' element={<KisiselFinansalPlanlama/>} />
           <Route path='/ParaveSermayePiyasasi' element={<ParaveSermayePiyasasi/>} />
+          <Route path='/KisiselYatirimStratejisi' element={<KisiselYatirimStratejisi/>} />
           <Route path='/Api' element={<ApiRequest/>} />
           <Route path='/Quiz' element={<Quiz/>} />
           <Route path='/CourseTest' element={<CourseTest/>} />
