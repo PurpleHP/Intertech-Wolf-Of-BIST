@@ -8,7 +8,7 @@ function GelirveVergiYonetimi() {
     //MARK: Paragraf Bölümü
     const { education, Header } = useApiRequest(14);
     
-    const summary = { title: "Özet", index: 0 };
+    const summary = { title: "Özet", index: -1 }; // Özetin indexini -1 yapıyoruz.
     
     const allParagraphs = [
         "Gelir ve Vergi Yönetimi dersi, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir.",
@@ -16,12 +16,12 @@ function GelirveVergiYonetimi() {
 
     allParagraphs.push(...education);    
 
-    const allHeaders = [summary, ...Header];
+    const allHeaders = [summary, ...Header.map((header, index) => ({ ...header, index: index + 1 }))]; // Başlıkların indexlerini 1'den başlatıyoruz.
 
-    const [paragraphs, setParagraphs] = useState([allParagraphs[0]]); //paragrafı değiştirmek için
-    const [currentParagraph, setCurrentParagraph] = useState(0); //hangi paragrafta olduğumuzu belirtmek için
-    const [btnNextVisible, setBtnNextVisible] = useState(true); //ileri butonunu göstermek için
-    const [btnPrevVisible, setBtnPrevVisible] = useState(false); //geri butonunu göstermek için
+    const [paragraphs, setParagraphs] = useState([allParagraphs[0]]);
+    const [currentParagraph, setCurrentParagraph] = useState(0);
+    const [btnNextVisible, setBtnNextVisible] = useState(true);
+    const [btnPrevVisible, setBtnPrevVisible] = useState(false);
     const [btnQuizVisible, setBtnQuizVisible] = useState(false);
 
     const changeParagraph = () => {
@@ -62,10 +62,10 @@ function GelirveVergiYonetimi() {
     };
 
     const handleSetParagraph = (index) => {
-        if (index === 0) {
+        if (index === -1) {
             setParagraphs([allParagraphs[0]]);
         } else {
-            setParagraphs([allParagraphs[index+1]]);
+            setParagraphs([allParagraphs[index]]);
         }
         setCurrentParagraph(index);
         setBtnNextVisible(index < allParagraphs.length - 1);
