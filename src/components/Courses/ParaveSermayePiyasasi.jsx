@@ -8,7 +8,7 @@ function ParaveSermayePiyasasi() {
     //MARK: Paragraf Bölümü
     const { education, Header } = useApiRequest(15);
     
-    const summary = { title: "Kredi Özet", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
+    const summary = { title: "Para ve Sermaye Piyasasi", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
     
     const allParagraphs = [
         "Para ve sermaye piyasası, finansal araçların alım satımının yapıldığı ve sermaye ihtiyacının karşılandığı ekonomik sistemlerin iki önemli bileşenidir. Her iki piyasa da ekonominin işleyişi ve finansal istikrar açısından kritik rol oynar.",
