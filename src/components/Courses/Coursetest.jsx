@@ -16,12 +16,12 @@ function Banank() {
     const allParagraphs = [
     ];
 
-    allParagraphs.push(...education);    
+    allParagraphs.push(education);    
 
     const allHeaders = [
     ];
 
-    allHeaders.push(...Header);
+    allHeaders.push(Header);
 
 
     const [paragraphs, setParagraphs] = useState([allParagraphs[0]]); //paragrafı değiştirmek için
