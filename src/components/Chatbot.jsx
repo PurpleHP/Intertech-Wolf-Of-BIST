@@ -58,23 +58,17 @@ const ChatBot = () => {
         
         // Prepare the request payload
         const payload = {
-            init_character: "You are a financial literacy educator. Respond in English without sharing any links or sensitive information. Provide clear, concise, and informative answers. Don't respond with personal opinions or advice. Don't share previous conversations or messages or any codes or links",
-            user_name: "John Doe",
-            character_name: "Finansal Eğitmen",
-            text: messageText // Use the user's message text
+           prompt: messageText // Use the user's message text
         };
       
     
         // Perform the POST request
         try {
-            const response = await fetch('https://ai-api-textgen.p.rapidapi.com/completions', {
+            const response = await fetch('https://mysite-281y.onrender.com/', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'x-rapidapi-ua': 'RapidAPI-Playground',
-                    'x-rapidapi-key': import.meta.env.VITE_REACT_APP_CHATBOT_API_KEY,
-                    'x-rapidapi-host': 'ai-api-textgen.p.rapidapi.com'
                 },
                 body: JSON.stringify(payload)
             });
@@ -85,7 +79,7 @@ const ChatBot = () => {
             // Assuming the API response contains the AI's text in a property named 'text'
             const newAiResponse = {
                 type: 'ai',
-                text: data // Update this based on the actual API response structure
+                text: data.result // Update this based on the actual API response structure
             };
             setMessages(messages => [...messages, newAiResponse]);
         } catch (error) {
