@@ -172,4 +172,4 @@ function Banank() {
     );
 }
 
-return Banank;
+export default Banank;
