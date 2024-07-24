@@ -62,19 +62,21 @@ const ChatBot = () => {
         };
       
         try {
-            const raw = JSON.stringify({ payload });
-        
+            const inputPrompt = document.querySelector('input').value;
+            const raw = JSON.stringify({
+              "prompt": inputPrompt
+            });
+            
             const requestOptions = {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: raw,
-                redirect: "follow"
+              method: "POST",
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: raw,
+              redirect: "follow"
+              
             };
-        
             const targetUrl = 'https://mysite-281y.onrender.com/process_prompt';
-        
             fetch(targetUrl, requestOptions)
                 .then(response => {
                     if (!response.ok) {
@@ -98,31 +100,6 @@ const ChatBot = () => {
             console.error("Failed to fetch AI response:", error);
         }
         
-    
-        /*
-        // Perform the POST request
-        try {
-
-    
-            const targetUrl = 'https://mysite-281y.onrender.com/process_prompt';
-            const response = await fetch(targetUrl, requestOptions)
-            .then(response => response.json())
-                .then(data => {
-                    const newAiResponse = {
-                        type: 'ai',
-                        text: data.result // Update this based on the actual API response structure
-                    };
-                    setMessages(messages => [...messages, newAiResponse]);
-                })
-
-    
-    
-           
-        } catch (error) {
-            console.error("Failed to fetch AI response:", error);
-            setApiResponse("Failed to fetch AI response:", error)
-        }
-        */
     }
 
     
