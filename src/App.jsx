@@ -23,6 +23,7 @@ import CourseTest from './components/Courses/Coursetest';
 import BankacilikHizmetleri from './components/Courses/BankacilikHizmetleri';
 import ButceveHarcama from './components/Courses/ButceveHarcama';
 import KrediKartlari from './components/Courses/KrediKartlari';
+import TasarrufveAcilDurumFonlari from './components/Courses/TasarrufveAcilDurumFonlari';
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
           <Route path='/BankacilikHizmetleri' element={<BankacilikHizmetleri/>} />
           <Route path='/ButceveHarcama' element={<ButceveHarcama/>} />
           <Route path='/KrediKartlari' element={<KrediKartlari/>} />
+          <Route path='/KrediKartlari' element={<TasarrufveAcilDurumFonlari/>} />
           <Route path='/Api' element={<ApiRequest/>} />
           <Route path='/Quiz' element={<Quiz/>} />
           <Route path='/CourseTest' element={<CourseTest/>} />
