@@ -6,7 +6,7 @@ import useApiRequest from './CoursesAPI'; // Adjust the import path as necessary
 
 function KisiselFinansalPlanlama() {
     //MARK: Paragraf Bölümü
-    const { education, Header } = useApiRequest(11);
+    const { education, Header } = useApiRequest(13);
     
     const summary = { title: "Kişisel Finansal Planlama Özet", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
     
