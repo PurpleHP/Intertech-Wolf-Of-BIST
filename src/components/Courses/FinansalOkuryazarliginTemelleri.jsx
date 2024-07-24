@@ -2,18 +2,26 @@ import Footer from "../Footer";
 import { useState } from "react";
 import "./Course.css";
 
+import useApiRequest from './CoursesAPI'; // Adjust the import path as necessary
+
 function GelirveVergiYonetimi() {
     //MARK: Paragraf Bölümü
+    const { education, Header } = useApiRequest(1);
+    
+    const summary = { title: "Finansal Okuryazarlığın Temelleri Özet", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
+    
     const allParagraphs = [
-    "Finansal okuryazarlık, bireylerin finansal kararlar alabilme ve bu kararlarin sonuçlarını anlayabilme yeteneğidir. Temel finansal kavramlar ve terimler hakkinda bilgi sahibi olmak, bütçeleme, tasarruf, yatırım ve borç yönetimi gibi konularda bilinçli kararlar almayi sağlar. Bu yetenek, bireylerin mali güvenliklerini artırarak finansal hedeflerine ulaşmalarını destekler.",    
-    "Finansal okuryazarlığın temellerini anlamak için bazı temel terimleri bilmek önemlidir. Temel finansal terimler ve kavramlar: \n\n Finans: Paranın yönetimi ve yatırımı ile ilgili işlemler ve kararlar. \n\n Fon: Belirli bir amaç için biriktirilen veya tahsis edilen para. \n\n Sermaye: Bir iş veya yatırım için kullanılan finansal kaynaklar. \n\n Bütçe: Gelir ve giderlerin planlanması ve izlenmesi süreci. \n\n Gelir: Bir birey veya işletmenin kazandığı para. \n\n Gider: Harcamalar ve maliyetler. \n\n Tasarruf: Harcanmayan ve biriktirilen para. \n\n Yatırım: Gelecekteki getiri beklentisiyle yapılan para veya kaynak tahsisi. \n\n Faiz: Borç alınan paranın kullanımı için ödenen ücret. \n\n Kredi: Geri ödeme taahhüdü ile alinan borç para. \n\n Borç: Geri ödenmesi gereken para veya diğer yükümlülükler. \n\n Likidite: Varlıkların hızla ve kolayca nakde çevrilebilme özelliği. \n\n Varlık: Değer tasiyan ve sahip olunan şeyler, örneğin ev, araba, hisse senetleri. \n\n Borç Yükü: Bireyin veya işletmenin toplam borç miktarı. \n\n Nakit Akışı: Gelir ve giderlerin zaman içindeki hareketi. \n\n Enflasyon: Genel fiyat seviyesinin zamanla yükselmesi.",
-    "Deflasyon: Genel fiyat seviyesinin zamanla düşmesi. \n\n Borsa: Hisse senetleri ve diğer menkul kıymetlerin alinip satıldığı piyasa. \n\n Tahvil: Bir borçlanma aracıdır; ihraç eden kurumun yatırımcılara belirli bir vadede faiz ödemeyi ve anapara geri ödemeyi taahhüt ettiği finansal araç. \n\n Hisse Senedi: Bir şirketin mülkiyet payını temsil eden menkul kıymet. \n\n Emtia: Altın, petrol gibi fiziksel varlıklar. \n\n Döviz: Farklı ülkelerin para birimleri. \n\n Portföy: Bir yatırımcının sahip olduğu tüm yatırım araçları ve varlıklar. \n\n Çesitlendirme: Yatırımları farklı varlıklara dağıtarak riskin azaltılması. \n\n  Riski Yönetimi: Finansal risklerin tanımlanması, değerlendirilmesi ve kontrol edilmesi süreci. \n\n Vergi: Devlet tarafından gelir, mal veya hizmetler üzerinden alınan zorunlu ödeme. \n\n Menkul Kiymet: Finansal değeri olan belgeler, örneğin hisse senetleri ve tahviller. \n\n Prim: Sigorta poliçesi için ödenen düzenli ödeme. \n\n Marj: Borç para kullanarak yapılan yatırımda, yatırımcının yatırdığı öz kaynak miktarı."
+        "Finansal okuryazarlık, bireylerin kişisel finans yönetimi, yatırım, tasarruf, borçlanma ve bütçeleme konularında bilgi ve becerilere sahip olmalarını ifade eder. Bu kavram, bireylerin finansal kararlarını bilinçli bir şekilde alabilmeleri ve ekonomik hedeflerine ulaşabilmeleri için gerekli temel bilgi ve becerileri kazandırmayı amaçlar.",
     ];
 
-    const [paragraphs, setParagraphs] = useState([allParagraphs[0]]); //paragrafı değiştirmek için
-    const [currentParagraph, setCurrentParagraph] = useState(0); //hangi paragrafta olduğumuzu belirtmek için
-    const [btnNextVisible, setBtnNextVisible] = useState(true); //ileri butonunu göstermek için
-    const [btnPrevVisible, setBtnPrevVisible] = useState(false); //geri butonunu göstermek için
+    allParagraphs.push(...education);    
+
+    const allHeaders = [summary, ...Header.map((header, index) => ({ ...header, index: index + 1 }))]; // Başlıkların indexlerini 1'den başlatıyoruz.
+
+    const [paragraphs, setParagraphs] = useState([allParagraphs[0]]);
+    const [currentParagraph, setCurrentParagraph] = useState(0);
+    const [btnNextVisible, setBtnNextVisible] = useState(true);
+    const [btnPrevVisible, setBtnPrevVisible] = useState(false);
     const [btnQuizVisible, setBtnQuizVisible] = useState(false);
 
     const changeParagraph = () => {
@@ -54,7 +62,11 @@ function GelirveVergiYonetimi() {
     };
 
     const handleSetParagraph = (index) => {
-        setParagraphs([allParagraphs[index]]);
+        if (index === 0) {
+            setParagraphs([allParagraphs[0]]);
+        } else {
+            setParagraphs([allParagraphs[index]]);
+        }
         setCurrentParagraph(index);
         setBtnNextVisible(index < allParagraphs.length - 1);
         setBtnPrevVisible(index > 0);
@@ -73,21 +85,20 @@ function GelirveVergiYonetimi() {
         window.location.href = "/home";
     };
 
+    // Geçerli paragrafa ait başlığı al
+    const currentHeader = allHeaders.find(header => header.index === currentParagraph) || summary;
+
     return (
         <div>
             <div className="items-center justify-center grid grid-cols-4 gap-x-4 gap-y-2">
                 <div className="col-span-1 grid grid-rows-6 p-4 m-4 h-[90vh] rounded-lg font-bold text-[20px] text-white font-sans border-4 break-words border-white shadow-black shadow-2xl background-color:#2b3236 hidden-mobile">
                     <div className="row-span-4 row-start-1 text-left items-start">
                         <ul>
-                            <li className={currentParagraph === 0 ? 'text-[#79d866]' : ''}>
-                                <button className="transform transition duration-500 hover:scale-105 hover:text-[#1c8208]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(0)}>Finansal Okuryazarligin Temelleri </button>
-                            </li>
-                            <li className={currentParagraph === 1 ? 'text-[#79d866]' : ''}>
-                                <button className="transform transition duration-500 hover:scale-105 hover:text-[#1c8208]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(1)}>Finansal Terimler 1</button>
-                            </li>
-                            <li className={currentParagraph === 2 ? 'text-[#79d866]' : ''}>
-                                <button className="transform transition duration-500 hover:scale-105 hover:text-[#1c8208]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(2)}>Finansal Terimler 2</button>
-                            </li>
+                            {allHeaders.map((header, index) => (
+                                <li key={index} className={currentParagraph === header.index ? 'text-[#79d866]' : ''}>
+                                    <button className="transform transition duration-500 hover:scale-105 hover:text-[#1c8208]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(header.index)}>{header.title}</button>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                     <div className="row-start-6 row-span-1 grid grid-cols-2">
@@ -96,8 +107,8 @@ function GelirveVergiYonetimi() {
                     </div>
                 </div>
                 <div className="col-span-3 grid grid-cols-10 grid-rows-10 p-4 m-4 h-[90vh] rounded-lg text-white border-4 shadow-black shadow-2xl background-color:#2b3236 scrollable-mobile">
-                    <p className="title break-words font-bold text-justify rounded-md font-sans col-span-8 row-span-1 col-start-2 p-3 row-start-1">
-                        Finansal Okuryazarlığın Temelleri
+                    <p className="title break-words font-bold text-justify rounded-md font-sans col-span-8 row-span-1 col-start-2 p-3 row-start-1 underline" style={{ textDecorationColor: '#79d866', textDecorationThickness: '2px' }}>
+                        {currentHeader.title}
                     </p>
                     <p className="break-words text-justify whitespace-pre-line rounded-md font-sans col-span-8 row-span-8 col-start-2 p-3 row-start-2">
                         {paragraphs}
