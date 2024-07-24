@@ -62,38 +62,42 @@ const ChatBot = () => {
         };
       
         try {
-          
-            const raw = JSON.stringify({
-                payload
-            });
-            
+            const raw = JSON.stringify({ payload });
+        
             const requestOptions = {
-              method: "POST",
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: raw,
-              redirect: "follow"
-              
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: raw,
+                redirect: "follow"
             };
+        
             const targetUrl = 'https://mysite-281y.onrender.com/process_prompt';
+        
             fetch(targetUrl, requestOptions)
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
                 .then(data => {
-                    console.log(data)
-                    console.log(data.result)
+                    console.log(data);
+                    console.log(data.result);
                     const newAiResponse = {
                         type: 'ai',
                         text: data.result // Update this based on the actual API response structure
                     };
                     setMessages(messages => [...messages, newAiResponse]);
-                  })
-                    .catch(error =>{
+                })
+                .catch(error => {
                     console.error('Error:', error);
                 });
         } catch (error) {
             console.error("Failed to fetch AI response:", error);
         }
+        
     
         /*
         // Perform the POST request
