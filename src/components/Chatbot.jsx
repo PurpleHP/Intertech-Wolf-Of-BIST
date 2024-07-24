@@ -26,8 +26,7 @@ const ChatBot = () => {
     
 
     const navigate = useNavigate();
-    //  { type: 'user', text: 'Hello, how are you?' },
-    //  { type: 'ai', text: 'I am fine, thank you!' },
+ 
     const [messages, setMessages] = useState([]);
 
     

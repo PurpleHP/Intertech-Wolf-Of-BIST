@@ -14,12 +14,13 @@ function Banank() {
 
     
     const allParagraphs = [
-        "Herkese merhaba arkanızda birikmiş bir miktar paranız var ve bu parayı değerlendirmek istiyorsunuz. Peki, bu parayı nasıl değerlendirebilirsiniz? Bu parayı değerlendirmek için birçok farklı yatırım aracı bulunmaktadır. Bu yatırım araçlarından biri de hisse senetleridir. Hisse senetleri, bir şirketin ortaklarına sunduğu ve şirketin karından pay"
+        "Gelir ve Vergi Yönetimi dersi, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir.",
     ];
 
     allParagraphs.push(...education);    
 
     const allHeaders = [
+        "Özet",
     ];
 
     allHeaders.push(...Header);
