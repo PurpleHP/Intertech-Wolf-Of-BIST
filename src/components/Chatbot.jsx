@@ -64,24 +64,35 @@ const ChatBot = () => {
     
         // Perform the POST request
         try {
-            const response = await fetch('https://mysite-281y.onrender.com/', {
-                method: 'POST',
+
+            const raw = JSON.stringify({
+                payload
+              });
+              
+              const requestOptions = {
+                method: "POST",
                 headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
+                  'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(payload)
-            });
+                body: raw,
+                redirect: "follow"
+                
+              };
+            const targetUrl = 'https://mysite-281y.onrender.com/';
+            const response = await fetch(targetUrl, requestOptions)
+            .then(response => response.json())
+                .then(data => {
+                    const newAiResponse = {
+                        type: 'ai',
+                        text: data.result // Update this based on the actual API response structure
+                    };
+                    setMessages(messages => [...messages, newAiResponse]);
+                })
 
     
-            const data = await response.json();
+            //const data = await response.json();
     
-            // Assuming the API response contains the AI's text in a property named 'text'
-            const newAiResponse = {
-                type: 'ai',
-                text: data.result // Update this based on the actual API response structure
-            };
-            setMessages(messages => [...messages, newAiResponse]);
+           
         } catch (error) {
             console.error("Failed to fetch AI response:", error);
             setApiResponse("Failed to fetch AI response:", error)
