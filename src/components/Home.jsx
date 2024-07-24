@@ -78,7 +78,7 @@ function App() {
                 <Card cardName="Kredi" to="/Kredi" imgSrc={kredi} difficulty="medium">
                     </Card>
                         
-                <Card cardName="Kişisel Finansal Planlama" imgSrc={kisiselFinansalPlanlama} difficulty="medium">
+                <Card cardName="Kişisel Finansal Planlama" to="/KisiselFinansalPlanlama" imgSrc={kisiselFinansalPlanlama} difficulty="medium">
   
               </Card>
             </div>
