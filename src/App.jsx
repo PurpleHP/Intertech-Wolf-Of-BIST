@@ -48,7 +48,7 @@ function App() {
           <Route path='/BankacilikHizmetleri' element={<BankacilikHizmetleri/>} />
           <Route path='/ButceveHarcama' element={<ButceveHarcama/>} />
           <Route path='/KrediKartlari' element={<KrediKartlari/>} />
-          <Route path='/KrediKartlari' element={<TasarrufveAcilDurumFonlari/>} />
+          <Route path='/TasarrufveAcilDurumFonlari' element={<TasarrufveAcilDurumFonlari/>} />
           <Route path='/Api' element={<ApiRequest/>} />
           <Route path='/Quiz' element={<Quiz/>} />
           <Route path='/CourseTest' element={<CourseTest/>} />
