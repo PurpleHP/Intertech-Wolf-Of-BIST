@@ -5,17 +5,19 @@ import "./Course.css";
 
 import CourseAPI from './CoursesAPI';
 
+
+
 function Banank() {
     //MARK: Paragraf Bölümü
     const allParagraphs = [
     ];
 
-    allParagraphs.push(...CourseAPI.Education);    
+    allParagraphs.push(...CourseAPI.ApiRequest(11).Education);    
 
     const allHeaders = [
     ];
 
-    allHeaders.push(...CourseAPI.Header);
+    allHeaders.push(...CourseAPI.ApiRequest(11).Header);
 
 
     const [paragraphs, setParagraphs] = useState([allParagraphs[0]]); //paragrafı değiştirmek için
