@@ -19,8 +19,10 @@ function Banank() {
 
     allParagraphs.push(...education);    
 
+    const sumamry = { title: "Özet", index: 0 }
+
     const allHeaders = [
-        "Özet",
+        summary,
     ];
 
     allHeaders.push(...Header);
