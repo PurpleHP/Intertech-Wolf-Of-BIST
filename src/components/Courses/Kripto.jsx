@@ -4,14 +4,14 @@ import "./Course.css";
 
 import useApiRequest from './CoursesAPI'; // Adjust the import path as necessary
 
-function KisiselYatirimStratejisi() {
+function Kripto() {
     //MARK: Paragraf Bölümü
-    const { education, Header } = useApiRequest(16);
+    const { education, Header } = useApiRequest(18);
     
-    const summary = { title: "Kişisel Yatırım Stratejisi Özet", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
+    const summary = { title: "Kripto Özet", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
     
     const allParagraphs = [
-        "Kişisel yatırım stratejisi, bireylerin finansal hedeflerine ulaşmak için planladıkları ve uyguladıkları bir yatırım yaklaşımıdır. Bu strateji, bireylerin risk toleransını, yatırım sürelerini ve finansal hedeflerini göz önünde bulundurarak oluşturulur ve kişisel finans yönetiminin önemli bir parçasıdır.",
+        "Kripto para, dijital ve şifreli bir formda olan, merkezi bir otorite tarafından kontrol edilmeyen ve blockchain teknolojisi ile desteklenen bir tür para birimidir. Kripto paralar, güvenli işlemler sağlamak ve veri bütünlüğünü korumak için kriptografi kullanır.",
     ];
 
     allParagraphs.push(...education);    
@@ -130,4 +130,4 @@ function KisiselYatirimStratejisi() {
     );
 }
 
-export default KisiselYatirimStratejisi;
+export default Kripto;

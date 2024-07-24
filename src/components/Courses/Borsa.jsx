@@ -4,14 +4,14 @@ import "./Course.css";
 
 import useApiRequest from './CoursesAPI'; // Adjust the import path as necessary
 
-function KisiselYatirimStratejisi() {
+function Borsa() {
     //MARK: Paragraf Bölümü
-    const { education, Header } = useApiRequest(16);
+    const { education, Header } = useApiRequest(17);
     
-    const summary = { title: "Kişisel Yatırım Stratejisi Özet", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
+    const summary = { title: "Borsa Özet", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
     
     const allParagraphs = [
-        "Kişisel yatırım stratejisi, bireylerin finansal hedeflerine ulaşmak için planladıkları ve uyguladıkları bir yatırım yaklaşımıdır. Bu strateji, bireylerin risk toleransını, yatırım sürelerini ve finansal hedeflerini göz önünde bulundurarak oluşturulur ve kişisel finans yönetiminin önemli bir parçasıdır.",
+        "Borsa, menkul kıymetlerin (hisse senetleri, tahviller, yatırım fonları vb.) alınıp satıldığı, düzenli ve organize bir piyasa ortamıdır. Borsa, şirketlerin sermaye toplamasına ve yatırımcıların yatırım yapmalarına olanak tanır. Borsa, ekonomik faaliyetlerin merkezi bir noktada toplandığı, likidite ve fiyat keşfi sağlayan bir platform olarak işlev görür.",
     ];
 
     allParagraphs.push(...education);    
@@ -130,4 +130,4 @@ function KisiselYatirimStratejisi() {
     );
 }
 
-export default KisiselYatirimStratejisi;
+export default Borsa;

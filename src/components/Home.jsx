@@ -92,11 +92,11 @@ function App() {
             <div className='flex'>
               <Card cardName="Kişisel Yatırım Stratejisi" to="/KisiselYatirimStratejisi" imgSrc={yatirimstrateji} difficulty="hard">
               </Card>
-              <Card cardName="Borsa" imgSrc={borsa} difficulty="hard">
+              <Card cardName="Borsa" to= "/Borsa" imgSrc={borsa} difficulty="hard">
               </Card>
             </div>
             <div className='flex'>
-              <Card cardName="Kripto" imgSrc={kripto} difficulty="hard">
+              <Card cardName="Kripto" to="/Kripto" imgSrc={kripto} difficulty="hard">
               </Card>
               <Card cardName="Risk" to="/Risk" imgSrc={risk} difficulty="hard">
               </Card>
