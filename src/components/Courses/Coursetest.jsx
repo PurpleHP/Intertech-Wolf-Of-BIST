@@ -14,17 +14,15 @@ function Banank() {
 
     
     const allParagraphs = [
+        "Herkese merhaba arkanızda birikmiş bir miktar paranız var ve bu parayı değerlendirmek istiyorsunuz. Peki, bu parayı nasıl değerlendirebilirsiniz? Bu parayı değerlendirmek için birçok farklı yatırım aracı bulunmaktadır. Bu yatırım araçlarından biri de hisse senetleridir. Hisse senetleri, bir şirketin ortaklarına sunduğu ve şirketin karından pay"
     ];
 
-    for (let i = 0; i < education.length; i++) {
-        allParagraphs.push(education[i]);
-    }
-    //allParagraphs.push(education);    
+    allParagraphs.push(...education);    
 
     const allHeaders = [
     ];
 
-    allHeaders.push(Header);
+    allHeaders.push(...Header);
 
 
     const [paragraphs, setParagraphs] = useState([allParagraphs[0]]); //paragrafı değiştirmek için
