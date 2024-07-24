@@ -98,7 +98,7 @@ function App() {
             <div className='flex'>
               <Card cardName="Kripto" imgSrc={kripto} difficulty="hard">
               </Card>
-              <Card cardName="Risk" imgSrc={risk} difficulty="hard">
+              <Card cardName="Risk" to="/Risk" imgSrc={risk} difficulty="hard">
               </Card>
             </div>
       </Menu>

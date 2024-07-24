@@ -17,6 +17,8 @@ import ChatBot from './components/Chatbot';
 import GelirveVergiYonetimiQuiz from './components/Courses/GelirveVergiYonetimiQuiz';
 import ApiRequest from './components/ApiRequest';
 import Quiz from './components/Quiz';
+import Risk from './components/Courses/Risk';
+import RiskQuiz from './components/Courses/RiskQuiz';
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
           <Route path='/FinansalOkuryazarliginTemelleriQuiz' element={<FinansalOkuryazarliginTemelleriQuiz />} />
           <Route path='/GelirveVergiYonetimi' element={<GelirveVergiYonetimi/>} />
           <Route path='/GelirveVergiYonetimiQuiz' element={<GelirveVergiYonetimiQuiz/>} />
+          <Route path='/Risk' element={<Risk/>} />
+          <Route path='/RiskQuiz' element={<RiskQuiz/>} />
           <Route path='/Api' element={<ApiRequest/>} />
           <Route path='/Quiz' element={<Quiz/>} />
 
