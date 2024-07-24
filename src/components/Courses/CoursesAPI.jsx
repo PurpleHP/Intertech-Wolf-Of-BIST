@@ -55,3 +55,6 @@ const ApiRequest = (eduId) => {
     return education, Header;
 
 };
+ 
+
+export default ApiRequest;
