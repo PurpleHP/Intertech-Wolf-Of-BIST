@@ -1,76 +1,23 @@
 import React from 'react';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Footer from "../Footer";
 import "./Course.css";
 
-const ApiRequest = () => {
-    const [error, setError] = useState(null);
-    const [apiResponse, setApiResponse] = useState(null);
-    const [education, setEducation] = useState([]);
-    const [Header, setHeader] = useState([]);
-  
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const raw = JSON.stringify({
-            "eduId": 11
-          });
-  
-          const requestOptions = {
-            method: "POST",
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: raw,
-            redirect: "follow"
-          };
-  
-          const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Chapter/getChaptersByEducationId';
-          fetch(targetUrl, requestOptions)
-            .then(response => response.json())
-            .then(data => {
-              console.log(data);
-              let newEducation = [];
-              let newHeader = [];
-              for (let i = 0; i < data.length; i++) {
-                let chapterHeader = data[i].chapterHeader.replaceAll("\\n", "\n").replaceAll("?\t", "\t");
-                newHeader.push(chapterHeader);
-                let chapterDescription = data[i].chapterDescription.replaceAll("\\n", "\n").replaceAll("?\t", "\t");
-                let temp = chapterHeader + ":\n" + chapterDescription + "\n\n";
-                newEducation.push(temp);
-              }
-              setEducation(newEducation);
-              setHeader(newHeader); // This was missing in your original code
-              setApiResponse(newEducation);
-            })
-            .catch(error => {
-              console.error('Error:', error);
-              setError(error.message); // This should set the error state
-              setApiResponse(error.message);
-            });
-        } catch (error) {
-          setError(error.message);
-          setApiResponse(error.message);
-        }
-      };
-  
-      fetchData();
-    }, []); // Empty dependency array means this effect runs once on mount
-  
-    // Return statement or further logic goes here
-  };
-  
+import CourseAPI from './CoursesAPI';
+
+
+
 function Banank() {
     //MARK: Paragraf Bölümü
     const allParagraphs = [
     ];
 
-    allParagraphs.push(...ApiRequest.newEducation);    
+    allParagraphs.push(...CourseAPI.ApiRequest(11).Education);    
 
     const allHeaders = [
     ];
 
-    allHeaders.push(...ApiRequest.newHeader);
+    allHeaders.push(...CourseAPI.ApiRequest(11).Header);
 
 
     const [paragraphs, setParagraphs] = useState([allParagraphs[0]]); //paragrafı değiştirmek için
@@ -142,7 +89,7 @@ function Banank() {
                 <div className="col-span-1 grid grid-rows-6 p-4 m-4 h-[90vh] rounded-lg font-bold text-[20px] text-white font-sans border-4 break-words border-white shadow-black shadow-2xl background-color:#2b3236 hidden-mobile">
                     <div className="row-span-4 row-start-1 text-left items-start">
                     <ul>
-                        {headers.map((header, index) => (
+                        {Headers.map((header, index) => (
                             <li key={index} className={currentParagraph === header.index ? 'text-[#FFB22C]' : ''}>
                                 <button className="transform transition duration-500 hover:scale-105 hover:text-[#e28109]" style={{ transition: 'background-color 0.5s ease' }} onClick={() => handleSetParagraph(header.index)}>{header.title}</button>
                             </li>
