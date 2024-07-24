@@ -56,15 +56,10 @@ const ChatBot = () => {
         const newUserMessage = { type: 'user', text: messageText };
         setMessages(messages => [...messages, newUserMessage]);
         
-        // Prepare the request payload
-        const payload = {
-           prompt: messageText // Use the user's message text
-        };
-      
+
         try {
-            const inputPrompt = document.querySelector('input').value;
             const raw = JSON.stringify({
-              "prompt": inputPrompt
+              "prompt": messageText
             });
             
             const requestOptions = {
