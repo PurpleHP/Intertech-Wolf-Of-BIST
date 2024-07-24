@@ -62,7 +62,7 @@ function App() {
             <div className='flex'>
                 <Card cardName="Bütçe ve Harcama" to="/ButceveHarcama" imgSrc={butceharcama} difficulty="easy">
                 </Card>
-                <Card cardName="Kredi Kartları" imgSrc={kredikartlari} difficulty="easy">
+                <Card cardName="Kredi Kartları" to="/KrediKartlari" imgSrc={kredikartlari} difficulty="easy">
                     
                 </Card>
             </div>

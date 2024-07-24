@@ -4,14 +4,14 @@ import "./Course.css";
 
 import useApiRequest from './CoursesAPI'; // Adjust the import path as necessary
 
-function ButceveHarcama() {
+function KrediKartlari() {
     //MARK: Paragraf Bölümü
-    const { education, Header } = useApiRequest(4);
+    const { education, Header } = useApiRequest(3);
     
-    const summary = { title: "Bütçe ve Harcama Özet", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
+    const summary = { title: "Kredi Kartları Özet", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
     
     const allParagraphs = [
-        "Bütçe ve harcama yönetimi, kişisel ve kurumsal finansal planlamanın temel unsurlarını oluşturan süreçlerdir. Bu süreçler, finansal kaynakların etkin bir şekilde yönetilmesini, tasarruf sağlanmasını ve mali hedeflere ulaşılmasını destekler.",
+        "Kredi kartları, kullanıcılarına belirli bir kredi limiti kapsamında mal ve hizmet satın alma olanağı sunan finansal araçlardır. Bankalar veya finansal kuruluşlar tarafından verilen bu kartlar, hem kişisel hem de iş harcamalarını yönetmek için geniş bir kullanım alanına sahiptir.",
     ];
 
     allParagraphs.push(...education);    
@@ -130,4 +130,4 @@ function ButceveHarcama() {
     );
 }
 
-export default ButceveHarcama;
+export default KrediKartlari;

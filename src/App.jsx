@@ -22,6 +22,7 @@ import RiskQuiz from './components/Courses/RiskQuiz';
 import CourseTest from './components/Courses/Coursetest';
 import BankacilikHizmetleri from './components/Courses/BankacilikHizmetleri';
 import ButceveHarcama from './components/Courses/ButceveHarcama';
+import KrediKartlari from './components/Courses/KrediKartlari';
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
           <Route path='/RiskQuiz' element={<RiskQuiz/>} />
           <Route path='/BankacilikHizmetleri' element={<BankacilikHizmetleri/>} />
           <Route path='/ButceveHarcama' element={<ButceveHarcama/>} />
+          <Route path='/KrediKartlari' element={<KrediKartlari/>} />
           <Route path='/Api' element={<ApiRequest/>} />
           <Route path='/Quiz' element={<Quiz/>} />
           <Route path='/CourseTest' element={<CourseTest/>} />
