@@ -19,6 +19,7 @@ import ApiRequest from './components/ApiRequest';
 import Quiz from './components/Quiz';
 import Risk from './components/Courses/Risk';
 import RiskQuiz from './components/Courses/RiskQuiz';
+import Test from './components/Courses/Test';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
           <Route path='/RiskQuiz' element={<RiskQuiz/>} />
           <Route path='/Api' element={<ApiRequest/>} />
           <Route path='/Quiz' element={<Quiz/>} />
+          <Route path='/Test' element={<Test/>} />
 
         </Routes>
       </div>
