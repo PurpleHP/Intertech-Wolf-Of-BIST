@@ -66,7 +66,11 @@ function GelirveVergiYonetimi() {
     };
 
     const handleSetParagraph = (index) => {
-        setParagraphs([allParagraphs[index]]);
+        if (index === 0) {
+            setParagraphs([allParagraphs[index]]);
+        } else {
+            setParagraphs([education[index - 1]]); // API'den gelen paragraflar education arrayinde saklanıyor, elle girilen özetin index'i 0 olduğu için 1 çıkardım.
+        }
         setCurrentParagraph(index);
         setBtnNextVisible(index < allParagraphs.length - 1);
         setBtnPrevVisible(index > 0);
