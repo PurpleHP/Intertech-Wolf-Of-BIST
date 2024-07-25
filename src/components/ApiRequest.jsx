@@ -137,11 +137,7 @@ const ApiRequest = () => {
           <button className='text-white border-2 m-4 p-4 rounded-lg' onClick={fetchData3}>Fetch Quiz Paragraph Data</button>
           <p className='text-white m-4 p-4 break-words whitespace-pre-line'>{apiResponse}</p>
         </div>
-        <div>
-      {QuizParagraphs.map((paragraph, index) => (
-        <p key={index} className='text-white m-4 p-4 break-words whitespace-pre-line'>{paragraph}</p>
-      ))}
-    </div>
+        
       </div>
 
     </div>
