@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import Footer from "../Footer";
 import "./Course.css";
 
@@ -26,12 +26,12 @@ function Banank() {
         { title: "Finansal Yönetim Özet", index: 2 },
         { title: "İşletme Yönetimi Özet", index: 3 },
         { title: "Pazarlama Yönetimi Özet", index: 4 }
-      ];
+    ];
 
     const allHeaders = [summary, ...Header.map((header, index) => ({ ...header, index: index + 1 }))];
 
 
-    
+
 
 
 
@@ -46,7 +46,7 @@ function Banank() {
             const nextParagraph = currentParagraph + 1;
             setCurrentParagraph(nextParagraph);
             setParagraphs([allParagraphs[nextParagraph]]);
-            
+
             if (nextParagraph === allParagraphs.length - 1) {
                 setBtnNextVisible(false);
                 setBtnQuizVisible(true);
@@ -97,9 +97,9 @@ function Banank() {
     const mainMenu = () => {
         window.location.href = "/home";
     };
-/*
-
-*/
+    /*
+    
+    */
     return (
         <div>
             <div className="items-center justify-center grid grid-cols-4 gap-x-4 gap-y-2">
@@ -127,13 +127,13 @@ function Banank() {
                     </p>
 
                     {btnNextVisible && (
-                        <a onClick={changeParagraph} className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-ileri">İleri</a>
+                        <a onClick={changeParagraph} className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-ileri cursor-pointer">İleri</a>
                     )}
                     {btnQuizVisible && (
-                        <a onClick={goToQuiz} className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-ileri">Quize git</a>
+                        <a onClick={goToQuiz} className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-ileri cursor-pointer">Quize git</a>
                     )}
                     {btnPrevVisible && (
-                        <a onClick={changeToPrevParagraph} className="text-white row-start-10 row-end-10 row-span-1 col-start-1 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-geri">Geri</a>
+                        <a onClick={changeToPrevParagraph} className="text-white row-start-10 row-end-10 row-span-1 col-start-1 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-geri cursor-pointer">Geri</a>
                     )}
                 </div>
             </div>

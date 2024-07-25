@@ -12,6 +12,7 @@
     color: white;
     overflow: hidden;
     position: relative;
+    cursor: pointer;
 }
 
 .card img {
