@@ -117,6 +117,7 @@ const ApiRequest = () => {
           }
           setQuizParagraphs(paragraphs);
           setQuizAnswers(answers);
+          setApiResponse(paragraphs + "\n\n"+ answers)
         })
         .catch(error => {
           console.error('Error:', error);
