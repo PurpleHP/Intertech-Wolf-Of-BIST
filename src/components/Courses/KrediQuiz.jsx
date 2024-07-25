@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import useTestapi from './TestApi';
+import useTestApi from './TestApi';
 
 const FinansalOkuryazarliginTemelleriQuiz = () => {
 
