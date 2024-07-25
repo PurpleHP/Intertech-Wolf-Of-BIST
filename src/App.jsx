@@ -32,6 +32,9 @@ import KisiselYatirimStratejisi from './components/Courses/KisiselYatirimStratej
 import Borsa from './components/Courses/Borsa';
 import Kripto from './components/Courses/Kripto';
 
+import ProgressBar from './components/ProgressBar';
+
+
 function App() {
   return (
     <>
@@ -66,7 +69,7 @@ function App() {
           <Route path='/Api' element={<ApiRequest/>} />
           <Route path='/Quiz' element={<Quiz/>} />
           <Route path='/CourseTest' element={<CourseTest/>} />
-
+          <Route path='/ProgressBar' element={<ProgressBar/>} />
         </Routes>
       </div>
     </>
