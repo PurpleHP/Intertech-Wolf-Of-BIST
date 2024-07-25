@@ -78,7 +78,7 @@ function Kredi() {
     };
 
     const goToQuiz = () => {
-        window.location.href = "/home"; //Quiz eklenecek
+        window.location.href = "/krediQuiz"; //Quiz eklenecek
     };
 
     const mainMenu = () => {
