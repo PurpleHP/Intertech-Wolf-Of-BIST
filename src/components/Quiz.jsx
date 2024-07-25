@@ -262,7 +262,7 @@ const Quiz = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [showScore, setShowScore] = useState(false);
     const [score, setScore] = useState(0);
-    const [timer, setTimer] = useState(100); // Quiz duration
+    const [timer, setTimer] = useState(300); // Quiz duration
     const [quizStarted, setQuizStarted] = useState(false); // Quiz start state
 
     useEffect(() => {
@@ -325,7 +325,7 @@ const Quiz = () => {
                                 Toplam {questions.length} sorudan {score} doğru cevap verdiniz.
                             </div>
                             <div className="text-2xl mt-4">
-                                {score <= 12 ? "Temel Seviye" : score >= 13 && score <= 23 ? "Orta Seviye" : "İleri Seviye"}
+                                {score <= 14 ? "Temel Seviye" : score >= 15 && score <= 23 ? "Orta Seviye" : "İleri Seviye"}
                             </div>
                             <div className="flex space-x-4 mt-4">
                                 <button
