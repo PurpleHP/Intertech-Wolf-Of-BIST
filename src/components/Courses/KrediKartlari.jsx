@@ -6,7 +6,7 @@ import useApiRequest from './CoursesAPI'; // Adjust the import path as necessary
 
 function KrediKartlari() {
     //MARK: Paragraf Bölümü
-    const { education, Header } = useApiRequest(3);
+    const { education, Header } = useApiRequest(9);
     
     const summary = { title: "Kredi Kartları Özet", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
     
