@@ -31,6 +31,7 @@ import ParaveSermayePiyasasi from './components/Courses/ParaveSermayePiyasasi';
 import KisiselYatirimStratejisi from './components/Courses/KisiselYatirimStratejisi';
 import Borsa from './components/Courses/Borsa';
 import Kripto from './components/Courses/Kripto';
+import RiskQuiz from './components/Courses/RiskQuiz';
 
 import ProgressBar from './components/ProgressBar';
 
@@ -70,6 +71,7 @@ function App() {
           <Route path='/Quiz' element={<Quiz/>} />
           <Route path='/CourseTest' element={<CourseTest/>} />
           <Route path='/ProgressBar' element={<ProgressBar/>} />
+          <Route path='/RiskQuiz' element={<RiskQuiz />} />
         </Routes>
       </div>
     </>
