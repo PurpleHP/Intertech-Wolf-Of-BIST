@@ -101,7 +101,7 @@ const ApiRequest = () => {
         redirect: "follow"
 
       };
-      const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Chapter/getChaptersByEducationId';
+      const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Quiz/getQuizzesByEducationId';
       fetch(targetUrl, requestOptions)
         .then(response => response.json())
         .then(data => {
