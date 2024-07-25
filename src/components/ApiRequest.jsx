@@ -32,7 +32,7 @@ const ApiRequest = () => {
                     for (let i = 0; i < data.length; i++) {
                       let chapterHeader = data[i].chapterHeader.replaceAll("\\n", "\n").replaceAll("?\t", "\t");
                       let chapterDescription = data[i].chapterDescription.replaceAll("\\n", "\n").replaceAll("?\t", "\t");
-                      let temp = "\n" + chapterDescription +  "\n\n";
+                      let temp = chapterHeader + ":\n" + chapterDescription +  "\n\n";
                       newEducation.push(temp); // Step 2: Append temp to the array
                     }
                     setEducation(newEducation); // Step 3: Update the state with the array
