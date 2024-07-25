@@ -5,6 +5,7 @@ const ApiRequest = () => {
   const [error, setError] = useState(null);
   const [apiResponse, setApiResponse] = useState(null);
   const [QuizParagraphs, setQuizParagraphs] = useState(null);
+  const [quizAnswers, setQuizAnswers] = useState(null);
 
   const [education, setEducation] = useState([]);
 
@@ -106,10 +107,16 @@ const ApiRequest = () => {
         .then(data => {
           console.log(data)
           let paragraphs = []; // Initialize an empty array to hold paragraphs
+          let answers = [];
           for (let i = 0; i < data.length; i++) {
-            paragraphs.push(data[i].question); // Accumulate paragraphs
+            paragraphs.push(data[i].question);
+            answers.push(data[i].option_a); // Accumulate paragraphs
+            answers.push(data[i].option_b);
+            answers.push(data[i].option_c);
+            answers.push(data[i].option_d);          
           }
           setQuizParagraphs(paragraphs);
+          setQuizAnswers(answers);
         })
         .catch(error => {
           console.error('Error:', error);
@@ -134,7 +141,7 @@ const ApiRequest = () => {
           <p className='text-white m-4 p-4 break-words whitespace-pre-line'>{apiResponse}</p>
         </div>
         <div>
-          <button className='text-white border-2 m-4 p-4 rounded-lg' onClick={fetchData3}>Fetch Quiz Paragraph Data</button>
+          <button className='text-white border-2 m-4 p-4 rounded-lg' onClick={fetchData3}>Fetch Quiz Paragraph and answer Data</button>
           <p className='text-white m-4 p-4 break-words whitespace-pre-line'>{apiResponse}</p>
         </div>
         
