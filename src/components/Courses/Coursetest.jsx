@@ -3,14 +3,13 @@ import {useState, useEffect} from 'react';
 import Footer from "../Footer";
 import "./Course.css";
 
-import useApiRequest from './CoursesAPI'; // Adjust the import path as necessary
+
 
 
 
 function Banank() {
     //MARK: Paragraf Bölümü
 
-    
     const allParagraphs = [
         "1Gelir ve Vergi Yönetimi dersi, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir.",
         "2Gelir ve Vergi Yönetimi dersi, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir.",
@@ -20,16 +19,19 @@ function Banank() {
     ];
 
 
+    const summary = { title: "Gelir ve Vergi Yönetimi Özet", index: 0 };
+
+    const Header = [
+        { title: "Maliyet Muhasebesi Özet", index: 1 },
+        { title: "Finansal Yönetim Özet", index: 2 },
+        { title: "İşletme Yönetimi Özet", index: 3 },
+        { title: "Pazarlama Yönetimi Özet", index: 4 }
+      ];
+
+    const allHeaders = [summary, ...Header.map((header, index) => ({ ...header, index: index + 1 }))];
 
 
-
-    const allHeaders = [
-        "Header1",
-        "Header2",
-        "Header3",
-        "Header4",
-        "Header5"
-    ];
+    
 
 
 
