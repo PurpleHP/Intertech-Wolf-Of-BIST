@@ -4,6 +4,7 @@ import {useState} from 'react';
 const ApiRequest = () => {
     const [error, setError] = useState(null);
     const [apiResponse, setApiResponse] = useState(null);
+    const [QuizParagraph, setQuizParagraph] = useState(null);
 
     const [education, setEducation] = useState([]);
 
@@ -82,6 +83,43 @@ const ApiRequest = () => {
         }
       };
         
+
+      const fetchData3 = async () => {
+        try {
+          
+            const raw = JSON.stringify({
+              "eduId": 14
+            });
+            
+            const requestOptions = {
+              method: "POST",
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: raw,
+              redirect: "follow"
+              
+            };
+            const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Chapter/getChaptersByEducationId';
+            fetch(targetUrl, requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    let QuizParagraph = [];
+                    for (let i = 0; i < data.length; i++) {
+                      let QuizParagraph = data[i].question
+                    }
+                    setQuizParagraph(QuizParagraph);
+                })
+                    .catch(error =>{
+                    console.error('Error:', error);
+                    setApiResponse(error.message);
+                });
+              } catch (error) {
+                setError(error.message);
+                setApiResponse(error.message);
+              }
+            };
     
     return (
         <div>
@@ -93,6 +131,10 @@ const ApiRequest = () => {
             </div>
             <div>
               <button className='text-white border-2 m-4 p-4 rounded-lg' onClick={fetchData}>Fetch Backend Data</button>
+              <p className='text-white m-4 p-4 break-words whitespace-pre-line'>{apiResponse}</p>
+            </div>
+            <div>
+              <button className='text-white border-2 m-4 p-4 rounded-lg' onClick={fetchData3}>Fetch Quiz Paragraph Data</button>
               <p className='text-white m-4 p-4 break-words whitespace-pre-line'>{apiResponse}</p>
             </div>
           </div>
