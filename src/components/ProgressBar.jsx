@@ -49,8 +49,6 @@ function CircularProgressBar({ progress }) {
                     {`${Math.floor(progress)}%`}
                     </text>
                 </svg>
-                <button className='border-2 border-white text-white p-4 ' onClick={() => IncreaseProgress()}>Increase</button>        
-                <button className='border-2 border-white text-white p-4 ' onClick={() => setProgress(0)}>Reset</button> 
                 </div>
       
     );
