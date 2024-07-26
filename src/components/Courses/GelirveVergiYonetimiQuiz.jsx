@@ -14,59 +14,68 @@ const GelirveVergiYonetimiQuiz = () => {
 
     const [quizReady, setQuizReady] = useState(false);
 
-    const fetchQuestions = async () => {
-        const { QuizParagraphs, quizOptions, quizIds, error } = useTestApi(14);
-
-        for (let i = 0; i < quizIds.length; index++) {
-            const { quizAnswers, error } = useAnswerApi(quizIds[i]);
-            let answerArray = []
-            if(quizAnswers === "a"){
-                answerArray.push(true);
-                answerArray.push(false);
-                answerArray.push(false);
-                answerArray.push(false);
-            }
-            else if(quizAnswers === "b"){
-                answerArray.push(false);
-                answerArray.push(true);
-                answerArray.push(false);
-                answerArray.push(false);
-            }
-            else if(quizAnswers === "c"){
-                answerArray.push(false);
-                answerArray.push(false);
-                answerArray.push(true);
-                answerArray.push(false);
-            }
-            else if(quizAnswers === "d"){
-                answerArray.push(false);
-                answerArray.push(false);
-                answerArray.push(false);
-                answerArray.push(true);
-            }
-            setAnswers(...answerArray);
-            console.log("Answers as true / false: \n" + answers);
-        }
-
-        for (let i = 0; i < QuizParagraphs.length; i++) {
-            questions.push({
-                questionText: QuizParagraphs[i],
-                answerOptions: [
-                    { answerText: quizOptions[i * 4], isCorrect: answers[i * 4] },
-                    { answerText: quizOptions[i * 4 + 1], isCorrect: answers[i * 4 + 1] },
-                    { answerText: quizOptions[i * 4 + 2], isCorrect: answers[i * 4 + 2] },
-                    { answerText: quizOptions[i * 4 + 3], isCorrect: answers[i * 4 + 3] }
-                ]});
-            console.log("Questions: \n" + questions);
-        }
-        setQuizReady(true);
-
-        
+    try{
+        useEffect(() => {
+            const fetchQuestions = async () => {
+                const { QuizParagraphs, quizOptions, quizIds, error } = useTestApi(14);
+    
+                for (let i = 0; i < quizIds.length; i++) {
+                    const { quizAnswers, error } = useAnswerApi(quizIds[i]);
+                    let answerArray = [];
+                    if (quizAnswers === "a") {
+                        answerArray.push(true);
+                        answerArray.push(false);
+                        answerArray.push(false);
+                        answerArray.push(false);
+                    } else if (quizAnswers === "b") {
+                        answerArray.push(false);
+                        answerArray.push(true);
+                        answerArray.push(false);
+                        answerArray.push(false);
+                    } else if (quizAnswers === "c") {
+                        answerArray.push(false);
+                        answerArray.push(false);
+                        answerArray.push(true);
+                        answerArray.push(false);
+                    } else if (quizAnswers === "d") {
+                        answerArray.push(false);
+                        answerArray.push(false);
+                        answerArray.push(false);
+                        answerArray.push(true);
+                    }
+                    setAnswers(prevAnswers => [...prevAnswers, ...answerArray]);
+                    console.log("Answers as true / false: \n" + answers);
+                }
+    
+                let questionsArray = [];
+                for (let i = 0; i < QuizParagraphs.length; i++) {
+                    questionsArray.push({
+                        questionText: QuizParagraphs[i],
+                        answerOptions: [
+                            { answerText: quizOptions[i * 4], isCorrect: answers[i * 4] },
+                            { answerText: quizOptions[i * 4 + 1], isCorrect: answers[i * 4 + 1] },
+                            { answerText: quizOptions[i * 4 + 2], isCorrect: answers[i * 4 + 2] },
+                            { answerText: quizOptions[i * 4 + 3], isCorrect: answers[i * 4 + 3] }
+                        ]
+                    });
+                    console.log("Questions: \n" + questionsArray);
+                }
+                setQuestions(questionsArray);
+                setQuizReady(true);
+            };
+            fetchQuestions();
+           
+            
+        }, []);
+    
     }
+    catch (error) {
+        console.error('Error:', error
+        );
+    }
+    
 
-    useEffect(() => {
-        fetchQuestions();
-    }, []);
+
     useEffect(() => {
         const timerInterval = setInterval(() => {
             setTimer((prevTimer) => {
