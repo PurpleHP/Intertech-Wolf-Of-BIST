@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import AnswerApi from './AnswerApi';
+import AnsweApi from './AnswerApi';
 import TestApi from './TestApi';
 
 
@@ -13,63 +13,53 @@ const GelirveVergiYonetimiQuiz = () => {
     const [questions, setQuestions] = useState([]);
     const [quizReady, setQuizReady] = useState(false);
     
-    const { quizParagraphs, quizOptions, quizIds, error } =  TestApi(14);
+    const { quizParagraphs, quizOptions, quizIds, error } = TestApi(14);
 
-    try{
-        useEffect(() => {
-            const fetchQuestions = async () => {
-                let answerArray = [];
-                for (let i = 0; i < quizIds.length; i++) {
-                    const { quizAnswers, error } = AnswerApi(quizIds[i]);
-                    if (quizAnswers === "a") {
-                        answerArray.push(true);
-                        answerArray.push(false);
-                        answerArray.push(false);
-                        answerArray.push(false);
-                    } else if (quizAnswers === "b") {
-                        answerArray.push(false);
-                        answerArray.push(true);
-                        answerArray.push(false);
-                        answerArray.push(false);
-                    } else if (quizAnswers === "c") {
-                        answerArray.push(false);
-                        answerArray.push(false);
-                        answerArray.push(true);
-                        answerArray.push(false);
-                    } else if (quizAnswers === "d") {
-                        answerArray.push(false);
-                        answerArray.push(false);
-                        answerArray.push(false);
-                        answerArray.push(true);
-                    }
-                    console.log("Answers as true / false: \n" + answers);
-                }
-                setAnswers(answerArray);
-                for (let i = 0; i < QuizParagraphs.length; i++) {
-                    questions.push({
-                        questionText: QuizParagraphs[i],
-                        answerOptions: [
-                            { answerText: quizOptions[i * 4], isCorrect: answers[i * 4] },
-                            { answerText: quizOptions[i * 4 + 1], isCorrect: answers[i * 4 + 1] },
-                            { answerText: quizOptions[i * 4 + 2], isCorrect: answers[i * 4 + 2] },
-                            { answerText: quizOptions[i * 4 + 3], isCorrect: answers[i * 4 + 3] }
-                        ]
-                    });
-                    console.log("Questions: \n" + questions);
-                }
-                setQuestions(questions);
-                setQuizReady(true);
-            };
-            fetchQuestions();
-            
-            
-        }, [quizIds]);
-    
+
+    const getAnswer = async () =>{
+        let answerArray = [];
+        for (let i = 0; i < quizIds.length; i++) {
+            let { quizAnswers, error } = AnsweApi(quizIds[i]);
+            if (quizAnswers === "a") {
+                answerArray.push(true);
+                answerArray.push(false);
+                answerArray.push(false);
+                answerArray.push(false);
+            } else if (quizAnswers === "b") {
+                answerArray.push(false);
+                answerArray.push(true);
+                answerArray.push(false);
+                answerArray.push(false);
+            } else if (quizAnswers === "c") {
+                answerArray.push(false);
+                answerArray.push(false);
+                answerArray.push(true);
+                answerArray.push(false);
+            } else if (quizAnswers === "d") {
+                answerArray.push(false);
+                answerArray.push(false);
+                answerArray.push(false);
+                answerArray.push(true);
+            }
+            console.log("Answers as true / false: \n" + answers);
+        }
+        setAnswers(answerArray);
+        for (let i = 0; i < QuizParagraphs.length; i++) {
+            questions.push({
+                questionText: QuizParagraphs[i],
+                answerOptions: [
+                    { answerText: quizOptions[i * 4], onClick: () => handleAnswerClick("a") },
+                    { answerText: quizOptions[i * 4 + 1], onClick: () => handleAnswerClick("b") },
+                    { answerText: quizOptions[i * 4 + 2], onClick: () => handleAnswerClick("c") },
+                    { answerText: quizOptions[i * 4 + 3], onClick: () => handleAnswerClick("d") }
+                ]
+            });
+            console.log("Questions: \n" + questions);
+        }
+        setQuestions(questions);
+        setQuizReady(true);
     }
-    catch (error) {
-        console.error('Error:', error
-        );
-    }
+            
     
 
 
@@ -88,8 +78,10 @@ const GelirveVergiYonetimiQuiz = () => {
         return () => clearInterval(timerInterval);
     }, []);
 
-    const handleAnswerOptionClick = (isCorrect) => {
-        if (isCorrect) {
+    const handleAnswerClick = async (answerLetter) => {
+        const { quizAnswers, error } =  AnsweApi(quizIds[currentQuestion]);
+
+        if(answerLetter == quizAnswers){
             setScore(score + 1);
         }
 
@@ -142,7 +134,7 @@ const GelirveVergiYonetimiQuiz = () => {
                              {questions[currentQuestion].answerOptions.map((answerOption, index) => (
                                  <button
                                      key={index}
-                                     onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}
+                                     onClick={answerOption.onClick}
                                      className="text-white font-bold py-4 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109] bg-[#161A1D]"
                                      style={{ transition: 'background-color 0.5s ease' }}
                                  >
@@ -163,6 +155,5 @@ const GelirveVergiYonetimiQuiz = () => {
        
     );
 };
-
 
 export default GelirveVergiYonetimiQuiz;
