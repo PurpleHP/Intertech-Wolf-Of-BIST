@@ -13,14 +13,14 @@ const GelirveVergiYonetimiQuiz = () => {
     const [questions, setQuestions] = useState([]);
     const [quizReady, setQuizReady] = useState(false);
     
-    const { quizParagraphs, quizOptions, quizIds, error } = TestApi(14);}
+    const { quizParagraphs, quizOptions, quizIds, error } =  TestApi(14);
 
     try{
         useEffect(() => {
             const fetchQuestions = async () => {
                 let answerArray = [];
-                for (let i = 0; i < 6; i++) {
-                    let { quizAnswers, error } = AnswerApi(quizIds[i]);
+                for (let i = 0; i < quizIds.length; i++) {
+                    const { quizAnswers, error } = AnswerApi(quizIds[i]);
                     if (quizAnswers === "a") {
                         answerArray.push(true);
                         answerArray.push(false);
@@ -163,5 +163,6 @@ const GelirveVergiYonetimiQuiz = () => {
        
     );
 };
+
 
 export default GelirveVergiYonetimiQuiz;
