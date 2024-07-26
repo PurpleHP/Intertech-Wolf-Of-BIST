@@ -7,6 +7,8 @@ const ApiRequest = () => {
   const [QuizParagraphs, setQuizParagraphs] = useState(null);
   const [quizAnswers, setQuizAnswers] = useState(null);
 
+
+
   const [education, setEducation] = useState([]);
 
   const fetchData = async () => {
@@ -129,6 +131,40 @@ const ApiRequest = () => {
     }
   };
 
+  const fetchData4 = async () => {
+    try {
+
+      const raw = JSON.stringify({
+        "quizId": 32
+      });
+
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: raw,
+        redirect: "follow"
+
+      };
+      const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Quiz/getQuizzAnswersByQuizId';
+      fetch(targetUrl, requestOptions)
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+          setApiResponse(data.answer)
+          // Initialize an empty array to hold paragraphs
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          setApiResponse(error.message);
+        });
+    } catch (error) {
+      setError(error.message);
+      setApiResponse(error.message);
+    }
+  };
+
   return (
     <div>
       <div className='flex flex-row'>
@@ -142,10 +178,13 @@ const ApiRequest = () => {
           <p className='text-white m-4 p-4 break-words whitespace-pre-line'>{apiResponse}</p>
         </div>
         <div>
-          <button className='text-white border-2 m-4 p-4 rounded-lg' onClick={fetchData3}>Fetch Quiz Paragraph and answer Data</button>
+          <button className='text-white border-2 m-4 p-4 rounded-lg' onClick={fetchData3}>Fetch Quiz Paragraph and options Data</button>
           <p className='text-white m-4 p-4 break-words whitespace-pre-line'>{apiResponse}</p>
         </div>
-        
+        <div>
+          <button className='text-white border-2 m-4 p-4 rounded-lg' onClick={fetchData4}>Fetch Quiz answer Data</button>
+          <p className='text-white m-4 p-4 break-words whitespace-pre-line'>{apiResponse}</p>
+        </div>
       </div>
 
     </div>
