@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const useTestApi = (eduId) => {
-  const [error, setError] = useState(null);
+  
   const [QuizParagraphs, setQuizParagraphs] = useState(null);
   const [quizOptions, setQuizOptions] = useState(null);
   const [quizIds, setQuizIds] = useState(null);
@@ -37,7 +37,6 @@ const useTestApi = (eduId) => {
        
       } catch (error) {
         console.error('Error:', error);
-        setError(error.message);
       }
     };
 
@@ -45,7 +44,7 @@ const useTestApi = (eduId) => {
   }, [eduId]); // Dependency array, re-run the effect when eduId changes
 
   console.log("TestApi: \n" + QuizParagraphs + "\n" + quizOptions + "\n" + quizIds);
-  return { QuizParagraphs, quizOptions, quizIds, error };
+  return { QuizParagraphs, quizOptions, quizIds };
 };
 
 export default useTestApi;

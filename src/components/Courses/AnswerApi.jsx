@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const useAnswerApi = (quizId) => {
-  const [error, setError] = useState(null);
   const [quizAnswers, setQuizAnswers] = useState(null);
 
-  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -33,7 +31,6 @@ const useAnswerApi = (quizId) => {
        
       } catch (error) {
         console.error('Error:', error);
-        setError(error.message);
       }
     };
 
@@ -41,7 +38,7 @@ const useAnswerApi = (quizId) => {
   }, [eduId]); // Dependency array, re-run the effect when eduId changes
 
   console.log("TestApi: \n" + quizAnswers);
-  return {  quizAnswers, error };
+  return {  quizAnswers, };
 };
 
 export default useAnswerApi;

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import useAnswerApi from './AnswerApi';
-import useTestApi from './TestApi';
+import AnsweApi from './AnswerApi';
+import TestApi from './TestApi';
 
-const questions = [
-];
+
 
 const GelirveVergiYonetimiQuiz = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -11,17 +10,17 @@ const GelirveVergiYonetimiQuiz = () => {
     const [score, setScore] = useState(0);
     const [timer, setTimer] = useState(10); // Quiz Suresi
     const [answers, setAnswers] = useState([]);
-
+    const [questions, setQuestions] = useState([]);
     const [quizReady, setQuizReady] = useState(false);
+    
+    const { quizParagraphs, quizOptions, quizIds, error } = TestApi(14);
 
     try{
         useEffect(() => {
             const fetchQuestions = async () => {
-                const { QuizParagraphs, quizOptions, quizIds, error } = useTestApi(14);
-    
+                let answerArray = [];
                 for (let i = 0; i < quizIds.length; i++) {
-                    const { quizAnswers, error } = useAnswerApi(quizIds[i]);
-                    let answerArray = [];
+                    const { quizAnswers, error } = AnsweApi(quizIds[i]);
                     if (quizAnswers === "a") {
                         answerArray.push(true);
                         answerArray.push(false);
@@ -43,13 +42,11 @@ const GelirveVergiYonetimiQuiz = () => {
                         answerArray.push(false);
                         answerArray.push(true);
                     }
-                    setAnswers(prevAnswers => [...prevAnswers, ...answerArray]);
                     console.log("Answers as true / false: \n" + answers);
                 }
-    
-                let questionsArray = [];
+                setAnswers(answerArray);
                 for (let i = 0; i < QuizParagraphs.length; i++) {
-                    questionsArray.push({
+                    questions.push({
                         questionText: QuizParagraphs[i],
                         answerOptions: [
                             { answerText: quizOptions[i * 4], isCorrect: answers[i * 4] },
@@ -58,9 +55,9 @@ const GelirveVergiYonetimiQuiz = () => {
                             { answerText: quizOptions[i * 4 + 3], isCorrect: answers[i * 4 + 3] }
                         ]
                     });
-                    console.log("Questions: \n" + questionsArray);
+                    console.log("Questions: \n" + questions);
                 }
-                setQuestions(questionsArray);
+                setQuestions(questions);
                 setQuizReady(true);
             };
             fetchQuestions();
@@ -159,6 +156,7 @@ const GelirveVergiYonetimiQuiz = () => {
             ) : (
                 <div>
                     <p className='text-white bg-black text-3xl text-center items-center flex w-screen h-screen justify-center'>Quiz yükleniyor...</p>
+                    
                 </div>
             )}
         </div>
