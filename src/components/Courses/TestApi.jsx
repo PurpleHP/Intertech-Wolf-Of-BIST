@@ -38,10 +38,11 @@ const useTestApi = (eduId) => {
             answers.push(data[i].option_b);
             answers.push(data[i].option_c);
             answers.push(data[i].option_d);    
-            quizIds.push(data[i].quizId);     
+            id.push(data[i].quizId);     
           }
           setQuizParagraphs(paragraphs);
           setQuizOptions(answers);
+          setQuizIds(id);
         })
         .catch(error => {
           setError(error.message);
