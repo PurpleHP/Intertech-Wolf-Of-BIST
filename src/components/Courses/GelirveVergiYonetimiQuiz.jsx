@@ -102,22 +102,27 @@ const GelirveVergiYonetimiQuiz = () => {
 
 
     const handleAnswerClick = async (answerLetter) => {
-        
-        const { quizAnswers, error } =  AnsweApi(quizIds[currentQuestion]);
-        console.log("QuizAnswer Returned: "+quizAnswers)
-        console.log("Our choice: "+answerLetter)
-
-        
-        if(answerLetter == quizAnswers){
-            setScore(score + 1);
+        try {
+            const { quizAnswers, error } =  AnsweApi(quizIds[currentQuestion]);
+            console.log("QuizAnswer Returned: "+quizAnswers)
+            console.log("Our choice: "+answerLetter)
+    
+            
+            if(answerLetter == quizAnswers){
+                setScore(score + 1);
+            }
+    
+            const nextQuestion = currentQuestion + 1;
+            if (nextQuestion < questions.length) {
+                setCurrentQuestion(nextQuestion);
+            } else {
+                setShowScore(true);
+            }
+        } catch (error) {
+            console.error('Error handling answer click:', error);
         }
-
-        const nextQuestion = currentQuestion + 1;
-        if (nextQuestion < questions.length) {
-            setCurrentQuestion(nextQuestion);
-        } else {
-            setShowScore(true);
-        }
+        
+       
     };
 
     return (
