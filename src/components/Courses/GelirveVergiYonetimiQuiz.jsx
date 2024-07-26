@@ -57,6 +57,18 @@ const GelirveVergiYonetimiQuiz = () => {
                 setQuizParagraphs(paragraphs);
                 setQuizOptions(answers);
                 setQuizIds(id);
+                for (let i = 0; i < QuizParagraphs.length; i++) {
+                    questions.push({
+                        questionText: QuizParagraphs[i],
+                        answerOptions: [
+                            { answerText: quizOptions[i * 4], letter: "a" },
+                            { answerText: quizOptions[i * 4 + 1], letter: "b"},
+                            { answerText: quizOptions[i * 4 + 2], letter:"c"},
+                            { answerText: quizOptions[i * 4 + 3], letter:"d"}
+                        ]
+                    });
+                        console.log("Questions: \n" + questions);
+                    }
               })
               .catch(error => {
                 setError(error.message);
@@ -67,21 +79,12 @@ const GelirveVergiYonetimiQuiz = () => {
             setError(error.message);
             console.error('Error:', error)
           }
+
+          
           };
       
           fetchData(); // Call fetchData when the component mounts or eduId changes
-          for (let i = 0; i < QuizParagraphs.length; i++) {
-            questions.push({
-                questionText: QuizParagraphs[i],
-                answerOptions: [
-                    { answerText: quizOptions[i * 4], letter: "a" },
-                    { answerText: quizOptions[i * 4 + 1], letter: "b"},
-                    { answerText: quizOptions[i * 4 + 2], letter:"c"},
-                    { answerText: quizOptions[i * 4 + 3], letter:"d"}
-                ]
-            });
-            console.log("Questions: \n" + questions);
-        }
+         
         setQuestions(questions);
         setQuizReady(true);
         }, []);
