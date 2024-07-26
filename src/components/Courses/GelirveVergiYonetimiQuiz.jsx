@@ -57,9 +57,9 @@ const GelirveVergiYonetimiQuiz = () => {
                 setQuizParagraphs(paragraphs);
                 setQuizOptions(answers);
                 setQuizIds(id);
-                for (let i = 0; i < QuizParagraphs.length; i++) {
+                for (let i = 0; i < paragraphs.length; i++) {
                     questions.push({
-                        questionText: QuizParagraphs[i],
+                        questionText: paragraphs[i],
                         answerOptions: [
                             { answerText: quizOptions[i * 4], letter: "a" },
                             { answerText: quizOptions[i * 4 + 1], letter: "b"},
