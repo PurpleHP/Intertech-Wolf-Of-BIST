@@ -158,16 +158,21 @@ const GelirveVergiYonetimiQuiz = () => {
                              <div className='question-text text-2xl'>{questions[currentQuestion].questionText}</div>
                          </div>
                          <div className='answer-section grid grid-cols-1 gap-4 w-full max-w-md'>
-                         {questions[currentQuestion] && questions[currentQuestion].answerOptions && questions[currentQuestion].answerOptions.map((e, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => handleAnswerClick(e.letter)}
-                                    className="text-white font-bold py-4 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109] bg-[#161A1D]"
-                                    style={{ transition: 'background-color 0.5s ease' }}
-                                >
-                                    {e.answerText}
-                                </button>
-                            ))}
+                             {questions[currentQuestion].answerOptions.map((e,index) => (
+                                 <button
+                                     key={index}
+                                     onClick={async () => {
+                                        try {
+                                            await handleAnswerClick(e.letter);
+                                        } catch (error) {
+                                            console.error('Error handling answer click:', error);
+                                        }
+                                    }}                                     className="text-white font-bold py-4 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109] bg-[#161A1D]"
+                                     style={{ transition: 'background-color 0.5s ease' }}
+                                 >
+                                     {e.answerText}
+                                 </button>
+                             ))}
                          </div>
                      </>
                  )}
