@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 const questions = [
-    // Earlier questions
     {
         questionText: 'Borsada hisse senedi satın almanın amacı nedir?',
         answerOptions: [
@@ -39,7 +38,6 @@ const questions = [
         ],
     },
 
-    // Later questions
     {
         questionText: 'Hisse senetlerinin değer kazanıp kaybetmesi hangi faktörlere bağlıdır?',
         answerOptions: [
@@ -262,7 +260,7 @@ const Quiz = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [showScore, setShowScore] = useState(false);
     const [score, setScore] = useState(0);
-    const [timer, setTimer] = useState(300); // Quiz duration
+    const [timer, setTimer] = useState(500); // Quiz duration
     const [quizStarted, setQuizStarted] = useState(false); // Quiz start state
 
     useEffect(() => {
@@ -304,10 +302,10 @@ const Quiz = () => {
         <div className='app min-h-screen flex flex-col items-center justify-center text-white' style={{ backgroundColor: '#2b3236' }}>
             {!quizStarted ? (
                 <div className='start-quiz-section text-center'>
-                    <div className='mb-8 text-3xl'>Seviye belirleme Quizine başlamak istiyor musunuz?</div>
+                    <div className='mb-8 text-3xl'>Seviye belirleme testine başlamak istiyor musunuz? <br></br> Bu testin sonunda finansal bilgi seviyeniz Temel, Orta veya İleri seviye olarak belirlenecektir.</div>
                     <button
                         onClick={startQuiz}
-                        className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109]"
+                        className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109] bg-slate-700 text-2xl"
                     >
                         Başla
                     </button>
@@ -325,7 +323,7 @@ const Quiz = () => {
                                 Toplam {questions.length} sorudan {score} doğru cevap verdiniz.
                             </div>
                             <div className="text-2xl mt-4">
-                                {score <= 14 ? "Temel Seviye" : score >= 15 && score <= 23 ? "Orta Seviye" : "İleri Seviye"}
+                                {score <= 19 ? "Temel Seviye" : score >= 19 && score <= 25 ? "Orta Seviye" : "İleri Seviye"}
                             </div>
                             <div className="flex space-x-4 mt-4">
                                 <button
