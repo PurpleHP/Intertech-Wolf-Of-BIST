@@ -25,7 +25,7 @@ const Navbar = () => {
             </div>
             <ul className={isMobile ? "navbar-links mobile" : "navbar-links"}>
                 <li><a href="home"><FontAwesomeIcon icon={faHome} />Ana Menu</a></li>
-                <li><a href="chatbot"><FontAwesomeIcon icon={faRobot} />ChatBot</a></li>
+                <li><a href="chatbot"><FontAwesomeIcon icon={faRobot} />AI Bot</a></li>
                 <li><a href="dictionary"><FontAwesomeIcon icon={faBook} />AI Sözlük</a></li>
                 <li><a href="about"><FontAwesomeIcon icon={faInfoCircle} />Hakkımızda</a></li>
                 <li><a href="contact"><FontAwesomeIcon icon={faEnvelope} />Bize Ulaşın</a></li>
