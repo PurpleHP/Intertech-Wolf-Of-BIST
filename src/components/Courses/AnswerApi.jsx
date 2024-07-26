@@ -17,18 +17,7 @@ const useAnswerApi = (quizId) => {
         const response = await fetch(targetUrl, requestOptions);
         const data = await response.json();
         console.log(data);
-        let paragraphs = [];
-        let answers = [];
-        for (let i = 0; i < data.length; i++) {
-            paragraphs.push(data[i].question);
-            answers.push(data[i].option_a);
-            answers.push(data[i].option_b);
-            answers.push(data[i].option_c);
-            answers.push(data[i].option_d);  
-        }
-        setQuizParagraphs(paragraphs);
-        setQuizAnswers(answers);
-       
+        setQuizAnswers(data.answer);    
       } catch (error) {
         console.error('Error:', error);
       }
