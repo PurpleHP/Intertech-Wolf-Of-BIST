@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 const useAnswerApi = (quizId) => {
   const [quizAnswers, setQuizAnswers] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,9 +22,12 @@ const useAnswerApi = (quizId) => {
           setQuizAnswers(data.answer);
         })
         .catch(error => {
+          setError(error.message);
+
           console.error('Error:', error);
         });  
       } catch (error) {
+        setError(error.message);
         console.error('Error:', error);
       }
     };
@@ -32,7 +36,7 @@ const useAnswerApi = (quizId) => {
   }, [eduId]); // Dependency array, re-run the effect when eduId changes
 
   console.log("TestApi: \n" + quizAnswers);
-  return { quizAnswers };
+  return { quizAnswers, error };
 };
 
 export default useAnswerApi;
