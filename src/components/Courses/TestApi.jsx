@@ -44,6 +44,7 @@ const useTestApi = (eduId) => {
     fetchData(); // Call fetchData when the component mounts or eduId changes
   }, [eduId]); // Dependency array, re-run the effect when eduId changes
 
+  console.log("TestApi: \n" + QuizParagraphs + "\n" + quizOptions + "\n" + quizIds);
   return { QuizParagraphs, quizOptions, quizIds, error };
 };
 

@@ -64,7 +64,9 @@ const GelirveVergiYonetimiQuiz = () => {
         
     }
 
-
+    useEffect(() => {
+        fetchQuestions();
+    }, []);
     useEffect(() => {
         const timerInterval = setInterval(() => {
             setTimer((prevTimer) => {
@@ -148,7 +150,6 @@ const GelirveVergiYonetimiQuiz = () => {
             ) : (
                 <div>
                     <p className='text-white bg-black text-3xl text-center items-center flex w-screen h-screen justify-center'>Quiz yükleniyor...</p>
-                    {fetchQuestions()}
                 </div>
             )}
         </div>
