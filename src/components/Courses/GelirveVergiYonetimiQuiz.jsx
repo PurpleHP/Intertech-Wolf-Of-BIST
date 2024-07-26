@@ -2,18 +2,14 @@ import React, { useState, useEffect } from 'react';
 import AnsweApi from './AnswerApi';
 import TestApi from './TestApi';
 
-
-
 const GelirveVergiYonetimiQuiz = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [showScore, setShowScore] = useState(false);
     const [score, setScore] = useState(0);
-    const [timer, setTimer] = useState(10); // Quiz Suresi
+    const [timer, setTimer] = useState(10); // Quiz Süresi
     const [answers, setAnswers] = useState([]);
 
-
-    const [questions, setQuestions] = useState([]); //STATE FOR QUESTIONS
-
+    const [questions, setQuestions] = useState([]); // STATE FOR QUESTIONS
 
     const [quizReady, setQuizReady] = useState(false);
 
@@ -83,8 +79,6 @@ const GelirveVergiYonetimiQuiz = () => {
         fetchData(); // Call fetchData when the component mounts or eduId changes
     }, []);
 
- 
-    
     useEffect(() => {
         const timerInterval = setInterval(() => {
             setTimer((prevTimer) => {
@@ -100,15 +94,13 @@ const GelirveVergiYonetimiQuiz = () => {
         return () => clearInterval(timerInterval);
     }, []);
 
-
     const handleAnswerClick = async (answerLetter) => {
         try {
-            const { quizAnswers, error } =  AnsweApi(quizIds[currentQuestion]);
+            const quizAnswers = await AnsweApi(quizIds[currentQuestion]);
             console.log("QuizAnswer Returned: "+quizAnswers)
             console.log("Our choice: "+answerLetter)
     
-            
-            if(answerLetter == quizAnswers){
+            if(answerLetter === quizAnswers){
                 setScore(score + 1);
             }
     
@@ -121,8 +113,6 @@ const GelirveVergiYonetimiQuiz = () => {
         } catch (error) {
             console.error('Error handling answer click:', error);
         }
-        
-       
     };
 
     return (
@@ -189,7 +179,6 @@ const GelirveVergiYonetimiQuiz = () => {
                 </div>
             )}
         </div>
-       
     );
 };
 
