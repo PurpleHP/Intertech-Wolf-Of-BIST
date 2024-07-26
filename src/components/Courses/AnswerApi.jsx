@@ -7,33 +7,39 @@ const useAnswerApi = (quizId) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const raw = JSON.stringify({ "quizId": quizId });
+  
+        const raw = JSON.stringify({
+          "quizId": quizId
+        });
+  
         const requestOptions = {
           method: "POST",
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+          },
           body: raw,
           redirect: "follow"
+  
         };
-        const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Chapter/getQuizzAnswersByQuizId';
+        const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Quiz/getQuizzAnswersByQuizId';
         fetch(targetUrl, requestOptions)
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-          setQuizAnswers(data.answer);
-        })
-        .catch(error => {
-          setError(error.message);
-
-          console.error('Error:', error);
-        });  
+          .then(response => response.json())
+          .then(data => {
+            console.log(data)
+            setQuizAnswers(data[0].answer)
+            
+            // Initialize an empty array to hold paragraphs
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
       } catch (error) {
         setError(error.message);
-        console.error('Error:', error);
       }
     };
 
-    fetchData(); // Call fetchData when the component mounts or eduId changes
-  }, [eduId]); // Dependency array, re-run the effect when eduId changes
+    fetchData();
+  }, [quizId]); // Dependency array, re-run the effect when eduId changes
 
   console.log("TestApi: \n" + quizAnswers);
   return { quizAnswers, error };
