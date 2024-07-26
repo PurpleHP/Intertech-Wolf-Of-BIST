@@ -12,6 +12,8 @@ const GelirveVergiYonetimiQuiz = () => {
     const [timer, setTimer] = useState(10); // Quiz Suresi
     const [answers, setAnswers] = useState([]);
 
+    const [quizReady, setQuizReady] = useState(false);
+
     const fetchQuestions = async () => {
         const { QuizParagraphs, quizOptions, quizIds, error } = useTestApi(14);
 
@@ -57,6 +59,7 @@ const GelirveVergiYonetimiQuiz = () => {
                 ]});
             console.log("Questions: \n" + questions);
         }
+        setQuizReady(true);
 
         
     }
@@ -91,55 +94,64 @@ const GelirveVergiYonetimiQuiz = () => {
     };
 
     return (
-        <div className='app min-h-screen flex flex-col items-center justify-center text-white' style={{ backgroundColor: '#2b3236' }}>
-            {!showScore && timer > 0 && (
-                <div className="timer-section absolute top-0 left-0 m-4 px-2 py-1 bg-gray-800 rounded-md">
-                    Kalan zaman: {timer} saniye
+        <div>
+            {quizReady ? (
+                 <div className='app min-h-screen flex flex-col items-center justify-center text-white' style={{ backgroundColor: '#2b3236' }}>
+                 {!showScore && timer > 0 && (
+                     <div className="timer-section absolute top-0 left-0 m-4 px-2 py-1 bg-gray-800 rounded-md">
+                         Kalan zaman: {timer} saniye
+                     </div>
+                 )}
+                 {showScore ? (
+                     <>
+                         <div className='score-section animate-pulse text-3xl'>
+                             Toplam {questions.length} sorudan {score} doğru cevap verdiniz.
+                         </div>
+                         <div className="flex space-x-4 mt-4">
+                             <button
+                                 onClick={() => window.location.href = '/chatbot'}
+                                 className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109]"
+                             >
+                                 ChatBot'a Soru Sor
+                             </button>
+                             <button
+                                 onClick={() => window.location.href = '/home'}
+                                 className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109]"
+                             >
+                                 Ana Sayfaya Dön
+                             </button>
+                         </div>
+                     </>
+                 ) : (
+                     <>
+                         <div className='question-section text-center mb-8'>
+                             <div className='question-count text-lg mb-2'>
+                                 <span>Question {currentQuestion + 1}</span>/{questions.length}
+                             </div>
+                             <div className='question-text text-2xl'>{questions[currentQuestion].questionText}</div>
+                         </div>
+                         <div className='answer-section grid grid-cols-1 gap-4 w-full max-w-md'>
+                             {questions[currentQuestion].answerOptions.map((answerOption, index) => (
+                                 <button
+                                     key={index}
+                                     onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}
+                                     className="text-white font-bold py-4 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109] bg-[#161A1D]"
+                                     style={{ transition: 'background-color 0.5s ease' }}
+                                 >
+                                     {answerOption.answerText}
+                                 </button>
+                             ))}
+                         </div>
+                     </>
+                 )}
+             </div>
+            ) : (
+                <div>
+                    <p className='text-white bg-black text-center items-center flex w-screen h-screen justify-center'>Quiz yükleniyor...</p>
                 </div>
             )}
-            {showScore ? (
-                <>
-                    <div className='score-section animate-pulse text-3xl'>
-                        Toplam {questions.length} sorudan {score} doğru cevap verdiniz.
-                    </div>
-                    <div className="flex space-x-4 mt-4">
-                        <button
-                            onClick={() => window.location.href = '/chatbot'}
-                            className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109]"
-                        >
-                            ChatBot'a Soru Sor
-                        </button>
-                        <button
-                            onClick={() => window.location.href = '/home'}
-                            className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109]"
-                        >
-                            Ana Sayfaya Dön
-                        </button>
-                    </div>
-                </>
-            ) : (
-                <>
-                    <div className='question-section text-center mb-8'>
-                        <div className='question-count text-lg mb-2'>
-                            <span>Question {currentQuestion + 1}</span>/{questions.length}
-                        </div>
-                        <div className='question-text text-2xl'>{questions[currentQuestion].questionText}</div>
-                    </div>
-                    <div className='answer-section grid grid-cols-1 gap-4 w-full max-w-md'>
-                        {questions[currentQuestion].answerOptions.map((answerOption, index) => (
-                            <button
-                                key={index}
-                                onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}
-                                className="text-white font-bold py-4 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109] bg-[#161A1D]"
-                                style={{ transition: 'background-color 0.5s ease' }}
-                            >
-                                {answerOption.answerText}
-                            </button>
-                        ))}
-                    </div>
-                </>
-            )}
         </div>
+       
     );
 };
 
