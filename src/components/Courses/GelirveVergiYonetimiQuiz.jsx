@@ -20,7 +20,7 @@ const GelirveVergiYonetimiQuiz = () => {
             const fetchQuestions = async () => {
                 let answerArray = [];
                 for (let i = 0; i < quizIds.length; i++) {
-                    const { quizAnswers, error } = AnsweApi(quizIds[i]);
+                    let { quizAnswers, error } = AnsweApi(quizIds[i]);
                     if (quizAnswers === "a") {
                         answerArray.push(true);
                         answerArray.push(false);
