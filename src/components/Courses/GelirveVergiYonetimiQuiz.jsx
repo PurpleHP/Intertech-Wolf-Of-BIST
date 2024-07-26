@@ -69,7 +69,6 @@ const GelirveVergiYonetimiQuiz = () => {
                                 { answerText: answers[i * 4 + 3], letter: "d" }
                             ]
                         });
-                        console.log("Questions: \n" + questions);
                     }
                     setQuestions(questions);
                     setQuizReady(true);
@@ -103,8 +102,12 @@ const GelirveVergiYonetimiQuiz = () => {
 
 
     const handleAnswerClick = async (answerLetter) => {
+        
         const { quizAnswers, error } =  AnsweApi(quizIds[currentQuestion]);
+        console.log("QuizAnswer Returned: "+quizAnswers)
+        console.log("Our choice: "+answerLetter)
 
+        
         if(answerLetter == quizAnswers){
             setScore(score + 1);
         }
