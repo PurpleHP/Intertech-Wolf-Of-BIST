@@ -10,59 +10,84 @@ const GelirveVergiYonetimiQuiz = () => {
     const [score, setScore] = useState(0);
     const [timer, setTimer] = useState(10); // Quiz Suresi
     const [answers, setAnswers] = useState([]);
-    const [questions, setQuestions] = useState([]);
+
+
+    const [questions, setQuestions] = useState([]); //STATE FOR QUESTIONS
+
+
     const [quizReady, setQuizReady] = useState(false);
+
+    const [QuizParagraphs, setQuizParagraphs] = useState(null);
+    const [quizOptions, setQuizOptions] = useState(null);
+    const [quizIds, setQuizIds] = useState(null);
+        
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
     
-    const { quizParagraphs, quizOptions, quizIds, error } = TestApi(14);
-
-
-    const getAnswer = async () =>{
-        let answerArray = [];
-        for (let i = 0; i < quizIds.length; i++) {
-            let { quizAnswers, error } = AnsweApi(quizIds[i]);
-            if (quizAnswers === "a") {
-                answerArray.push(true);
-                answerArray.push(false);
-                answerArray.push(false);
-                answerArray.push(false);
-            } else if (quizAnswers === "b") {
-                answerArray.push(false);
-                answerArray.push(true);
-                answerArray.push(false);
-                answerArray.push(false);
-            } else if (quizAnswers === "c") {
-                answerArray.push(false);
-                answerArray.push(false);
-                answerArray.push(true);
-                answerArray.push(false);
-            } else if (quizAnswers === "d") {
-                answerArray.push(false);
-                answerArray.push(false);
-                answerArray.push(false);
-                answerArray.push(true);
-            }
-            console.log("Answers as true / false: \n" + answers);
-        }
-        setAnswers(answerArray);
-        for (let i = 0; i < QuizParagraphs.length; i++) {
+              const raw = JSON.stringify({
+                "eduId": 14
+              });
+        
+              const requestOptions = {
+                method: "POST",
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: raw,
+                redirect: "follow"
+        
+              };
+              const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Quiz/getQuizzesByEducationId';
+              fetch(targetUrl, requestOptions)
+              .then(response => response.json())
+              .then(data => {
+                console.log(data)
+                let paragraphs = []; // Initialize an empty array to hold paragraphs
+                let answers = [];
+                let id = [];
+                for (let i = 0; i < data.length; i++) {
+                  paragraphs.push(data[i].question);
+                  answers.push(data[i].option_a); // Accumulate paragraphs
+                  answers.push(data[i].option_b);
+                  answers.push(data[i].option_c);
+                  answers.push(data[i].option_d);    
+                  id.push(data[i].quizId);     
+                }
+                setQuizParagraphs(paragraphs);
+                setQuizOptions(answers);
+                setQuizIds(id);
+              })
+              .catch(error => {
+                setError(error.message);
+      
+                console.error('Error:', error);
+              });
+          } catch (error) {
+            setError(error.message);
+            console.error('Error:', error)
+          }
+          };
+      
+          fetchData(); // Call fetchData when the component mounts or eduId changes
+          for (let i = 0; i < QuizParagraphs.length; i++) {
             questions.push({
                 questionText: QuizParagraphs[i],
                 answerOptions: [
-                    { answerText: quizOptions[i * 4], onClick: () => handleAnswerClick("a") },
-                    { answerText: quizOptions[i * 4 + 1], onClick: () => handleAnswerClick("b") },
-                    { answerText: quizOptions[i * 4 + 2], onClick: () => handleAnswerClick("c") },
-                    { answerText: quizOptions[i * 4 + 3], onClick: () => handleAnswerClick("d") }
+                    { answerText: quizOptions[i * 4], letter: "a" },
+                    { answerText: quizOptions[i * 4 + 1], letter: "b"},
+                    { answerText: quizOptions[i * 4 + 2], letter:"c"},
+                    { answerText: quizOptions[i * 4 + 3], letter:"d"}
                 ]
             });
             console.log("Questions: \n" + questions);
         }
         setQuestions(questions);
         setQuizReady(true);
-    }
-            
+        }, [eduId]);
+
+ 
     
-
-
     useEffect(() => {
         const timerInterval = setInterval(() => {
             setTimer((prevTimer) => {
@@ -77,6 +102,7 @@ const GelirveVergiYonetimiQuiz = () => {
 
         return () => clearInterval(timerInterval);
     }, []);
+
 
     const handleAnswerClick = async (answerLetter) => {
         const { quizAnswers, error } =  AnsweApi(quizIds[currentQuestion]);
@@ -131,14 +157,14 @@ const GelirveVergiYonetimiQuiz = () => {
                              <div className='question-text text-2xl'>{questions[currentQuestion].questionText}</div>
                          </div>
                          <div className='answer-section grid grid-cols-1 gap-4 w-full max-w-md'>
-                             {questions[currentQuestion].answerOptions.map((answerOption, index) => (
+                             {questions[currentQuestion].answerOptions.map((e,index) => (
                                  <button
                                      key={index}
-                                     onClick={answerOption.onClick}
+                                     onClick={() => handleAnswerClick(e.letter)}
                                      className="text-white font-bold py-4 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109] bg-[#161A1D]"
                                      style={{ transition: 'background-color 0.5s ease' }}
                                  >
-                                     {answerOption.answerText}
+                                     {e.answerText}
                                  </button>
                              ))}
                          </div>
