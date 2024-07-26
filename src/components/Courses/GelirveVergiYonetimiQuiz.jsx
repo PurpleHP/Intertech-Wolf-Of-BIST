@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import AnsweApi from './AnswerApi';
+import AnswerApi from './AnswerApi';
 import TestApi from './TestApi';
 
 
@@ -13,14 +13,14 @@ const GelirveVergiYonetimiQuiz = () => {
     const [questions, setQuestions] = useState([]);
     const [quizReady, setQuizReady] = useState(false);
     
-    const { quizParagraphs, quizOptions, quizIds, error } = TestApi(14);
+    const { quizParagraphs, quizOptions, quizIds, error } = TestApi(14);}
 
     try{
         useEffect(() => {
             const fetchQuestions = async () => {
                 let answerArray = [];
-                for (let i = 0; i < quizIds.length; i++) {
-                    let { quizAnswers, error } = AnsweApi(quizIds[i]);
+                for (let i = 0; i < 6; i++) {
+                    let { quizAnswers, error } = AnswerApi(quizIds[i]);
                     if (quizAnswers === "a") {
                         answerArray.push(true);
                         answerArray.push(false);
@@ -61,7 +61,7 @@ const GelirveVergiYonetimiQuiz = () => {
                 setQuizReady(true);
             };
             fetchQuestions();
-           
+            
             
         }, [quizIds]);
     
