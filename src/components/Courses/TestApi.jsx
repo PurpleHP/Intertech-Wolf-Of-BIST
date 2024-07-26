@@ -17,24 +17,28 @@ const useTestApi = (eduId) => {
           redirect: "follow"
         };
         const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Chapter/getQuizzesByEducationId';
-        const response = await fetch(targetUrl, requestOptions);
-        const data = await response.json();
-        console.log(data);
-        let paragraphs = [];
-        let answers = [];
-        let ids = [];
-        for (let i = 0; i < data.length; i++) {
-            paragraphs.push(data[i].question);
-            answers.push(data[i].option_a);
-            answers.push(data[i].option_b);
-            answers.push(data[i].option_c);
-            answers.push(data[i].option_d);  
-            ids.push(data[i].quizId);
-        }
-        setQuizParagraphs(paragraphs);
-        setQuizOptions(answers);
-        setQuizIds(ids);
-       
+        fetch(targetUrl, requestOptions)
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          let paragraphs = [];
+          let answers = [];
+          let ids = [];
+          for (let i = 0; i < data.length; i++) {
+              paragraphs.push(data[i].question);
+              answers.push(data[i].option_a);
+              answers.push(data[i].option_b);
+              answers.push(data[i].option_c);
+              answers.push(data[i].option_d);  
+              ids.push(data[i].quizId);
+          }
+          setQuizParagraphs(paragraphs);
+          setQuizOptions(answers);
+          setQuizIds(ids);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
       } catch (error) {
         console.error('Error:', error);
       }
