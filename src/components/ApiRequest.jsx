@@ -152,7 +152,7 @@ const ApiRequest = () => {
         .then(response => response.json())
         .then(data => {
           console.log(data)
-          setApiResponse(data)
+          setApiResponse("the answer is:" + data.answer)
           // Initialize an empty array to hold paragraphs
         })
         .catch(error => {
