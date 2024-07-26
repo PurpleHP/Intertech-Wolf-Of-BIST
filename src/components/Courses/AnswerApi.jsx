@@ -14,10 +14,15 @@ const useAnswerApi = (quizId) => {
           redirect: "follow"
         };
         const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Chapter/getQuizzAnswersByQuizId';
-        const response = await fetch(targetUrl, requestOptions);
-        const data = await response.json();
-        console.log(data);
-        setQuizAnswers(data.answer);    
+        fetch(targetUrl, requestOptions)
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          setQuizAnswers(data.answer);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });  
       } catch (error) {
         console.error('Error:', error);
       }
@@ -27,7 +32,7 @@ const useAnswerApi = (quizId) => {
   }, [eduId]); // Dependency array, re-run the effect when eduId changes
 
   console.log("TestApi: \n" + quizAnswers);
-  return {  quizAnswers, };
+  return { quizAnswers };
 };
 
 export default useAnswerApi;
