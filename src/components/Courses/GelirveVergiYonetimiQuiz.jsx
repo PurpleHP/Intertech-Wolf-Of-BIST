@@ -84,7 +84,7 @@ const GelirveVergiYonetimiQuiz = () => {
         }
         setQuestions(questions);
         setQuizReady(true);
-        }, [eduId]);
+        }, []);
 
  
     
