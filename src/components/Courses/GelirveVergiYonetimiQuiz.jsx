@@ -69,14 +69,13 @@ const GelirveVergiYonetimiQuiz = () => {
                     });
                         console.log("Questions: \n" + questions);
                     }
+                    setQuestions(questions);
+                    setQuizReady(true);
               })
-              .catch(error => {
-                setError(error.message);
-      
+              .catch(error => {      
                 console.error('Error:', error);
               });
           } catch (error) {
-            setError(error.message);
             console.error('Error:', error)
           }
 
@@ -85,8 +84,7 @@ const GelirveVergiYonetimiQuiz = () => {
       
           fetchData(); // Call fetchData when the component mounts or eduId changes
          
-        setQuestions(questions);
-        setQuizReady(true);
+      
         }, []);
 
  
