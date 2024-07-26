@@ -63,7 +63,7 @@ const GelirveVergiYonetimiQuiz = () => {
             fetchQuestions();
            
             
-        }, [eduId]);
+        }, [quizIds]);
     
     }
     catch (error) {
