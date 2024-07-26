@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
 
+
+//then/catch API 
+// Fetch quizId degisiminde cagirildi (kontrol kalkti)
+
+
 const useAnswerApi = (quizId) => {
   const [quizAnswers, setQuizAnswers] = useState(null);
   const [error, setError] = useState(null);
@@ -34,3 +39,4 @@ const useAnswerApi = (quizId) => {
 };
 
 export default useAnswerApi;
+

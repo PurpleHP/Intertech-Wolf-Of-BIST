@@ -5,7 +5,7 @@ const GelirveVergiYonetimiQuiz = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [showScore, setShowScore] = useState(false);
     const [score, setScore] = useState(0);
-    const [timer, setTimer] = useState(10); // Quiz Süresi
+    const [timer, setTimer] = useState(60); // Quiz Süresi
     const [questions, setQuestions] = useState([]); // STATE FOR QUESTIONS
     const [quizReady, setQuizReady] = useState(false);
     const [quizIds, setQuizIds] = useState([]);
@@ -141,7 +141,7 @@ const GelirveVergiYonetimiQuiz = () => {
                                     onClick={() => window.location.href = '/chatbot'}
                                     className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109]"
                                 >
-                                    ChatBot'a Soru Sor
+                                    AI Bot'a Soru Sor
                                 </button>
                                 <button
                                     onClick={() => window.location.href = '/home'}
@@ -155,7 +155,7 @@ const GelirveVergiYonetimiQuiz = () => {
                         <>
                             <div className='question-section text-center mb-8'>
                                 <div className='question-count text-lg mb-2'>
-                                    <span>Question {currentQuestion + 1}</span>/{questions.length}
+                                    <span>Soru {currentQuestion + 1}</span>/{questions.length}
                                 </div>
                                 <div className='question-text text-2xl'>{questions[currentQuestion].questionText}</div>
                             </div>
@@ -175,9 +175,10 @@ const GelirveVergiYonetimiQuiz = () => {
                     )}
                 </div>
             ) : (
-                <div>
-                    <p className='text-white bg-black text-3xl text-center items-center flex w-screen h-screen justify-center'>Quiz yükleniyor...</p>
+                <div className="bg-black flex items-center justify-center w-screen h-screen">
+                    <img width={300} src='./src/assets/kurt.gif' alt="Loading animation" />
                 </div>
+
             )}
         </div>
     );
