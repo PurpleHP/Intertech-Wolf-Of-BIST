@@ -1,25 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import useAnswerApi from './AnswerApi';
+import useTestApi from './TestApi';
 
 const questions = [
-    {
-        questionText: 'What is the capital of France?',
-        answerOptions: [
-            { answerText: 'New York', isCorrect: false },
-            { answerText: 'London', isCorrect: false },
-            { answerText: 'Paris', isCorrect: true },
-            { answerText: 'Dublin', isCorrect: false },
-        ],
-    },
-    {
-        questionText: 'Who is CEO of Tesla?',
-        answerOptions: [
-            { answerText: 'Jeff Bezos', isCorrect: false },
-            { answerText: 'Elon Musk', isCorrect: true },
-            { answerText: 'Bill Gates', isCorrect: false },
-            { answerText: 'Tony Stark', isCorrect: false },
-        ],
-    },
-    // Add more questions here
 ];
 
 const GelirveVergiYonetimiQuiz = () => {
@@ -27,6 +10,57 @@ const GelirveVergiYonetimiQuiz = () => {
     const [showScore, setShowScore] = useState(false);
     const [score, setScore] = useState(0);
     const [timer, setTimer] = useState(10); // Quiz Suresi
+    const [answers, setAnswers] = useState([]);
+
+    const fetchQuestions = async () => {
+        const { QuizParagraphs, quizOptions, quizIds, error } = useTestApi(14);
+
+        for (let i = 0; i < quizIds.length; index++) {
+            const { quizAnswers, error } = useAnswerApi(quizIds[i]);
+            let answerArray = []
+            if(quizAnswers === "a"){
+                answerArray.push(true);
+                answerArray.push(false);
+                answerArray.push(false);
+                answerArray.push(false);
+            }
+            else if(quizAnswers === "b"){
+                answerArray.push(false);
+                answerArray.push(true);
+                answerArray.push(false);
+                answerArray.push(false);
+            }
+            else if(quizAnswers === "c"){
+                answerArray.push(false);
+                answerArray.push(false);
+                answerArray.push(true);
+                answerArray.push(false);
+            }
+            else if(quizAnswers === "d"){
+                answerArray.push(false);
+                answerArray.push(false);
+                answerArray.push(false);
+                answerArray.push(true);
+            }
+            setAnswers(...answerArray);
+
+        }
+
+        for (let i = 0; i < QuizParagraphs.length; i++) {
+            questions.push({
+                questionText: QuizParagraphs[i],
+                answerOptions: [
+                    { answerText: quizOptions[i * 4], isCorrect: answers[i * 4] },
+                    { answerText: quizOptions[i * 4 + 1], isCorrect: answers[i * 4 + 1] },
+                    { answerText: quizOptions[i * 4 + 2], isCorrect: answers[i * 4 + 2] },
+                    { answerText: quizOptions[i * 4 + 3], isCorrect: answers[i * 4 + 3] }
+                ]});
+
+        }
+
+        
+    }
+
 
     useEffect(() => {
         const timerInterval = setInterval(() => {

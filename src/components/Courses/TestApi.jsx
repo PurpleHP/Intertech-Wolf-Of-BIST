@@ -3,7 +3,8 @@ import React, { useState, useEffect } from "react";
 const useTestApi = (eduId) => {
   const [error, setError] = useState(null);
   const [QuizParagraphs, setQuizParagraphs] = useState(null);
-  const [quizAnswers, setQuizAnswers] = useState(null);
+  const [quizOptions, setQuizOptions] = useState(null);
+  const [quizIds, setQuizIds] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,15 +22,18 @@ const useTestApi = (eduId) => {
         console.log(data);
         let paragraphs = [];
         let answers = [];
+        let ids = [];
         for (let i = 0; i < data.length; i++) {
             paragraphs.push(data[i].question);
             answers.push(data[i].option_a);
             answers.push(data[i].option_b);
             answers.push(data[i].option_c);
             answers.push(data[i].option_d);  
+            ids.push(data[i].quizId);
         }
         setQuizParagraphs(paragraphs);
-        setQuizAnswers(answers);
+        setQuizOptions(answers);
+        setQuizIds(ids);
        
       } catch (error) {
         console.error('Error:', error);
@@ -40,7 +44,7 @@ const useTestApi = (eduId) => {
     fetchData(); // Call fetchData when the component mounts or eduId changes
   }, [eduId]); // Dependency array, re-run the effect when eduId changes
 
-  return { QuizParagraphs, quizAnswers, error };
+  return { QuizParagraphs, quizOptions, quizIds, error };
 };
 
 export default useTestApi;
