@@ -1,23 +1,18 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Footer from "../Footer";
 import "./Course.css";
-
-
-
-
+import "./style.css"; // Import the styles
 
 function Banank() {
-    //MARK: Paragraf Bölümü
+    // MARK: Paragraf Bölümü
 
     const allParagraphs = [
-        "1Gelir ve Vergi Yönetimi dersi, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir.",
-        "2Gelir ve Vergi Yönetimi dersi, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir.",
-        "3Gelir ve Vergi Yönetimi dersi, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir.",
-        "4Gelir ve Vergi Yönetimi dersi, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir.",
-        "5Gelir ve Vergi Yönetimi dersi, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir.",
+        "1Gelir ve Vergi Yönetimi dersi, gelir ve vergi konularında temel bilgileri içerir...",
+        "2Gelir ve Vergi Yönetimi dersi, gelir ve vergi konularında temel bilgileri içerir...",
+        "3Gelir ve Vergi Yönetimi dersi, gelir ve vergi konularında temel bilgileri içerir...",
+        "4Gelir ve Vergi Yönetimi dersi, gelir ve vergi konularında temel bilgileri içerir...",
+        "5Gelir ve Vergi Yönetimi dersi, gelir ve vergi konularında temel bilgileri içerir...",
     ];
-
 
     const summary = { title: "Gelir ve Vergi Yönetimi Özet", index: 0 };
 
@@ -30,16 +25,34 @@ function Banank() {
 
     const allHeaders = [summary, ...Header.map((header, index) => ({ ...header, index: index + 1 }))];
 
-
-
-
-
-
-    const [paragraphs, setParagraphs] = useState([allParagraphs[0]]); //paragrafı değiştirmek için
-    const [currentParagraph, setCurrentParagraph] = useState(0); //hangi paragrafta olduğumuzu belirtmek için
-    const [btnNextVisible, setBtnNextVisible] = useState(true); //ileri butonunu göstermek için
-    const [btnPrevVisible, setBtnPrevVisible] = useState(false); //geri butonunu göstermek için
+    const [paragraphs, setParagraphs] = useState([allParagraphs[0]]);
+    const [currentParagraph, setCurrentParagraph] = useState(0);
+    const [btnNextVisible, setBtnNextVisible] = useState(true);
+    const [btnPrevVisible, setBtnPrevVisible] = useState(false);
     const [btnQuizVisible, setBtnQuizVisible] = useState(false);
+
+    useEffect(() => {
+        const pages = document.getElementsByClassName('page');
+        for (let i = 0; i < pages.length; i++) {
+            const page = pages[i];
+            if (i % 2 === 0) {
+                page.style.zIndex = (pages.length - i);
+            }
+        }
+
+        for (let i = 0; i < pages.length; i++) {
+            pages[i].pageNum = i + 1;
+            pages[i].onclick = function () {
+                if (this.pageNum % 2 === 0) {
+                    this.classList.remove('flipped');
+                    this.previousElementSibling.classList.remove('flipped');
+                } else {
+                    this.classList.add('flipped');
+                    this.nextElementSibling.classList.add('flipped');
+                }
+            }
+        }
+    }, []);
 
     const changeParagraph = () => {
         if (currentParagraph < allParagraphs.length - 1) {
@@ -86,7 +99,7 @@ function Banank() {
         setBtnQuizVisible(index === allParagraphs.length - 1);
     };
 
-    const skipTheQuiz = () => { //post request atılacak kursu skip etmek için
+    const skipTheQuiz = () => {
         window.location.href = "/home";
     };
 
@@ -97,9 +110,7 @@ function Banank() {
     const mainMenu = () => {
         window.location.href = "/home";
     };
-    /*
-    
-    */
+
     return (
         <div>
             <div className="items-center justify-center grid grid-cols-4 gap-x-4 gap-y-2">
@@ -119,22 +130,13 @@ function Banank() {
                     </div>
                 </div>
                 <div className="col-span-3 grid grid-cols-10 grid-rows-10 p-4 m-4 h-[90vh] rounded-lg text-white border-4 shadow-black shadow-2xl background-color:#2b3236 scrollable-mobile">
-                    <p className="title break-words font-bold text-justify rounded-md font-sans col-span-8 row-span-1 col-start-2 p-3 row-start-1">
-                        Gelir ve Vergi Yönetimi
-                    </p>
-                    <p className="break-words text-justify whitespace-pre-line rounded-md font-sans col-span-8 row-span-8 col-start-2 p-3 row-start-2">
-                        {paragraphs}
-                    </p>
-
-                    {btnNextVisible && (
-                        <a onClick={changeParagraph} className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-ileri cursor-pointer">İleri</a>
-                    )}
-                    {btnQuizVisible && (
-                        <a onClick={goToQuiz} className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-ileri cursor-pointer">Quize git</a>
-                    )}
-                    {btnPrevVisible && (
-                        <a onClick={changeToPrevParagraph} className="text-white row-start-10 row-end-10 row-span-1 col-start-1 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-geri cursor-pointer">Geri</a>
-                    )}
+                    <div className="book px-20 py-8">
+                        <div id="pages" className="pages">
+                            {allParagraphs.map((paragraph, index) => (
+                                <div key={index} className="page"><p className="patates">{paragraph}</p></div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
             <Footer></Footer>
