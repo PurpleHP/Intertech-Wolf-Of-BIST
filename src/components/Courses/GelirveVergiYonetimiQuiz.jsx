@@ -43,7 +43,7 @@ const GelirveVergiYonetimiQuiz = () => {
                 answerArray.push(true);
             }
             setAnswers(...answerArray);
-
+            console.log("Answers as true / false: \n" + answers);
         }
 
         for (let i = 0; i < QuizParagraphs.length; i++) {
@@ -55,7 +55,7 @@ const GelirveVergiYonetimiQuiz = () => {
                     { answerText: quizOptions[i * 4 + 2], isCorrect: answers[i * 4 + 2] },
                     { answerText: quizOptions[i * 4 + 3], isCorrect: answers[i * 4 + 3] }
                 ]});
-
+            console.log("Questions: \n" + questions);
         }
 
         
