@@ -24,68 +24,65 @@ const GelirveVergiYonetimiQuiz = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                const raw = JSON.stringify({
+                    "eduId": 14
+                });
     
-              const raw = JSON.stringify({
-                "eduId": 14
-              });
-        
-              const requestOptions = {
-                method: "POST",
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: raw,
-                redirect: "follow"
-        
-              };
-              const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Quiz/getQuizzesByEducationId';
-              fetch(targetUrl, requestOptions)
-              .then(response => response.json())
-              .then(data => {
-                console.log(data)
-                let paragraphs = []; // Initialize an empty array to hold paragraphs
-                let answers = [];
-                let id = [];
-                for (let i = 0; i < data.length; i++) {
-                  paragraphs.push(data[i].question);
-                  answers.push(data[i].option_a); // Accumulate paragraphs
-                  answers.push(data[i].option_b);
-                  answers.push(data[i].option_c);
-                  answers.push(data[i].option_d);    
-                  id.push(data[i].quizId);     
-                }
-                setQuizParagraphs(paragraphs);
-                setQuizOptions(answers);
-                setQuizIds(id);
-                for (let i = 0; i < paragraphs.length; i++) {
-                    questions.push({
-                        questionText: paragraphs[i],
-                        answerOptions: [
-                            { answerText: quizOptions[i * 4], letter: "a" },
-                            { answerText: quizOptions[i * 4 + 1], letter: "b"},
-                            { answerText: quizOptions[i * 4 + 2], letter:"c"},
-                            { answerText: quizOptions[i * 4 + 3], letter:"d"}
-                        ]
-                    });
+                const requestOptions = {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: raw,
+                    redirect: "follow"
+                };
+    
+                const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Quiz/getQuizzesByEducationId';
+                const response = await fetch(targetUrl, requestOptions);
+                const data = await response.json();
+    
+                if (data && Array.isArray(data)) {
+                    console.log(data);
+                    let paragraphs = []; // Initialize an empty array to hold paragraphs
+                    let answers = [];
+                    let id = [];
+                    for (let i = 0; i < data.length; i++) {
+                        paragraphs.push(data[i].question);
+                        answers.push(data[i].option_a); // Accumulate paragraphs
+                        answers.push(data[i].option_b);
+                        answers.push(data[i].option_c);
+                        answers.push(data[i].option_d);
+                        id.push(data[i].quizId);
+                    }
+                    setQuizParagraphs(paragraphs);
+                    setQuizOptions(answers);
+                    setQuizIds(id);
+    
+                    let questions = [];
+                    for (let i = 0; i < paragraphs.length; i++) {
+                        questions.push({
+                            questionText: paragraphs[i],
+                            answerOptions: [
+                                { answerText: answers[i * 4], letter: "a" },
+                                { answerText: answers[i * 4 + 1], letter: "b" },
+                                { answerText: answers[i * 4 + 2], letter: "c" },
+                                { answerText: answers[i * 4 + 3], letter: "d" }
+                            ]
+                        });
                         console.log("Questions: \n" + questions);
                     }
                     setQuestions(questions);
                     setQuizReady(true);
-              })
-              .catch(error => {      
+                } else {
+                    console.error('Data is not an array or is null');
+                }
+            } catch (error) {
                 console.error('Error:', error);
-              });
-          } catch (error) {
-            console.error('Error:', error)
-          }
-
-          
-          };
-      
-          fetchData(); // Call fetchData when the component mounts or eduId changes
-         
-      
-        }, []);
+            }
+        };
+    
+        fetchData(); // Call fetchData when the component mounts or eduId changes
+    }, []);
 
  
     
