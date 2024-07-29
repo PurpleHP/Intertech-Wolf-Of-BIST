@@ -25,7 +25,7 @@ function Login() {
       });
 
       if(!response.ok){
-        throw new Error('Signup failed');
+        throw new Error('Kayıt İşlemi Başarısız Oldu!');
       }
       const data = await response.json();
       setApiResponse(data);
@@ -54,7 +54,7 @@ function Login() {
 
       const data = await response.json();
       if (data.userId === 0) {
-        throw new Error('Login failed');
+        throw new Error('Giriş yapılamadı.');
       }
 
       setApiResponse(data);
@@ -65,7 +65,7 @@ function Login() {
       window.location.href = '/home'; 
     } catch (error){
       console.error(error);
-      alert('Login failed. Please check your email and password.');
+      alert('Giriş yapılamadı. Lütfen e-posta adresinizi ve şifrenizi kontrol edin.');
     }
   }
 
