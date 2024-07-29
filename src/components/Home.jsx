@@ -3,6 +3,7 @@ import NavbarComponent from './Navbar.jsx';
 import Menu from './Menu.jsx';
 import Card from './Card.jsx';
 import Footer from './Footer.jsx';
+import CircularProgressBar from './ProgressBar';
 import { useState, useEffect } from 'react';
 
 //--------------------------
@@ -39,16 +40,17 @@ function App() {
 
   return (
     <div className="App" id='home'>
-      <NavbarComponent></NavbarComponent>
+      <NavbarComponent />
       <Menu>
         {userId && userId !== 0 ? (
           <>
             <h1 className='text-2xl'>İlerlemeniz</h1>
-            <div className='flex'>
-              <Card cardName="Finansal Okuryazarlık" to="/FinansalOkuryazarliginTemelleri" imgSrc={okuryazarlik} difficulty="easy">
-              </Card>
-              <Card cardName="Gelir ve Vergi Yönetimi" to="/GelirveVergiYonetimi" imgSrc={VergiGelir} difficulty="medium" >
-              </Card>
+            <div className='progress-container'>
+              <div className='progress-cards'>
+                <Card cardName="Finansal Okuryazarlık" to="/FinansalOkuryazarliginTemelleri" imgSrc={okuryazarlik} difficulty="easy" />
+                <Card cardName="Gelir ve Vergi Yönetimi" to="/GelirveVergiYonetimi" imgSrc={VergiGelir} difficulty="medium" />
+              </div>
+              <CircularProgressBar />
             </div>
           </>
         ) : null}
@@ -56,50 +58,36 @@ function App() {
       <Menu>
         <h1 className='text-2xl'>Tüm Kurslar</h1>
         <div className='flex'>
-          <Card cardName="Finansal Okuryazarlık" to="/FinansalOkuryazarliginTemelleri" imgSrc={okuryazarlik} difficulty="easy">
-          </Card>
-          <Card cardName="Bankacılık Hizmetleri" to="/BankacilikHizmetleri" imgSrc={bankacilikHizmetleri} difficulty="easy">
-          </Card>
+          <Card cardName="Finansal Okuryazarlık" to="/FinansalOkuryazarliginTemelleri" imgSrc={okuryazarlik} difficulty="easy" />
+          <Card cardName="Bankacılık Hizmetleri" to="/BankacilikHizmetleri" imgSrc={bankacilikHizmetleri} difficulty="easy" />
         </div>
         <div className='flex'>
-          <Card cardName="Bütçe ve Harcama" to="/ButceveHarcama" imgSrc={butceharcama} difficulty="easy">
-          </Card>
-          <Card cardName="Kredi Kartları" to="/KrediKartlari" imgSrc={kredikartlari} difficulty="easy">
-          </Card>
+          <Card cardName="Bütçe ve Harcama" to="/ButceveHarcama" imgSrc={butceharcama} difficulty="easy" />
+          <Card cardName="Kredi Kartları" to="/KrediKartlari" imgSrc={kredikartlari} difficulty="easy" />
         </div>
         <div className='flex'>
-          <Card cardName="Tasarruf ve Acil Durum Fonları" to="/TasarrufveAcilDurumFonlari" imgSrc={tasarruf} difficulty="easy">
-          </Card>
-          <Card cardName="Borç Yönetimi" to="/BorcYonetimi" imgSrc={DebtImage} difficulty="medium">
-          </Card>
+          <Card cardName="Tasarruf ve Acil Durum Fonları" to="/TasarrufveAcilDurumFonlari" imgSrc={tasarruf} difficulty="easy" />
+          <Card cardName="Borç Yönetimi" to="/BorcYonetimi" imgSrc={DebtImage} difficulty="medium" />
         </div>
         <div className='flex'>
-          <Card cardName="Kredi" to="/Kredi" imgSrc={kredi} difficulty="medium">
-          </Card>
-          <Card cardName="Kişisel Finansal Planlama" to="/KisiselFinansalPlanlama" imgSrc={kisiselFinansalPlanlama} difficulty="medium">
-          </Card>
+          <Card cardName="Kredi" to="/Kredi" imgSrc={kredi} difficulty="medium" />
+          <Card cardName="Kişisel Finansal Planlama" to="/KisiselFinansalPlanlama" imgSrc={kisiselFinansalPlanlama} difficulty="medium" />
         </div>
         <div className='flex'>
-          <Card cardName="Gelir ve Vergi Yönetimi" to="/GelirveVergiYonetimi" imgSrc={VergiGelir} difficulty="medium">
-          </Card>
-          <Card cardName="Para ve Sermaye Piyasası" to="/ParaveSermayePiyasasi" imgSrc={paraSermayePiyasasi} difficulty="medium">
-          </Card>
+          <Card cardName="Gelir ve Vergi Yönetimi" to="/GelirveVergiYonetimi" imgSrc={VergiGelir} difficulty="medium" />
+          <Card cardName="Para ve Sermaye Piyasası" to="/ParaveSermayePiyasasi" imgSrc={paraSermayePiyasasi} difficulty="medium" />
         </div>
         <div className='flex'>
-          <Card cardName="Kişisel Yatırım Stratejisi" to="/KisiselYatirimStratejisi" imgSrc={yatirimstrateji} difficulty="hard">
-          </Card>
-          <Card cardName="Borsa" to="/Borsa" imgSrc={borsa} difficulty="hard">
-          </Card>
+          <Card cardName="Kişisel Yatırım Stratejisi" to="/KisiselYatirimStratejisi" imgSrc={yatirimstrateji} difficulty="hard" />
+          <Card cardName="Borsa" to="/Borsa" imgSrc={borsa} difficulty="hard" />
         </div>
         <div className='flex'>
-          <Card cardName="Kripto" to="/Kripto" imgSrc={kripto} difficulty="hard">
-          </Card>
-          <Card cardName="Risk" to="/Risk" imgSrc={risk} difficulty="hard">
-          </Card>
+          <Card cardName="Kripto" to="/Kripto" imgSrc={kripto} difficulty="hard" />
+          <Card cardName="Risk" to="/Risk" imgSrc={risk} difficulty="hard" />
         </div>
       </Menu>
       <div id='contact'>
-        <Footer></Footer>
+        <Footer />
       </div>
     </div>
   );

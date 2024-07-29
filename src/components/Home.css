@@ -81,3 +81,14 @@ body {
     text-align: left;
   }
 }
+
+.progress-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.progress-cards {
+  display: flex;
+  gap: 20px;
+}
