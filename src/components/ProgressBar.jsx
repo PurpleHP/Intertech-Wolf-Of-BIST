@@ -11,6 +11,38 @@ function CircularProgressBar({ progress }) {
     const circumference = normalizedRadius * 2 * Math.PI;
     const strokeDashoffset = circumference - (progress / 100) * circumference;
 
+    useEffect(() => {
+        const fetchData = async () => {
+
+            const storedUserId = localStorage.getItem('userId');
+
+            try {
+                const raw = JSON.stringify({ "userId": storedUserId });
+        
+                const requestOptions = {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: raw,
+                redirect: "follow"
+                };
+        
+                const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/getEducationByUser';
+                const response = await fetch(targetUrl, requestOptions);
+                const data = await response.json();
+                for (let i = 0; i < data.length; i++) {
+                    if(data[i].progress === "DONE"){
+                        IncreaseProgress();
+                    }
+                    
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        };
+    
+        fetchData();
+        
+      }, []);
 
     const IncreaseProgress = () => {
             let progress =progress + 100/14;
