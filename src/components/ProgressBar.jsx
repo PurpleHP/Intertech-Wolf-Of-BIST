@@ -25,12 +25,12 @@ function CircularProgressBar() {
                 body: raw,
                 redirect: "follow"
                 };
-        
+                console.log(storedUserId)
                 const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Education/getEducationByUser';
                 const response = await fetch(targetUrl, requestOptions);
                 const data = await response.json();
                 for (let i = 0; i < data.length; i++) {
-                    if(data[i].progress === "DONE"){
+                    if(data[i].status === "DONE"){
                         IncreaseProgress();
                     }
                     

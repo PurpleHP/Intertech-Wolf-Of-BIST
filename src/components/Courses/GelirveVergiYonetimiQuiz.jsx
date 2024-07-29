@@ -101,7 +101,7 @@ const GelirveVergiYonetimiQuiz = () => {
                 const data = await response.json();
                 for (let i = 0; i < data.length; i++) {
                     if (data[i].eduId === 14) { //hardcoded
-                        if(data[i].progress === "DONE"){
+                        if(data[i].status === "DONE"){
                             setAlreadyDone(true);
                         }
                     }

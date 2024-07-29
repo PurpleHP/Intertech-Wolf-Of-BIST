@@ -31,7 +31,7 @@ function GelirveVergiYonetimi() {
     
                 let isDone = false;
                 for (let i = 0; i < data.length; i++) {
-                    if (data[i].eduId === 14 && (data[i].progress === "DONE" || data[i].progress === "INPROGRESS")) { //hardcoded
+                    if (data[i].eduId === 14 && (data[i].status === "DONE" || data[i].status === "INPROGRESS")) { //hardcoded
                         isDone = true;
                         break;
                     }
