@@ -7,6 +7,40 @@ import useApiRequest from './CoursesAPI'; // Adjust the import path as necessary
 function GelirveVergiYonetimi() {
     //MARK: Paragraf Bölümü
     const { education, Header } = useApiRequest(14);
+
+    useEffect(() => { //Quiz daha önce yapılmış mı kontrol et
+        const fetchData = async () => {
+            const storedUserId = localStorage.getItem('userId');
+
+
+            try {
+                const raw = JSON.stringify({ "eduId": 14, "userId": storedUserId, "RelStatus": "" });
+        
+                const requestOptions = {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: raw,
+                redirect: "follow"
+                };
+        
+                const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/addEducationRelationByUser';
+                const response = await fetch(targetUrl, requestOptions);
+                const data = await response.json();
+            
+                
+            } catch (error) {
+                console.log(error)
+            }
+            };
+
+                fetchData();
+            
+            
+
+            
+    }, []);
+
+
     
     const summary = { title: "Gelir ve Vergi Özet", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
     
