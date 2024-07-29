@@ -32,6 +32,7 @@ import KisiselYatirimStratejisi from './components/Courses/KisiselYatirimStratej
 import Borsa from './components/Courses/Borsa';
 import Kripto from './components/Courses/Kripto';
 import KrediQuiz from './components/Courses/KrediQuiz';
+import Bitki from './components/bitki';
 
 import ProgressBar from './components/ProgressBar';
 
@@ -72,6 +73,7 @@ function App() {
           <Route path='/CourseTest' element={<CourseTest />} />
           <Route path='/ProgressBar' element={<ProgressBar />} />
           <Route path='/KrediQuiz' element={<KrediQuiz />} />
+          <Route path='/Bitki' element={<Bitki />} />
         </Routes>
       </div>
     </>
