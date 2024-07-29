@@ -41,8 +41,6 @@ const Navbar = () => {
         }
     }, []);
 
-    console.log('userName:', userName); // Debug log
-
     return (
         <nav className={`navbar ${menuClick ? 'expanded' : ''}`}>
             <div className="navbar-logo">
