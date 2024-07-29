@@ -46,7 +46,9 @@ function App() {
           <>
             <div className="progress-header">
               <h1 className='text-2xl'>İlerlemeniz</h1>
-              <CircularProgressBar />
+              <div className="progress-bar-wrapper">
+                <CircularProgressBar />
+              </div>
             </div>
             <div className='progress-cards'>
               <Card cardName="Finansal Okuryazarlık" to="/FinansalOkuryazarliginTemelleri" imgSrc={okuryazarlik} difficulty="easy" />
