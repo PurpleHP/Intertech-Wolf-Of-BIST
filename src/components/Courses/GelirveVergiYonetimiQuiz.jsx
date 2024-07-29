@@ -12,6 +12,7 @@ const GelirveVergiYonetimiQuiz = () => {
     const [quizAnswers, setQuizAnswers] = useState(null);
     const [error, setError] = useState(null);
 
+    const [alreadyDone, setAlreadyDone] = useState(false);
     const [passedQuiz, setPassedQuiz] = useState(false);
 
     useEffect(() => {
@@ -67,8 +68,44 @@ const GelirveVergiYonetimiQuiz = () => {
             }
         };
 
-        fetchData(); // Call fetchData when the component mounts or eduId changes
+        fetchData(); 
     }, []);
+
+    useEffect(() => { //Quiz daha önce yapılmış mı kontrol et
+        const fetchData = async () => {
+            
+            const storedUserId = localStorage.getItem('userId');
+
+            try {
+                const raw = JSON.stringify({ "userId": storedUserId });
+        
+                const requestOptions = {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: raw,
+                redirect: "follow"
+                };
+        
+                const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/getEducationByUser';
+                const response = await fetch(targetUrl, requestOptions);
+                const data = await response.json();
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].eduId === 14) {
+                        if(data[i].progress === "DONE"){
+                            setAlreadyDone(true);
+                        }
+                    }
+                }
+                
+            } catch (error) {
+                setError(error.message);
+            }
+            };
+        
+            fetchData();
+            
+    }, []);
+
 
     useEffect(() => {
         const fetchAnswers = async () => {
@@ -111,7 +148,7 @@ const GelirveVergiYonetimiQuiz = () => {
         return () => clearInterval(timerInterval);
     }, []);
 
-    const handleAnswerClick = (answerLetter) => {
+    const handleAnswerClick = async (answerLetter) => {
         if (quizAnswers && answerLetter === quizAnswers) {
             setScore(score + 1);
         }
@@ -124,6 +161,20 @@ const GelirveVergiYonetimiQuiz = () => {
                 setPassedQuiz(false);
             }else{
                 setPassedQuiz(true);
+                //DONE
+                if(alreadyDone === false){
+                    const storedUserId = localStorage.getItem('userId');
+                    const raw = JSON.stringify({ "eduId": 14, "userId": storedUserId, "RelStatus": "" });
+                    const requestOptions = {
+                        method: "POST",
+                        headers: { 'Content-Type': 'application/json' },
+                        body: raw,
+                        redirect: "follow"
+                    };
+                    const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/userEducationComplete';
+                    const response = await fetch(targetUrl, requestOptions);
+                    setAlreadyDone(true)
+                }
             }
             
             setShowScore(true);

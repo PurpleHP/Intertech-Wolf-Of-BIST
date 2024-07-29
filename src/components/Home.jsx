@@ -29,11 +29,20 @@ import yatirimstrateji from "../assets/zor/kisisel-yatirim-stratejisi.jpg"; //ok
 import borsa from "../assets/zor/borsa.jpg"; //ok
 import kripto from "../assets/zor/kripto.jpg";
 import risk from "../assets/zor/risk.jpg";
+import { useEffect } from 'react';
 
 
 //-------------------------
 
 function App() {
+
+  useEffect(() => {
+    const storedUserId = localStorage.getItem('userId');
+    if(!storedUserId){
+      window.location.href = '/login';} 
+  },[]);
+
+
   return (
     <div className="App" id='home'>
       <NavbarComponent></NavbarComponent>

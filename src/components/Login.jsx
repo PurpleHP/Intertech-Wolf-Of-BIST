@@ -10,6 +10,8 @@ function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+
+
   async function registerUser(name, email, password){
     try{
       const response = await fetch('https://financialtrainerfinal120240716125722.azurewebsites.net/api/Login/register', {
@@ -29,7 +31,9 @@ function Login() {
       }
       const data = await response.json();
       setApiResponse(data);
-      console.log(data);
+
+      localStorage.setItem('userId', data.userId);
+      localStorage.setItem('name', data.name);
       // Kullanıcı başarılı bir şekilde kaydolduğunda yönlendirme
       navigate('/quiz');
     } catch (error){
@@ -55,7 +59,8 @@ function Login() {
       }
       const data = await response.json();
       setApiResponse(data);
-      console.log(data);
+      localStorage.setItem('userId', data.userId);
+      localStorage.setItem('name', data.name);
     } catch (error){
       console.error(error);
     }
