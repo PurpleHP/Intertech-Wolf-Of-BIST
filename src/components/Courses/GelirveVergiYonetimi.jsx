@@ -1,5 +1,5 @@
 import Footer from "../Footer";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./Course.css";
 
 import useApiRequest from './CoursesAPI'; // Adjust the import path as necessary
@@ -8,7 +8,8 @@ function GelirveVergiYonetimi() {
     //MARK: Paragraf Bölümü
     const { education, Header } = useApiRequest(14); //hardcoded
 
-    useEffect(() => {
+  
+  useEffect(() => {
         const checkIfDone = async () => {
             const storedUserId = parseInt(localStorage.getItem('userId'));
     
@@ -47,35 +48,42 @@ function GelirveVergiYonetimi() {
     
         const setNew = async (userId) => {
             try {
-                const raw = JSON.stringify({ "eduId": 14, "userId": userId, "RelStatus": "" }); //hardcoded
-    
+                const raw = JSON.stringify({ "eduId": 14, "userId": storedUserId, "RelStatus": "" });
+        
                 const requestOptions = {
                     method: "POST",
                     headers: { 'Content-Type': 'application/json' },
                     body: raw,
                     redirect: "follow"
                 };
-    
+        
                 const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Education/addEducationRelationByUser';
                 const response = await fetch(targetUrl, requestOptions);
-                console.log('Added to new:', response);
+                //const data = await response.json();
+                console.log(response);
+                console.log("Added to new")
+                
             } catch (error) {
-                console.error('Could not add to new:', error);
+                console.log("Couldnt add to new")
+                console.log(error)
             }
-        };
-    
-        checkIfDone();
+            };
+
+            fetchData();
+            
+            
+
+            
     }, []);
 
 
-    
     const summary = { title: "Gelir ve Vergi Özet", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
-    
+
     const allParagraphs = [
         "Gelir ve Vergi Yönetimi dersi, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir. Bu ders, gelir ve vergi konularında temel bilgileri içerir.",
     ];
 
-    allParagraphs.push(...education);    
+    allParagraphs.push(...education);
 
     const allHeaders = [summary, ...Header.map((header, index) => ({ ...header, index: index + 1 }))]; // Başlıkların indexlerini 1'den başlatıyoruz.
 
@@ -92,7 +100,7 @@ function GelirveVergiYonetimi() {
             const nextParagraph = currentParagraph + 1;
             setCurrentParagraph(nextParagraph);
             setParagraphs([allParagraphs[nextParagraph]]);
-            
+
             if (nextParagraph === allParagraphs.length - 1) {
                 setBtnNextVisible(false);
                 setBtnQuizVisible(true);
@@ -178,13 +186,13 @@ function GelirveVergiYonetimi() {
                     </p>
 
                     {btnNextVisible && (
-                        <a onClick={changeParagraph} className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-ileri">İleri</a>
+                        <a onClick={changeParagraph} className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-ileri cursor-pointer">İleri</a>
                     )}
                     {btnQuizVisible && (
-                        <a onClick={goToQuiz} className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-ileri">Quize git</a>
+                        <a onClick={goToQuiz} className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-ileri cursor-pointer">Quize git</a>
                     )}
                     {btnPrevVisible && (
-                        <a onClick={changeToPrevParagraph} className="text-white row-start-10 row-end-10 row-span-1 col-start-1 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-geri">Geri</a>
+                        <a onClick={changeToPrevParagraph} className="text-white row-start-10 row-end-10 row-span-1 col-start-1 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-geri cursor-pointer">Geri</a>
                     )}
                 </div>
             </div>

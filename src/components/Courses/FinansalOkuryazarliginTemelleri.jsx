@@ -7,14 +7,14 @@ import useApiRequest from './CoursesAPI'; // Adjust the import path as necessary
 function FinansalOkuryazarliginTemelleri() {
     //MARK: Paragraf Bölümü
     const { education, Header } = useApiRequest(1);
-    
-    const summary = { title: "Finansal Okuryazarlığın Temelleri Özet", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
-    
+
+    const summary = { title: "Eğitim Denizi Nedir?", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
+
     const allParagraphs = [
-        "Finansal okuryazarlık, bireylerin kişisel finans yönetimi, yatırım, tasarruf, borçlanma ve bütçeleme konularında bilgi ve becerilere sahip olmalarını ifade eder. Bu kavram, bireylerin finansal kararlarını bilinçli bir şekilde alabilmeleri ve ekonomik hedeflerine ulaşabilmeleri için gerekli temel bilgi ve becerileri kazandırmayı amaçlar.",
+        " \u2003 Merhaba, Eğitim Denizi platformundaki ilk eğitimine hoş geldin! Eğitim Denizi her seviyesinden finansa meraklı öğrencilerin kendilerini geliştirebilecekleri bir alandır. \n \u2003 Her eğitim modülü, açıklayıcı metinlerinden ve bir adet kısa testten oluşur. Eğitim modüllerine başlamadan önce soldaki menüde bulunan sözlük üzerinden ilgili eğitim için gerekli olan kelimeleri öğrenmelisin. \n \u2003 Bu eğitim modülü için sözlüğün ilk 10 sayfasını okuduğundan emin ol!", "Finansal okuryazarlık, bireylerin kişisel finans yönetimi, yatırım, tasarruf, borçlanma ve bütçeleme konularında bilgi ve becerilere sahip olmalarını ifade eder. Bu kavram, bireylerin finansal kararlarını bilinçli bir şekilde alabilmeleri ve ekonomik hedeflerine ulaşabilmeleri için gerekli temel bilgi ve becerileri kazandırmayı amaçlar.",
     ];
 
-    allParagraphs.push(...education);    
+    allParagraphs.push(...education);
 
     const allHeaders = [summary, ...Header.map((header, index) => ({ ...header, index: index + 1 }))]; // Başlıkların indexlerini 1'den başlatıyoruz.
 
@@ -29,7 +29,7 @@ function FinansalOkuryazarliginTemelleri() {
             const nextParagraph = currentParagraph + 1;
             setCurrentParagraph(nextParagraph);
             setParagraphs([allParagraphs[nextParagraph]]);
-            
+
             if (nextParagraph === allParagraphs.length - 1) {
                 setBtnNextVisible(false);
                 setBtnQuizVisible(true);
@@ -85,6 +85,10 @@ function FinansalOkuryazarliginTemelleri() {
         window.location.href = "/home";
     };
 
+    const sozluk = () => {
+        window.location.href = "/sozluk";
+    };
+
     // Geçerli paragrafa ait başlığı al
     const currentHeader = allHeaders.find(header => header.index === currentParagraph) || summary;
 
@@ -102,6 +106,7 @@ function FinansalOkuryazarliginTemelleri() {
                         </ul>
                     </div>
                     <div className="row-start-6 row-span-1 grid grid-cols-2">
+                        <button className="col-start-1 col-span-2 border-4 rounded-lg shadow-2xl mb-2 transform transition duration-500 hover:scale-105" onClick={sozluk}>Sözlük</button>
                         <button className="col-start-1 col-span-2 border-4 rounded-lg shadow-2xl mb-2 transform transition duration-500 hover:scale-105" onClick={mainMenu}>Ana Sayfa</button>
                         <button className="col-start-1 col-span-2 border-4 rounded-lg shadow-2xl transform transition duration-500 hover:scale-105" onClick={goToQuiz}>Teste Atla</button>
                     </div>
@@ -115,13 +120,13 @@ function FinansalOkuryazarliginTemelleri() {
                     </p>
 
                     {btnNextVisible && (
-                        <a onClick={changeParagraph} className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-ileri">İleri</a>
+                        <a onClick={changeParagraph} className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-ileri cursor-pointer">İleri</a>
                     )}
                     {btnQuizVisible && (
-                        <a onClick={goToQuiz} className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-ileri">Quize git</a>
+                        <a onClick={goToQuiz} className="text-white row-start-10 row-end-10 row-span-1 col-start-9 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-ileri cursor-pointer">Quize git</a>
                     )}
                     {btnPrevVisible && (
-                        <a onClick={changeToPrevParagraph} className="text-white row-start-10 row-end-10 row-span-1 col-start-1 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-geri">Geri</a>
+                        <a onClick={changeToPrevParagraph} className="text-white row-start-10 row-end-10 row-span-1 col-start-1 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-geri cursor-pointer">Geri</a>
                     )}
                 </div>
             </div>
