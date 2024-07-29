@@ -1,49 +1,12 @@
 import { useLayoutEffect, useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import Logo from '../assets/logo.png';
+import { useNavigate } from 'react-router-dom'; // useNavigate ekleyin
 
 function Welcome() {
-
-  const [allowScroll, setAllowScroll] = useState(false);
   const [activeDiv, setActiveDiv] = useState(0);
-
   const comp = useRef(null);
-
-  useEffect(() => {
-    const handleScroll = (event) => {
-      const direction = event.deltaY > 0 ? 'down' : 'up';
-
-      setActiveDiv(prevActiveDiv => {
-        if (direction === 'down' && prevActiveDiv < 3) {
-          return prevActiveDiv + 1;
-        } else if (direction === 'up' && prevActiveDiv > 0) {
-          return prevActiveDiv - 1;
-        }
-        return prevActiveDiv;
-      });
-    };
-
-    const handleTouchMove = (event) => {
-      const direction = event.changedTouches[0].clientY > event.changedTouches[0].screenY ? 'down' : 'up';
-
-      setActiveDiv(prevActiveDiv => {
-        if (direction === 'down' && prevActiveDiv < 3) {
-          return prevActiveDiv + 1;
-        } else if (direction === 'up' && prevActiveDiv > 0) {
-          return prevActiveDiv - 1;
-        }
-        return prevActiveDiv;
-      });
-    };
-
-    window.addEventListener('wheel', handleScroll);
-    window.addEventListener('touchmove', handleTouchMove);
-
-    return () => {
-      window.removeEventListener('wheel', handleScroll);
-      window.removeEventListener('touchmove', handleTouchMove);
-    };
-  }, []);
+  const navigate = useNavigate(); // useNavigate kullanımı
 
   useEffect(() => {
     gsap.to('.content-div', { opacity: 0, duration: 0.5 })
@@ -80,6 +43,13 @@ function Welcome() {
     return () => ctx.revert();
   }, []);
 
+  const handleLoginClick = () => {
+    navigate('/login');
+    setTimeout(() => {
+      document.getElementById('chk').checked = true; // aria-hidden için login formunu göster
+    }, 100); // navigate işlemi tamamlandıktan sonra checkbox'ı seçmek için küçük bir gecikme ekleyin
+  };
+
   return (
     <div className='relative' ref={comp}>
       <div
@@ -112,13 +82,13 @@ function Welcome() {
           id="welcome"
           className="font-bold text-4xl md:text-8xl text-[#D3D3D3]">Hoşgeldiniz</a>
         <div className="flex flex-col md:flex-row gap-5">
+          <button
+            id="login"
+            className='text-2xl md:text-7xl my-6 bg-[#161A1D] p-3 rounded-lg mx-3 border-2 text-[#D3D3D3] mb-0'
+            onClick={handleLoginClick}>Giriş Yap</button>
           <a
             href="login"
             id="login"
-            className='text-2xl md:text-7xl my-6 bg-[#161A1D] p-3 rounded-lg mx-3 border-2 text-[#D3D3D3] mb-0'>Giriş Yap</a>
-          <a
-            href="signup"
-            id="signup"
             className='text-2xl md:text-7xl my-6 bg-[#161A1D] p-3 rounded-lg mx-3 border-2 text-[#D3D3D3] mb-0'>Kayıt Ol</a>
         </div>
         <a
@@ -128,15 +98,6 @@ function Welcome() {
           style={{ marginTop: '2.5rem' }}>
           Eğitime Gidin
         </a>
-      </div>
-      <div className={`content-div ${activeDiv === 1 ? 'visible' : 'hidden'} flex flex-col bg-[#0B090A] justify-center place-items-center h-screen`} id="div1">
-        <a className="font-bold text-4xl md:text-8xl text-[#D3D3D3]">Naber Ben 1. Div Memnun Oldum</a>
-      </div>
-      <div className={`content-div ${activeDiv === 2 ? 'visible' : 'hidden'} flex flex-col bg-[#0B090A] justify-center place-items-center h-screen`} id="div2">
-        <a className="font-bold text-4xl md:text-8xl text-[#D3D3D3]">Naber Ben 2. Div!</a>
-      </div>
-      <div className={`content-div ${activeDiv === 3 ? 'visible' : 'hidden'} flex flex-col bg-[#0B090A] justify-center place-items-center h-screen`} id="div3">
-        <a className="font-bold text-4xl md:text-8xl text-[#D3D3D3]">LOREM!</a>
       </div>
     </div>
   );
