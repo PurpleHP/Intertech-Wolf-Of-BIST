@@ -31,8 +31,8 @@ function Login() {
       }
       const data = await response.json();
       setApiResponse(data);
-
-      localStorage.setItem('userId', data.userId);
+      console.log("Response:\n", data);
+      localStorage.setItem('userId', parseInt(data.userId));
       localStorage.setItem('name', data.userName);
       // Kullanıcı başarılı bir şekilde kaydolduğunda yönlendirme
       navigate('/quiz');
@@ -59,7 +59,9 @@ function Login() {
       }
       const data = await response.json();
       setApiResponse(data);
-      localStorage.setItem('userId', data.userId);
+      console.log("Response:\n", data);
+
+      localStorage.setItem('userId', parseInt(data.userId));
       localStorage.setItem('name', data.userName);
       window.location.href = '/home'; 
     } catch (error){
