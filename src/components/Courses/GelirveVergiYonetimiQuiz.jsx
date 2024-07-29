@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useAnswerApi from './AnswerApi';
-import loadingGif from './assets/loading.gif';
+import loadingGif from '../../assets/loading.gif';
 
 
 const GelirveVergiYonetimiQuiz = () => {
