@@ -12,6 +12,8 @@ const GelirveVergiYonetimiQuiz = () => {
     const [quizAnswers, setQuizAnswers] = useState(null);
     const [error, setError] = useState(null);
 
+    const [passedQuiz, setPassedQuiz] = useState(false);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -118,6 +120,12 @@ const GelirveVergiYonetimiQuiz = () => {
         if (nextQuestion < questions.length) {
             setCurrentQuestion(nextQuestion);
         } else {
+            if(parseFloat(score)/parseFloat(questions.length) < 0.8){
+                setPassedQuiz(false);
+            }else{
+                setPassedQuiz(true);
+            }
+            
             setShowScore(true);
         }
     };
@@ -135,6 +143,15 @@ const GelirveVergiYonetimiQuiz = () => {
                         <>
                             <div className='score-section animate-pulse text-3xl'>
                                 Toplam {questions.length} sorudan {score} doğru cevap verdiniz.
+                                {passedQuiz ? (
+                                    <div className='text-2xl mt-4'>
+                                        Tebrikler! Testi başarıyla geçtiniz.
+                                    </div>
+                                ) : (
+                                    <div className='text-2xl mt-4'>
+                                        Testi geçemediniz. Lütfen tekrar deneyin.
+                                    </div>
+                                )}
                             </div>
                             <div className="flex space-x-4 mt-4">
                                 <button
@@ -143,12 +160,21 @@ const GelirveVergiYonetimiQuiz = () => {
                                 >
                                     AI Bot'a Soru Sor
                                 </button>
+                                
                                 <button
                                     onClick={() => window.location.href = '/home'}
                                     className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109]"
                                 >
                                     Ana Sayfaya Dön
                                 </button>
+                                {!passedQuiz && (
+                                    <button
+                                        onClick={() => window.location.href = '/GelirVeVergiYonetimiQuiz'}
+                                        className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109]"
+                                    >
+                                        Testi Tekrar Deneyin
+                                    </button>
+                                )}
                             </div>
                         </>
                     ) : (

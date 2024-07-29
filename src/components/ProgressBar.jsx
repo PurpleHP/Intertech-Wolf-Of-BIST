@@ -2,31 +2,22 @@ import React, { useState } from 'react';
 
 function CircularProgressBar({ progress }) {
 
-    //const [progress, setProgress] = useState(0);
 
+    const [progress, setProgress] = useState(0);
 
-    const radius = 70; // Radius of the circle
-    const stroke = 10; // Stroke width
+    const radius = 70; 
+    const stroke = 10;
     const normalizedRadius = radius - stroke * 2;
     const circumference = normalizedRadius * 2 * Math.PI;
     const strokeDashoffset = circumference - (progress / 100) * circumference;
 
-    /*
-    const IncreaseProgress = () => {
-        setProgress((currentProgress) => {
-            let newProgress =currentProgress + 100/14;
-            if(newProgress >= 98) {
-                newProgress = 100;
-            }
-            return newProgress > 100 ? 100 : newProgress; 
-        });
-    }*/
 
     const IncreaseProgress = () => {
             let progress =progress + 100/14;
             if(progress >= 98) {
                 progress = 100;
             }
+            setProgress(progress);
             return progress > 100 ? 100 : progress; 
     }
 
