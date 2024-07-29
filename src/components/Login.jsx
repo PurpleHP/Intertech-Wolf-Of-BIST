@@ -61,6 +61,7 @@ function Login() {
       setApiResponse(data);
       localStorage.setItem('userId', data.userId);
       localStorage.setItem('name', data.name);
+      window.location.href = '/home'; 
     } catch (error){
       console.error(error);
     }
