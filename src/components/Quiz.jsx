@@ -344,7 +344,7 @@ const Quiz = () => {
                         <>
                             <div className='question-section text-center mb-8'>
                                 <div className='question-count text-lg mb-2'>
-                                    <span>Question {currentQuestion + 1}</span>/{questions.length}
+                                    <span>Soru {currentQuestion + 1}</span>/{questions.length}
                                 </div>
                                 <div className='question-text text-2xl'>{questions[currentQuestion].questionText}</div>
                             </div>
