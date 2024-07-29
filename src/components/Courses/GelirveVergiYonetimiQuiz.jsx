@@ -18,7 +18,11 @@ const GelirveVergiYonetimiQuiz = () => {
     const [storedUserId, setStoredUserId] = useState(null);
 
     useEffect(() => {
-        const storedUserId = localStorage.getItem('userId');
+        const storedUserId =  localStorage.getItem('userId');
+        console.log(storedUserId);
+        if (typeof storedUserId === 'string' || storedUserId instanceof String){
+            console.log("Stored User Id is a string");
+        }
         setStoredUserId(storedUserId);
     },[]);
 
@@ -161,16 +165,17 @@ const GelirveVergiYonetimiQuiz = () => {
     }, []);
 
     const handleAnswerClick = async (answerLetter) => {
+        let tempScore = score;
         if (quizAnswers && answerLetter === quizAnswers) {
             setScore(score + 1);
+            tempScore = tempScore + 1;
         }
-
-        console.log(score);
+        console.log(tempScore);
         const nextQuestion = currentQuestion + 1;
         if (nextQuestion < questions.length) {
             setCurrentQuestion(nextQuestion);
         } else {
-            if(parseFloat(score)/parseFloat(questions.length) < 0.8){
+            if(parseFloat(tempScore)/parseFloat(questions.length) < 0.8){
                 setPassedQuiz(false);
             }else{
                 setPassedQuiz(true);
