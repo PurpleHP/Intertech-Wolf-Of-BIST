@@ -22,7 +22,7 @@ function About() {
     }, []);
 
     return (
-        <div className="about-container">
+        <div className="bitki-container">
             <img 
                 src={Sea} 
                 alt="Sea" 
