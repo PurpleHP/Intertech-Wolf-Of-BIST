@@ -3,6 +3,7 @@
 }
 
 .patates {
+  font-family: "Courgette", cursive;
   margin-top: 8vw;
   text-align: center;
   font-size: 2vw;
@@ -10,6 +11,7 @@
 }
 
 .page {
+  padding: 20px;
   width: 30vw;
   height: 44vw;
   background-color: #111111;
@@ -82,9 +84,6 @@
   background: rgba(0, 0, 0, 0.03);
 }
 
-.book .page:nth-child(odd):before {
-  background: rgba(0, 0, 0, 0);
-}
 
 .book .page:nth-child(even) {
   pointer-events: none;

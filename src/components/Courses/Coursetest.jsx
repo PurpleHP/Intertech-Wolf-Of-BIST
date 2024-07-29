@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Footer from "../Footer";
 import "./Course.css";
-import "./style.css"; // Import the styles
 
 function Banank() {
     // MARK: Paragraf Bölümü
