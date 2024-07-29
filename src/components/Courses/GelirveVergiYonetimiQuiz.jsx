@@ -165,6 +165,7 @@ const GelirveVergiYonetimiQuiz = () => {
             setScore(score + 1);
         }
 
+        console.log(score);
         const nextQuestion = currentQuestion + 1;
         if (nextQuestion < questions.length) {
             setCurrentQuestion(nextQuestion);
@@ -265,7 +266,7 @@ const GelirveVergiYonetimiQuiz = () => {
                 </div>
             ) : (
                 <div className="bg-black flex items-center justify-center w-screen h-screen">
-                    <img width={300} src={loadingGif} alt="Loading animation" />
+                    <img width={100} src={loadingGif} alt="Loading animation" />
                 </div>
 
             )}
