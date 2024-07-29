@@ -15,7 +15,6 @@ body {
     align-items: center;
     justify-content: center;
   }
-
 }
 
 .about-container {
@@ -84,12 +83,19 @@ body {
 
 .progress-container {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
+}
+
+.progress-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .progress-cards {
   display: flex;
   gap: 20px;
-  margin-top: 20px; /* Kartların üstünde biraz boşluk bırakmak için */
 }
