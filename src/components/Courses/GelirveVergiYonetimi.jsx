@@ -69,7 +69,7 @@ function GelirveVergiYonetimi() {
             }
             };
 
-            fetchData();
+            checkIfDone();
             
             
 
