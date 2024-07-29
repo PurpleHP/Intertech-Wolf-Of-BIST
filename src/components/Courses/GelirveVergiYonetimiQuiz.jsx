@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import useAnswerApi from './AnswerApi';
-import loadingGif from '../../assets/loading.gif';
-
 
 const GelirveVergiYonetimiQuiz = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -203,8 +201,8 @@ const GelirveVergiYonetimiQuiz = () => {
                     )}
                 </div>
             ) : (
-                <div class="bg-black flex items-center justify-center w-screen h-screen">
-                    <img width={100} src={loadingGif} alt="Loading animation" />
+                <div className="bg-black flex items-center justify-center w-screen h-screen">
+                    <img width={300} src='./src/assets/imageKurt.png' alt="Loading animation" />
                 </div>
 
             )}
