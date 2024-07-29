@@ -14,6 +14,12 @@ const GelirveVergiYonetimiQuiz = () => {
 
     const [alreadyDone, setAlreadyDone] = useState(false);
     const [passedQuiz, setPassedQuiz] = useState(false);
+    const [storedUserId, setStoredUserId] = useState(null);
+
+    useEffect(() => {
+        const storedUserId = localStorage.getItem('userId');
+        setStoredUserId(storedUserId);
+    },[]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -74,7 +80,6 @@ const GelirveVergiYonetimiQuiz = () => {
     useEffect(() => { //Quiz daha önce yapılmış mı kontrol et
         const fetchData = async () => {
             
-            const storedUserId = localStorage.getItem('userId');
 
             try {
                 const raw = JSON.stringify({ "userId": storedUserId });
@@ -98,14 +103,19 @@ const GelirveVergiYonetimiQuiz = () => {
                 }
                 
             } catch (error) {
+                console.log(error)
                 setError(error.message);
             }
             };
-            fetchData();
+
+            if(storedUserId){
+
+                fetchData();
+            }
             
 
             
-    }, []);
+    }, [storedUserId]);
 
 
     useEffect(() => {
