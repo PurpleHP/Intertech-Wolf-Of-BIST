@@ -176,7 +176,7 @@ const GelirveVergiYonetimiQuiz = () => {
                 </div>
             ) : (
                 <div class="bg-black flex items-center justify-center w-screen h-screen">
-                    <img width={300} src='./src/assets/imageKurt.png' alt="Loading animation" />
+                    <img width={100} src='src\assets\loading.gif' alt="Loading animation" />
                 </div>
 
             )}
