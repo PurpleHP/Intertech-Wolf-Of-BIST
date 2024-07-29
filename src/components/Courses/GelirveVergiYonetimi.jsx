@@ -1,5 +1,5 @@
 import Footer from "../Footer";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import "./Course.css";
 
 import useApiRequest from './CoursesAPI'; // Adjust the import path as necessary
