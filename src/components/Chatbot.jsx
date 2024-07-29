@@ -1,9 +1,8 @@
 import React, { useState,useEffect, useRef  } from 'react';
 import { useNavigate } from "react-router-dom";
 
-import AILogo from '../assets/imageKurt.png';
-import AIGif from '../assets/kurt.gif';
-import UserLogo from "../assets/nerd.png";
+import UserLogo from '../assets/imageKurt.png';
+import AILogo from '../assets/chatbot.png';
 
 const ChatBot = () => {
 
