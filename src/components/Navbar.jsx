@@ -15,11 +15,12 @@ const Navbar = () => {
     };
 
     useEffect(() => {
-        const storedUserId = parseInt(localStorage.getItem('userId'));
+        const storedUserId = localStorage.getItem('userId');
         const storedUserName = localStorage.getItem('userName');
         console.log('storedUserId:', storedUserId); // Debug log
         console.log('storedUserName:', storedUserName); // Debug log
-        if (storedUserId && storedUserId !== 0) {
+
+        if (storedUserId && parseInt(storedUserId) !== 0) {
             setUserName(storedUserName);
         }
     }, []);
