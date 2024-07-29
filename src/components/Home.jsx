@@ -36,13 +36,6 @@ import { useEffect } from 'react';
 
 function App() {
 
-  useEffect(() => {
-    const storedUserId = localStorage.getItem('userId');
-    if(!storedUserId){
-      window.location.href = '/login';} 
-  },[]);
-
-
   return (
     <div className="App" id='home'>
       <NavbarComponent></NavbarComponent>

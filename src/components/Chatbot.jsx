@@ -7,6 +7,11 @@ import UserLogo from "../assets/nerd.png";
 
 const ChatBot = () => {
 
+    useEffect(() => {
+        const storedUserId = localStorage.getItem('userId');
+        if(!storedUserId){
+          window.location.href = '/login';} 
+      },[]);
 
     const randomMessage = [
         "Hello! How can I help you today?",

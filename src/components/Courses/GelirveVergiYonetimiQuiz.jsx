@@ -101,10 +101,12 @@ const GelirveVergiYonetimiQuiz = () => {
                 setError(error.message);
             }
             };
-        
-            fetchData();
+            if(userId){
+                fetchData();
+            }
+
             
-    }, []);
+    }, [storedUserId]);
 
 
     useEffect(() => {
@@ -195,11 +197,11 @@ const GelirveVergiYonetimiQuiz = () => {
                             <div className='score-section animate-pulse text-3xl'>
                                 Toplam {questions.length} sorudan {score} doğru cevap verdiniz.
                                 {passedQuiz ? (
-                                    <div className='text-2xl mt-4'>
+                                    <div className='text-center text-2xl mt-4'>
                                         Tebrikler! Testi başarıyla geçtiniz.
                                     </div>
                                 ) : (
-                                    <div className='text-2xl mt-4'>
+                                    <div className='text-center text-2xl mt-4'>
                                         Testi geçemediniz. Lütfen tekrar deneyin.
                                     </div>
                                 )}
