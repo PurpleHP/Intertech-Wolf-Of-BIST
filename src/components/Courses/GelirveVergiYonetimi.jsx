@@ -12,7 +12,7 @@ function GelirveVergiYonetimi() {
         const fetchData = async () => {
             const storedUserId = parseInt(localStorage.getItem('userId'));
 
-
+            console.log("Now checking if the user has already done the quiz or not")
             try {
                 const raw = JSON.stringify({ "eduId": 14, "userId": storedUserId, "RelStatus": "" });
         
@@ -25,11 +25,12 @@ function GelirveVergiYonetimi() {
         
                 const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/addEducationRelationByUser';
                 const response = await fetch(targetUrl, requestOptions);
-                const data = await response.json();
-                console.log(data);
+                //const data = await response.json();
+                console.log(response);
                 console.log("Added to new")
                 
             } catch (error) {
+                console.log("Couldnt add to new")
                 console.log(error)
             }
             };
