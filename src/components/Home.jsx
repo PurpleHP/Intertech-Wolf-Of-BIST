@@ -40,7 +40,7 @@ function App() {
     <div className="App" id='home'>
       <NavbarComponent></NavbarComponent>
       <Menu>
-      <h1 className='text-2xl'>Your Progress</h1>
+      <h1 className='text-2xl'>İlerlemeniz</h1>
             <div className='flex'>
                 <Card cardName="Finansal Okuryazarlık" to="/FinansalOkuryazarliginTemelleri" imgSrc={okuryazarlik} difficulty="easy">
                 </Card>
@@ -53,7 +53,7 @@ function App() {
         
 
 
-            <h1 className='text-2xl'>All Courses</h1>
+            <h1 className='text-2xl'>Tüm Kurslar</h1>
             <div className='flex'>
                 <Card cardName="Finansal Okuryazarlık" to="/FinansalOkuryazarliginTemelleri" imgSrc={okuryazarlik} difficulty="easy">
                 </Card>
