@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function CircularProgressBar({ progress }) {
+function CircularProgressBar() {
 
 
     const [progress, setProgress] = useState(0);
