@@ -100,11 +100,12 @@ body {
 }
 
 .progress-bar-wrapper {
-  width: 70px; /* container boyutu */
-  height: 70px; /*   */
+  width: 50px; /* container boyutu */
+  height: 50px; /*   */
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: 10px;
 }
 
 .circular-progress-bar {
