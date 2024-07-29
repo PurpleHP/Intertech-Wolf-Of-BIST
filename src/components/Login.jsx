@@ -31,7 +31,7 @@ function Login() {
       localStorage.setItem('userName', data.userName);
 
       // Egitim iliskileri
-      const eduIds = [1, 3, 4, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+      const eduIds = [1, 4, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
       const userId = data.userId;
       await addEducationRelations(userId, eduIds);
 
