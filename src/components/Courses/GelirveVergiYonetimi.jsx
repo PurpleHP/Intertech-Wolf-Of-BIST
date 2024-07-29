@@ -26,14 +26,15 @@ function GelirveVergiYonetimi() {
                 const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/addEducationRelationByUser';
                 const response = await fetch(targetUrl, requestOptions);
                 const data = await response.json();
-            
+                console.log(data);
+                console.log("Added to new")
                 
             } catch (error) {
                 console.log(error)
             }
             };
 
-                fetchData();
+            fetchData();
             
             
 
