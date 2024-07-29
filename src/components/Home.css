@@ -103,8 +103,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px; /* Boyut */
-  height: 50px; /* Boyut */
+  width: 70px; /* Boyut */
+  height: 70px; /* Boyut */
+  transform: scale(0.5); /* İsteğe bağlı olarak boyutu küçültme */
 }
 
 .progress-cards {
