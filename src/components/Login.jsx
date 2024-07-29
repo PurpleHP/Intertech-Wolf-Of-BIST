@@ -29,10 +29,46 @@ function Login() {
       console.log("Response:\n", data);
       localStorage.setItem('userId', data.userId.toString());
       localStorage.setItem('userName', data.userName);
+
+      // Egitim iliskileri
+      const eduIds = [1, 3, 4, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+      const userId = data.userId;
+      await addEducationRelations(userId, eduIds);
+
       // Kullanıcı başarılı bir şekilde kaydolduğunda yönlendirme
       navigate('/quiz');
     } catch (error) {
       console.error(error);
+    }
+  }
+
+  async function addEducationRelations(userId, eduIds) {
+    try {
+      const promises = eduIds.map(async (eduId) => {
+        const response = await fetch('https://financialtrainerfinal120240716125722.azurewebsites.net/api/Education/addEducationRelationByUser', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            eduId,
+            userId,
+            RelStatus: ""
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`Eğitim ilişkisi eklenemedi: ${eduId}`);
+        }
+
+        const data = await response.json();
+        console.log("Education Relation Response:\n", data);
+        return data;
+      });
+
+      await Promise.all(promises);
+    } catch (error) {
+      console.error('Eğitim ilişkisi eklenirken hata oluştu:', error);
     }
   }
 
