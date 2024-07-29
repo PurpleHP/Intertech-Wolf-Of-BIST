@@ -10,7 +10,7 @@ function GelirveVergiYonetimi() {
 
     useEffect(() => { //Quiz daha önce yapılmış mı kontrol et
         const fetchData = async () => {
-            const storedUserId = localStorage.getItem('userId');
+            const storedUserId = parseInt(localStorage.getItem('userId'));
 
 
             try {
