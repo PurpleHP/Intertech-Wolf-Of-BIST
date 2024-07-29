@@ -17,10 +17,14 @@ const Navbar = () => {
     useEffect(() => {
         const storedUserId = parseInt(localStorage.getItem('userId'));
         const storedUserName = localStorage.getItem('userName');
+        console.log('storedUserId:', storedUserId); // Debug log
+        console.log('storedUserName:', storedUserName); // Debug log
         if (storedUserId && storedUserId !== 0) {
             setUserName(storedUserName);
         }
     }, []);
+
+    console.log('userName:', userName); // Debug log
 
     return (
         <nav className={`navbar ${menuClick ? 'expanded' : ''}`}>
