@@ -46,11 +46,11 @@ function App() {
           <>
             <h1 className='text-2xl'>İlerlemeniz</h1>
             <div className='progress-container'>
+              <CircularProgressBar />
               <div className='progress-cards'>
                 <Card cardName="Finansal Okuryazarlık" to="/FinansalOkuryazarliginTemelleri" imgSrc={okuryazarlik} difficulty="easy" />
                 <Card cardName="Gelir ve Vergi Yönetimi" to="/GelirveVergiYonetimi" imgSrc={VergiGelir} difficulty="medium" />
               </div>
-              <CircularProgressBar />
             </div>
           </>
         ) : null}
