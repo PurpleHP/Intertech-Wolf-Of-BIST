@@ -33,7 +33,7 @@ function Login() {
       setApiResponse(data);
 
       localStorage.setItem('userId', data.userId);
-      localStorage.setItem('name', data.name);
+      localStorage.setItem('name', data.userName);
       // Kullanıcı başarılı bir şekilde kaydolduğunda yönlendirme
       navigate('/quiz');
     } catch (error){
@@ -60,7 +60,7 @@ function Login() {
       const data = await response.json();
       setApiResponse(data);
       localStorage.setItem('userId', data.userId);
-      localStorage.setItem('name', data.name);
+      localStorage.setItem('name', data.userName);
       window.location.href = '/home'; 
     } catch (error){
       console.error(error);

@@ -101,12 +101,11 @@ const GelirveVergiYonetimiQuiz = () => {
                 setError(error.message);
             }
             };
-            if(userId){
-                fetchData();
-            }
+            fetchData();
+            
 
             
-    }, [storedUserId]);
+    }, []);
 
 
     useEffect(() => {
