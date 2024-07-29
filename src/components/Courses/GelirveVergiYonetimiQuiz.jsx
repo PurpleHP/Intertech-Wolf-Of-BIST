@@ -96,7 +96,7 @@ const GelirveVergiYonetimiQuiz = () => {
                 redirect: "follow"
                 };
         
-                const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/getEducationByUser';
+                const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Education/getEducationByUser';
                 const response = await fetch(targetUrl, requestOptions);
                 const data = await response.json();
                 for (let i = 0; i < data.length; i++) {
@@ -189,7 +189,7 @@ const GelirveVergiYonetimiQuiz = () => {
                         body: raw,
                         redirect: "follow"
                     };
-                    const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/userEducationComplete';
+                    const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Education/userEducationComplete';
                     const response = await fetch(targetUrl, requestOptions);
                     setAlreadyDone(true)
                 }
