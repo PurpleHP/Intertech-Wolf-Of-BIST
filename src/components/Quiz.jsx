@@ -271,6 +271,7 @@ const Quiz = () => {
                     if (prevTimer <= 1) {
                         clearInterval(timerInterval);
                         setShowScore(true);
+                        completeUserEducation();
                         return 0;
                     }
                     return prevTimer - 1;
@@ -291,11 +292,55 @@ const Quiz = () => {
             setCurrentQuestion(nextQuestion);
         } else {
             setShowScore(true);
+            completeUserEducation();
         }
     };
 
     const startQuiz = () => {
         setQuizStarted(true);
+    };
+
+    const completeUserEducation = async () => {
+        const userId = localStorage.getItem('userId');
+        if (!userId) return;
+
+        let eduIds = [];
+
+        if (score <= 19) {
+            eduIds = [];
+        } else if (score >= 19 && score <= 25) {
+            eduIds = [1, 4, 7, 9, 10];
+        } else {
+            eduIds = [1, 4, 7, 9, 10, 11, 12, 13, 14, 15];
+        }
+
+        try {
+            const promises = eduIds.map(async (eduId) => {
+                const response = await fetch('https://financialtrainerfinal120240716125722.azurewebsites.net/api/Education/userEducationComplete', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        eduId,
+                        userId,
+                        RelStatus: ""
+                    }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Eğitim ilişkisi eklenemedi: ${eduId}`);
+                }
+
+                const data = await response.json();
+                console.log("Education Relation Response:\n", data);
+                return data;
+            });
+
+            await Promise.all(promises);
+        } catch (error) {
+            console.error('Eğitim ilişkisi eklenirken hata oluştu:', error);
+        }
     };
 
     return (
