@@ -6,40 +6,65 @@ import useApiRequest from './CoursesAPI'; // Adjust the import path as necessary
 
 function GelirveVergiYonetimi() {
     //MARK: Paragraf Bölümü
-    const { education, Header } = useApiRequest(14);
+    const { education, Header } = useApiRequest(14); //hardcoded
 
-    useEffect(() => { //Quiz daha önce yapılmış mı kontrol et
-        const fetchData = async () => {
+    useEffect(() => {
+        const checkIfDone = async () => {
             const storedUserId = parseInt(localStorage.getItem('userId'));
-
-            console.log("Now checking if the user has already done the quiz or not")
+    
+    
+    
             try {
-                const raw = JSON.stringify({ "eduId": 14, "userId": storedUserId, "RelStatus": "" });
-        
+                const raw = JSON.stringify({ "userId": storedUserId });
+    
                 const requestOptions = {
-                method: "POST",
-                headers: { 'Content-Type': 'application/json' },
-                body: raw,
-                redirect: "follow"
+                    method: "POST",
+                    headers: { 'Content-Type': 'application/json' },
+                    body: raw,
+                    redirect: "follow"
                 };
-        
+    
+                const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Education/getEducationByUser';
+                const response = await fetch(targetUrl, requestOptions);
+                const data = await response.json();
+    
+                let isDone = false;
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].eduId === 14 && (data[i].progress === "DONE" || data[i].progress === "INPROGRESS")) { //hardcoded
+                        isDone = true;
+                        break;
+                    }
+                }
+    
+                if (!isDone) {
+                    setNew(storedUserId);
+                }
+            } catch (error) {
+                console.error('Error fetching education data:', error);
+                setError(error.message);
+            }
+        };
+    
+        const setNew = async (userId) => {
+            try {
+                const raw = JSON.stringify({ "eduId": 14, "userId": userId, "RelStatus": "" }); //hardcoded
+    
+                const requestOptions = {
+                    method: "POST",
+                    headers: { 'Content-Type': 'application/json' },
+                    body: raw,
+                    redirect: "follow"
+                };
+    
                 const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Education/addEducationRelationByUser';
                 const response = await fetch(targetUrl, requestOptions);
-                //const data = await response.json();
-                console.log(response);
-                console.log("Added to new")
-                
+                console.log('Added to new:', response);
             } catch (error) {
-                console.log("Couldnt add to new")
-                console.log(error)
+                console.error('Could not add to new:', error);
             }
-            };
-
-            fetchData();
-            
-            
-
-            
+        };
+    
+        checkIfDone();
     }, []);
 
 
@@ -59,6 +84,8 @@ function GelirveVergiYonetimi() {
     const [btnNextVisible, setBtnNextVisible] = useState(true);
     const [btnPrevVisible, setBtnPrevVisible] = useState(false);
     const [btnQuizVisible, setBtnQuizVisible] = useState(false);
+
+
 
     const changeParagraph = () => {
         if (currentParagraph < allParagraphs.length - 1) {

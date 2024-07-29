@@ -6,7 +6,7 @@ const GelirveVergiYonetimiQuiz = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [showScore, setShowScore] = useState(false);
     const [score, setScore] = useState(0);
-    const [timer, setTimer] = useState(60); // Quiz Süresi
+    const [timer, setTimer] = useState(60); // Quiz Süresi //hardcoded
     const [questions, setQuestions] = useState([]); // STATE FOR QUESTIONS
     const [quizReady, setQuizReady] = useState(false);
     const [quizIds, setQuizIds] = useState([]);
@@ -29,7 +29,7 @@ const GelirveVergiYonetimiQuiz = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const raw = JSON.stringify({ "eduId": 14 });
+                const raw = JSON.stringify({ "eduId": 14 }); //hardcoded
 
                 const requestOptions = {
                     method: "POST",
@@ -100,7 +100,7 @@ const GelirveVergiYonetimiQuiz = () => {
                 const response = await fetch(targetUrl, requestOptions);
                 const data = await response.json();
                 for (let i = 0; i < data.length; i++) {
-                    if (data[i].eduId === 14) {
+                    if (data[i].eduId === 14) { //hardcoded
                         if(data[i].progress === "DONE"){
                             setAlreadyDone(true);
                         }
@@ -182,7 +182,7 @@ const GelirveVergiYonetimiQuiz = () => {
                 //DONE
                 if(alreadyDone === false){
                     const storedUserId = localStorage.getItem('userId');
-                    const raw = JSON.stringify({ "eduId": 14, "userId": storedUserId, "RelStatus": "" });
+                    const raw = JSON.stringify({ "eduId": 14, "userId": storedUserId, "RelStatus": "" }); //hardcoded
                     const requestOptions = {
                         method: "POST",
                         headers: { 'Content-Type': 'application/json' },
