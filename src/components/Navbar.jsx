@@ -1,16 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faInfoCircle, faEnvelope, faSignInAlt, faBars, faRobot, faBook } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faInfoCircle, faEnvelope, faSignInAlt, faBars, faRobot, faBook, faUser } from '@fortawesome/free-solid-svg-icons';
 import './Navbar.css';
 import Logo from '../assets/logo.png';
 
 const Navbar = () => {
     const [isMobile, setIsMobile] = useState(false);
     const [menuClick, setMenuClick] = useState(false);
+    const [userName, setUserName] = useState(null);
+
     const handleMenuClick = () => {
         setIsMobile(!isMobile);
         setMenuClick(!menuClick);
     };
+
+    useEffect(() => {
+        const storedUserId = parseInt(localStorage.getItem('userId'));
+        const storedUserName = localStorage.getItem('userName');
+        if (storedUserId && storedUserId !== 0) {
+            setUserName(storedUserName);
+        }
+    }, []);
 
     return (
         <nav className={`navbar ${menuClick ? 'expanded' : ''}`}>
@@ -29,7 +39,11 @@ const Navbar = () => {
                 <li><a href="sozluk"><FontAwesomeIcon icon={faBook} />Finansal Sözlük</a></li>
                 <li><a href="about"><FontAwesomeIcon icon={faInfoCircle} />Hakkımızda</a></li>
                 <li><a href="contact"><FontAwesomeIcon icon={faEnvelope} />Bize Ulaşın</a></li>
-                <li><a href="login"><FontAwesomeIcon icon={faSignInAlt} />Giriş Yap</a></li>
+                {userName ? (
+                    <li><a href="profile"><FontAwesomeIcon icon={faUser} />{userName}</a></li>
+                ) : (
+                    <li><a href="login"><FontAwesomeIcon icon={faSignInAlt} />Giriş Yap</a></li>
+                )}
             </ul>
         </nav>
     );
