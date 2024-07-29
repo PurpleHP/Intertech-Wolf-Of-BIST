@@ -5,13 +5,10 @@ import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [apiResponse, setApiResponse] = useState(null);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  async function registerUser(name, email, password){
-    try{
+  async function registerUser(name, email, password) {
+    try {
       const response = await fetch('https://financialtrainerfinal120240716125722.azurewebsites.net/api/Login/register', {
         method: 'POST',
         headers: {
@@ -24,23 +21,23 @@ function Login() {
         }),
       });
 
-      if(!response.ok){
+      if (!response.ok) {
         throw new Error('Kayıt İşlemi Başarısız Oldu!');
       }
       const data = await response.json();
       setApiResponse(data);
       console.log("Response:\n", data);
-      localStorage.setItem('userId', parseInt(data.userId));
-      localStorage.setItem('name', data.userName);
+      localStorage.setItem('userId', data.userId.toString());
+      localStorage.setItem('userName', data.userName);
       // Kullanıcı başarılı bir şekilde kaydolduğunda yönlendirme
       navigate('/quiz');
-    } catch (error){
+    } catch (error) {
       console.error(error);
     }
   }
 
-  async function loginUser(email, password){
-    try{
+  async function loginUser(email, password) {
+    try {
       const response = await fetch('https://financialtrainerfinal120240716125722.azurewebsites.net/api/Login/verify', {
         method: 'POST',
         headers: {
@@ -60,10 +57,10 @@ function Login() {
       setApiResponse(data);
       console.log("Response:\n", data);
 
-      localStorage.setItem('userId', parseInt(data.userId));
-      localStorage.setItem('name', data.userName);
-      window.location.href = '/home'; 
-    } catch (error){
+      localStorage.setItem('userId', data.userId.toString());
+      localStorage.setItem('userName', data.userName);
+      window.location.href = '/home';
+    } catch (error) {
       console.error(error);
       alert('Giriş yapılamadı. Lütfen e-posta adresinizi ve şifrenizi kontrol edin.');
     }
@@ -82,7 +79,7 @@ function Login() {
     e.preventDefault();
     const newEmail = e.target.email.value;
     const newPassword = e.target.passw.value;
-    
+
     await loginUser(newEmail, newPassword);
   }
 
@@ -94,7 +91,7 @@ function Login() {
           <input type="checkbox" id="chk" aria-hidden="true" />
           <div className="signup">
             <form onSubmit={handleRegister}>
-              <label className="girislabel" htmlFor="chk" aria-hidden="true">Kayıt Ol</label> 
+              <label className="girislabel" htmlFor="chk" aria-hidden="true">Kayıt Ol</label>
               <input className="girisinput" type="text" name="ad" placeholder="Ad" required />
               <input className="girisinput" type="text" name="soyad" placeholder="Soyad" required />
               <input className="girisinput" type="email" name="email" placeholder="Email" required />
