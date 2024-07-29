@@ -3,7 +3,7 @@ import NavbarComponent from './Navbar.jsx';
 import Menu from './Menu.jsx';
 import Card from './Card.jsx';
 import Footer from './Footer.jsx';
-
+import { useState, useEffect } from 'react';
 
 //--------------------------
 //MARK: Images
@@ -15,97 +15,90 @@ import butceharcama from "../assets/kolay/butce-harcama.jpg";
 import kredikartlari from "../assets/kolay/kredi-kartlari.jpg";
 import tasarruf from "../assets/kolay/tasarruf-acil-durum-fonlari.jpg";
 
-
 //Medium Images
-import VergiGelir from "../assets/orta/vergi-gelir.png"; 
-import DebtImage from "../assets/orta/borc-yonetimi.png"; 
-import kredi from "../assets/orta/kredi.jpg" 
-import kisiselFinansalPlanlama from "../assets/orta/kisisel-finansal-planlama.jpg" 
-import paraSermayePiyasasi from "../assets/orta/para-sermaye-piyasasi.png" 
-
+import VergiGelir from "../assets/orta/vergi-gelir.png";
+import DebtImage from "../assets/orta/borc-yonetimi.png";
+import kredi from "../assets/orta/kredi.jpg";
+import kisiselFinansalPlanlama from "../assets/orta/kisisel-finansal-planlama.jpg";
+import paraSermayePiyasasi from "../assets/orta/para-sermaye-piyasasi.png";
 
 //Hard Images
 import yatirimstrateji from "../assets/zor/kisisel-yatirim-stratejisi.jpg"; //ok
 import borsa from "../assets/zor/borsa.jpg"; //ok
 import kripto from "../assets/zor/kripto.jpg";
 import risk from "../assets/zor/risk.jpg";
-import { useEffect } from 'react';
-
-
 //-------------------------
 
 function App() {
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    const storedUserId = parseInt(localStorage.getItem('userId'));
+    setUserId(storedUserId);
+  }, []);
 
   return (
     <div className="App" id='home'>
       <NavbarComponent></NavbarComponent>
       <Menu>
-      <h1 className='text-2xl'>İlerlemeniz</h1>
+        {userId && userId !== 0 ? (
+          <>
+            <h1 className='text-2xl'>İlerlemeniz</h1>
             <div className='flex'>
-                <Card cardName="Finansal Okuryazarlık" to="/FinansalOkuryazarliginTemelleri" imgSrc={okuryazarlik} difficulty="easy">
-                </Card>
-                <Card cardName="Gelir ve Vergi Yönetimi" to="/GelirveVergiYonetimi" imgSrc={VergiGelir} difficulty="medium" >
-                </Card>
-              
+              <Card cardName="Finansal Okuryazarlık" to="/FinansalOkuryazarliginTemelleri" imgSrc={okuryazarlik} difficulty="easy">
+              </Card>
+              <Card cardName="Gelir ve Vergi Yönetimi" to="/GelirveVergiYonetimi" imgSrc={VergiGelir} difficulty="medium" >
+              </Card>
             </div>
+          </>
+        ) : null}
       </Menu>
       <Menu>
-        
-
-
-            <h1 className='text-2xl'>Tüm Kurslar</h1>
-            <div className='flex'>
-                <Card cardName="Finansal Okuryazarlık" to="/FinansalOkuryazarliginTemelleri" imgSrc={okuryazarlik} difficulty="easy">
-                </Card>
-                <Card cardName="Bankacılık Hizmetleri" to="/BankacilikHizmetleri" imgSrc={bankacilikHizmetleri} difficulty="easy">
-                    
-                </Card>
-            </div>
-            <div className='flex'>
-                <Card cardName="Bütçe ve Harcama" to="/ButceveHarcama" imgSrc={butceharcama} difficulty="easy">
-                </Card>
-                <Card cardName="Kredi Kartları" to="/KrediKartlari" imgSrc={kredikartlari} difficulty="easy">
-                    
-                </Card>
-            </div>
-            <div className='flex'>
-                <Card cardName="Tasarruf ve Acil Durum Fonları" to="/TasarrufveAcilDurumFonlari" imgSrc={tasarruf} difficulty="easy">
-                </Card>
-                <Card cardName="Borç Yönetimi" to="/BorcYonetimi" imgSrc={DebtImage} difficulty="medium">
-                </Card>
-            </div>
-
-            <div className='flex'>
-                
-                <Card cardName="Kredi" to="/Kredi" imgSrc={kredi} difficulty="medium">
-                    </Card>
-                        
-                <Card cardName="Kişisel Finansal Planlama" to="/KisiselFinansalPlanlama" imgSrc={kisiselFinansalPlanlama} difficulty="medium">
-  
-              </Card>
-            </div>
-            <div className='flex'>
-            <Card cardName="Gelir ve Vergi Yönetimi" to="/GelirveVergiYonetimi" imgSrc={VergiGelir} difficulty="medium">
-                    </Card>
-                    <Card cardName="Para ve Sermaye Piyasası" to="/ParaveSermayePiyasasi" imgSrc={paraSermayePiyasasi} difficulty="medium">
-                    
-                    </Card>
-            </div>
-            <div className='flex'>
-              <Card cardName="Kişisel Yatırım Stratejisi" to="/KisiselYatirimStratejisi" imgSrc={yatirimstrateji} difficulty="hard">
-              </Card>
-              <Card cardName="Borsa" to= "/Borsa" imgSrc={borsa} difficulty="hard">
-              </Card>
-            </div>
-            <div className='flex'>
-              <Card cardName="Kripto" to="/Kripto" imgSrc={kripto} difficulty="hard">
-              </Card>
-              <Card cardName="Risk" to="/Risk" imgSrc={risk} difficulty="hard">
-              </Card>
-            </div>
+        <h1 className='text-2xl'>Tüm Kurslar</h1>
+        <div className='flex'>
+          <Card cardName="Finansal Okuryazarlık" to="/FinansalOkuryazarliginTemelleri" imgSrc={okuryazarlik} difficulty="easy">
+          </Card>
+          <Card cardName="Bankacılık Hizmetleri" to="/BankacilikHizmetleri" imgSrc={bankacilikHizmetleri} difficulty="easy">
+          </Card>
+        </div>
+        <div className='flex'>
+          <Card cardName="Bütçe ve Harcama" to="/ButceveHarcama" imgSrc={butceharcama} difficulty="easy">
+          </Card>
+          <Card cardName="Kredi Kartları" to="/KrediKartlari" imgSrc={kredikartlari} difficulty="easy">
+          </Card>
+        </div>
+        <div className='flex'>
+          <Card cardName="Tasarruf ve Acil Durum Fonları" to="/TasarrufveAcilDurumFonlari" imgSrc={tasarruf} difficulty="easy">
+          </Card>
+          <Card cardName="Borç Yönetimi" to="/BorcYonetimi" imgSrc={DebtImage} difficulty="medium">
+          </Card>
+        </div>
+        <div className='flex'>
+          <Card cardName="Kredi" to="/Kredi" imgSrc={kredi} difficulty="medium">
+          </Card>
+          <Card cardName="Kişisel Finansal Planlama" to="/KisiselFinansalPlanlama" imgSrc={kisiselFinansalPlanlama} difficulty="medium">
+          </Card>
+        </div>
+        <div className='flex'>
+          <Card cardName="Gelir ve Vergi Yönetimi" to="/GelirveVergiYonetimi" imgSrc={VergiGelir} difficulty="medium">
+          </Card>
+          <Card cardName="Para ve Sermaye Piyasası" to="/ParaveSermayePiyasasi" imgSrc={paraSermayePiyasasi} difficulty="medium">
+          </Card>
+        </div>
+        <div className='flex'>
+          <Card cardName="Kişisel Yatırım Stratejisi" to="/KisiselYatirimStratejisi" imgSrc={yatirimstrateji} difficulty="hard">
+          </Card>
+          <Card cardName="Borsa" to="/Borsa" imgSrc={borsa} difficulty="hard">
+          </Card>
+        </div>
+        <div className='flex'>
+          <Card cardName="Kripto" to="/Kripto" imgSrc={kripto} difficulty="hard">
+          </Card>
+          <Card cardName="Risk" to="/Risk" imgSrc={risk} difficulty="hard">
+          </Card>
+        </div>
       </Menu>
       <div id='contact'>
-
         <Footer></Footer>
       </div>
     </div>
