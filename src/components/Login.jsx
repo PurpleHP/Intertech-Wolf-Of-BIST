@@ -10,8 +10,6 @@ function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-
-
   async function registerUser(name, email, password){
     try{
       const response = await fetch('https://financialtrainerfinal120240716125722.azurewebsites.net/api/Login/register', {
@@ -66,6 +64,7 @@ function Login() {
       window.location.href = '/home'; 
     } catch (error){
       console.error(error);
+      alert('Login failed. Please check your email and password.');
     }
   }
 
