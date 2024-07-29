@@ -109,7 +109,7 @@ body {
 }
 
 .circular-progress-bar {
-  transform: scale(0.5); /* boyut küçültme */
+  transform: scale(0.4); /* boyut küçültme */
 }
 
 .progress-cards {
