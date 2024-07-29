@@ -175,7 +175,7 @@ const GelirveVergiYonetimiQuiz = () => {
                     )}
                 </div>
             ) : (
-                <div className="bg-black flex items-center justify-center w-screen h-screen">
+                <div class="bg-black flex items-center justify-center w-screen h-screen">
                     <img width={300} src='./src/assets/imageKurt.png' alt="Loading animation" />
                 </div>
 
