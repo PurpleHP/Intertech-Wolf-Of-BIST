@@ -52,10 +52,11 @@ function Login() {
         }),
       });
 
-      if(!response.ok){
+      const data = await response.json();
+      if (data.userId === 0) {
         throw new Error('Login failed');
       }
-      const data = await response.json();
+
       setApiResponse(data);
       console.log("Response:\n", data);
 
@@ -74,7 +75,6 @@ function Login() {
     const newEmail = e.target.email.value;
     const newPassword = e.target.passw.value;
 
-    // Directly use newName, newEmail, and newPassword here
     await registerUser(newName, newEmail, newPassword);
   }
 
@@ -83,7 +83,6 @@ function Login() {
     const newEmail = e.target.email.value;
     const newPassword = e.target.passw.value;
     
-    //send post request to the server
     await loginUser(newEmail, newPassword);
   }
 
@@ -100,7 +99,7 @@ function Login() {
               <input className="girisinput" type="text" name="soyad" placeholder="Soyad" required />
               <input className="girisinput" type="email" name="email" placeholder="Email" required />
               <input className="girisinput" type="password" name="passw" placeholder="Şifre" required />
-              <button  className="girisbutton" >Kayıt Ol</button>
+              <button className="girisbutton">Kayıt Ol</button>
             </form>
           </div>
 
