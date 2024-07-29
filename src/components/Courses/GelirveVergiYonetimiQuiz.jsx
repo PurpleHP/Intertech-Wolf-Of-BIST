@@ -18,7 +18,7 @@ const GelirveVergiYonetimiQuiz = () => {
     const [storedUserId, setStoredUserId] = useState(null);
 
     useEffect(() => {
-        const storedUserId =  localStorage.getItem('userId');
+        const storedUserId = parseInt(localStorage.getItem('userId')) ;
         console.log(storedUserId);
         if (typeof storedUserId === 'string' || storedUserId instanceof String){
             console.log("Stored User Id is a string");
