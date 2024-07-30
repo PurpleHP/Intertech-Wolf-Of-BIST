@@ -1,3 +1,4 @@
+
 import Footer from "../Footer";
 import { useState } from "react";
 import "./Course.css";
@@ -6,12 +7,12 @@ import useApiRequest from './CoursesAPI'; // Adjust the import path as necessary
 
 function FinansalOkuryazarliginTemelleri() {
     //MARK: Paragraf Bölümü
-    const education = []
+    const { education, Header } = useApiRequest(1);
 
     const summary = { title: "Eğitim Denizi Nedir?", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
 
     const allParagraphs = [
-        " \u2003 Merhaba, Eğitim Denizi platformundaki ilk eğitimine hoş geldin! Eğitim Denizi her seviyesinden finansa meraklı öğrencilerin kendilerini geliştirebilecekleri bir alandır. \n \u2003 Her eğitim modülü, açıklayıcı metinlerinden ve bir adet kısa testten oluşur. Eğitim modüllerine başlamadan önce soldaki menüde bulunan sözlük üzerinden ilgili eğitim için gerekli olan kelimeleri öğrenmelisin. \n \u2003 Bu eğitim modülüne başlamadan önce sözlüğün ilk 10 sayfasını okuduğundan emin ol! \n Hazırsan başlayalım \u2003. Finansal okuryazarlık, bireylerin kişisel finans yönetimi, yatırım, tasarruf, borçlanma ve bütçeleme konularında bilgi ve becerilere sahip olmalarını ifade eder. Bu kavram, bireylerin finansal kararlarını bilinçli bir şekilde alabilmeleri ve ekonomik hedeflerine ulaşabilmeleri için gerekli temel bilgi ve becerileri kazandırmayı amaçlar.",
+        " \u2003 Merhaba, Eğitim Denizi platformundaki ilk eğitimine hoş geldin! Eğitim Denizi her seviyesinden finansa meraklı öğrencilerin kendilerini geliştirebilecekleri bir alandır. \n \u2003 Her eğitim modülü, açıklayıcı metinlerinden ve bir adet kısa testten oluşur. Eğitim modüllerine başlamadan önce soldaki menüde bulunan sözlük üzerinden ilgili eğitim için gerekli olan kelimeleri öğrenmelisin. \n \u2003 Bu eğitim modülü için sözlüğün ilk 10 sayfasını okuduğundan emin ol!", "Finansal okuryazarlık, bireylerin kişisel finans yönetimi, yatırım, tasarruf, borçlanma ve bütçeleme konularında bilgi ve becerilere sahip olmalarını ifade eder. Bu kavram, bireylerin finansal kararlarını bilinçli bir şekilde alabilmeleri ve ekonomik hedeflerine ulaşabilmeleri için gerekli temel bilgi ve becerileri kazandırmayı amaçlar.",
     ];
 
     allParagraphs.push(...education);
