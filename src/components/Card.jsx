@@ -24,6 +24,7 @@ const Card = ({ children, to, cardName, imgSrc, difficulty, EducationId, isFinis
 
     //adds the finished tick png to the card if the course is finished
     useEffect(() => {
+        
         if (isFinished) {
             //add Tick to the card  
             setShowTick(true);
