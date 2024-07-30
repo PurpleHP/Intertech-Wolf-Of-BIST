@@ -25,6 +25,7 @@ import BankacilikHizmetleriQuiz from './components/Courses/BankacilikHizmetleriQ
 import ButceveHarcama from './components/Courses/ButceveHarcama';
 import ButceveHarcamaQuiz from './components/Courses/ButceveHarcamaQuiz';
 import KrediKartlari from './components/Courses/KrediKartlari';
+import KrediKartlariQuiz from './components/Courses/KrediKartlariQuiz';
 import TasarrufveAcilDurumFonlari from './components/Courses/TasarrufveAcilDurumFonlari';
 import BorcYonetimi from './components/Courses/BorcYonetimi';
 import Kredi from './components/Courses/Kredi';
@@ -64,6 +65,7 @@ function App() {
           <Route path='/ButceveHarcama' element={<ButceveHarcama />} />
           <Route path='/ButceveHarcamaQuiz' element={<ButceveHarcamaQuiz />} />
           <Route path='/KrediKartlari' element={<KrediKartlari />} />
+          <Route path='/KrediKartlariQuiz' element={<KrediKartlariQuiz />} />
           <Route path='/TasarrufveAcilDurumFonlari' element={<TasarrufveAcilDurumFonlari />} />
           <Route path='/BorcYonetimi' element={<BorcYonetimi />} />
           <Route path='/Kredi' element={<Kredi />} />
