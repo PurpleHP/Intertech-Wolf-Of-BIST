@@ -36,7 +36,7 @@ function App() {
   const educationIds = [1, 7, 4, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
   const formattedEducationIds = educationIds.map(id => ({
     id: id,
-    isFinished: false
+    isFinishedList: false
   }));
   let notFinishedEducationIds = [1, 7, 4, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
  
@@ -44,12 +44,6 @@ function App() {
   //2 tane storelamak için
   let progress = [];
 
-  const updateProgress = (educationId, isFinished) => {
-    const updatedEducationIds = formattedEducationIds.map(edu => 
-      edu.id === educationId ? { ...edu, isFinished } : edu
-    );
-    // Update the state or perform any other necessary actions
-  };
 
 
   useEffect(() => {
@@ -74,7 +68,7 @@ function App() {
             for (let i = 0; i < data.length; i++) {
                 if (data[i].status === "DONE") {
                     completedCount++;
-                    formattedEducationIds[data[i].eduId].isFinished = true;
+                    formattedEducationIds[data[i].eduId].isFinishedList = true;
                     
                 }
                 else if (twoCourse < 2) {
@@ -119,8 +113,8 @@ function App() {
         <h1 className='text-2xl'>Tüm Kurslar</h1>
         <div className='flex'>
           <Card cardName="Finansal Okuryazarlık" to="/FinansalOkuryazarliginTemelleri" imgSrc={okuryazarlik} difficulty="easy" EducationId="1" 
-            isFinished={formattedEducationIds.find(item => item.id === 1)?.isFinished}/>
-          <Card cardName="Bankacılık Hizmetleri" to="/BankacilikHizmetleri" imgSrc={bankacilikHizmetleri} difficulty="easy" EducationId="7" isFinished={formattedEducationIds[6].isFinished} updateProgress={updateProgress} />
+            isFinished={formattedEducationIds.find(item => item.id === 1)?.isFinishedList}/>
+          <Card cardName="Bankacılık Hizmetleri" to="/BankacilikHizmetleri" imgSrc={bankacilikHizmetleri} difficulty="easy" EducationId="7" isFinished={formattedEducationIds.find(item => item.id === 1)?.isFinishedList} />
         </div>
         <div className='flex'>
           <Card cardName="Bütçe ve Harcama" to="/ButceveHarcama" imgSrc={butceharcama} difficulty="easy" EducationId="4" isFinished={true}/>
