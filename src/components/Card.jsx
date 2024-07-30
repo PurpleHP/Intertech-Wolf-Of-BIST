@@ -28,7 +28,6 @@ const Card = ({ children, to, cardName, imgSrc, difficulty, EducationId, isFinis
         if (isFinished) {
             //add Tick to the card  
             setShowTick(true);
-
         }
     }, []);
 
@@ -58,13 +57,13 @@ const Card = ({ children, to, cardName, imgSrc, difficulty, EducationId, isFinis
                 observer.unobserve(cardElement);
             }
         };
-    }, [difficulty, imgSrc, currentImgSrc, EducationId]); // Include currentImgSrc in the dependency array
-//            {showTick && <img src={tickImage} alt="Tick" className="tick-image" />}
+    }, [difficulty, imgSrc, currentImgSrc, EducationId, isFinished]); // Include currentImgSrc in the dependency array
+//           
 
     return (
         <div className="card" onClick={() => navigate(to)} id={getCardId(difficulty)}>
             {isVisible && <img src={currentImgSrc} className="card-logo" alt='logo' />}
-            <img src={tickImage} alt="Tick" className="tick-image" />
+            {showTick && <img src={tickImage} alt="Tick" className="tick-image" />}
             <div className="card-text">{cardName}</div>
             {children}
         </div>
