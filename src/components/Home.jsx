@@ -73,7 +73,7 @@ function App() {
                 if (data[i].status === "DONE") {
                     completedCount++;
                     formattedEducationIds[data[i].eduId].isFinishedList = true;
-                    
+                    const education = formattedEducationIds.find(edu => edu.id === data[i].eduId);
                 }
                 else if (twoCourse < 2) {
                   progress.push(data[i]);
