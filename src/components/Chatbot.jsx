@@ -48,11 +48,11 @@ const ChatBot = () => {
         const messageText = document.querySelector('input').value;
         document.querySelector('input').value = ''; 
         if(messageText.trim().length === 0) {
-            alert("Please enter a message to send.");
+            alert("Lütfen bir mesaj yazın.");
             return;
         }
-        if(messageText.trim().length >= 250) {
-            alert("Please enter a message shorter than 500 characters.");
+        if(messageText.trim().length >= 500) {
+            alert("Lütfen daha kısa bir mesaj yazın.");
             return;
         }
     
@@ -93,7 +93,7 @@ const ChatBot = () => {
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert("Server is down. Please try again later.");
+                    alert("Sunucularımızda sorun var. Lütfen daha sonra tekrar deneyin.");
                 });
         } catch (error) {
             console.error("Failed to fetch AI response:", error);
