@@ -45,16 +45,24 @@
     overflow: hidden;
     text-overflow: ellipsis;
     pointer-events: none;
+    z-index: 15;
 }
 
-.card-image {
+.parent-container {
+    position: relative; /* Ensure the parent container is positioned */
+}
+
+.tick-image {
     position: absolute;
-    bottom: 10px;
-    left: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     pointer-events: none;
-    z-index: 10;
+    z-index: 1;
+    width: 100% !important; /* Set the width to 100% of the parent */
+    height: 100% !important; /* Set the desired height */
+    background-color: rgba(11, 9, 10, 0.5);
 }
-
 @media screen and (max-width: 768px) {
     .card {
         width: 90%;

@@ -7,7 +7,9 @@ import useApiRequest from './CoursesAPI'; // Adjust the import path as necessary
 
 function FinansalOkuryazarliginTemelleri() {
     //MARK: Paragraf Bölümü
-    const { education, Header } = useApiRequest(1);
+    //const { education, Header } = useApiRequest(1);
+    const education = []
+    const Header = []
 
     const summary = { title: "Eğitim Denizi Nedir?", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
 
