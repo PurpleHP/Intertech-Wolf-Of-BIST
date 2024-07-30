@@ -37,7 +37,6 @@ import ParaveSermayePiyasasi from './components/Courses/ParaveSermayePiyasasi';
 import KisiselYatirimStratejisi from './components/Courses/KisiselYatirimStratejisi';
 import Borsa from './components/Courses/Borsa';
 import Kripto from './components/Courses/Kripto';
-import KrediQuiz from './components/Courses/KrediQuiz';
 import Bitki from './components/bitki';
 import ProgressBar from './components/ProgressBar';
 
