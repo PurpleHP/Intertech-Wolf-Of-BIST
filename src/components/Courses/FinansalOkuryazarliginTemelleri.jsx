@@ -12,14 +12,15 @@ function FinansalOkuryazarliginTemelleri() {
     const Header = []
 
     const summary = { title: "Eğitim Denizi Nedir?", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
+    const summary2 = { title: "Finansal Okuryazarlık Nedir?", index: 1 }; // Özetin indexini 0 olarak ayarlıyoruz.
 
     const allParagraphs = [
-        " \u2003 Merhaba, Eğitim Denizi platformundaki ilk eğitimine hoş geldin! Eğitim Denizi her seviyesinden finansa meraklı öğrencilerin kendilerini geliştirebilecekleri bir alandır. \n \u2003 Her eğitim modülü, açıklayıcı metinlerinden ve bir adet kısa testten oluşur. Eğitim modüllerine başlamadan önce soldaki menüde bulunan sözlük üzerinden ilgili eğitim için gerekli olan kelimeleri öğrenmelisin. \n \u2003 Bu eğitim modülü için sözlüğün ilk 10 sayfasını okuduğundan emin ol!", "Finansal okuryazarlık, bireylerin kişisel finans yönetimi, yatırım, tasarruf, borçlanma ve bütçeleme konularında bilgi ve becerilere sahip olmalarını ifade eder. Bu kavram, bireylerin finansal kararlarını bilinçli bir şekilde alabilmeleri ve ekonomik hedeflerine ulaşabilmeleri için gerekli temel bilgi ve becerileri kazandırmayı amaçlar.",
+        " \u2003 Merhaba, Eğitim Denizi platformundaki ilk eğitimine hoş geldin! Eğitim Denizi her seviyesinden finansa meraklı öğrencilerin kendilerini geliştirebilecekleri bir alandır. \n \u2003 Her eğitim modülü, açıklayıcı metinlerinden ve bir adet kısa testten oluşur. Eğitim modüllerine başlamadan önce soldaki menüde bulunan sözlük üzerinden ilgili eğitim için gerekli olan kelimeleri öğrenmelisin. \n \u2003 Bu eğitim modülüne başlamadan önce sözlüğün ilk 10 sayfasını okuduğundan emin ol! Sözlüğü okuduktan sonra İleri butonuna basarak eğitim metnini okumaya başlayabilirsin.", "\u2003 Para, yaşamın sürdürülebilirliği için temel bir gereksinimdir, ancak gelir ve varlık yönetimi konusunda birçok zorlukla karşılaşabiliriz. Modern dünyada, kişisel finansal yönetim becerilerimiz daha önemli hale gelmiştir. Öğrenci kredileri, kredi kartları ve emeklilik planları gibi finansal ürünlerle ilgili kararlar almak, bireysel ve toplumsal refah üzerinde büyük etki yaratır. Finansal okuryazarlık, bu kararları doğru bir şekilde verebilmemiz için gerekli bilgi ve beceriyi kazandırır. \n \u2003 Finansal okuryazarlık, kişisel bütçe yönetimi, tasarruf, yatırım ve risk analizi gibi konuları kapsayan bir bilgi ve uygulama yeteneğidir. Bu beceriyi geliştirmek, harcamalarımızı ve tasarruflarımızı daha bilinçli bir şekilde yönetmemizi sağlar. Aynı zamanda, ekonomik döngüleri anlamamıza ve finansal araçlar hakkında bilgi edinmemize yardımcı olur. \n \u2003 Finansal okuryazarlık, yaşam standartlarımızı iyileştirmek ve mali krizlere karşı direncimizi artırmak için kritik öneme sahiptir. Bütçemizi doğru yönetmek, borçları etkin bir şekilde ödemek ve tasarruf yapma disiplini kazanmak finansal sağlığımızı güçlendirir. Ayrıca, finansal okuryazarlık, günümüzün değişken ekonomik koşullarına uyum sağlama yeteneğimizi geliştirir ve finansal kararlarımıza olumlu yönde katkıda bulunur.",
     ];
 
     allParagraphs.push(...education);
 
-    const allHeaders = [summary, ...Header.map((header, index) => ({ ...header, index: index + 1 }))]; // Başlıkların indexlerini 1'den başlatıyoruz.
+    const allHeaders = [summary, summary2, ...Header.map((header, index) => ({ ...header, index: index + 1 }))]; // Başlıkların indexlerini 1'den başlatıyoruz.
 
     const [paragraphs, setParagraphs] = useState([allParagraphs[0]]);
     const [currentParagraph, setCurrentParagraph] = useState(0);
