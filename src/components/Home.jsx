@@ -42,8 +42,14 @@ function App() {
  
 
   //2 tane storelamak için
-  let progress = [
-  ]
+  let progress = [];
+
+  const updateProgress = (educationId, isFinished) => {
+    const updatedEducationIds = formattedEducationIds.map(edu => 
+      edu.id === educationId ? { ...edu, isFinished } : edu
+    );
+    // Update the state or perform any other necessary actions
+  };
 
 
   useEffect(() => {
@@ -114,8 +120,7 @@ function App() {
         <div className='flex'>
           <Card cardName="Finansal Okuryazarlık" to="/FinansalOkuryazarliginTemelleri" imgSrc={okuryazarlik} difficulty="easy" EducationId="1" 
             isFinished={formattedEducationIds.find(item => item.id === 1)?.isFinished}/>
-          <Card cardName="Bankacılık Hizmetleri" to="/BankacilikHizmetleri" imgSrc={bankacilikHizmetleri} difficulty="easy" EducationId="7"
-                      isFinished={formattedEducationIds.find(item => item.id === 7)?.isFinished}/>
+          <Card cardName="Bankacılık Hizmetleri" to="/BankacilikHizmetleri" imgSrc={bankacilikHizmetleri} difficulty="easy" EducationId="7" isFinished={formattedEducationIds[7].isFinished} updateProgress={updateProgress} />
         </div>
         <div className='flex'>
           <Card cardName="Bütçe ve Harcama" to="/ButceveHarcama" imgSrc={butceharcama} difficulty="easy" EducationId="4" isFinished={true}/>

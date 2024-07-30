@@ -3,7 +3,7 @@ import './Card.css';
 import { useNavigate } from 'react-router-dom';
 import tickImage from '../assets/tick.png';
 
-const Card = ({ children, to, cardName, imgSrc, difficulty, EducationId, isFinished}) => {
+const Card = ({ children, to, cardName, imgSrc, difficulty, EducationId, isFinished, updateProgress}) => {
     const navigate = useNavigate();
     const [isVisible, setIsVisible] = useState(false);
     const [currentImgSrc, setCurrentImgSrc] = useState(null);
@@ -21,6 +21,10 @@ const Card = ({ children, to, cardName, imgSrc, difficulty, EducationId, isFinis
                 return '';
         }
     };
+
+    const handleFinish = () => {
+        updateProgress(EducationId, !isFinished);
+    }
 
     //adds the finished tick png to the card if the course is finished
     useEffect(() => {
@@ -57,7 +61,7 @@ const Card = ({ children, to, cardName, imgSrc, difficulty, EducationId, isFinis
                 observer.unobserve(cardElement);
             }
         };
-    }, [difficulty, imgSrc, currentImgSrc, EducationId, isFinished]); // Include currentImgSrc in the dependency array
+    }, [difficulty, imgSrc, currentImgSrc, EducationId, isFinished, updateProgress]); // Include currentImgSrc in the dependency array
 //           
 
     return (
