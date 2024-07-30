@@ -34,7 +34,7 @@ function App() {
   const [userId, setUserId] = useState(null);
 
   const educationIds = [1, 7, 4, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
-  const formattedEducationIds = educationIds.map(id => ({
+  let formattedEducationIds = educationIds.map(id => ({
     id: id,
     isFinishedList: false
   }));
