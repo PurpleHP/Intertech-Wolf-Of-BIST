@@ -146,10 +146,10 @@ function App() {
         </div>
         <div className='flex'>
           <Card cardName="Gelir ve Vergi Yönetimi" to="/GelirveVergiYonetimi" imgSrc={VergiGelir} difficulty="medium" EducationId="14" isFinished={formattedEducationIds.find(item => item.id === 14)?.isFinishedList}/>
-          <Card cardName="Para ve Sermaye Piyasası" to="/ParaveSermayePiyasasi" imgSrc={paraSermayePiyasasi} difficulty="medium" EducationId="15" />
+          <Card cardName="Para ve Sermaye Piyasası" to="/ParaveSermayePiyasasi" imgSrc={paraSermayePiyasasi} difficulty="medium" EducationId="15" isFinished={formattedEducationIds.find(item => item.id === 15)?.isFinishedList}/>
         </div>
         <div className='flex'>
-          <Card cardName="Kişisel Yatırım Stratejisi" to="/KisiselYatirimStratejisi" imgSrc={yatirimstrateji} difficulty="hard" EducationId="16" isFinished={formattedEducationIds.find(item => item.id === 14)?.isFinishedList}/>
+          <Card cardName="Kişisel Yatırım Stratejisi" to="/KisiselYatirimStratejisi" imgSrc={yatirimstrateji} difficulty="hard" EducationId="16" isFinished={formattedEducationIds.find(item => item.id === 16)?.isFinishedList}/>
           <Card cardName="Borsa" to="/Borsa" imgSrc={borsa} difficulty="hard" EducationId="17" />
         </div>
         <div className='flex'>
