@@ -72,7 +72,7 @@ function App() {
                     
                 }
                 else if (twoCourse < 2) {
-                  allCourses.push(data[i]);
+                  progress.push(data[i]);
                   twoCourse++;
                 }
             }
@@ -112,8 +112,10 @@ function App() {
       <Menu>
         <h1 className='text-2xl'>Tüm Kurslar</h1>
         <div className='flex'>
-          <Card cardName="Finansal Okuryazarlık" to="/FinansalOkuryazarliginTemelleri" imgSrc={okuryazarlik} difficulty="easy" EducationId="1" isFinished={formattedEducationIds[0].isFinished}/>
-          <Card cardName="Bankacılık Hizmetleri" to="/BankacilikHizmetleri" imgSrc={bankacilikHizmetleri} difficulty="easy" EducationId="7" isFinished={formattedEducationIds[6].isFinished}/>
+          <Card cardName="Finansal Okuryazarlık" to="/FinansalOkuryazarliginTemelleri" imgSrc={okuryazarlik} difficulty="easy" EducationId="1" 
+            isFinished={formattedEducationIds.find(item => item.id === 1)?.isFinished}/>
+          <Card cardName="Bankacılık Hizmetleri" to="/BankacilikHizmetleri" imgSrc={bankacilikHizmetleri} difficulty="easy" EducationId="7"
+                      isFinished={formattedEducationIds.find(item => item.id === 7)?.isFinished}/>
         </div>
         <div className='flex'>
           <Card cardName="Bütçe ve Harcama" to="/ButceveHarcama" imgSrc={butceharcama} difficulty="easy" EducationId="4" />
