@@ -78,7 +78,7 @@ function Kripto() {
     };
 
     const goToQuiz = () => {
-        window.location.href = "/home"; //Quiz eklenecek
+        window.location.href = "/KriptoQuiz"; //Quiz eklenecek
     };
 
     const mainMenu = () => {

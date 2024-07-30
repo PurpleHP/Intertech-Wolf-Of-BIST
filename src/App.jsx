@@ -41,6 +41,7 @@ import KisiselYatirimStratejisiQuiz from './components/Courses/KisiselYatirimStr
 import Borsa from './components/Courses/Borsa';
 import BorsaQuiz from './components/Courses/BorsaQuiz';
 import Kripto from './components/Courses/Kripto';
+import KriptoQuiz from './components/Courses/KriptoQuiz';
 import Bitki from './components/bitki';
 import ProgressBar from './components/ProgressBar';
 
@@ -86,6 +87,7 @@ function App() {
           <Route path='/Borsa' element={<Borsa />} />
           <Route path='/BorsaQuiz' element={<BorsaQuiz />} />
           <Route path='/Kripto' element={<Kripto />} />
+          <Route path='/KriptoQuiz' element={<KriptoQuiz />} />
           <Route path='/Api' element={<ApiRequest />} />
           <Route path='/Quiz' element={<Quiz />} />
           <Route path='/CourseTest' element={<CourseTest />} />
