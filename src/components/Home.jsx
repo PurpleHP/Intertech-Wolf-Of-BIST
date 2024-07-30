@@ -74,13 +74,16 @@ function App() {
                     completedCount++;
                     //formattedEducationIds[data[i].eduId].isFinishedList = true;
                     const education = formattedEducationIds.find(edu => edu.id === data[i].eduId);
+                    if (education) {
+                      education.isFinishedList = true;
+                  }
                 }
                 else if (twoCourse < 2) {
                   progress.push(data[i]);
                   twoCourse++;
                 }
             }
-           
+            setFormattedEducationIds(formattedEducationIds);
         } catch (error) {
             console.error('Error:', error);
         }
