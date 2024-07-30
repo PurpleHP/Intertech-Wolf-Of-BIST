@@ -32,7 +32,22 @@ import risk from "../assets/zor/risk.jpg";
 
 function App() {
   const [userId, setUserId] = useState(null);
-  const [formattedEducationIds, setFormattedEducationIds] = useState([]); //useState denedim ekledim ama yine olmadı
+  const [formattedEducationIds, setFormattedEducationIds] = useState([
+    { id: 1, isFinished: false },
+    { id: 7, isFinishedList: false },
+    { id: 4, isFinishedList: false },
+    { id: 9, isFinishedList: false },
+    { id: 10, isFinishedList: false },
+    { id: 11, isFinishedList: false },
+    { id: 12, isFinishedList: false },
+    { id: 13, isFinishedList: false },
+    { id: 14, isFinishedList: false },
+    { id: 15, isFinishedList: false },
+    { id: 16, isFinishedList: false },
+    { id: 17, isFinishedList: false },
+    { id: 18, isFinishedList: false },
+    { id: 19, isFinishedList: false }
+  ]); //useState denedim ekledim ama yine olmadı
 
   const educationIds = [1, 7, 4, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
   
@@ -61,27 +76,19 @@ function App() {
             const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Education/getEducationByUser';
             const response = await fetch(targetUrl, requestOptions);
             const data = await response.json();
-            let completedCount = 0;
             let twoCourse = 0;
 
-            let formattedEducationIds = educationIds.map(id => ({ //bunu try ın ve use effect in içine attım
-              id: id,
-              isFinishedList: false
-            }));
 
             for (let i = 0; i < data.length; i++) {
-                if (data[i].status === "DONE") {
-                    completedCount++;
-                    //formattedEducationIds[data[i].eduId].isFinishedList = true; problem bunda
-                    const education = formattedEducationIds.find(edu => edu.id === data[i].eduId); //? çözüm bu diye düşündüm ama değilmiş
-                    /*if (education) {
-                      education.isFinishedList = true;
-                  }*/
-                }
-                else if (twoCourse < 2) {
-                  progress.push(data[i]);
-                  twoCourse++;
-                }
+              if (data[i].status === "DONE") {
+                // Find the education object with the matching eduId
+                formattedEducationIds = formattedEducationIds.map(edu =>
+                  edu.id === data[i].eduId ? { ...edu, isFinishedList: true } : edu
+                );
+              } else if (twoCourse < 2) {
+                progress.push(data[i]);
+                twoCourse++;
+              }
             }
             setFormattedEducationIds(formattedEducationIds);
         } catch (error) {
@@ -142,7 +149,7 @@ function App() {
           <Card cardName="Para ve Sermaye Piyasası" to="/ParaveSermayePiyasasi" imgSrc={paraSermayePiyasasi} difficulty="medium" EducationId="15" />
         </div>
         <div className='flex'>
-          <Card cardName="Kişisel Yatırım Stratejisi" to="/KisiselYatirimStratejisi" imgSrc={yatirimstrateji} difficulty="hard" EducationId="16" />
+          <Card cardName="Kişisel Yatırım Stratejisi" to="/KisiselYatirimStratejisi" imgSrc={yatirimstrateji} difficulty="hard" EducationId="16" isFinished={formattedEducationIds.find(item => item.id === 14)?.isFinishedList}/>
           <Card cardName="Borsa" to="/Borsa" imgSrc={borsa} difficulty="hard" EducationId="17" />
         </div>
         <div className='flex'>
