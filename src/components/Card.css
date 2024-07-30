@@ -47,6 +47,14 @@
     pointer-events: none;
 }
 
+.card-image {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    pointer-events: none;
+    z-index: 1;
+}
+
 @media screen and (max-width: 768px) {
     .card {
         width: 90%;

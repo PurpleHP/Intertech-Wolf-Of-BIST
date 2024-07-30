@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './Card.css';
 import { useNavigate } from 'react-router-dom';
+import tickImage from '../assets/tick.png';
 
-const Card = ({ children, to, cardName, imgSrc, difficulty, EducationId}) => {
+const Card = ({ children, to, cardName, imgSrc, difficulty, EducationId, isFinished}) => {
     const navigate = useNavigate();
     const [isVisible, setIsVisible] = useState(false);
     const [currentImgSrc, setCurrentImgSrc] = useState(null);
+    const [showTick, setShowTick] = useState(false);
 
     const getCardId = (difficulty) => {
         switch (difficulty) {
@@ -19,6 +21,15 @@ const Card = ({ children, to, cardName, imgSrc, difficulty, EducationId}) => {
                 return '';
         }
     };
+
+    //adds the finished tick png to the card if the course is finished
+    useEffect(() => {
+        if (isFinished) {
+            //add Tick to the card  
+            setShowTick(true);
+
+        }
+    }, []);
 
     useEffect(() => {
         // Create an observer with a callback function to handle visibility changes
@@ -47,10 +58,12 @@ const Card = ({ children, to, cardName, imgSrc, difficulty, EducationId}) => {
             }
         };
     }, [difficulty, imgSrc, currentImgSrc, EducationId]); // Include currentImgSrc in the dependency array
+//            {showTick && <img src={tickImage} alt="Tick" className="tick-image" />}
 
     return (
         <div className="card" onClick={() => navigate(to)} id={getCardId(difficulty)}>
             {isVisible && <img src={currentImgSrc} className="card-logo" alt='logo' />}
+            <img src={tickImage} alt="Tick" className="tick-image" />
             <div className="card-text">{cardName}</div>
             {children}
         </div>
