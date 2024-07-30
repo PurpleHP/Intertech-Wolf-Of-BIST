@@ -78,7 +78,7 @@ function Borsa() {
     };
 
     const goToQuiz = () => {
-        window.location.href = "/home"; //Quiz eklenecek
+        window.location.href = "/BorsaQuiz"; //Quiz eklenecek
     };
 
     const mainMenu = () => {
