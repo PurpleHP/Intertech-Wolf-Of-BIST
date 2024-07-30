@@ -7,33 +7,11 @@ import AILogo from '../assets/chatbot.png';
 const ChatBot = () => {
     useEffect(() => {
         const storedUserId = localStorage.getItem('userId');
-<<<<<<< HEAD
         if(!storedUserId){
           window.location.href = '/login';} 
       },[]);
     
 
-=======
-        if (!storedUserId) {
-            window.location.href = '/login';
-        }
-    }, []);
-
-    const randomMessage = [
-        "Hello! How can I help you today?",
-        "What's up?",
-        "How can I assist you today?",
-        "How are you doing today?",
-        "What can I do for you today?",
-        "How are you today?",
-        "What's new?",
-        "What's going on?",
-        "Lorem",
-        "Ipsum",
-    ]
-
-    const [apiResponse, setApiResponse] = useState(null);
->>>>>>> 8448dd63525b3f76c209c9303c940c83c9518a47
     const navigate = useNavigate();
     const [messages, setMessages] = useState([]);
 
@@ -119,21 +97,11 @@ const ChatBot = () => {
                         {messages.map((message, index) => (
                             <div key={index} className={`flex rounded-xl items-center ${message.type === 'user' ? 'justify-start' : 'justify-end'}`}>
                                 {message.type === 'user' && (
-<<<<<<< HEAD
-                                        <img src={UserLogo} alt="AI" className="items-center lg:w-16 w-6 lg:h-16 h-6  rounded-full ml-2"/>
-                                    )}
-                               <li className={`border-2 rounded-xl max-w-[50%] break-words p-2 m-2 ${message.type === 'user' ? 'bg-gray-500 text-white' : 'bg-[#e28109] text-white'}`}>
-                  <span style={{ fontWeight: isBold ? 'bold' : 'normal' }}>
-                    {message.text}
-                  </span>
-                </li>
-=======
                                     <img src={UserLogo} alt="User" className="items-center lg:w-16 w-6 lg:h-16 h-6 rounded-full ml-2" />
                                 )}
                                 <li className={`border-2 rounded-xl max-w-[50%] break-words p-2 m-2 ${message.type === 'user' ? 'bg-gray-500 text-white' : 'bg-[#e28109] text-white'}`} style={{ whiteSpace: 'pre-line' }}>
                                     {message.text}
                                 </li>
->>>>>>> 8448dd63525b3f76c209c9303c940c83c9518a47
                                 {message.type === 'ai' && (
                                     <img src={AILogo} alt="AI" className="items-center lg:w-16 w-6 lg:h-16 h-6 mr-2" />
                                 )}

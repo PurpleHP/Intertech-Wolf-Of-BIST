@@ -90,7 +90,9 @@ function App() {
                 twoCourse++;
               }
             }
+            
             setFormattedEducationIds(formattedEducationIds);
+            console.log(formattedEducationIds)
         } catch (error) {
             console.error('Error:', error);
         }
