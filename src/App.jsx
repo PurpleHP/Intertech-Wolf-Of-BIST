@@ -27,6 +27,7 @@ import ButceveHarcamaQuiz from './components/Courses/ButceveHarcamaQuiz';
 import KrediKartlari from './components/Courses/KrediKartlari';
 import KrediKartlariQuiz from './components/Courses/KrediKartlariQuiz';
 import TasarrufveAcilDurumFonlari from './components/Courses/TasarrufveAcilDurumFonlari';
+import TasarrufveAcilDurumFonlariQuiz from './components/Courses/TasarrufveAcilDurumFonlariQuiz';
 import BorcYonetimi from './components/Courses/BorcYonetimi';
 import Kredi from './components/Courses/Kredi';
 import KisiselFinansalPlanlama from './components/Courses/KisiselFinansalPlanlama';
@@ -36,7 +37,6 @@ import Borsa from './components/Courses/Borsa';
 import Kripto from './components/Courses/Kripto';
 import KrediQuiz from './components/Courses/KrediQuiz';
 import Bitki from './components/bitki';
-
 import ProgressBar from './components/ProgressBar';
 
 
@@ -67,6 +67,7 @@ function App() {
           <Route path='/KrediKartlari' element={<KrediKartlari />} />
           <Route path='/KrediKartlariQuiz' element={<KrediKartlariQuiz />} />
           <Route path='/TasarrufveAcilDurumFonlari' element={<TasarrufveAcilDurumFonlari />} />
+          <Route path='/TasarrufveAcilDurumFonlariQuiz' element={<TasarrufveAcilDurumFonlariQuiz />} />
           <Route path='/BorcYonetimi' element={<BorcYonetimi />} />
           <Route path='/Kredi' element={<Kredi />} />
           <Route path='/KisiselFinansalPlanlama' element={<KisiselFinansalPlanlama />} />

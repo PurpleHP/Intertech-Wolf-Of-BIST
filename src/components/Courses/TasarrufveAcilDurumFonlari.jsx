@@ -78,7 +78,7 @@ function TasarrufveAcilDurumFonlari() {
     };
 
     const goToQuiz = () => {
-        window.location.href = "/home"; //Quiz Eklenecek
+        window.location.href = "/TasarrufveAcilDurumFonlariQuiz"; //Quiz Eklenecek
     };
 
     const mainMenu = () => {
