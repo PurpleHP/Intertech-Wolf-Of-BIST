@@ -48,8 +48,8 @@ function CircularProgressBar() {
                 <circle
                     stroke="black" 
                     fill="transparent"
-                    strokeWidth={2} 
-                    r={radius - stroke / 2}
+                    strokeWidth={1} 
+                    r={normalizedRadius}
                     cx={radius}
                     cy={radius}
                 />
