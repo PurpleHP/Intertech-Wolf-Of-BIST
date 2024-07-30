@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from "react-router-dom";
-
+import ReactMarkdown from 'react-markdown';
 import UserLogo from '../assets/imageKurt.png';
 import AILogo from '../assets/chatbot.png';
 
 const ChatBot = () => {
     useEffect(() => {
         const storedUserId = localStorage.getItem('userId');
-        if(!storedUserId){
-          window.location.href = '/login';} 
-      },[]);
-    
+        if (!storedUserId) {
+            window.location.href = '/login';
+        }
+    }, []);
 
     const navigate = useNavigate();
     const [messages, setMessages] = useState([]);
@@ -100,7 +100,7 @@ const ChatBot = () => {
                                     <img src={UserLogo} alt="User" className="items-center lg:w-16 w-6 lg:h-16 h-6 rounded-full ml-2" />
                                 )}
                                 <li className={`border-2 rounded-xl max-w-[50%] break-words p-2 m-2 ${message.type === 'user' ? 'bg-gray-500 text-white' : 'bg-[#e28109] text-white'}`} style={{ whiteSpace: 'pre-line' }}>
-                                    {message.text}
+                                    <ReactMarkdown>{message.text}</ReactMarkdown>
                                 </li>
                                 {message.type === 'ai' && (
                                     <img src={AILogo} alt="AI" className="items-center lg:w-16 w-6 lg:h-16 h-6 mr-2" />
