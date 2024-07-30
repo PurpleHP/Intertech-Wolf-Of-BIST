@@ -78,7 +78,7 @@ function BorcYonetimi() {
     };
 
     const goToQuiz = () => {
-        window.location.href = "/home"; //Quiz eklenecek
+        window.location.href = "/BorcYonetimiQuiz"; //Quiz eklenecek
     };
 
     const mainMenu = () => {
