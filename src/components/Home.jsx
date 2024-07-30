@@ -32,6 +32,7 @@ import risk from "../assets/zor/risk.jpg";
 
 function App() {
   const [userId, setUserId] = useState(null);
+  const [formattedEducationIds, setFormattedEducationIds] = useState([]);
 
   const educationIds = [1, 7, 4, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
   let formattedEducationIds = educationIds.map(id => ({
