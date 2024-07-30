@@ -307,11 +307,11 @@ const Quiz = () => {
         let eduIds = [];
 
         if (score <= 19) {
-            eduIds = [1, 4, 7, 9, 10];
+            eduIds = [];
         } else if (score >= 20 && score <= 25) {
-            eduIds = [1, 4, 7, 9, 10, 11, 12, 13, 14, 15];
+            eduIds = [1, 4, 7, 9, 10];
         } else {
-            eduIds = [1, 4, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+            eduIds = [1, 4, 7, 9, 10, 11, 12, 13, 14, 15];
         }
 
         try {
