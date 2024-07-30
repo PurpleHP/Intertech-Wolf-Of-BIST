@@ -45,7 +45,7 @@ function App() {
         {userId && userId !== 0 ? (
           <>
             <div className="progress-header flex flex-col">
-              <h1 className='text-2xl mb-5'>İlerlemeniz</h1>
+              <h1 className='text-2xl mb-10'>İlerlemeniz</h1>
               <div className="progress-bar-wrapper">
                 <CircularProgressBar />
               </div>
