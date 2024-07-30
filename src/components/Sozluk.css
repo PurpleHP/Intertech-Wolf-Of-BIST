@@ -5,7 +5,7 @@
 .patates {
   font-family: "Courgette", cursive;
   margin-top: 8vw;
-  text-align: center;
+  /* text-align: center; */
   font-size: 2vw;
   color: #000000;
 }
@@ -127,4 +127,13 @@
 
 .book .page.flipped:nth-child(even):before {
   background: rgba(0, 0, 0, 0);
+}
+
+.pageNumber {
+  position: absolute;
+  bottom: 10px;
+  right: 14vw;
+
+  font-size: 1.2vw;
+  color: #333;
 }
