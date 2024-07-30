@@ -72,11 +72,11 @@ function App() {
             for (let i = 0; i < data.length; i++) {
                 if (data[i].status === "DONE") {
                     completedCount++;
-                    //formattedEducationIds[data[i].eduId].isFinishedList = true;
+                    //formattedEducationIds[data[i].eduId].isFinishedList = true; problem bunda
                     const education = formattedEducationIds.find(edu => edu.id === data[i].eduId);
-                    if (education) {
+                    /*if (education) {
                       education.isFinishedList = true;
-                  }
+                  }*/
                 }
                 else if (twoCourse < 2) {
                   progress.push(data[i]);
@@ -136,7 +136,7 @@ function App() {
           <Card cardName="Kişisel Finansal Planlama" to="/KisiselFinansalPlanlama" imgSrc={kisiselFinansalPlanlama} difficulty="medium" EducationId="13"/>
         </div>
         <div className='flex'>
-          <Card cardName="Gelir ve Vergi Yönetimi" to="/GelirveVergiYonetimi" imgSrc={VergiGelir} difficulty="medium" EducationId="14" />
+          <Card cardName="Gelir ve Vergi Yönetimi" to="/GelirveVergiYonetimi" imgSrc={VergiGelir} difficulty="medium" EducationId="14" isFinished={formattedEducationIds.find(item => item.id === 14)?.isFinishedList}/>
           <Card cardName="Para ve Sermaye Piyasası" to="/ParaveSermayePiyasasi" imgSrc={paraSermayePiyasasi} difficulty="medium" EducationId="15" />
         </div>
         <div className='flex'>
