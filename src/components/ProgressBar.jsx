@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 function CircularProgressBar() {
     const [progress, setProgress] = useState(0);
 
-    const radius = 60;
-    const stroke = 10;
+    const radius = 48;
+    const stroke = 8;
     const normalizedRadius = radius - stroke * 2;
     const circumference = normalizedRadius * 2 * Math.PI;
     const strokeDashoffset = circumference - (progress / 100) * circumference;
