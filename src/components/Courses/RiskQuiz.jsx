@@ -1,105 +1,153 @@
 import React, { useState, useEffect } from 'react';
+import useAnswerApi from './AnswerApi';
+import loadingGif from '../../assets/loading.gif';
 
-const questions = [
-    {
-        questionText: 'Risk nedir?',
-        answerOptions: [
-            { answerText: 'Bir yatırımın beklenen getirilerinin gerçekleşmeme olasılığı', isCorrect: true },
-            { answerText: 'Bir şirketin yıllık karı', isCorrect: false },
-            { answerText: 'Vergi oranı', isCorrect: false },
-            { answerText: 'Gelir fazlası', isCorrect: false },
-        ],
-    },
-    {
-        questionText: 'Piyasa riski nedir?',
-        answerOptions: [
-            { answerText: 'Piyasa koşullarının değişmesiyle yatırım değerinin düşme riski', isCorrect: true },
-            { answerText: 'Bir şirketin pazar payı', isCorrect: false },
-            { answerText: 'Bir yatırım fonunun getirisi', isCorrect: false },
-            { answerText: 'Gelir vergisi oranı', isCorrect: false },
-        ],
-    },
-    {
-        questionText: 'Kredi riski nedir?',
-        answerOptions: [
-            { answerText: 'Borç alan tarafın borcunu geri ödeyememe riski', isCorrect: true },
-            { answerText: 'Faiz oranlarının düşme riski', isCorrect: false },
-            { answerText: 'Enflasyonun yükselme riski', isCorrect: false },
-            { answerText: 'Bir şirketin hisse senedi değeri', isCorrect: false },
-        ],
-    },
-    {
-        questionText: 'Likidite riski nedir?',
-        answerOptions: [
-            { answerText: 'Bir varlığın hızlı ve makul bir fiyatla nakde çevrilememesi riski', isCorrect: true },
-            { answerText: 'Uzun vadeli yatırımların risk düzeyi', isCorrect: false },
-            { answerText: 'Yatırım fonlarının performans riski', isCorrect: false },
-            { answerText: 'Birikim hesabındaki para', isCorrect: false },
-        ],
-    },
-    {
-        questionText: 'Faiz oranı riski nedir?',
-        answerOptions: [
-            { answerText: 'Faiz oranlarının değişmesiyle yatırımın değer kaybetme riski', isCorrect: true },
-            { answerText: 'Enflasyonun artma riski', isCorrect: false },
-            { answerText: 'Gelir vergisi oranı', isCorrect: false },
-            { answerText: 'Borçların toplamı', isCorrect: false },
-        ],
-    },
-    {
-        questionText: 'Portföy çeşitlendirme nedir?',
-        answerOptions: [
-            { answerText: 'Yatırımların farklı varlık sınıflarına dağıtılması', isCorrect: true },
-            { answerText: 'Yüksek riskli yatırımlara odaklanma', isCorrect: false },
-            { answerText: 'Vergi kaçırma stratejisi', isCorrect: false },
-            { answerText: 'Borçların yeniden yapılandırılması', isCorrect: false },
-        ],
-    },
-    {
-        questionText: 'Risk toleransı nedir?',
-        answerOptions: [
-            { answerText: 'Bireyin risk alma konusundaki istekliliği ve kapasitesi', isCorrect: true },
-            { answerText: 'Faiz oranlarının düşme ihtimali', isCorrect: false },
-            { answerText: 'Piyasa dalgalanmalarının etkisi', isCorrect: false },
-            { answerText: 'Yatırım portföyünün getirisi', isCorrect: false },
-        ],
-    },
-    {
-        questionText: 'Yatırım riski nasıl yönetilir?',
-        answerOptions: [
-            { answerText: 'Portföyü çeşitlendirerek', isCorrect: true },
-            { answerText: 'Sadece bir varlık sınıfına yatırım yaparak', isCorrect: false },
-            { answerText: 'Yüksek riskli yatırımlara odaklanarak', isCorrect: false },
-            { answerText: 'Vergi oranlarını takip ederek', isCorrect: false },
-        ],
-    },
-    {
-        questionText: 'Enflasyon riski nedir?',
-        answerOptions: [
-            { answerText: 'Enflasyonun yükselmesiyle paranın satın alma gücünün düşme riski', isCorrect: true },
-            { answerText: 'Faiz oranlarının düşme riski', isCorrect: false },
-            { answerText: 'Bir şirketin büyüme oranı', isCorrect: false },
-            { answerText: 'Gelir vergisi oranı', isCorrect: false },
-        ],
-    },
-    {
-        questionText: 'Çeşitlendirme neden önemlidir?',
-        answerOptions: [
-            { answerText: 'Riskin azaltılmasına ve yatırımın korunmasına yardımcı olur', isCorrect: true },
-            { answerText: 'Vergi yükünü artırır', isCorrect: false },
-            { answerText: 'Yatırımın likiditesini düşürür', isCorrect: false },
-            { answerText: 'Sadece kısa vadeli getiriler sağlar', isCorrect: false },
-        ],
-    },
-];
-
-
-
-const FinansalOkuryazarliginTemelleriQuiz = () => {
+const GelirveVergiYonetimiQuiz = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [showScore, setShowScore] = useState(false);
     const [score, setScore] = useState(0);
-    const [timer, setTimer] = useState(100); // Quiz Suresi
+    const [timer, setTimer] = useState(60); // Quiz Süresi //hardcoded
+    const [questions, setQuestions] = useState([]); // STATE FOR QUESTIONS
+    const [quizReady, setQuizReady] = useState(false);
+    const [quizIds, setQuizIds] = useState([]);
+    const [quizAnswers, setQuizAnswers] = useState(null);
+    const [error, setError] = useState(null);
+
+    const [alreadyDone, setAlreadyDone] = useState(false);
+    const [passedQuiz, setPassedQuiz] = useState(false);
+    const [storedUserId, setStoredUserId] = useState(null);
+
+    useEffect(() => {
+        const storedUserId = parseInt(localStorage.getItem('userId')) ;
+        console.log(storedUserId);
+        if (typeof storedUserId === 'string' || storedUserId instanceof String){
+            console.log("Stored User Id is a string");
+        }
+        setStoredUserId(storedUserId);
+    },[]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const raw = JSON.stringify({ "eduId": 19}); //hardcoded
+
+                const requestOptions = {
+                    method: "POST",
+                    headers: { 'Content-Type': 'application/json' },
+                    body: raw,
+                    redirect: "follow"
+                };
+
+                const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Quiz/getQuizzesByEducationId';
+                const response = await fetch(targetUrl, requestOptions);
+                const data = await response.json();
+
+                if (data && Array.isArray(data)) {
+                    console.log(data);
+                    let paragraphs = [];
+                    let answers = [];
+                    let id = [];
+                    for (let i = 0; i < data.length; i++) {
+                        paragraphs.push(data[i].question);
+                        answers.push(data[i].option_a);
+                        answers.push(data[i].option_b);
+                        answers.push(data[i].option_c);
+                        answers.push(data[i].option_d);
+                        id.push(data[i].quizId);
+                    }
+                    setQuizIds(id);
+
+                    let questions = [];
+                    for (let i = 0; i < paragraphs.length; i++) {
+                        questions.push({
+                            questionText: paragraphs[i],
+                            answerOptions: [
+                                { answerText: answers[i * 4], letter: "a" },
+                                { answerText: answers[i * 4 + 1], letter: "b" },
+                                { answerText: answers[i * 4 + 2], letter: "c" },
+                                { answerText: answers[i * 4 + 3], letter: "d" }
+                            ]
+                        });
+                    }
+                    setQuestions(questions);
+                    setQuizReady(true);
+                } else {
+                    console.error('Data is not an array or is null');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        };
+
+        fetchData(); 
+    }, []);
+
+    useEffect(() => { //Quiz daha önce yapılmış mı kontrol et
+        const fetchData = async () => {
+            
+
+            try {
+                const raw = JSON.stringify({ "userId": storedUserId });
+        
+                const requestOptions = {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: raw,
+                redirect: "follow"
+                };
+        
+                const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Education/getEducationByUser';
+                const response = await fetch(targetUrl, requestOptions);
+                const data = await response.json();
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].eduId === 19) { //hardcoded
+                        if(data[i].status === "DONE"){
+                            setAlreadyDone(true);
+                        }
+                    }
+                }
+                
+            } catch (error) {
+                console.log(error)
+                setError(error.message);
+            }
+            };
+
+            if(storedUserId){
+
+                fetchData();
+            }
+            
+
+            
+    }, [storedUserId]);
+
+
+    useEffect(() => {
+        const fetchAnswers = async () => {
+            try {
+                const raw = JSON.stringify({ "quizId": quizIds[currentQuestion] });
+
+                const requestOptions = {
+                    method: "POST",
+                    headers: { 'Content-Type': 'application/json' },
+                    body: raw,
+                    redirect: "follow"
+                };
+
+                const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Quiz/getQuizzAnswersByQuizId';
+                const response = await fetch(targetUrl, requestOptions);
+                const data = await response.json();
+                setQuizAnswers(data[0].answer);
+            } catch (error) {
+                setError(error.message);
+            }
+        };
+
+        if (quizIds && quizIds.length > 0) {
+            fetchAnswers();
+        }
+    }, [currentQuestion, quizIds]);
 
     useEffect(() => {
         const timerInterval = setInterval(() => {
@@ -116,70 +164,119 @@ const FinansalOkuryazarliginTemelleriQuiz = () => {
         return () => clearInterval(timerInterval);
     }, []);
 
-    const handleAnswerOptionClick = (isCorrect) => {
-        if (isCorrect) {
+    const handleAnswerClick = async (answerLetter) => {
+        let tempScore = score;
+        if (quizAnswers && answerLetter === quizAnswers) {
             setScore(score + 1);
+            tempScore = tempScore + 1;
         }
-
+        console.log(tempScore);
         const nextQuestion = currentQuestion + 1;
         if (nextQuestion < questions.length) {
             setCurrentQuestion(nextQuestion);
         } else {
+            if(parseFloat(tempScore)/parseFloat(questions.length) < 0.8){
+                setPassedQuiz(false);
+            }else{
+                setPassedQuiz(true);
+                //DONE
+                if(alreadyDone === false){
+                    const storedUserId = localStorage.getItem('userId');
+                    const raw = JSON.stringify({ "eduId": 19, "userId": storedUserId, "RelStatus": "" }); //hardcoded
+                    const requestOptions = {
+                        method: "POST",
+                        headers: { 'Content-Type': 'application/json' },
+                        body: raw,
+                        redirect: "follow"
+                    };
+                    const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Education/userEducationComplete';
+                    const response = await fetch(targetUrl, requestOptions);
+                    setAlreadyDone(true)
+                }
+            }
+            
             setShowScore(true);
         }
     };
 
     return (
-        <div className='app min-h-screen flex flex-col items-center justify-center text-white' style={{ backgroundColor: '#2b3236' }}>
-            {!showScore && timer > 0 && (
-                <div className="timer-section absolute top-0 left-0 m-4 px-2 py-1 bg-gray-800 rounded-md">
-                    Kalan zaman: {timer} saniye
-                </div>
-            )}
-            {showScore ? (
-                <>
-                    <div className='score-section animate-pulse text-3xl'>
-                        Toplam {questions.length} sorudan {score} doğru cevap verdiniz.
-                    </div>
-                    <div className="flex space-x-4 mt-4">
-                        <button
-                            onClick={() => window.location.href = '/chatbot'}
-                            className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109]"
-                        >
-                            ChatBot'a Soru Sor
-                        </button>
-                        <button
-                            onClick={() => window.location.href = '/home'}
-                            className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109]"
-                        >
-                            Ana Sayfaya Dön
-                        </button>
-                    </div>
-                </>
-            ) : (
-                <>
-                    <div className='question-section text-center mb-8'>
-                        <div className='question-count text-lg mb-2'>
-                            <span>Question {currentQuestion + 1}</span>/{questions.length}
+        <div>
+            {quizReady ? (
+                <div className='app min-h-screen flex flex-col items-center justify-center text-white' style={{ backgroundColor: '#2b3236' }}>
+                    {!showScore && timer > 0 && (
+                        <div className="timer-section absolute top-0 left-0 m-4 px-2 py-1 bg-gray-800 rounded-md">
+                            Kalan zaman: {timer} saniye
                         </div>
-                        <div className='question-text text-2xl'>{questions[currentQuestion].questionText}</div>
-                    </div>
-                    <div className='answer-section grid grid-cols-1 gap-4 w-full max-w-md'>
-                        {questions[currentQuestion].answerOptions.map((answerOption, index) => (
-                            <button
-                                key={index}
-                                onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}
-                                className="text-white font-bold py-4 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#E4003A] bg-[#161A1D]"
-                                style={{ transition: 'background-color 0.5s ease' }}
-                            >
-                                {answerOption.answerText}
-                            </button>
-                        ))}
-                    </div>
-                </>
+                    )}
+                    {showScore ? (
+                        <>
+                            <div className='score-section animate-pulse text-3xl'>
+                                Toplam {questions.length} sorudan {score} doğru cevap verdiniz.
+                                {passedQuiz ? (
+                                    <div className='text-center text-2xl mt-4'>
+                                        Tebrikler! Testi başarıyla geçtiniz.
+                                    </div>
+                                ) : (
+                                    <div className='text-center text-2xl mt-4'>
+                                        Testi geçemediniz. Lütfen tekrar deneyin.
+                                    </div>
+                                )}
+                            </div>
+                            <div className="flex space-x-4 mt-4">
+                                <button
+                                    onClick={() => window.location.href = '/chatbot'}
+                                    className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109]"
+                                >
+                                    AI Bot'a Soru Sor
+                                </button>
+                                
+                                <button
+                                    onClick={() => window.location.href = '/home'}
+                                    className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109]"
+                                >
+                                    Ana Sayfaya Dön
+                                </button>
+                                {!passedQuiz && (
+                                    <button
+                                        onClick={() => window.location.href = '/RiskQuiz'} //hardcoded
+                                        className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109]"
+                                    >
+                                        Testi Tekrar Deneyin
+                                    </button>
+                                )}
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <div className='question-section text-center mb-8'>
+                                <div className='question-count text-lg mb-2'>
+                                    <span>Soru {currentQuestion + 1}</span>/{questions.length}
+                                </div>
+                                <div className='question-text text-2xl'>{questions[currentQuestion].questionText}</div>
+                            </div>
+                            <div className='answer-section grid grid-cols-1 gap-4 w-full max-w-md'>
+                                {questions[currentQuestion].answerOptions.map((e, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => handleAnswerClick(e.letter)}
+                                        className="text-white font-bold py-4 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109] bg-[#161A1D]"
+                                        style={{ transition: 'background-color 0.5s ease' }}
+                                    >
+                                        {e.answerText}
+                                    </button>
+                                ))}
+                            </div>
+                        </>
+                    )}
+                </div>
+            ) : (
+                <div className="bg-black flex items-center justify-center w-screen h-screen">
+                    <img width={100} src={loadingGif} alt="Loading animation" />
+                </div>
+
             )}
         </div>
     );
 };
 
-export default FinansalOkuryazarliginTemelleriQuiz;
+export default GelirveVergiYonetimiQuiz;
