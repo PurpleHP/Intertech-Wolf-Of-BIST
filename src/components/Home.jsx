@@ -32,7 +32,7 @@ import risk from "../assets/zor/risk.jpg";
 
 function App() {
   const [userId, setUserId] = useState(null);
-  const [formattedEducationIds, setFormattedEducationIds] = useState([
+  let [formattedEducationIds, setFormattedEducationIds] = useState([
     { id: 1, isFinished: false },
     { id: 7, isFinishedList: false },
     { id: 4, isFinishedList: false },
@@ -137,12 +137,12 @@ function App() {
           <Card cardName="Kredi Kartları" to="/KrediKartlari" imgSrc={kredikartlari} difficulty="easy" EducationId="9" isFinished={true}/>
         </div>
         <div className='flex'>
-          <Card cardName="Tasarruf ve Acil Durum Fonları" to="/TasarrufveAcilDurumFonlari" imgSrc={tasarruf} difficulty="easy" EducationId="10"/>
-          <Card cardName="Borç Yönetimi" to="/BorcYonetimi" imgSrc={DebtImage} difficulty="medium" EducationId="11" />
+          <Card cardName="Tasarruf ve Acil Durum Fonları" to="/TasarrufveAcilDurumFonlari" imgSrc={tasarruf} difficulty="easy" EducationId="10" isFinished={formattedEducationIds.find(item => item.id === 10)?.isFinishedList}/>
+          <Card cardName="Borç Yönetimi" to="/BorcYonetimi" imgSrc={DebtImage} difficulty="medium" EducationId="11" isFinished={formattedEducationIds.find(item => item.id === 11)?.isFinishedList}/>
         </div>
         <div className='flex'>
-          <Card cardName="Kredi" to="/Kredi" imgSrc={kredi} difficulty="medium" EducationId="12"/>
-          <Card cardName="Kişisel Finansal Planlama" to="/KisiselFinansalPlanlama" imgSrc={kisiselFinansalPlanlama} difficulty="medium" EducationId="13"/>
+          <Card cardName="Kredi" to="/Kredi" imgSrc={kredi} difficulty="medium" EducationId="12" isFinished={formattedEducationIds.find(item => item.id === 12)?.isFinishedList}/>
+          <Card cardName="Kişisel Finansal Planlama" to="/KisiselFinansalPlanlama" imgSrc={kisiselFinansalPlanlama} difficulty="medium" EducationId="13" isFinished={formattedEducationIds.find(item => item.id === 13)?.isFinishedList}/>
         </div>
         <div className='flex'>
           <Card cardName="Gelir ve Vergi Yönetimi" to="/GelirveVergiYonetimi" imgSrc={VergiGelir} difficulty="medium" EducationId="14" isFinished={formattedEducationIds.find(item => item.id === 14)?.isFinishedList}/>
@@ -150,11 +150,11 @@ function App() {
         </div>
         <div className='flex'>
           <Card cardName="Kişisel Yatırım Stratejisi" to="/KisiselYatirimStratejisi" imgSrc={yatirimstrateji} difficulty="hard" EducationId="16" isFinished={formattedEducationIds.find(item => item.id === 16)?.isFinishedList}/>
-          <Card cardName="Borsa" to="/Borsa" imgSrc={borsa} difficulty="hard" EducationId="17" />
+          <Card cardName="Borsa" to="/Borsa" imgSrc={borsa} difficulty="hard" EducationId="17" isFinished={formattedEducationIds.find(item => item.id === 17)?.isFinishedList}/>
         </div>
         <div className='flex'>
-          <Card cardName="Kripto" to="/Kripto" imgSrc={kripto} difficulty="hard" EducationId="18" />
-          <Card cardName="Risk" to="/Risk" imgSrc={risk} difficulty="hard" EducationId="19" />
+          <Card cardName="Kripto" to="/Kripto" imgSrc={kripto} difficulty="hard" EducationId="18" isFinished={formattedEducationIds.find(item => item.id === 18)?.isFinishedList} />
+          <Card cardName="Risk" to="/Risk" imgSrc={risk} difficulty="hard" EducationId="19" isFinished={formattedEducationIds.find(item => item.id === 19)?.isFinishedList}/>
         </div>
       </Menu>
       <div id='contact'>
