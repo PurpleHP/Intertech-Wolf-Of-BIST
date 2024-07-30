@@ -132,10 +132,11 @@ function App() {
               {notFinishedCourses.map(course => (
                 <Card 
                   key={course.id} 
-                  cardName={course.id in images ? course.id : `Kurs ${course.id}`} 
+                  cardName={`Kurs ${course.id}`} 
                   to={`/course/${course.id}`} 
                   imgSrc={images[course.id]} 
                   difficulty="medium" 
+                  EducationId={course.id}
                 />
               ))}
             </div>
