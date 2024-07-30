@@ -46,6 +46,14 @@ function CircularProgressBar() {
         <div className='flex h-screen w-screen justify-center items-center'>
             <svg height={radius * 2} width={radius * 2}>
                 <circle
+                    stroke="black" 
+                    fill="transparent"
+                    strokeWidth={2} 
+                    r={radius - stroke / 2}
+                    cx={radius}
+                    cy={radius}
+                />
+                <circle
                     stroke={
                         progress < 30 ? '#0f0' : progress < 70 ? '#f50' : progress === 100 ? '#0ff' : '#f00'
                     }
