@@ -238,7 +238,7 @@ const GelirveVergiYonetimiQuiz = () => {
                                 </button>
                                 {!passedQuiz && (
                                     <button
-                                        onClick={() => window.location.href = '/GelirVeVergiYonetimiQuiz'}
+                                        onClick={() => window.location.href = '/GelirVeVergiYonetimiQuiz'} //hardcoded
                                         className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109]"
                                     >
                                         Testi Tekrar Deneyin
