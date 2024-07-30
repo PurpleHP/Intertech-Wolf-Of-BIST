@@ -120,7 +120,7 @@ function App() {
         <div className='flex'>
           <Card cardName="Finansal Okuryazarlık" to="/FinansalOkuryazarliginTemelleri" imgSrc={okuryazarlik} difficulty="easy" EducationId="1" 
             isFinished={formattedEducationIds.find(item => item.id === 1)?.isFinished}/>
-          <Card cardName="Bankacılık Hizmetleri" to="/BankacilikHizmetleri" imgSrc={bankacilikHizmetleri} difficulty="easy" EducationId="7" isFinished={formattedEducationIds[7].isFinished} updateProgress={updateProgress} />
+          <Card cardName="Bankacılık Hizmetleri" to="/BankacilikHizmetleri" imgSrc={bankacilikHizmetleri} difficulty="easy" EducationId="7" isFinished={formattedEducationIds[6].isFinished} updateProgress={updateProgress} />
         </div>
         <div className='flex'>
           <Card cardName="Bütçe ve Harcama" to="/ButceveHarcama" imgSrc={butceharcama} difficulty="easy" EducationId="4" isFinished={true}/>
