@@ -307,11 +307,11 @@ const Quiz = () => {
         let eduIds = [];
 
         if (score <= 19) {
-            eduIds = [];
-        } else if (score >= 19 && score <= 25) {
             eduIds = [1, 4, 7, 9, 10];
-        } else {
+        } else if (score >= 20 && score <= 25) {
             eduIds = [1, 4, 7, 9, 10, 11, 12, 13, 14, 15];
+        } else {
+            eduIds = [1, 4, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
         }
 
         try {
@@ -368,7 +368,7 @@ const Quiz = () => {
                                 Toplam {questions.length} sorudan {score} doğru cevap verdiniz.
                             </div>
                             <div className="text-2xl mt-4">
-                                {score <= 19 ? "Temel Seviye" : score >= 19 && score <= 25 ? "Orta Seviye" : "İleri Seviye"}
+                                {score <= 19 ? "Temel Seviye" : score >= 20 && score <= 25 ? "Orta Seviye" : "İleri Seviye"}
                             </div>
                             <div className="flex space-x-4 mt-4">
                                 <button
