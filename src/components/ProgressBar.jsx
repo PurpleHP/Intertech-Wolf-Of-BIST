@@ -32,6 +32,9 @@ function CircularProgressBar() {
                         completedCount++;
                     }
                 }
+                if(completedCount >= 14){
+                    completedCount = 14;
+                }
                 const progressValue = (completedCount / 14) * 100;
                 setProgress(progressValue);
             } catch (error) {
@@ -41,7 +44,6 @@ function CircularProgressBar() {
 
         fetchData();
     }, []);
-//                <text x="50%" y="50%" textAnchor="middle" stroke="#51c5cf" >
 
     return (
         <div className='flex h-screen w-screen justify-center items-center'>
