@@ -33,6 +33,58 @@ import risk from "../assets/zor/risk.jpg";
 function App() {
   const [userId, setUserId] = useState(null);
 
+  const educationIds = [1, 7, 4, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+  const formattedEducationIds = educationIds.map(id => ({
+    id: id,
+    isFinished: false
+  }));
+  let notFinishedEducationIds = [1, 7, 4, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+ 
+
+  //2 tane storelamak için
+  let progress = [
+  ]
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+        const storedUserId = localStorage.getItem('userId');
+
+        try {
+            const raw = JSON.stringify({ "userId": storedUserId });
+
+            const requestOptions = {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: raw,
+                redirect: "follow"
+            };
+            console.log(storedUserId);
+            const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Education/getEducationByUser';
+            const response = await fetch(targetUrl, requestOptions);
+            const data = await response.json();
+            let completedCount = 0;
+            let twoCourse = 0;
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].status === "DONE") {
+                    completedCount++;
+                    formattedEducationIds[data[i].eduId].isFinished = true;
+                    
+                }
+                else if (twoCourse < 2) {
+                  allCourses.push(data[i]);
+                  twoCourse++;
+                }
+            }
+           
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+      fetchData();
+    }, []);
+
   useEffect(() => {
     const storedUserId = parseInt(localStorage.getItem('userId'));
     setUserId(storedUserId);
@@ -60,8 +112,8 @@ function App() {
       <Menu>
         <h1 className='text-2xl'>Tüm Kurslar</h1>
         <div className='flex'>
-          <Card cardName="Finansal Okuryazarlık" to="/FinansalOkuryazarliginTemelleri" imgSrc={okuryazarlik} difficulty="easy" EducationId="1"/>
-          <Card cardName="Bankacılık Hizmetleri" to="/BankacilikHizmetleri" imgSrc={bankacilikHizmetleri} difficulty="easy" EducationId="7"/>
+          <Card cardName="Finansal Okuryazarlık" to="/FinansalOkuryazarliginTemelleri" imgSrc={okuryazarlik} difficulty="easy" EducationId="1" isFinished={formattedEducationIds[0].isFinished}/>
+          <Card cardName="Bankacılık Hizmetleri" to="/BankacilikHizmetleri" imgSrc={bankacilikHizmetleri} difficulty="easy" EducationId="7" isFinished={formattedEducationIds[6].isFinished}/>
         </div>
         <div className='flex'>
           <Card cardName="Bütçe ve Harcama" to="/ButceveHarcama" imgSrc={butceharcama} difficulty="easy" EducationId="4" />
