@@ -78,7 +78,7 @@ function BankacilikHizmetleri() {
     };
 
     const goToQuiz = () => {
-        window.location.href = "/home"; //Quiz Eklenecek
+        window.location.href = "/BankacilikHizmetleriQuiz"; //Quiz Eklenecek
     };
 
     const mainMenu = () => {
