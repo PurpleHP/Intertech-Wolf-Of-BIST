@@ -44,8 +44,8 @@ function App() {
       <Menu>
         {userId && userId !== 0 ? (
           <>
-            <div className="progress-header">
-              <h1 className='text-2xl'>İlerlemeniz</h1>
+            <div className="progress-header flex flex-col">
+              <h1 className='text-2xl mb-4'>İlerlemeniz</h1>
               <div className="progress-bar-wrapper">
                 <CircularProgressBar />
               </div>
