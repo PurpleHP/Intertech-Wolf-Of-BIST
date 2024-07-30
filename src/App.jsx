@@ -31,6 +31,7 @@ import TasarrufveAcilDurumFonlariQuiz from './components/Courses/TasarrufveAcilD
 import BorcYonetimi from './components/Courses/BorcYonetimi';
 import BorcYonetimiQuiz from './components/Courses/BorcYonetimiQuiz';
 import Kredi from './components/Courses/Kredi';
+import KrediQuiz from './components/Courses/KrediQuiz';
 import KisiselFinansalPlanlama from './components/Courses/KisiselFinansalPlanlama';
 import ParaveSermayePiyasasi from './components/Courses/ParaveSermayePiyasasi';
 import KisiselYatirimStratejisi from './components/Courses/KisiselYatirimStratejisi';
@@ -72,6 +73,7 @@ function App() {
           <Route path='/BorcYonetimi' element={<BorcYonetimi />} />
           <Route path='/BorcYonetimiQuiz' element={<BorcYonetimiQuiz />} />
           <Route path='/Kredi' element={<Kredi />} />
+          <Route path='/KrediQuiz' element={<KrediQuiz />} />
           <Route path='/KisiselFinansalPlanlama' element={<KisiselFinansalPlanlama />} />
           <Route path='/ParaveSermayePiyasasi' element={<ParaveSermayePiyasasi />} />
           <Route path='/KisiselYatirimStratejisi' element={<KisiselYatirimStratejisi />} />
