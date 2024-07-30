@@ -37,6 +37,7 @@ import KisiselFinansalPlanlamaQuiz from './components/Courses/KisiselFinansalPla
 import ParaveSermayePiyasasi from './components/Courses/ParaveSermayePiyasasi';
 import ParaveSermayePiyasasiQuiz from './components/Courses/ParaveSermayePiyasasiQuiz';
 import KisiselYatirimStratejisi from './components/Courses/KisiselYatirimStratejisi';
+import KisiselYatirimStratejisiQuiz from './components/Courses/KisiselYatirimStratejisiQuiz';
 import Borsa from './components/Courses/Borsa';
 import Kripto from './components/Courses/Kripto';
 import Bitki from './components/bitki';
@@ -80,6 +81,7 @@ function App() {
           <Route path='/ParaveSermayePiyasasi' element={<ParaveSermayePiyasasi />} />
           <Route path='/ParaveSermayePiyasasiQuiz' element={<ParaveSermayePiyasasiQuiz />} />
           <Route path='/KisiselYatirimStratejisi' element={<KisiselYatirimStratejisi />} />
+          <Route path='/KisiselYatirimStratejisiQuiz' element={<KisiselYatirimStratejisiQuiz />} />
           <Route path='/Borsa' element={<Borsa />} />
           <Route path='/Kripto' element={<Kripto />} />
           <Route path='/Api' element={<ApiRequest />} />
