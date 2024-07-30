@@ -33,7 +33,7 @@ import risk from "../assets/zor/risk.jpg";
 function App() {
   const [userId, setUserId] = useState(null);
   let [formattedEducationIds, setFormattedEducationIds] = useState([
-    { id: 1, isFinished: false },
+    { id: 1, isFinishedList: false },
     { id: 7, isFinishedList: false },
     { id: 4, isFinishedList: false },
     { id: 9, isFinishedList: false },
@@ -78,12 +78,14 @@ function App() {
             const data = await response.json();
             let twoCourse = 0;
 
-
+            console.log("Data:\n", data)
             for (let i = 0; i < data.length; i++) {
               if (data[i].status === "DONE") {
+                data[i].eduId = parseInt(data[i].eduId);
+                console.log("Data[i].eduId: ",  parseInt(data[i].eduId));
                 // Find the education object with the matching eduId
                 formattedEducationIds = formattedEducationIds.map(edu =>
-                  edu.id === data[i].eduId ? { ...edu, isFinishedList: true } : edu
+                  parseInt(edu.id) === parseInt(data[i].eduId) ? { ...edu, isFinishedList: true } : edu
                 );
               } else if (twoCourse < 2) {
                 progress.push(data[i]);
@@ -92,7 +94,7 @@ function App() {
             }
             
             setFormattedEducationIds(formattedEducationIds);
-            console.log(formattedEducationIds)
+            console.log("Formatted:\n",formattedEducationIds)
         } catch (error) {
             console.error('Error:', error);
         }
