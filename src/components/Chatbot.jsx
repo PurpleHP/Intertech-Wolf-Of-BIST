@@ -124,9 +124,8 @@ const ChatBot = () => {
                                 {message.type === 'user' && (
                                         <img src={UserLogo} alt="AI" className="items-center lg:w-16 w-6 lg:h-16 h-6  rounded-full ml-2"/>
                                     )}
-                                <li className={`border-2 rounded-xl	max-w-[50%] break-words p-2 m-2 ${message.type === 'user' ? 'bg-gray-500 text-white' : 'bg-[#e28109] text-white'}`}>
-                                    {message.text}
-                                </li>
+                                <li className={`border-2 rounded-xl max-w-[50%] break-words p-2 m-2 ${message.type === 'user' ? 'bg-gray-500 text-white' : 'bg-[#e28109] text-white'}`} dangerouslySetInnerHTML={{ __html: message.texxt }}></li>
+                    
                                 {message.type === 'ai' && (
                                     <img src={AILogo} alt="AI" className="items-center lg:w-16 w-6 lg:h-16 h-6 mr-2"/>
                                 )}
