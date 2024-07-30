@@ -35,10 +35,7 @@ function App() {
   const [formattedEducationIds, setFormattedEducationIds] = useState([]);
 
   const educationIds = [1, 7, 4, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
-  let formattedEducationIds = educationIds.map(id => ({
-    id: id,
-    isFinishedList: false
-  }));
+  
   let notFinishedEducationIds = [1, 7, 4, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
  
 
@@ -66,6 +63,12 @@ function App() {
             const data = await response.json();
             let completedCount = 0;
             let twoCourse = 0;
+
+            let formattedEducationIds = educationIds.map(id => ({
+              id: id,
+              isFinishedList: false
+            }));
+
             for (let i = 0; i < data.length; i++) {
                 if (data[i].status === "DONE") {
                     completedCount++;
