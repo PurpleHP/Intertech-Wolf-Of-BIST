@@ -36,38 +36,21 @@ function App() {
   const [renderSite, setRenderSite] = useState(false);
   const [notFinishedCourses, setNotFinishedCourses] = useState([]);
   const [formattedEducationIds, setFormattedEducationIds] = useState([
-    { id: 1, isFinishedList: false },
-    { id: 7, isFinishedList: false },
-    { id: 4, isFinishedList: false },
-    { id: 9, isFinishedList: false },
-    { id: 10, isFinishedList: false },
-    { id: 11, isFinishedList: false },
-    { id: 12, isFinishedList: false },
-    { id: 13, isFinishedList: false },
-    { id: 14, isFinishedList: false },
-    { id: 15, isFinishedList: false },
-    { id: 16, isFinishedList: false },
-    { id: 17, isFinishedList: false },
-    { id: 18, isFinishedList: false },
-    { id: 19, isFinishedList: false }
+    { id: 1, isFinishedList: false, name: "Finansal Okuryazarlık", to: "/FinansalOkuryazarliginTemelleri", imgSrc: okuryazarlik, difficulty: "easy" },
+    { id: 7, isFinishedList: false, name: "Bankacılık Hizmetleri", to: "/BankacilikHizmetleri", imgSrc: bankacilikHizmetleri, difficulty: "easy" },
+    { id: 4, isFinishedList: false, name: "Bütçe ve Harcama", to: "/ButceveHarcama", imgSrc: butceharcama, difficulty: "easy" },
+    { id: 9, isFinishedList: false, name: "Kredi Kartları", to: "/KrediKartlari", imgSrc: kredikartlari, difficulty: "easy" },
+    { id: 10, isFinishedList: false, name: "Tasarruf ve Acil Durum Fonları", to: "/TasarrufveAcilDurumFonlari", imgSrc: tasarruf, difficulty: "easy" },
+    { id: 11, isFinishedList: false, name: "Borç Yönetimi", to: "/BorcYonetimi", imgSrc: DebtImage, difficulty: "medium" },
+    { id: 12, isFinishedList: false, name: "Kredi", to: "/Kredi", imgSrc: kredi, difficulty: "medium" },
+    { id: 13, isFinishedList: false, name: "Kişisel Finansal Planlama", to: "/KisiselFinansalPlanlama", imgSrc: kisiselFinansalPlanlama, difficulty: "medium" },
+    { id: 14, isFinishedList: false, name: "Gelir ve Vergi Yönetimi", to: "/GelirveVergiYonetimi", imgSrc: VergiGelir, difficulty: "medium" },
+    { id: 15, isFinishedList: false, name: "Para ve Sermaye Piyasası", to: "/ParaveSermayePiyasasi", imgSrc: paraSermayePiyasasi, difficulty: "medium" },
+    { id: 16, isFinishedList: false, name: "Kişisel Yatırım Stratejisi", to: "/KisiselYatirimStratejisi", imgSrc: yatirimstrateji, difficulty: "hard" },
+    { id: 17, isFinishedList: false, name: "Borsa", to: "/Borsa", imgSrc: borsa, difficulty: "hard" },
+    { id: 18, isFinishedList: false, name: "Kripto", to: "/Kripto", imgSrc: kripto, difficulty: "hard" },
+    { id: 19, isFinishedList: false, name: "Risk", to: "/Risk", imgSrc: risk, difficulty: "hard" }
   ]);
-
-  const images = {
-    1: okuryazarlik,
-    7: bankacilikHizmetleri,
-    4: butceharcama,
-    9: kredikartlari,
-    10: tasarruf,
-    11: DebtImage,
-    12: kredi,
-    13: kisiselFinansalPlanlama,
-    14: VergiGelir,
-    15: paraSermayePiyasasi,
-    16: yatirimstrateji,
-    17: borsa,
-    18: kripto,
-    19: risk
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -132,10 +115,10 @@ function App() {
               {notFinishedCourses.map(course => (
                 <Card 
                   key={course.id} 
-                  cardName={`Kurs ${course.id}`} 
-                  to={`/course/${course.id}`} 
-                  imgSrc={images[course.id]} 
-                  difficulty="medium" 
+                  cardName={course.name} 
+                  to={course.to} 
+                  imgSrc={course.imgSrc} 
+                  difficulty={course.difficulty} 
                   EducationId={course.id}
                 />
               ))}
