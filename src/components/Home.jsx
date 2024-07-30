@@ -32,7 +32,7 @@ import risk from "../assets/zor/risk.jpg";
 
 function App() {
   const [userId, setUserId] = useState(null);
-  const [formattedEducationIds, setFormattedEducationIds] = useState([]);
+  const [formattedEducationIds, setFormattedEducationIds] = useState([]); //useState denedim ekledim ama yine olmadı
 
   const educationIds = [1, 7, 4, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
   
@@ -64,7 +64,7 @@ function App() {
             let completedCount = 0;
             let twoCourse = 0;
 
-            let formattedEducationIds = educationIds.map(id => ({
+            let formattedEducationIds = educationIds.map(id => ({ //bunu try ın ve use effect in içine attım
               id: id,
               isFinishedList: false
             }));
@@ -73,7 +73,7 @@ function App() {
                 if (data[i].status === "DONE") {
                     completedCount++;
                     //formattedEducationIds[data[i].eduId].isFinishedList = true; problem bunda
-                    const education = formattedEducationIds.find(edu => edu.id === data[i].eduId);
+                    const education = formattedEducationIds.find(edu => edu.id === data[i].eduId); //? çözüm bu diye düşündüm ama değilmiş
                     /*if (education) {
                       education.isFinishedList = true;
                   }*/
