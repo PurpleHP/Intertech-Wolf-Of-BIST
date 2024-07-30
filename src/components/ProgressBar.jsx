@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 function CircularProgressBar() {
     const [progress, setProgress] = useState(0);
 
-    const radius = 48;
+    const radius = 52;
     const stroke = 8;
     const normalizedRadius = radius - stroke * 2;
     const circumference = normalizedRadius * 2 * Math.PI;
@@ -41,6 +41,7 @@ function CircularProgressBar() {
 
         fetchData();
     }, []);
+//                <text x="50%" y="50%" textAnchor="middle" stroke="#51c5cf" >
 
     return (
         <div className='flex h-screen w-screen justify-center items-center'>
@@ -65,7 +66,7 @@ function CircularProgressBar() {
                     cx={radius}
                     cy={radius}
                 />
-                <text x="50%" y="50%" textAnchor="middle" stroke="#51c5cf" dy=".3em">
+                <text x="50%" y="50%" textAnchor="middle" stroke="#51c5cf" fill="#51c5cf" dy=".3em">
                     {`${Math.floor(progress)} %`}
                 </text>
             </svg>
