@@ -72,11 +72,11 @@ function App() {
             for (let i = 0; i < data.length; i++) {
                 if (data[i].status === "DONE") {
                     completedCount++;
-                    //formattedEducationIds[data[i].eduId].isFinishedList = true;
+                    //formattedEducationIds[data[i].eduId].isFinishedList = true; problem bunda
                     const education = formattedEducationIds.find(edu => edu.id === data[i].eduId);
-                    if (education) {
+                    /*if (education) {
                       education.isFinishedList = true;
-                  }
+                  }*/
                 }
                 else if (twoCourse < 2) {
                   progress.push(data[i]);
