@@ -6,7 +6,7 @@ import useApiRequest from './CoursesAPI'; // Adjust the import path as necessary
 
 function Kredi() {
     //MARK: Paragraf Bölümü
-    const { education, Header } = useApiRequest(11);
+    const { education, Header } = useApiRequest(12);
     
     const summary = { title: "Kredi Özet", index: 0 }; // Özetin indexini 0 olarak ayarlıyoruz.
     
@@ -78,7 +78,7 @@ function Kredi() {
     };
 
     const goToQuiz = () => {
-        window.location.href = "/krediQuiz"; //Quiz eklenecek
+        window.location.href = "/KrediQuiz"; //Quiz eklenecek
     };
 
     const mainMenu = () => {

@@ -31,12 +31,14 @@ import TasarrufveAcilDurumFonlariQuiz from './components/Courses/TasarrufveAcilD
 import BorcYonetimi from './components/Courses/BorcYonetimi';
 import BorcYonetimiQuiz from './components/Courses/BorcYonetimiQuiz';
 import Kredi from './components/Courses/Kredi';
+import KrediQuiz from './components/Courses/KrediQuiz';
 import KisiselFinansalPlanlama from './components/Courses/KisiselFinansalPlanlama';
+import KisiselFinansalPlanlamaQuiz from './components/Courses/KisiselFinansalPlanlamaQuiz';
 import ParaveSermayePiyasasi from './components/Courses/ParaveSermayePiyasasi';
+import ParaveSermayePiyasasiQuiz from './components/Courses/ParaveSermayePiyasasiQuiz';
 import KisiselYatirimStratejisi from './components/Courses/KisiselYatirimStratejisi';
 import Borsa from './components/Courses/Borsa';
 import Kripto from './components/Courses/Kripto';
-import KrediQuiz from './components/Courses/KrediQuiz';
 import Bitki from './components/bitki';
 import ProgressBar from './components/ProgressBar';
 
@@ -72,8 +74,11 @@ function App() {
           <Route path='/BorcYonetimi' element={<BorcYonetimi />} />
           <Route path='/BorcYonetimiQuiz' element={<BorcYonetimiQuiz />} />
           <Route path='/Kredi' element={<Kredi />} />
+          <Route path='/KrediQuiz' element={<KrediQuiz />} />
           <Route path='/KisiselFinansalPlanlama' element={<KisiselFinansalPlanlama />} />
+          <Route path='/KisiselFinansalPlanlamaQuiz' element={<KisiselFinansalPlanlamaQuiz />} />
           <Route path='/ParaveSermayePiyasasi' element={<ParaveSermayePiyasasi />} />
+          <Route path='/ParaveSermayePiyasasiQuiz' element={<ParaveSermayePiyasasiQuiz />} />
           <Route path='/KisiselYatirimStratejisi' element={<KisiselYatirimStratejisi />} />
           <Route path='/Borsa' element={<Borsa />} />
           <Route path='/Kripto' element={<Kripto />} />
@@ -81,7 +86,6 @@ function App() {
           <Route path='/Quiz' element={<Quiz />} />
           <Route path='/CourseTest' element={<CourseTest />} />
           <Route path='/ProgressBar' element={<ProgressBar />} />
-          <Route path='/KrediQuiz' element={<KrediQuiz />} />
           <Route path='/Bitki' element={<Bitki />} />
         </Routes>
       </div>

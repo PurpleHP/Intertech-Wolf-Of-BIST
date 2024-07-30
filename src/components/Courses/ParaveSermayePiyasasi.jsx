@@ -78,7 +78,7 @@ function ParaveSermayePiyasasi() {
     };
 
     const goToQuiz = () => {
-        window.location.href = "/home"; //Quiz eklenecek
+        window.location.href = "/ParaveSermayePiyasasiQuiz"; //Quiz eklenecek
     };
 
     const mainMenu = () => {
