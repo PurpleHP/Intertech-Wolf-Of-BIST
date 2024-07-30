@@ -7,7 +7,7 @@ import CircularProgressBar from './ProgressBar';
 import { useState, useEffect } from 'react';
 
 //--------------------------
-//MARK: IMAGES
+//MARK: Images
 
 //Easy Images
 import okuryazarlik from "../assets/kolay/finansal-okuryazarlik.jpg";
