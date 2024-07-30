@@ -78,7 +78,7 @@ function KrediKartlari() {
     };
 
     const goToQuiz = () => {
-        window.location.href = "/home"; //Quiz Eklenecek
+        window.location.href = "/KrediKartlariQuiz"; //Quiz Eklenecek
     };
 
     const mainMenu = () => {

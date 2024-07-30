@@ -78,7 +78,7 @@ function ButceveHarcama() {
     };
 
     const goToQuiz = () => {
-        window.location.href = "/home"; //Quiz Eklenecek
+        window.location.href = "/ButceveHarcamaQuiz"; //Quiz Eklenecek
     };
 
     const mainMenu = () => {

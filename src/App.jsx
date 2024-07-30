@@ -21,8 +21,11 @@ import Risk from './components/Courses/Risk';
 import RiskQuiz from './components/Courses/RiskQuiz';
 import CourseTest from './components/Courses/Coursetest';
 import BankacilikHizmetleri from './components/Courses/BankacilikHizmetleri';
+import BankacilikHizmetleriQuiz from './components/Courses/BankacilikHizmetleriQuiz';
 import ButceveHarcama from './components/Courses/ButceveHarcama';
+import ButceveHarcamaQuiz from './components/Courses/ButceveHarcamaQuiz';
 import KrediKartlari from './components/Courses/KrediKartlari';
+import KrediKartlariQuiz from './components/Courses/KrediKartlariQuiz';
 import TasarrufveAcilDurumFonlari from './components/Courses/TasarrufveAcilDurumFonlari';
 import BorcYonetimi from './components/Courses/BorcYonetimi';
 import Kredi from './components/Courses/Kredi';
@@ -58,8 +61,11 @@ function App() {
           <Route path='/Risk' element={<Risk />} />
           <Route path='/RiskQuiz' element={<RiskQuiz />} />
           <Route path='/BankacilikHizmetleri' element={<BankacilikHizmetleri />} />
+          <Route path='/BankacilikHizmetleriQuiz' element={<BankacilikHizmetleriQuiz />} />
           <Route path='/ButceveHarcama' element={<ButceveHarcama />} />
+          <Route path='/ButceveHarcamaQuiz' element={<ButceveHarcamaQuiz />} />
           <Route path='/KrediKartlari' element={<KrediKartlari />} />
+          <Route path='/KrediKartlariQuiz' element={<KrediKartlariQuiz />} />
           <Route path='/TasarrufveAcilDurumFonlari' element={<TasarrufveAcilDurumFonlari />} />
           <Route path='/BorcYonetimi' element={<BorcYonetimi />} />
           <Route path='/Kredi' element={<Kredi />} />

@@ -29,7 +29,7 @@ const GelirveVergiYonetimiQuiz = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const raw = JSON.stringify({ "eduId": 14 }); //hardcoded
+                const raw = JSON.stringify({ "eduId": 9 }); //hardcoded
 
                 const requestOptions = {
                     method: "POST",
@@ -100,7 +100,7 @@ const GelirveVergiYonetimiQuiz = () => {
                 const response = await fetch(targetUrl, requestOptions);
                 const data = await response.json();
                 for (let i = 0; i < data.length; i++) {
-                    if (data[i].eduId === 14) { //hardcoded
+                    if (data[i].eduId === 9) { //hardcoded
                         if(data[i].status === "DONE"){
                             setAlreadyDone(true);
                         }
@@ -182,7 +182,7 @@ const GelirveVergiYonetimiQuiz = () => {
                 //DONE
                 if(alreadyDone === false){
                     const storedUserId = localStorage.getItem('userId');
-                    const raw = JSON.stringify({ "eduId": 14, "userId": storedUserId, "RelStatus": "" }); //hardcoded
+                    const raw = JSON.stringify({ "eduId": 9, "userId": storedUserId, "RelStatus": "" }); //hardcoded
                     const requestOptions = {
                         method: "POST",
                         headers: { 'Content-Type': 'application/json' },
@@ -238,7 +238,7 @@ const GelirveVergiYonetimiQuiz = () => {
                                 </button>
                                 {!passedQuiz && (
                                     <button
-                                        onClick={() => window.location.href = '/GelirVeVergiYonetimiQuiz'} //hardcoded
+                                        onClick={() => window.location.href = '/KrediKartlariQuiz'} //hardcoded
                                         className="text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-500 hover:scale-105 shadow-lg hover:bg-[#e28109]"
                                     >
                                         Testi Tekrar Deneyin
