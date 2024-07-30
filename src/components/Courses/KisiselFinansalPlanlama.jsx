@@ -78,7 +78,7 @@ function KisiselFinansalPlanlama() {
     };
 
     const goToQuiz = () => {
-        window.location.href = "/home"; //Quiz eklenecek
+        window.location.href = "/KisiselFinansalPlanlamaQuiz"; //Quiz eklenecek
     };
 
     const mainMenu = () => {

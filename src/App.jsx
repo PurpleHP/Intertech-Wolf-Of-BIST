@@ -33,6 +33,7 @@ import BorcYonetimiQuiz from './components/Courses/BorcYonetimiQuiz';
 import Kredi from './components/Courses/Kredi';
 import KrediQuiz from './components/Courses/KrediQuiz';
 import KisiselFinansalPlanlama from './components/Courses/KisiselFinansalPlanlama';
+import KisiselFinansalPlanlamaQuiz from './components/Courses/KisiselFinansalPlanlamaQuiz';
 import ParaveSermayePiyasasi from './components/Courses/ParaveSermayePiyasasi';
 import KisiselYatirimStratejisi from './components/Courses/KisiselYatirimStratejisi';
 import Borsa from './components/Courses/Borsa';
@@ -74,6 +75,7 @@ function App() {
           <Route path='/Kredi' element={<Kredi />} />
           <Route path='/KrediQuiz' element={<KrediQuiz />} />
           <Route path='/KisiselFinansalPlanlama' element={<KisiselFinansalPlanlama />} />
+          <Route path='/KisiselFinansalPlanlamaQuiz' element={<KisiselFinansalPlanlamaQuiz />} />
           <Route path='/ParaveSermayePiyasasi' element={<ParaveSermayePiyasasi />} />
           <Route path='/KisiselYatirimStratejisi' element={<KisiselYatirimStratejisi />} />
           <Route path='/Borsa' element={<Borsa />} />
