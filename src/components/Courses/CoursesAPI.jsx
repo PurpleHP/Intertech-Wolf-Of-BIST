@@ -24,7 +24,7 @@ const useApiRequest = (eduId) => {
         for (let i = 0; i < data.length; i++) {
           let chapterHeader = data[i].chapterHeader.replaceAll("\\n", "\n").replaceAll("?\t", "\t");
           newHeader.push({ title: chapterHeader, index: i });
-          let chapterDescription = data[i].chapterDescription.replaceAll("\\n", "\n\u2003").replaceAll("?\t", "\t");
+          let chapterDescription = data[i].chapterDescription.replaceAll("\\n", "\n\u2003").replaceAll("?\t", "\t").replaceAll('<dfn className="keyword">', '').replaceAll('</dfn>', '').replaceAll('&lt;dfn className=&quot;keyword&quot;&gt;portföy&lt;/dfn&gt', 'portföy');
           let temp = chapterDescription + "\n\n";
           newEducation.push(temp);
         }

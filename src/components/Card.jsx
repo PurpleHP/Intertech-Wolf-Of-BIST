@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Card.css';
 import { useNavigate } from 'react-router-dom';
 
-const Card = ({ children, to, cardName, imgSrc, difficulty }) => {
+const Card = ({ children, to, cardName, imgSrc, difficulty, EducationId}) => {
     const navigate = useNavigate();
     const [isVisible, setIsVisible] = useState(false);
     const [currentImgSrc, setCurrentImgSrc] = useState(null);
@@ -46,7 +46,7 @@ const Card = ({ children, to, cardName, imgSrc, difficulty }) => {
                 observer.unobserve(cardElement);
             }
         };
-    }, [difficulty, imgSrc, currentImgSrc]); // Include currentImgSrc in the dependency array
+    }, [difficulty, imgSrc, currentImgSrc, EducationId]); // Include currentImgSrc in the dependency array
 
     return (
         <div className="card" onClick={() => navigate(to)} id={getCardId(difficulty)}>
