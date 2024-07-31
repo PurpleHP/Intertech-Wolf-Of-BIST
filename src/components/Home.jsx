@@ -34,7 +34,7 @@ import risk from "../assets/zor/risk.jpg";
 function App() {
   const [userName, setUserName] = useState(null);
   const [userId, setUserId] = useState(null);
-  const [renderSite, setRenderSite] = useState(true);
+  const [renderSite, setRenderSite] = useState(false);
   const [notFinishedCourses, setNotFinishedCourses] = useState([]);
   const [formattedEducationIds, setFormattedEducationIds] = useState([
     { id: 1, isFinishedList: false, name: "Finansal Okuryazarlık", to: "/FinansalOkuryazarliginTemelleri", imgSrc: okuryazarlik, difficulty: "easy" },
@@ -61,7 +61,10 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
         const storedUserId = localStorage.getItem('userId');
-
+        if(!storedUserId){
+          setRenderSite(true);
+          return;
+        }
         try {
             const raw = JSON.stringify({ "userId": storedUserId });
 
