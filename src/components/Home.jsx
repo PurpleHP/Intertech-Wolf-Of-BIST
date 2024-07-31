@@ -56,46 +56,46 @@ function App() {
   useEffect(() => {
     const storedUserName = localStorage.getItem('userName');
     setUserName(storedUserName);
-  },[]);
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
-        const storedUserId = localStorage.getItem('userId');
-        if(!storedUserId){
-          setRenderSite(true);
-          return;
-        }
-        try {
-            const raw = JSON.stringify({ "userId": storedUserId });
+      const storedUserId = localStorage.getItem('userId');
+      if (!storedUserId) {
+        setRenderSite(true);
+        return;
+      }
+      try {
+        const raw = JSON.stringify({ "userId": storedUserId });
 
-            const requestOptions = {
-                method: "POST",
-                headers: { 'Content-Type': 'application/json' },
-                body: raw,
-                redirect: "follow"
-            };
-            console.log(storedUserId);
-            const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Education/getEducationByUser';
-            const response = await fetch(targetUrl, requestOptions);
-            const data = await response.json();
-            
-            console.log("Data:\n", data);
+        const requestOptions = {
+          method: "POST",
+          headers: { 'Content-Type': 'application/json' },
+          body: raw,
+          redirect: "follow"
+        };
+        console.log(storedUserId);
+        const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Education/getEducationByUser';
+        const response = await fetch(targetUrl, requestOptions);
+        const data = await response.json();
 
-            const updatedFormattedEducationIds = formattedEducationIds.map(edu => {
-              const course = data.find(d => parseInt(d.eduId) === edu.id);
-              return course ? { ...edu, isFinishedList: course.status === "DONE" } : edu;
-            });
+        console.log("Data:\n", data);
 
-            const notFinishedCourses = updatedFormattedEducationIds.filter(edu => !edu.isFinishedList).slice(0, 2);
+        const updatedFormattedEducationIds = formattedEducationIds.map(edu => {
+          const course = data.find(d => parseInt(d.eduId) === edu.id);
+          return course ? { ...edu, isFinishedList: course.status === "DONE" } : edu;
+        });
 
-            setFormattedEducationIds(updatedFormattedEducationIds);
-            setNotFinishedCourses(notFinishedCourses);
-            console.log("Formatted:\n", updatedFormattedEducationIds);
-            console.log("Not Finished Courses:\n", notFinishedCourses);
-            setRenderSite(true);
-        } catch (error) {
-            console.error('Error:', error);
-        }
+        const notFinishedCourses = updatedFormattedEducationIds.filter(edu => !edu.isFinishedList).slice(0, 2);
+
+        setFormattedEducationIds(updatedFormattedEducationIds);
+        setNotFinishedCourses(notFinishedCourses);
+        console.log("Formatted:\n", updatedFormattedEducationIds);
+        console.log("Not Finished Courses:\n", notFinishedCourses);
+        setRenderSite(true);
+      } catch (error) {
+        console.error('Error:', error);
+      }
     };
 
     fetchData();
@@ -109,84 +109,85 @@ function App() {
   return (
     <div className="App" id='home'>
       <NavbarComponent />
-      {renderSite ? 
-      <div>
-        <Menu>
-        {userId && userId !== 0 ? (
-          <>
-            <div className="progress-header flex flex-col">
-              <h1 className='lg:text-3xl text-2xl mt-8 mb-15'>Hoşgeldin {userName}, şuana kadarki ilerlemeniz:</h1>
-              <div className="progress-bar-wrapper mt-5">
-                <CircularProgressBar />
-              </div>
-              <h1 className='text-2xl mt-8 mb-15'>Önerilen sıralama</h1>
+      {renderSite ?
+        <div>
+          <Menu>
+            {userId && userId !== 0 ? (
+              <>
+                <div className="progress-header flex flex-col">
+                  <h1 className='lg:text-3xl text-2xl mt-8 mb-15'>Hoşgeldin {userName}, şuana kadarki ilerlemeniz:</h1>
+                  <div className="progress-bar-wrapper mt-5">
+                    <CircularProgressBar />
+                  </div>
+                  <br></br>
+                  <h1 className='text-2xl mt-8 mb-15'>Önerilen Sıralama</h1>
+                </div>
+                <div className='progress-cards'>
+                  {notFinishedCourses.map(course => (
+                    <Card
+                      key={course.id}
+                      cardName={course.name}
+                      to={course.to}
+                      imgSrc={course.imgSrc}
+                      difficulty={course.difficulty}
+                      EducationId={course.id}
+                    />
+                  ))}
+                </div>
+              </>
+            ) : null}
+          </Menu>
+          <Menu>
+            <h1 className='text-2xl'>Tüm Kurslar</h1>
+            <div className='flex'>
+              <Card cardName="Finansal Okuryazarlık" to="/FinansalOkuryazarliginTemelleri" imgSrc={okuryazarlik} difficulty="easy" EducationId="1"
+                isFinished={formattedEducationIds.find(item => item.id === 1)?.isFinishedList} />
+              <Card cardName="Bankacılık Hizmetleri" to="/BankacilikHizmetleri" imgSrc={bankacilikHizmetleri} difficulty="easy" EducationId="7"
+                isFinished={formattedEducationIds.find(item => item.id === 7)?.isFinishedList} />
             </div>
-            <div className='progress-cards'>
-              {notFinishedCourses.map(course => (
-                <Card 
-                  key={course.id} 
-                  cardName={course.name} 
-                  to={course.to} 
-                  imgSrc={course.imgSrc} 
-                  difficulty={course.difficulty} 
-                  EducationId={course.id}
-                />
-              ))}
+            <div className='flex'>
+              <Card cardName="Bütçe ve Harcama" to="/ButceveHarcama" imgSrc={butceharcama} difficulty="easy" EducationId="4"
+                isFinished={formattedEducationIds.find(item => item.id === 4)?.isFinishedList} />
+              <Card cardName="Kredi Kartları" to="/KrediKartlari" imgSrc={kredikartlari} difficulty="easy" EducationId="9"
+                isFinished={formattedEducationIds.find(item => item.id === 9)?.isFinishedList} />
             </div>
-          </>
-        ) : null}
-      </Menu>
-      <Menu>
-        <h1 className='text-2xl'>Tüm Kurslar</h1>
-        <div className='flex'>
-          <Card cardName="Finansal Okuryazarlık" to="/FinansalOkuryazarliginTemelleri" imgSrc={okuryazarlik} difficulty="easy" EducationId="1" 
-            isFinished={formattedEducationIds.find(item => item.id === 1)?.isFinishedList}/>
-          <Card cardName="Bankacılık Hizmetleri" to="/BankacilikHizmetleri" imgSrc={bankacilikHizmetleri} difficulty="easy" EducationId="7" 
-          isFinished={formattedEducationIds.find(item => item.id === 7)?.isFinishedList} />
+            <div className='flex'>
+              <Card cardName="Tasarruf ve Acil Durum Fonları" to="/TasarrufveAcilDurumFonlari" imgSrc={tasarruf} difficulty="easy" EducationId="10"
+                isFinished={formattedEducationIds.find(item => item.id === 10)?.isFinishedList} />
+              <Card cardName="Borç Yönetimi" to="/BorcYonetimi" imgSrc={DebtImage} difficulty="medium" EducationId="11"
+                isFinished={formattedEducationIds.find(item => item.id === 11)?.isFinishedList} />
+            </div>
+            <div className='flex'>
+              <Card cardName="Kredi" to="/Kredi" imgSrc={kredi} difficulty="medium" EducationId="12"
+                isFinished={formattedEducationIds.find(item => item.id === 12)?.isFinishedList} />
+              <Card cardName="Kişisel Finansal Planlama" to="/KisiselFinansalPlanlama" imgSrc={kisiselFinansalPlanlama} difficulty="medium" EducationId="13"
+                isFinished={formattedEducationIds.find(item => item.id === 13)?.isFinishedList} />
+            </div>
+            <div className='flex'>
+              <Card cardName="Gelir ve Vergi Yönetimi" to="/GelirveVergiYonetimi" imgSrc={VergiGelir} difficulty="medium" EducationId="14"
+                isFinished={formattedEducationIds.find(item => item.id === 14)?.isFinishedList} />
+              <Card cardName="Para ve Sermaye Piyasası" to="/ParaveSermayePiyasasi" imgSrc={paraSermayePiyasasi} difficulty="medium" EducationId="15"
+                isFinished={formattedEducationIds.find(item => item.id === 15)?.isFinishedList} />
+            </div>
+            <div className='flex'>
+              <Card cardName="Kişisel Yatırım Stratejisi" to="/KisiselYatirimStratejisi" imgSrc={yatirimstrateji} difficulty="hard" EducationId="16"
+                isFinished={formattedEducationIds.find(item => item.id === 16)?.isFinishedList} />
+              <Card cardName="Borsa" to="/Borsa" imgSrc={borsa} difficulty="hard" EducationId="17"
+                isFinished={formattedEducationIds.find(item => item.id === 17)?.isFinishedList} />
+            </div>
+            <div className='flex'>
+              <Card cardName="Kripto" to="/Kripto" imgSrc={kripto} difficulty="hard" EducationId="18"
+                isFinished={formattedEducationIds.find(item => item.id === 18)?.isFinishedList} />
+              <Card cardName="Risk" to="/Risk" imgSrc={risk} difficulty="hard" EducationId="19"
+                isFinished={formattedEducationIds.find(item => item.id === 19)?.isFinishedList} />
+            </div>
+          </Menu>
         </div>
-        <div className='flex'>
-          <Card cardName="Bütçe ve Harcama" to="/ButceveHarcama" imgSrc={butceharcama} difficulty="easy" EducationId="4" 
-          isFinished={formattedEducationIds.find(item => item.id === 4)?.isFinishedList}/>
-          <Card cardName="Kredi Kartları" to="/KrediKartlari" imgSrc={kredikartlari} difficulty="easy" EducationId="9"
-          isFinished={formattedEducationIds.find(item => item.id === 9)?.isFinishedList}/>
-        </div>
-        <div className='flex'>
-          <Card cardName="Tasarruf ve Acil Durum Fonları" to="/TasarrufveAcilDurumFonlari" imgSrc={tasarruf} difficulty="easy" EducationId="10"
-           isFinished={formattedEducationIds.find(item => item.id === 10)?.isFinishedList}/>
-          <Card cardName="Borç Yönetimi" to="/BorcYonetimi" imgSrc={DebtImage} difficulty="medium" EducationId="11" 
-          isFinished={formattedEducationIds.find(item => item.id === 11)?.isFinishedList}/>
-        </div>
-        <div className='flex'>
-          <Card cardName="Kredi" to="/Kredi" imgSrc={kredi} difficulty="medium" EducationId="12" 
-          isFinished={formattedEducationIds.find(item => item.id === 12)?.isFinishedList}/>
-          <Card cardName="Kişisel Finansal Planlama" to="/KisiselFinansalPlanlama" imgSrc={kisiselFinansalPlanlama} difficulty="medium" EducationId="13" 
-          isFinished={formattedEducationIds.find(item => item.id === 13)?.isFinishedList}/>
-        </div>
-        <div className='flex'>
-          <Card cardName="Gelir ve Vergi Yönetimi" to="/GelirveVergiYonetimi" imgSrc={VergiGelir} difficulty="medium" EducationId="14" 
-          isFinished={formattedEducationIds.find(item => item.id === 14)?.isFinishedList}/>
-          <Card cardName="Para ve Sermaye Piyasası" to="/ParaveSermayePiyasasi" imgSrc={paraSermayePiyasasi} difficulty="medium" EducationId="15" 
-          isFinished={formattedEducationIds.find(item => item.id === 15)?.isFinishedList}/>
-        </div>
-        <div className='flex'>
-          <Card cardName="Kişisel Yatırım Stratejisi" to="/KisiselYatirimStratejisi" imgSrc={yatirimstrateji} difficulty="hard" EducationId="16" 
-          isFinished={formattedEducationIds.find(item => item.id === 16)?.isFinishedList}/>
-          <Card cardName="Borsa" to="/Borsa" imgSrc={borsa} difficulty="hard" EducationId="17" 
-          isFinished={formattedEducationIds.find(item => item.id === 17)?.isFinishedList}/>
-        </div>
-        <div className='flex'>
-          <Card cardName="Kripto" to="/Kripto" imgSrc={kripto} difficulty="hard" EducationId="18" 
-          isFinished={formattedEducationIds.find(item => item.id === 18)?.isFinishedList} />
-          <Card cardName="Risk" to="/Risk" imgSrc={risk} difficulty="hard" EducationId="19" 
-          isFinished={formattedEducationIds.find(item => item.id === 19)?.isFinishedList}/>
-        </div>
-      </Menu>
-      </div>
-        : 
-      <div className="bg-black flex items-center justify-center w-screen h-screen">
+        :
+        <div className="bg-black flex items-center justify-center w-screen h-screen">
           <img width={100} src={loadingGif} alt="Loading animation" />
-      </div>}
-      
+        </div>}
+
       <div id='contact'>
         <Footer />
       </div>
