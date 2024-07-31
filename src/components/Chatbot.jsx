@@ -94,7 +94,7 @@ const ChatBot = () => {
             const targetUrl = 'https://mysite-281y.onrender.com/process_prompt';
             const thinkingMessage = {
                 type: 'ai',
-                text: 'Düşünüyorum'
+                text: 'Düşüncelere Yelken Açıyorum'
             };
             setMessages(messages => [...messages, thinkingMessage]);
             
@@ -139,7 +139,8 @@ const ChatBot = () => {
                     };
                     setLoading(false);
                     setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
-                    typeWriterEffect(data.result, newAiResponse);
+                    const cleanedText = data.result.replace(/\s{2,}/g, ' ').trim();
+                    typeWriterEffect(cleanedText, newAiResponse);
                     setScrollToBottom(true);
                     setUserCanType(false);
                 })
