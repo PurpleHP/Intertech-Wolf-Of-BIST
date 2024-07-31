@@ -13,8 +13,8 @@ const ChatBot = () => {
         }
     }, []);
 
-    const [textToSpeechOn, setTextToSpeechOn] = useState(false); // Başlangıçta kapalı
-    const audioRef = useRef(null); // Ses dosyasını çalmak için referans
+    const [textToSpeechOn, setTextToSpeechOn] = useState(false); // ses kapali
+    const audioRef = useRef(null); // calmak icin referans
 
     const navigate = useNavigate();
     const [messages, setMessages] = useState([]);
@@ -139,7 +139,7 @@ const ChatBot = () => {
                     return response.json();
                 })
                 .then(data => {
-                    console.log('Response from server:', data); // Sunucu yanıtını kontrol etme
+                    console.log('Response from server:', data);
                     const newAiResponse = {
                         type: 'ai',
                         text: ""
@@ -151,12 +151,14 @@ const ChatBot = () => {
                         console.log('Audio URL:', audioUrl); // Ses dosyasının URL'sini kontrol etme
                         if (audioRef.current) {
                             audioRef.current.src = audioUrl;
+                            audioRef.current.load(); // Ses dosyasini yukle
                             audioRef.current.play().catch(error => {
                                 console.error('Error playing audio:', error);
+                                alert('Ses dosyasını oynatırken bir hata oluştu.');
                             });
                         }
                     } else {
-                        const cleanedText = data.result.replace(/\s{2,}/g, ' ').trim();
+                        const cleanedText = data.process_result.result.replace(/\s{2,}/g, ' ').trim();
                         typeWriterEffect(cleanedText, newAiResponse);
                     }
                     setScrollToBottom(true);
