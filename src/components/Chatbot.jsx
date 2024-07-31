@@ -139,7 +139,7 @@ const ChatBot = () => {
                     };
                     setLoading(false);
                     setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
-                    const cleanedText = data.result.replace(/\s{2,}/g, '\n').trim();
+                    const cleanedText = data.result.replace(/\s{2,}/g, ' ').trim();
                     typeWriterEffect(cleanedText, newAiResponse);
                     setScrollToBottom(true);
                     setUserCanType(false);
