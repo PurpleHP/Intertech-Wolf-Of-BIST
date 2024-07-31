@@ -12,7 +12,6 @@ const ChatBot = () => {
     const [scrollToBottom, setScrollToBottom] = useState(false);
     const [userCanType, setUserCanType] = useState(true);
     const chatContainerRef = useRef(null);
-    const audioRef = useRef(null);
 
     useEffect(() => {
         const storedUserId = localStorage.getItem('userId');
@@ -32,7 +31,7 @@ const ChatBot = () => {
 
     async function typeWriterEffect(text, messageObj) {
         let i = 0;
-        messageObj.text = ""; // Start with an empty string
+        messageObj.text = "";
         function type() {
             if (i < text.length) {
                 messageObj.text += text.charAt(i);
@@ -40,7 +39,7 @@ const ChatBot = () => {
                 i++;
                 setTimeout(type, 5); // typing speed
             } else {
-                setUserCanType(true); // Allow user to type after the message is fully displayed
+                setUserCanType(true);
             }
         }
         type();
@@ -114,7 +113,7 @@ const ChatBot = () => {
                         updatedMessages[updatedMessages.length - 1].text = `Düşüncelere Yelken Açıyorum${dots}`;
                         return updatedMessages;
                     });
-                }, 500); // Adjust the interval for the desired speed
+                }, 500);
             }
 
             function stopLoadingEffect() {
@@ -139,7 +138,7 @@ const ChatBot = () => {
                     };
                     setLoading(false);
                     setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
-                    const cleanedText = data.process_result.result.replace(/\s{2,}/g, ' ').trim();
+                    const cleanedText = data.result.replace(/\s{2,}/g, ' ').trim();
                     typeWriterEffect(cleanedText, newAiResponse);
                     setScrollToBottom(true);
                     setUserCanType(true);
@@ -199,8 +198,7 @@ const ChatBot = () => {
                 </div>
                 <div className='w-full flex justify-center pb-4'>
                     <div className='flex flex-row w-[85vw]'>
-                        <audio ref={audioRef}></audio>
-                        <button className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={() => setTextToSpeechOn(!textToSpeechOn)}>Sesli Okuma</button>
+                        <button className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105'>Sesli Okuma</button>
                         <button className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={() => navigate("/home")}>Ana Sayfa</button>
                         <input required type="text" onKeyDown={e => e.key === "Enter" ? sendMessage() : ""} className='flex break-words p-2 w-full mx-2 border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none' />
                         <button className='flex px-4 mx-2 py-2 text-center items-center justify-center bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={sendMessage}>Sor</button>
