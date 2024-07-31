@@ -13,8 +13,8 @@ const ChatBot = () => {
         }
     }, []);
 
-    const [textToSpeechOn, setTextToSpeechOn] = useState(false); // Başlangıçta kapalı
-    const audioRef = useRef(null); // Ses dosyasını çalmak için referans
+    const [textToSpeechOn, setTextToSpeechOn] = useState(false); // ses kapali
+    const audioRef = useRef(null);
 
     const navigate = useNavigate();
     const [messages, setMessages] = useState([]);
