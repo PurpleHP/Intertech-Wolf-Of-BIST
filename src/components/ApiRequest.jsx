@@ -103,7 +103,7 @@ const ApiRequest = () => {
       };
       const targetUrl = 'https://mysite-281y.onrender.com/text_to_speech';
       fetch(targetUrl, requestOptions)
-        .then(response => response.json())
+        .then(response => response)
         .then(data => {
           console.log(data)
           setApiResponse(data.result);
@@ -196,6 +196,7 @@ const ApiRequest = () => {
       setApiResponse(error.message);
     }
   };
+//          <audio src={apiResponse}></audio>
 
   return (
     <div>
