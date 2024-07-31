@@ -94,7 +94,7 @@ const ChatBot = () => {
             const targetUrl = 'https://mysite-281y.onrender.com/process_prompt';
             const thinkingMessage = {
                 type: 'ai',
-                text: 'Düşüncelere Yelken Açıyorum'
+                text: 'Hazine sunucumuz kayboldu! Papağanımız tamir ediyor, daha sonra tekrar deneyin! Argh!'
             };
             setMessages(messages => [...messages, thinkingMessage]);
             
@@ -111,7 +111,7 @@ const ChatBot = () => {
                     }
                     setMessages(messages => {
                         const updatedMessages = [...messages];
-                        updatedMessages[updatedMessages.length - 1].text = `Düşünüyorum${dots}`;
+                        updatedMessages[updatedMessages.length - 1].text = `Düşüncelere Yelken Açıyorum${dots}`;
                         return updatedMessages;
                     });
                 }, 500); // Adjust the interval for the desired speed
@@ -139,7 +139,7 @@ const ChatBot = () => {
                     };
                     setLoading(false);
                     setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
-                    const cleanedText = data.result.replace(/\s{2,}/g, ' ').trim();
+                    const cleanedText = data.result.replace(/\s{2,}/g, '\n\n').trim();
                     typeWriterEffect(cleanedText, newAiResponse);
                     setScrollToBottom(true);
                     setUserCanType(false);
