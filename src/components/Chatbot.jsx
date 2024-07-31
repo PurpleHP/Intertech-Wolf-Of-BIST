@@ -4,7 +4,8 @@ import ReactMarkdown from 'react-markdown';
 import UserLogo from '../assets/imageKurt.png';
 import AILogo from '../assets/chatbot.png';
 import LoadingGif from '../assets/chatbot.gif';
-import { FaHeadphones } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeadphones } from '@fortawesome/free-solid-svg-icons';
 
 const ChatBot = () => {
     const navigate = useNavigate();
@@ -244,7 +245,7 @@ const ChatBot = () => {
                             onClick={() => setTextToSpeechOn(!textToSpeechOn)}
                             style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                         >
-                            <FaHeadphones color={textToSpeechOn ? "white" : "red"} />
+                            <FontAwesomeIcon icon={faHeadphones} color={textToSpeechOn ? "white" : "red"} />
                         </button>
                         <button className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={() => navigate("/home")}>Ana Sayfa</button>
                         <input required type="text" onKeyDown={e => e.key === "Enter" ? sendMessage() : ""} className='flex break-words p-2 w-full mx-2 border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none' />
