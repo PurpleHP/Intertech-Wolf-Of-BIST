@@ -139,7 +139,7 @@ const ChatBot = () => {
                     };
                     setLoading(false);
                     setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
-                    const cleanedText = data.result.replace(/\s{2,}/g, '\n\n').trim();
+                    const cleanedText = data.result.replace(/\s{2,}/g, '\n').trim();
                     typeWriterEffect(cleanedText, newAiResponse);
                     setScrollToBottom(true);
                     setUserCanType(false);
@@ -154,7 +154,6 @@ const ChatBot = () => {
                     };
                     setMessages(messages => [...messages.slice(0, -1), errorMessage]);
                     setScrollToBottom(true);
-                    setUserCanType(false);
                 });
         } catch (error) {
             stopLoadingEffect();
