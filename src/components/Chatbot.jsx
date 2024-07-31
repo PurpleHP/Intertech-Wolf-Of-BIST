@@ -21,24 +21,27 @@ const ChatBot = () => {
     const chatContainerRef = useRef(null);
 
     useEffect(() => {
-        const initialMessage = "Merhaba ben Bilgi Denizi, finansal okuryazarlık eğitmeni olarak görev yapıyorum. Amacım, size finansal konularda en güncel ve doğru bilgileri sağlamak. Samimi ve kibar bir yaklaşım sergileyerek, sorularınızı en içten şekilde yanıtlamak için buradayım.\nFinansal okuryazarlık ve finans konularında geniş bir bilgi birikimine sahibim ve sürekli kendimi güncel bilgilerle yeniliyorum. Bu bilgileri kullanarak, sizlere en doğru ve faydalı bilgileri sunuyorum. Öğrencilerimin sorularını kendi geniş veri setimden inceleyerek titizlikle cevaplıyorum. Ancak, sadece kendi uzmanlık alanımdaki konular hakkında bilgi ve fikir sunuyorum.\nBenimle finansal dünyayı keşfetmek, sorularınıza güvenilir cevaplar bulmak ve finansal okuryazarlıkta ilerlemek için hazırsanız, birlikte aklınızdaki soruları cevaplandıralım!";
-        typeWriterEffect(initialMessage);
+        const newAiResponse = {
+            type: 'ai',
+            text: "",
+        };
+        setMessages(messages => [...messages, newAiResponse]);
+        typeWriterEffect("Merhaba ben Bilgi Denizi, finansal okuryazarlık eğitmeni olarak görev yapıyorum. Amacım, size finansal konularda en güncel ve doğru bilgileri sağlamak. Samimi ve kibar bir yaklaşım sergileyerek, sorularınızı en içten şekilde yanıtlamak için buradayım.\nFinansal okuryazarlık ve finans konularında geniş bir bilgi birikimine sahibim ve sürekli kendimi güncel bilgilerle yeniliyorum. Bu bilgileri kullanarak, sizlere en doğru ve faydalı bilgileri sunuyorum. Öğrencilerimin sorularını kendi geniş veri setimden inceleyerek titizlikle cevaplıyorum. Ancak, sadece kendi uzmanlık alanımdaki konular hakkında bilgi ve fikir sunuyorum.\nBenimle finansal dünyayı keşfetmek, sorularınıza güvenilir cevaplar bulmak ve finansal okuryazarlıkta ilerlemek için hazırsanız, birlikte aklınızdaki soruları cevaplandıralım!", newAiResponse);
     }, []);
 
-    function typeWriterEffect(text) {
+    function typeWriterEffect(text, messageObj) {
         let i = 0;
-        let displayText = "";
+        messageObj.text = ""; // Start with an empty string
         function type() {
             if (i < text.length) {
-                displayText += text.charAt(i);
-                setMessages(messages => [...messages.slice(0, -1), { type: 'ai', text: displayText }]);
+                messageObj.text += text.charAt(i);
+                setMessages(messages => [...messages.slice(0, -1), messageObj]);
                 i++;
-                setTimeout(type, 5); // typing speed
+                setTimeout(type, 50); // typing speed
             } else {
                 setUserCanType(true); // Allow user to type after the message is fully displayed
             }
         }
-        setMessages(messages => [...messages, { type: 'ai', text: "" }]);
         type();
     }
 
@@ -58,17 +61,17 @@ const ChatBot = () => {
     }, []);
 
     const sendMessage = async () => {
-        const messageText = document.querySelector('input').value.trim();
+        const messageText = document.querySelector('input').value;
         document.querySelector('input').value = '';
-        if (messageText.length === 0) {
+        if (messageText.trim().length === 0) {
             alert("Lütfen bir mesaj yazın.");
             return;
         }
-        if (messageText.length >= 500) {
+        if (messageText.trim().length >= 500) {
             alert("Lütfen daha kısa bir mesaj yazın.");
             return;
         }
-        if (!userCanType) {
+        if(!userCanType){
             alert("Şu anda önceki mesajınızı düşünüyorum. Lütfen bekleyin.");
             return;
         }
@@ -76,33 +79,80 @@ const ChatBot = () => {
         setMessages(messages => [...messages, newUserMessage]);
 
         try {
-            const raw = JSON.stringify({ "prompt": messageText });
+            const raw = JSON.stringify({
+                "prompt": messageText
+            });
 
             const requestOptions = {
                 method: "POST",
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                },
                 body: raw,
                 redirect: "follow"
             };
             const targetUrl = 'https://mysite-281y.onrender.com/process_prompt';
-            setLoading(true);
-            setMessages(messages => [...messages, { type: 'ai', text: 'Düşünüyorum' }]);
-
-            const response = await fetch(targetUrl, requestOptions);
-            if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
+            const thinkingMessage = {
+                type: 'ai',
+                text: 'Düşünüyorum'
+            };
+            setMessages(messages => [...messages, thinkingMessage]);
+            
+            let loadingInterval;
+            
+            function startLoadingEffect() {
+                
+                let dots = '';
+                loadingInterval = setInterval(() => {
+                    if (dots.length < 3) {
+                        dots += '.';
+                    } else {
+                        dots = '';
+                    }
+                    setMessages(messages => {
+                        const updatedMessages = [...messages];
+                        updatedMessages[updatedMessages.length - 1].text = `Düşünüyorum${dots}`;
+                        return updatedMessages;
+                    });
+                }, 500); // Adjust the interval for the desired speed
             }
-            const data = await response.json();
-            const aiResponse = data.result.trim();
-            setLoading(false);
-            setMessages(messages => messages.slice(0, -1));
-            typeWriterEffect(aiResponse);
+            
+            function stopLoadingEffect() {
+                clearInterval(loadingInterval);
+            }
+            setLoading(true);
+
+            startLoadingEffect();
+
+            fetch(targetUrl, requestOptions)
+                .then(response => {
+                    stopLoadingEffect();
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const newAiResponse = {
+                        type: 'ai',
+                        text: ""
+                    };
+                    setLoading(false);
+                    setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
+                    typeWriterEffect(data.result, newAiResponse);
+                    setScrollToBottom(true);
+                    setUserCanType(false);
+                })
+                .catch(error => {
+                    stopLoadingEffect();
+                    console.error('Error:', error);
+                    alert("Sunucularımızda sorun var. Lütfen daha sonra tekrar deneyin.");
+                });
         } catch (error) {
-            setLoading(false);
-            console.error('Error:', error);
-            alert("Sunucularımızda sorun var. Lütfen daha sonra tekrar deneyin.");
+            stopLoadingEffect();
+            console.error("Failed to fetch AI response:", error);
         }
-    };
+    }
 
     const messagesEndRef = useRef(null);
 
