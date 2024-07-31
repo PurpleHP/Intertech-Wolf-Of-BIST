@@ -94,7 +94,7 @@ const ChatBot = () => {
             const targetUrl = 'https://mysite-281y.onrender.com/process_prompt';
             const thinkingMessage = {
                 type: 'ai',
-                text: 'Hazine sunucumuz kayboldu! Papağanımız tamir ediyor, daha sonra tekrar deneyin! Argh!'
+                text: ''
             };
             setMessages(messages => [...messages, thinkingMessage]);
             
@@ -148,6 +148,13 @@ const ChatBot = () => {
                     stopLoadingEffect();
                     console.error('Error:', error);
                     alert("Sunucularımızda sorun var. Lütfen daha sonra tekrar deneyin.");
+                    const errorMessage = {
+                        type: 'ai',
+                        text: "Hazine sunucumuz kayboldu! Papağanımız tamir ediyor, daha sonra tekrar deneyin! Argh!"
+                    };
+                    setMessages(messages => [...messages.slice(0, -1), errorMessage]);
+                    setScrollToBottom(true);
+                    setUserCanType(false);
                 });
         } catch (error) {
             stopLoadingEffect();
