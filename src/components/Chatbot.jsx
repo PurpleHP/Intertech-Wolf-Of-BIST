@@ -162,7 +162,7 @@ const ChatBot = () => {
                                 });
                         }
                     } else {
-                        const cleanedText = data.process_result.result.replace(/\s{2,}/g, ' ').trim();
+                        const cleanedText = data.result.replace(/\s{2,}/g, ' ').trim();
                         typeWriterEffect(cleanedText, newAiResponse);
                     }
                     setScrollToBottom(true);
@@ -226,7 +226,7 @@ const ChatBot = () => {
                     <div className='flex flex-row w-[85vw]'>
                         <audio ref={audioRef}></audio>
                         <button className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={changeTextToSpeech}>
-                            {textToSpeechOn ? 'Metin Okuma Kapalı' : 'Metin Okuma Açık'}
+                            {textToSpeechOn ? 'Metin Okuma Açık' : 'Metin Okuma Kapalı'}
                         </button>
                         <button className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={() => navigate("/home")}>Ana Sayfa</button>
                         <input required type="text" onKeyDown={e => e.key === "Enter" ? sendMessage() : ""} className='flex break-words p-2 w-full mx-2 border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none' />
