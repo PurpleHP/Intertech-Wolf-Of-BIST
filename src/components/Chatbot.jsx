@@ -145,7 +145,7 @@ const ChatBot = () => {
                         text: data.result
                     };
                     setLoading(false);
-                    setMessages(messages => [...messages.slice(0, -1)]);
+                    setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
                     typeWriterEffect(data.result, newAiResponse);
                     setScrollToBottom(true);
                     setUserCanType(true);
