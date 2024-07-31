@@ -109,10 +109,11 @@ function FinansalOkuryazarliginTemelleri() {
                             ))}
                         </ul>
                     </div>
-                    <div className="row-start-6 row-span-1 grid grid-cols-2">
+                    <div className="row-start-5 row-span-2 grid grid-cols-2">
                         <button className="col-start-1 col-span-2 border-4 rounded-lg shadow-2xl mb-2 transform transition duration-500 hover:scale-105" onClick={sozluk}>Sözlük</button>
                         <button className="col-start-1 col-span-2 border-4 rounded-lg shadow-2xl mb-2 transform transition duration-500 hover:scale-105" onClick={mainMenu}>Ana Sayfa</button>
                         <button className="col-start-1 col-span-2 border-4 rounded-lg shadow-2xl transform transition duration-500 hover:scale-105" onClick={goToQuiz}>Teste Atla</button>
+
                     </div>
                 </div>
                 <div className="col-span-3 grid grid-cols-10 grid-rows-10 p-4 m-4 h-[90vh] rounded-lg text-white border-4 shadow-black shadow-2xl background-color:#2b3236 scrollable-mobile">
