@@ -13,8 +13,8 @@ const ChatBot = () => {
         }
     }, []);
 
-    const [textToSpeechOn, setTextToSpeechOn] = useState(false); // ses ilk basta kapali
-    const audioRef = useRef(null); //calmak icin referans
+    const [textToSpeechOn, setTextToSpeechOn] = useState(false); // Başlangıçta kapalı
+    const audioRef = useRef(null); // Ses dosyasını çalmak için referans
 
     const navigate = useNavigate();
     const [messages, setMessages] = useState([]);
@@ -139,6 +139,7 @@ const ChatBot = () => {
                     return response.json();
                 })
                 .then(data => {
+                    console.log('Response from server:', data); // Sunucu yanıtını kontrol etme
                     const newAiResponse = {
                         type: 'ai',
                         text: ""
@@ -147,6 +148,7 @@ const ChatBot = () => {
                     setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
                     if (textToSpeechOn) {
                         const audioUrl = `https://mysite-281y.onrender.com/${data.file.path}`;
+                        console.log('Audio URL:', audioUrl); // Ses dosyasının URL'sini kontrol etme
                         if (audioRef.current) {
                             audioRef.current.src = audioUrl;
                             audioRef.current.play().catch(error => {
@@ -154,7 +156,7 @@ const ChatBot = () => {
                             });
                         }
                     } else {
-                        const cleanedText = data.process_result.result.replace(/\s{2,}/g, ' ').trim();
+                        const cleanedText = data.result.replace(/\s{2,}/g, ' ').trim();
                         typeWriterEffect(cleanedText, newAiResponse);
                     }
                     setScrollToBottom(true);
