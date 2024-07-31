@@ -14,7 +14,7 @@ const ChatBot = () => {
     }, []);
 
     const [textToSpeechOn, setTextToSpeechOn] = useState(false); // ses kapali
-    const audioRef = useRef(null); // calmak icin referans
+    const audioRef = useRef(null);
 
     const navigate = useNavigate();
     const [messages, setMessages] = useState([]);
@@ -139,10 +139,10 @@ const ChatBot = () => {
                     return response.json();
                 })
                 .then(data => {
-                    console.log('Response from server:', data);
+                    console.log('Response from server:', data); // Sunucu yanıtını kontrol etme
                     const newAiResponse = {
                         type: 'ai',
-                        text: ""
+                        text: textToSpeechOn ? data.process_result.result : ""
                     };
                     setLoading(false);
                     setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
@@ -151,14 +151,18 @@ const ChatBot = () => {
                         console.log('Audio URL:', audioUrl); // Ses dosyasının URL'sini kontrol etme
                         if (audioRef.current) {
                             audioRef.current.src = audioUrl;
-                            audioRef.current.load(); // Ses dosyasini yukle
-                            audioRef.current.play().catch(error => {
-                                console.error('Error playing audio:', error);
-                                alert('Ses dosyasını oynatırken bir hata oluştu.');
-                            });
+                            audioRef.current.play()
+                                .then(() => {
+                                    console.log('Audio playing');
+                                    // Ses çalarken mesajı chatbox'a ekle
+                                    typeWriterEffect(data.process_result.result, newAiResponse);
+                                })
+                                .catch(error => {
+                                    console.error('Error playing audio:', error);
+                                });
                         }
                     } else {
-                        const cleanedText = data.process_result.result.replace(/\s{2,}/g, ' ').trim();
+                        const cleanedText = data.result.replace(/\s{2,}/g, ' ').trim();
                         typeWriterEffect(cleanedText, newAiResponse);
                     }
                     setScrollToBottom(true);
