@@ -24,6 +24,7 @@ const ChatBot = () => {
     const [scrollToBottom, setScrollToBottom] = useState(false);
     const [userLanguages, setUserLanguages] = useState([]);
     const [mainUserLanguage, setMainUserLanguage] = useState('tr');
+    const [userCanType, setUserCanType] = useState(true);
     const chatContainerRef = useRef(null);
 
     useEffect(() => {
@@ -65,20 +66,14 @@ const ChatBot = () => {
     }, []);
 
     useEffect(() => {
-        fetch("http://ip-api.com/json")
-            .then(response => response.json())
-            .then(data => {
-                let userLanguage = [data.countryCode.toLowerCase()];
-                setMainUserLanguage(userLanguage[0]);
-                navigator.languages.forEach(language => {
-                    if(language === userLanguage[0]){
-                        userLanguage.push(language.toLowerCase());
-                    }
-                });
-                setUserLanguages(userLanguage);
-                console.log(userLanguage)
-            })
-            .catch(error => console.error('Error fetching IP information:', error));
+       
+        setMainUserLanguage(navigator.language || navigator.userLanguage);
+        navigator.languages.forEach(language => {
+            userLanguage.push(language.toLowerCase());
+        });
+        setUserLanguages(userLanguage);
+        console.log(userLanguage)
+           
     }, []);
 
     const sendMessage = async () => {
@@ -92,13 +87,17 @@ const ChatBot = () => {
             alert("Lütfen daha kısa bir mesaj yazın.");
             return;
         }
-        let modifiedMessageText = "Kullanıcının ana dili: " + mainUserLanguage + ", diğer konuştuğu olası diller: " + userLanguages + " cevap verirken bu dillere öncelik ver:\n" + messageText;
-        const newUserMessage = { type: 'user', text: modifiedMessageText };
+        if(!userCanType){
+            alert("Şu anda önceki mesajınızı düşünüyorum. Lütfen bekleyin.");
+            return;
+        }
+        let modifiedMessageText = "Cevap verirken bu dillere öncelik ver. Kullanıcının ana dili: " + mainUserLanguage + ", diğer konuştuğu olası diller: " + userLanguages + ".\n" + messageText;
+        const newUserMessage = { type: 'user', text: messageText };
         setMessages(messages => [...messages, newUserMessage]);
 
         try {
             const raw = JSON.stringify({
-                "prompt": messageText
+                "prompt": modifiedMessageText
             });
 
             const requestOptions = {
@@ -162,6 +161,7 @@ const ChatBot = () => {
                     setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
                     typeWriterEffect(data.result, newAiResponse);
                     setScrollToBottom(true);
+                    setUserCanType(true);
                     //setMessages(messages => [...messages, newAiResponse]);
                 })
                 .catch(error => {
@@ -197,13 +197,13 @@ const ChatBot = () => {
                                 <li className={`border-2 rounded-xl max-w-[50%] break-words p-2 m-2 ${message.type === 'user' ? 'bg-gray-500 text-white' : 'bg-[#e28109] text-white'}`} style={{ whiteSpace: 'pre-line' }}>
                                     <ReactMarkdown>{message.text}</ReactMarkdown>
                                 </li>
-                              {message.type === 'ai' && index === messages.length - 1 && (
-                                loading ? (
-                                    <img src={LoadingGif} alt="AI" className="items-center lg:w-16 w-6 lg:h-16 h-6 mr-2" />
-                                ) : (
-                                    <img src={AILogo} alt="AI" className="items-center lg:w-16 w-6 lg:h-16 h-6 mr-2" />
-                                )
-                            )}
+                                {message.type === 'ai' && (
+                                    index === messages.length - 1 && loading ? (
+                                        <img src={LoadingGif} alt="AI" className="items-center lg:w-16 w-6 lg:h-16 h-6 mr-2" />
+                                    ) : (
+                                        <img src={AILogo} alt="AI" className="items-center lg:w-16 w-6 lg:h-16 h-6 mr-2" />
+                                    )
+                                )}
                             </div>
                         ))}
                         <div ref={messagesEndRef} />
