@@ -33,7 +33,7 @@ import risk from "../assets/zor/risk.jpg";
 
 function App() {
   const [userId, setUserId] = useState(null);
-  const [renderSite, setRenderSite] = useState(false);
+  const [renderSite, setRenderSite] = useState(true);
   const [notFinishedCourses, setNotFinishedCourses] = useState([]);
   const [formattedEducationIds, setFormattedEducationIds] = useState([
     { id: 1, isFinishedList: false, name: "Finansal Okuryazarlık", to: "/FinansalOkuryazarliginTemelleri", imgSrc: okuryazarlik, difficulty: "easy" },
@@ -106,10 +106,10 @@ function App() {
         {userId && userId !== 0 ? (
           <>
             <div className="progress-header flex flex-col">
-              <h1 className='text-2xl mb-15'>İlerlemeniz</h1>
               <div className="progress-bar-wrapper mt-5">
                 <CircularProgressBar />
               </div>
+              <h1 className='text-2xl mb-15'>Önerilen sıralama</h1>
             </div>
             <div className='progress-cards'>
               {notFinishedCourses.map(course => (
