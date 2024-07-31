@@ -147,7 +147,7 @@ const ChatBot = () => {
                     setLoading(false);
                     setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
                     if (textToSpeechOn) {
-                        const audioUrl = `https://mysite-281y.onrender.com/text_to_speech`;
+                        const audioUrl = `https://mysite-281y.onrender.com/text_to_speech/${data.file.path}`;
                         console.log('Audio URL:', audioUrl); // Ses dosyasının URL'sini kontrol etme
                         if (audioRef.current) {
                             audioRef.current.src = audioUrl;
