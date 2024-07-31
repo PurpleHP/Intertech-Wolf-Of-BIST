@@ -6,6 +6,14 @@ import AILogo from '../assets/chatbot.png';
 import LoadingGif from '../assets/chatbot.gif';
 
 const ChatBot = () => {
+    const navigate = useNavigate();
+    const [messages, setMessages] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [scrollToBottom, setScrollToBottom] = useState(false);
+    const [userCanType, setUserCanType] = useState(true);
+    const chatContainerRef = useRef(null);
+    const audioRef = useRef(null);
+
     useEffect(() => {
         const storedUserId = localStorage.getItem('userId');
         if (!storedUserId) {
@@ -13,23 +21,13 @@ const ChatBot = () => {
         }
     }, []);
 
-    const [textToSpeechOn, setTextToSpeechOn] = useState(false); // ses kapali
-    const audioRef = useRef(null);
-
-    const navigate = useNavigate();
-    const [messages, setMessages] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [scrollToBottom, setScrollToBottom] = useState(false);
-    const [userCanType, setUserCanType] = useState(true);
-    const chatContainerRef = useRef(null);
-
     useEffect(() => {
-        const newAiResponse = {
+        const initialAiResponse = {
             type: 'ai',
             text: "",
         };
-        setMessages(messages => [...messages, newAiResponse]);
-        typeWriterEffect("Merhaba ben Bilgi Denizi, finansal okuryazarlık eğitmeni olarak görev yapıyorum. Amacım, size finansal konularda en güncel ve doğru bilgileri sağlamak. Samimi ve kibar bir yaklaşım sergileyerek, sorularınızı en içten şekilde yanıtlamak için buradayım.\nFinansal okuryazarlık ve finans konularında geniş bir bilgi birikimine sahibim ve sürekli kendimi güncel bilgilerle yeniliyorum. Bu bilgileri kullanarak, sizlere en doğru ve faydalı bilgileri sunuyorum. Öğrencilerimin sorularını kendi geniş veri setimden inceleyerek titizlikle cevaplıyorum. Ancak, sadece kendi uzmanlık alanımdaki konular hakkında bilgi ve fikir sunuyorum.\nBenimle finansal dünyayı keşfetmek, sorularınıza güvenilir cevaplar bulmak ve finansal okuryazarlıkta ilerlemek için hazırsanız, birlikte aklınızdaki soruları cevaplandıralım!", newAiResponse);
+        setMessages(messages => [...messages, initialAiResponse]);
+        typeWriterEffect("Merhaba ben Bilgi Denizi, finansal okuryazarlık eğitmeni olarak görev yapıyorum. Amacım, size finansal konularda en güncel ve doğru bilgileri sağlamak. Samimi ve kibar bir yaklaşım sergileyerek, sorularınızı en içten şekilde yanıtlamak için buradayım.\nFinansal okuryazarlık ve finans konularında geniş bir bilgi birikimine sahibim ve sürekli kendimi güncel bilgilerle yeniliyorum. Bu bilgileri kullanarak, sizlere en doğru ve faydalı bilgileri sunuyorum. Öğrencilerimin sorularını kendi geniş veri setimden inceleyerek titizlikle cevaplıyorum. Ancak, sadece kendi uzmanlık alanımdaki konular hakkında bilgi ve fikir sunuyorum.\nBenimle finansal dünyayı keşfetmek, sorularınıza güvenilir cevaplar bulmak ve finansal okuryazarlıkta ilerlemek için hazırsanız, birlikte aklınızdaki soruları cevaplandıralım!", initialAiResponse);
     }, []);
 
     async function typeWriterEffect(text, messageObj) {
@@ -63,10 +61,6 @@ const ChatBot = () => {
         }
     }, []);
 
-    const changeTextToSpeech = () => {
-        setTextToSpeechOn(!textToSpeechOn);
-    };
-
     const sendMessage = async () => {
         const messageText = document.querySelector('input').value;
         document.querySelector('input').value = '';
@@ -98,7 +92,7 @@ const ChatBot = () => {
                 body: raw,
                 redirect: "follow"
             };
-            const targetUrl = textToSpeechOn ? 'https://mysite-281y.onrender.com/text_to_speech' : 'https://mysite-281y.onrender.com/process_prompt';
+            const targetUrl = 'https://mysite-281y.onrender.com/process_prompt';
             const thinkingMessage = {
                 type: 'ai',
                 text: ''
@@ -139,43 +133,16 @@ const ChatBot = () => {
                     return response.json();
                 })
                 .then(data => {
-                    console.log('Response from server:', data); // Sunucu yanıtını kontrol etme
                     const newAiResponse = {
                         type: 'ai',
-                        text: textToSpeechOn ? data.process_result.result : ""
+                        text: ""
                     };
                     setLoading(false);
                     setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
-                    if (textToSpeechOn) {
-                        const audioUrl = `https://mysite-281y.onrender.com/text_to_speech/${data.file.path}`;
-                        console.log('Audio URL:', audioUrl); // Ses dosyasının URL'sini kontrol etme
-                
-                        fetch(audioUrl)
-                            .then(response => response.blob())
-                            .then(blob => {
-                                const audioBlobUrl = URL.createObjectURL(blob); // Create an object URL from the blob
-                                if (audioRef.current) {
-                                    audioRef.current.src = audioBlobUrl;
-                                    audioRef.current.play()
-                                        .then(() => {
-                                            console.log('Audio playing');
-                                            // Ses çalarken mesajı chatbox'a ekle
-                                            typeWriterEffect(data.process_result.result, newAiResponse);
-                                        })
-                                        .catch(error => {
-                                            console.error('Error playing audio:', error);
-                                        });
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Error fetching audio:', error);
-                            });
-                    } else {
-                        const cleanedText = data.process_result.result.replace(/\s{2,}/g, ' ').trim();
-                        typeWriterEffect(cleanedText, newAiResponse);
-                    }
+                    const cleanedText = data.process_result.result.replace(/\s{2,}/g, ' ').trim();
+                    typeWriterEffect(cleanedText, newAiResponse);
                     setScrollToBottom(true);
-                    setUserCanType(true); // Allow user to type after the message is fully displayed
+                    setUserCanType(true);
                 })
                 .catch(error => {
                     stopLoadingEffect();
@@ -187,7 +154,6 @@ const ChatBot = () => {
                     };
                     setMessages(messages => [...messages.slice(0, -1), errorMessage]);
                     setScrollToBottom(true);
-                    setUserCanType(true); // Allow user to type after error
                 });
         } catch (error) {
             stopLoadingEffect();
@@ -234,9 +200,7 @@ const ChatBot = () => {
                 <div className='w-full flex justify-center pb-4'>
                     <div className='flex flex-row w-[85vw]'>
                         <audio ref={audioRef}></audio>
-                        <button className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={changeTextToSpeech}>
-                            {textToSpeechOn ? 'Metin Okuma Açık' : 'Metin Okuma Kapalı'}
-                        </button>
+                        <button className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={() => setTextToSpeechOn(!textToSpeechOn)}>Sesli Okuma</button>
                         <button className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={() => navigate("/home")}>Ana Sayfa</button>
                         <input required type="text" onKeyDown={e => e.key === "Enter" ? sendMessage() : ""} className='flex break-words p-2 w-full mx-2 border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none' />
                         <button className='flex px-4 mx-2 py-2 text-center items-center justify-center bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={sendMessage}>Sor</button>
