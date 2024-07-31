@@ -45,7 +45,7 @@ const ChatBot = () => {
                 messageObj.text += text.charAt(i);
                 setMessages(messages => [...messages.slice(0, -1), messageObj]);
                 i++;
-                setTimeout(type, 50); // typing speed
+                setTimeout(type, 5); // typing speed
             } else {
                 setUserCanType(true);
             }
