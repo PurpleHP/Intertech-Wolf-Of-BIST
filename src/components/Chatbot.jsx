@@ -12,6 +12,8 @@ const ChatBot = () => {
     const [scrollToBottom, setScrollToBottom] = useState(false);
     const [userCanType, setUserCanType] = useState(true);
     const chatContainerRef = useRef(null);
+    const audioRef = useRef(null);
+    const [textToSpeechOn, setTextToSpeechOn] = useState(false);
 
     useEffect(() => {
         const storedUserId = localStorage.getItem('userId');
@@ -40,9 +42,40 @@ const ChatBot = () => {
                 setTimeout(type, 5); // typing speed
             } else {
                 setUserCanType(true);
+                if (textToSpeechOn) {
+                    fetchTextToSpeech(text);
+                }
             }
         }
         type();
+    }
+
+    async function fetchTextToSpeech(text) {
+        try {
+            const raw = JSON.stringify({ prompt: text });
+            const requestOptions = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: raw,
+                redirect: "follow"
+            };
+            const response = await fetch('https://mysite-281y.onrender.com/text_to_speech', requestOptions);
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            const blob = await response.blob();
+            const audioUrl = URL.createObjectURL(blob);
+            if (audioRef.current) {
+                audioRef.current.src = audioUrl;
+                audioRef.current.play().catch(error => {
+                    console.error('Error playing audio:', error);
+                });
+            }
+        } catch (error) {
+            console.error('Error fetching audio:', error);
+        }
     }
 
     useEffect(() => {
@@ -198,7 +231,10 @@ const ChatBot = () => {
                 </div>
                 <div className='w-full flex justify-center pb-4'>
                     <div className='flex flex-row w-[85vw]'>
-                        <button className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105'>Sesli Okuma</button>
+                        <audio ref={audioRef}></audio>
+                        <button className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={() => setTextToSpeechOn(!textToSpeechOn)}>
+                            {textToSpeechOn ? "Sesli Okuma: Kapalı" : "Sesli Okuma: Aktif"}
+                        </button>
                         <button className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={() => navigate("/home")}>Ana Sayfa</button>
                         <input required type="text" onKeyDown={e => e.key === "Enter" ? sendMessage() : ""} className='flex break-words p-2 w-full mx-2 border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none' />
                         <button className='flex px-4 mx-2 py-2 text-center items-center justify-center bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={sendMessage}>Sor</button>
