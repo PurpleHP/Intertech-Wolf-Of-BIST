@@ -32,6 +32,7 @@ import risk from "../assets/zor/risk.jpg";
 //-------------------------
 
 function App() {
+  const [userName, setUserName] = useState(null);
   const [userId, setUserId] = useState(null);
   const [renderSite, setRenderSite] = useState(true);
   const [notFinishedCourses, setNotFinishedCourses] = useState([]);
@@ -51,6 +52,11 @@ function App() {
     { id: 18, isFinishedList: false, name: "Kripto", to: "/Kripto", imgSrc: kripto, difficulty: "hard" },
     { id: 19, isFinishedList: false, name: "Risk", to: "/Risk", imgSrc: risk, difficulty: "hard" }
   ]);
+
+  useEffect(() => {
+    const storedUserName = localStorage.getItem('userName');
+    setUserName(storedUserName);
+  },[]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -106,6 +112,7 @@ function App() {
         {userId && userId !== 0 ? (
           <>
             <div className="progress-header flex flex-col">
+              <h1 className='lg:text-3xl text-2xl mt-8 mb-15'>Hoşgeldin {userName}, şuana kadarki ilerlemeniz:</h1>
               <div className="progress-bar-wrapper mt-5">
                 <CircularProgressBar />
               </div>

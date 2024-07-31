@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ReactMarkdown from 'react-markdown';
 import UserLogo from '../assets/imageKurt.png';
 import AILogo from '../assets/chatbot.png';
-import LoadingGif from '../assets/loading.gif';
+import LoadingGif from '../assets/chatbot.gif';
 
 const ChatBot = () => {
     useEffect(() => {
@@ -13,9 +13,18 @@ const ChatBot = () => {
         }
     }, []);
 
+    useEffect(() => {
+
+
+    },[]);
+
     const navigate = useNavigate();
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [scrollToBottom, setScrollToBottom] = useState(false);
+    const [userLanguages, setUserLanguages] = useState([]);
+    const [mainUserLanguage, setMainUserLanguage] = useState('tr');
+    const chatContainerRef = useRef(null);
 
     useEffect(() => {
         const newAiResponse = {
@@ -34,12 +43,43 @@ const ChatBot = () => {
                 newAiResponse.text += text.charAt(i);
                 setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
                 i++;
-                setTimeout(type, 50);//for typing speed
+                setTimeout(type, 5); //typing speed
             }
         }
-        setMessages(messages => [...messages, newAiResponse]);
         type();
     }
+
+    useEffect(() => {
+        const chatContainer = chatContainerRef.current;
+        if (chatContainer) {
+            const handleScroll = () => {
+                if (chatContainer.scrollTop + chatContainer.clientHeight < chatContainer.scrollHeight) {
+                    setScrollToBottom(false);
+                } else {
+                    setScrollToBottom(true);
+                }
+            };
+            chatContainer.addEventListener('scroll', handleScroll);
+            return () => chatContainer.removeEventListener('scroll', handleScroll);
+        }
+    }, []);
+
+    useEffect(() => {
+        fetch("http://ip-api.com/json")
+            .then(response => response.json())
+            .then(data => {
+                let userLanguage = [data.countryCode.toLowerCase()];
+                setMainUserLanguage(userLanguage[0]);
+                navigator.languages.forEach(language => {
+                    if(language === userLanguage[0]){
+                        userLanguage.push(language.toLowerCase());
+                    }
+                });
+                setUserLanguages(userLanguage);
+                console.log(userLanguage)
+            })
+            .catch(error => console.error('Error fetching IP information:', error));
+    }, []);
 
     const sendMessage = async () => {
         const messageText = document.querySelector('input').value;
@@ -52,8 +92,8 @@ const ChatBot = () => {
             alert("Lütfen daha kısa bir mesaj yazın.");
             return;
         }
-
-        const newUserMessage = { type: 'user', text: messageText };
+        let modifiedMessageText = "Kullanıcının ana dili: " + mainUserLanguage + ", diğer konuştuğu olası diller: " + userLanguages + " cevap verirken bu dillere öncelik ver:\n" + messageText;
+        const newUserMessage = { type: 'user', text: modifiedMessageText };
         setMessages(messages => [...messages, newUserMessage]);
 
         try {
@@ -121,6 +161,7 @@ const ChatBot = () => {
 
                     setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
                     typeWriterEffect(data.result, newAiResponse);
+                    setScrollToBottom(true);
                     //setMessages(messages => [...messages, newAiResponse]);
                 })
                 .catch(error => {
@@ -135,14 +176,13 @@ const ChatBot = () => {
     const messagesEndRef = useRef(null);
 
     useEffect(() => {
-        const scrollToBottom = () => {
-            const chatContainer = document.getElementById('chatbot-bubble');
+        if (scrollToBottom) {
+            const chatContainer = chatContainerRef.current;
             if (chatContainer) {
                 chatContainer.scrollTop = chatContainer.scrollHeight;
             }
-        };
-        scrollToBottom();
-    }, [messages]);
+        }
+    }, [messages, scrollToBottom]);
 
     return (
         <div className='flex flex-col h-screen w-screen items-center justify-center'>
@@ -157,13 +197,13 @@ const ChatBot = () => {
                                 <li className={`border-2 rounded-xl max-w-[50%] break-words p-2 m-2 ${message.type === 'user' ? 'bg-gray-500 text-white' : 'bg-[#e28109] text-white'}`} style={{ whiteSpace: 'pre-line' }}>
                                     <ReactMarkdown>{message.text}</ReactMarkdown>
                                 </li>
-                                {message.type === 'ai' && (
-                                    loading ? (
-                                    <img src={LoadingGif} alt="AI" className="items-center lg:w-16 w-6 lg:h-16 h-6 mr-2" />)
-                                    :
-                                    (
-                                    <img src={AILogo} alt="AI" className="items-center lg:w-16 w-6 lg:h-16 h-6 mr-2" />)
-                                )}
+                              {message.type === 'ai' && index === messages.length - 1 && (
+                                loading ? (
+                                    <img src={LoadingGif} alt="AI" className="items-center lg:w-16 w-6 lg:h-16 h-6 mr-2" />
+                                ) : (
+                                    <img src={AILogo} alt="AI" className="items-center lg:w-16 w-6 lg:h-16 h-6 mr-2" />
+                                )
+                            )}
                             </div>
                         ))}
                         <div ref={messagesEndRef} />
