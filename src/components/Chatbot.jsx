@@ -13,38 +13,33 @@ const ChatBot = () => {
         }
     }, []);
 
-    useEffect(() => {
-
-
-    },[]);
-
     const navigate = useNavigate();
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(false);
     const [scrollToBottom, setScrollToBottom] = useState(false);
-    //const [userLanguages, setUserLanguages] = useState([]);
-    //const [mainUserLanguage, setMainUserLanguage] = useState('tr');
     const [userCanType, setUserCanType] = useState(true);
     const chatContainerRef = useRef(null);
 
     useEffect(() => {
         const newAiResponse = {
             type: 'ai',
-            text: "Merhaba ben Bilgi Denizi, finansal okuryazarlık eğitmeni olarak görev yapıyorum. Amacım, size finansal konularda en güncel ve doğru bilgileri sağlamak. Samimi ve kibar bir yaklaşım sergileyerek, sorularınızı en içten şekilde yanıtlamak için buradayım.\nFinansal okuryazarlık ve finans konularında geniş bir bilgi birikimine sahibim ve sürekli kendimi güncel bilgilerle yeniliyorum. Bu bilgileri kullanarak, sizlere en doğru ve faydalı bilgileri sunuyorum. Öğrencilerimin sorularını kendi geniş veri setimden inceleyerek titizlikle cevaplıyorum. Ancak, sadece kendi uzmanlık alanımdaki konular hakkında bilgi ve fikir sunuyorum.\nBenimle finansal dünyayı keşfetmek, sorularınıza güvenilir cevaplar bulmak ve finansal okuryazarlıkta ilerlemek için hazırsanız, birlikte aklınızdaki soruları cevaplandıralım!",
+            text: "",
         };
         setMessages(messages => [...messages, newAiResponse]);
+        typeWriterEffect("Merhaba ben Bilgi Denizi, finansal okuryazarlık eğitmeni olarak görev yapıyorum. Amacım, size finansal konularda en güncel ve doğru bilgileri sağlamak. Samimi ve kibar bir yaklaşım sergileyerek, sorularınızı en içten şekilde yanıtlamak için buradayım.\nFinansal okuryazarlık ve finans konularında geniş bir bilgi birikimine sahibim ve sürekli kendimi güncel bilgilerle yeniliyorum. Bu bilgileri kullanarak, sizlere en doğru ve faydalı bilgileri sunuyorum. Öğrencilerimin sorularını kendi geniş veri setimden inceleyerek titizlikle cevaplıyorum. Ancak, sadece kendi uzmanlık alanımdaki konular hakkında bilgi ve fikir sunuyorum.\nBenimle finansal dünyayı keşfetmek, sorularınıza güvenilir cevaplar bulmak ve finansal okuryazarlıkta ilerlemek için hazırsanız, birlikte aklınızdaki soruları cevaplandıralım!", newAiResponse);
     }, []);
 
-
-    
-    function typeWriterEffect(text, newAiResponse) {
+    function typeWriterEffect(text, messageObj) {
         let i = 0;
+        messageObj.text = ""; // Start with an empty string
         function type() {
             if (i < text.length) {
-                newAiResponse.text += text.charAt(i);
-                setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
+                messageObj.text += text.charAt(i);
+                setMessages(messages => [...messages.slice(0, -1), messageObj]);
                 i++;
-                setTimeout(type, 5); //typing speed
+                setTimeout(type, 5); // typing speed
+            } else {
+                setUserCanType(true); // Allow user to type after the message is fully displayed
             }
         }
         type();
@@ -64,8 +59,6 @@ const ChatBot = () => {
             return () => chatContainer.removeEventListener('scroll', handleScroll);
         }
     }, []);
-
-
 
     const sendMessage = async () => {
         const messageText = document.querySelector('input').value;
@@ -142,14 +135,13 @@ const ChatBot = () => {
                 .then(data => {
                     const newAiResponse = {
                         type: 'ai',
-                        text: data.result
+                        text: ""
                     };
                     setLoading(false);
                     setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
                     typeWriterEffect(data.result, newAiResponse);
                     setScrollToBottom(true);
-                    setUserCanType(true);
-                    //setMessages(messages => [...messages, newAiResponse]);
+                    setUserCanType(false);
                 })
                 .catch(error => {
                     stopLoadingEffect();
@@ -176,7 +168,7 @@ const ChatBot = () => {
     return (
         <div className='flex flex-col h-screen w-screen items-center justify-center'>
             <div className='border-[#e28109] rounded-xl border-2 flex flex-col h-[90vh] w-[90vw] justify-between'>
-                <div id="chatbot-bubble" className='overflow-auto p-4 my-2 flex flex-col gap-2'>
+                <div id="chatbot-bubble" className='overflow-auto p-4 my-2 flex flex-col gap-2' ref={chatContainerRef}>
                     <ul className="flex flex-col w-full">
                         {messages.map((message, index) => (
                             <div key={index} className={`flex rounded-xl items-center ${message.type === 'user' ? 'justify-start' : 'justify-end'}`}>
