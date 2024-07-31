@@ -13,8 +13,8 @@ const ChatBot = () => {
         }
     }, []);
 
-    const [textToSpeechOn, setTextToSpeechOn] = useState(false); // Başlangıçta kapalı
-    const audioRef = useRef(null); // Ses dosyasını çalmak için referans
+    const [textToSpeechOn, setTextToSpeechOn] = useState(false); // ses ilk basta kapali
+    const audioRef = useRef(null); //calmak icin referans
 
     const navigate = useNavigate();
     const [messages, setMessages] = useState([]);
@@ -146,7 +146,7 @@ const ChatBot = () => {
                     setLoading(false);
                     setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
                     if (textToSpeechOn) {
-                        const audioUrl = data.file.path;
+                        const audioUrl = `https://mysite-281y.onrender.com/${data.file.path}`;
                         if (audioRef.current) {
                             audioRef.current.src = audioUrl;
                             audioRef.current.play().catch(error => {
@@ -154,11 +154,11 @@ const ChatBot = () => {
                             });
                         }
                     } else {
-                        const cleanedText = data.result.replace(/\s{2,}/g, ' ').trim();
+                        const cleanedText = data.process_result.result.replace(/\s{2,}/g, ' ').trim();
                         typeWriterEffect(cleanedText, newAiResponse);
                     }
                     setScrollToBottom(true);
-                    setUserCanType(false);
+                    setUserCanType(true); // Allow user to type after the message is fully displayed
                 })
                 .catch(error => {
                     stopLoadingEffect();
@@ -170,6 +170,7 @@ const ChatBot = () => {
                     };
                     setMessages(messages => [...messages.slice(0, -1), errorMessage]);
                     setScrollToBottom(true);
+                    setUserCanType(true); // Allow user to type after error
                 });
         } catch (error) {
             stopLoadingEffect();
