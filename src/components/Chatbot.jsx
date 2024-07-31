@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import UserLogo from '../assets/imageKurt.png';
 import AILogo from '../assets/chatbot.png';
 import LoadingGif from '../assets/chatbot.gif';
+import { FaHeadphones } from 'react-icons/fa';
 
 const ChatBot = () => {
     const navigate = useNavigate();
@@ -43,7 +44,7 @@ const ChatBot = () => {
                 messageObj.text += text.charAt(i);
                 setMessages(messages => [...messages.slice(0, -1), messageObj]);
                 i++;
-                setTimeout(type, 5); // typing speed
+                setTimeout(type, 50); // typing speed
             } else {
                 setUserCanType(true);
             }
@@ -238,8 +239,12 @@ const ChatBot = () => {
                 <div className='w-full flex justify-center pb-4'>
                     <div className='flex flex-row w-[85vw]'>
                         <audio ref={audioRef}></audio>
-                        <button className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={() => setTextToSpeechOn(!textToSpeechOn)}>
-                            {textToSpeechOn ? "Sesli Okuma: Aktif" : "Sesli Okuma: Kapalı"}
+                        <button 
+                            className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' 
+                            onClick={() => setTextToSpeechOn(!textToSpeechOn)}
+                            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                        >
+                            <FaHeadphones color={textToSpeechOn ? "white" : "red"} />
                         </button>
                         <button className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={() => navigate("/home")}>Ana Sayfa</button>
                         <input required type="text" onKeyDown={e => e.key === "Enter" ? sendMessage() : ""} className='flex break-words p-2 w-full mx-2 border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none' />
