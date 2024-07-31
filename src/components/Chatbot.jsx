@@ -147,8 +147,10 @@ const ChatBot = () => {
                     setLoading(false);
                     setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
                     if (textToSpeechOn) {
-                        const audioUrl = `https://mysite-281y.onrender.com/text_to_speech/${data.file.path}`;
+                        const audioBlob = new Blob([data.file.path], { type: 'audio/wav' }); // Assuming the audio is in the 'audio' field
+                        //const audioUrl = `https://mysite-281y.onrender.com/text_to_speech/${data.file.path}`;
                         console.log('Audio URL:', audioUrl); // Ses dosyasının URL'sini kontrol etme
+                        const audioUrl = URL.createObjectURL(audioBlob); // Create an object URL from the blob
                         if (audioRef.current) {
                             audioRef.current.src = audioUrl;
                             audioRef.current.play()
