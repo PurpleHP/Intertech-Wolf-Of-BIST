@@ -22,8 +22,8 @@ const ChatBot = () => {
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(false);
     const [scrollToBottom, setScrollToBottom] = useState(false);
-    const [userLanguages, setUserLanguages] = useState([]);
-    const [mainUserLanguage, setMainUserLanguage] = useState('tr');
+    //const [userLanguages, setUserLanguages] = useState([]);
+    //const [mainUserLanguage, setMainUserLanguage] = useState('tr');
     const [userCanType, setUserCanType] = useState(true);
     const chatContainerRef = useRef(null);
 
@@ -65,16 +65,7 @@ const ChatBot = () => {
         }
     }, []);
 
-    useEffect(() => {
-       let userLanguage = [];
-        setMainUserLanguage(navigator.language || navigator.userLanguage);
-        navigator.languages.forEach(language => {
-            userLanguage.push(language.toLowerCase());
-        });
-        setUserLanguages(userLanguage);
-        console.log(userLanguage)
-           
-    }, []);
+
 
     const sendMessage = async () => {
         const messageText = document.querySelector('input').value;
@@ -91,13 +82,12 @@ const ChatBot = () => {
             alert("Şu anda önceki mesajınızı düşünüyorum. Lütfen bekleyin.");
             return;
         }
-        let modifiedMessageText = "Cevap verirken bu dillere öncelik ver. Kullanıcının ana dili: " + mainUserLanguage + ", diğer konuştuğu olası diller: " + userLanguages + ".\n" + messageText;
         const newUserMessage = { type: 'user', text: messageText };
         setMessages(messages => [...messages, newUserMessage]);
 
         try {
             const raw = JSON.stringify({
-                "prompt": modifiedMessageText
+                "prompt": messageText
             });
 
             const requestOptions = {
@@ -143,6 +133,7 @@ const ChatBot = () => {
 
             fetch(targetUrl, requestOptions)
                 .then(response => {
+                    stopLoadingEffect();
                     if (!response.ok) {
                         throw new Error('Network response was not ok ' + response.statusText);
                     }
@@ -155,9 +146,7 @@ const ChatBot = () => {
                         type: 'ai',
                         text: data.result
                     };
-                    stopLoadingEffect();
                     setLoading(false);
-
                     setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
                     typeWriterEffect(data.result, newAiResponse);
                     setScrollToBottom(true);
@@ -165,10 +154,12 @@ const ChatBot = () => {
                     //setMessages(messages => [...messages, newAiResponse]);
                 })
                 .catch(error => {
+                    stopLoadingEffect();
                     console.error('Error:', error);
                     alert("Sunucularımızda sorun var. Lütfen daha sonra tekrar deneyin.");
                 });
         } catch (error) {
+            stopLoadingEffect();
             console.error("Failed to fetch AI response:", error);
         }
     }
