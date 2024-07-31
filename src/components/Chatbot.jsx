@@ -147,24 +147,31 @@ const ChatBot = () => {
                     setLoading(false);
                     setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
                     if (textToSpeechOn) {
-                        const audioBlob = new Blob([data.file.path], { type: 'audio/wav' }); // Assuming the audio is in the 'audio' field
-                        //const audioUrl = `https://mysite-281y.onrender.com/text_to_speech/${data.file.path}`;
+                        const audioUrl = `https://mysite-281y.onrender.com/text_to_speech/${data.file.path}`;
                         console.log('Audio URL:', audioUrl); // Ses dosyasının URL'sini kontrol etme
-                        const audioUrl = URL.createObjectURL(audioBlob); // Create an object URL from the blob
-                        if (audioRef.current) {
-                            audioRef.current.src = audioUrl;
-                            audioRef.current.play()
-                                .then(() => {
-                                    console.log('Audio playing');
-                                    // Ses çalarken mesajı chatbox'a ekle
-                                    typeWriterEffect(data.process_result.result, newAiResponse);
-                                })
-                                .catch(error => {
-                                    console.error('Error playing audio:', error);
-                                });
-                        }
+                
+                        fetch(audioUrl)
+                            .then(response => response.blob())
+                            .then(blob => {
+                                const audioBlobUrl = URL.createObjectURL(blob); // Create an object URL from the blob
+                                if (audioRef.current) {
+                                    audioRef.current.src = audioBlobUrl;
+                                    audioRef.current.play()
+                                        .then(() => {
+                                            console.log('Audio playing');
+                                            // Ses çalarken mesajı chatbox'a ekle
+                                            typeWriterEffect(data.process_result.result, newAiResponse);
+                                        })
+                                        .catch(error => {
+                                            console.error('Error playing audio:', error);
+                                        });
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error fetching audio:', error);
+                            });
                     } else {
-                        const cleanedText = data.result.replace(/\s{2,}/g, ' ').trim();
+                        const cleanedText = data.process_result.result.replace(/\s{2,}/g, ' ').trim();
                         typeWriterEffect(cleanedText, newAiResponse);
                     }
                     setScrollToBottom(true);
