@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ReactMarkdown from 'react-markdown';
 import UserLogo from '../assets/imageKurt.png';
 import AILogo from '../assets/chatbot.png';
+import LoadingGif from '../assets/loading.gif';
 
 const ChatBot = () => {
     useEffect(() => {
@@ -14,6 +15,7 @@ const ChatBot = () => {
 
     const navigate = useNavigate();
     const [messages, setMessages] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const newAiResponse = {
@@ -22,6 +24,22 @@ const ChatBot = () => {
         };
         setMessages(messages => [...messages, newAiResponse]);
     }, []);
+
+
+    
+    function typeWriterEffect(text, newAiResponse) {
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                newAiResponse.text += text.charAt(i);
+                setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
+                i++;
+                setTimeout(type, 50);//for typing speed
+            }
+        }
+        setMessages(messages => [...messages, newAiResponse]);
+        type();
+    }
 
     const sendMessage = async () => {
         const messageText = document.querySelector('input').value;
@@ -52,6 +70,38 @@ const ChatBot = () => {
                 redirect: "follow"
             };
             const targetUrl = 'https://mysite-281y.onrender.com/process_prompt';
+            const thinkingMessage = {
+                type: 'ai',
+                text: 'Düşünüyorum'
+            };
+            setMessages(messages => [...messages, thinkingMessage]);
+            
+            let loadingInterval;
+            
+            function startLoadingEffect() {
+                
+                let dots = '';
+                loadingInterval = setInterval(() => {
+                    if (dots.length < 3) {
+                        dots += '.';
+                    } else {
+                        dots = '';
+                    }
+                    setMessages(messages => {
+                        const updatedMessages = [...messages];
+                        updatedMessages[updatedMessages.length - 1].text = `Düşünüyorum${dots}`;
+                        return updatedMessages;
+                    });
+                }, 500); // Adjust the interval for the desired speed
+            }
+            
+            function stopLoadingEffect() {
+                clearInterval(loadingInterval);
+            }
+            setLoading(true);
+
+            startLoadingEffect();
+
             fetch(targetUrl, requestOptions)
                 .then(response => {
                     if (!response.ok) {
@@ -66,7 +116,12 @@ const ChatBot = () => {
                         type: 'ai',
                         text: data.result
                     };
-                    setMessages(messages => [...messages, newAiResponse]);
+                    stopLoadingEffect();
+                    setLoading(false);
+
+                    setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
+                    typeWriterEffect(data.result, newAiResponse);
+                    //setMessages(messages => [...messages, newAiResponse]);
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -103,7 +158,11 @@ const ChatBot = () => {
                                     <ReactMarkdown>{message.text}</ReactMarkdown>
                                 </li>
                                 {message.type === 'ai' && (
-                                    <img src={AILogo} alt="AI" className="items-center lg:w-16 w-6 lg:h-16 h-6 mr-2" />
+                                    loading ? (
+                                    <img src={LoadingGif} alt="AI" className="items-center lg:w-16 w-6 lg:h-16 h-6 mr-2" />)
+                                    :
+                                    (
+                                    <img src={AILogo} alt="AI" className="items-center lg:w-16 w-6 lg:h-16 h-6 mr-2" />)
                                 )}
                             </div>
                         ))}

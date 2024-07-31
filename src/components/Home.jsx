@@ -109,7 +109,7 @@ function App() {
               <div className="progress-bar-wrapper mt-5">
                 <CircularProgressBar />
               </div>
-              <h1 className='text-2xl mb-15'>Önerilen sıralama</h1>
+              <h1 className='text-2xl mt-8 mb-15'>Önerilen sıralama</h1>
             </div>
             <div className='progress-cards'>
               {notFinishedCourses.map(course => (
