@@ -13,8 +13,8 @@ const ChatBot = () => {
         }
     }, []);
 
-    const [textToSpeechOn, setTextToSpeechOn] = useState(false); // ses kapali
-    const audioRef = useRef(null);
+    const [textToSpeechOn, setTextToSpeechOn] = useState(false); // Başlangıçta kapalı
+    const audioRef = useRef(null); // Ses dosyasını çalmak için referans
 
     const navigate = useNavigate();
     const [messages, setMessages] = useState([]);
@@ -162,7 +162,7 @@ const ChatBot = () => {
                                 });
                         }
                     } else {
-                        const cleanedText = data.result.replace(/\s{2,}/g, ' ').trim();
+                        const cleanedText = data.process_result.result.replace(/\s{2,}/g, ' ').trim();
                         typeWriterEffect(cleanedText, newAiResponse);
                     }
                     setScrollToBottom(true);
