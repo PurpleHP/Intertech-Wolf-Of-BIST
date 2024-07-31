@@ -32,6 +32,10 @@ const ChatBot = () => {
     }, []);
 
     async function typeWriterEffect(text, messageObj) {
+        if (textToSpeechOn) {
+            await fetchTextToSpeech(text);
+        }
+        
         let i = 0;
         messageObj.text = "";
         function type() {
@@ -42,9 +46,6 @@ const ChatBot = () => {
                 setTimeout(type, 5); // typing speed
             } else {
                 setUserCanType(true);
-                if (textToSpeechOn) {
-                    fetchTextToSpeech(text);
-                }
             }
         }
         type();
@@ -94,6 +95,11 @@ const ChatBot = () => {
     }, []);
 
     const sendMessage = async () => {
+        if (audioRef.current) {
+            audioRef.current.pause();
+            audioRef.current.currentTime = 0;
+        }
+
         const messageText = document.querySelector('input').value;
         document.querySelector('input').value = '';
         if (messageText.trim().length === 0) {
@@ -233,7 +239,7 @@ const ChatBot = () => {
                     <div className='flex flex-row w-[85vw]'>
                         <audio ref={audioRef}></audio>
                         <button className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={() => setTextToSpeechOn(!textToSpeechOn)}>
-                            {textToSpeechOn ? "Sesli Okuma: Kapalı" : "Sesli Okuma: Aktif"}
+                            {textToSpeechOn ? "Sesli Okuma: Aktif" : "Sesli Okuma: Kapalı"}
                         </button>
                         <button className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={() => navigate("/home")}>Ana Sayfa</button>
                         <input required type="text" onKeyDown={e => e.key === "Enter" ? sendMessage() : ""} className='flex break-words p-2 w-full mx-2 border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none' />
