@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 const ApiRequest = () => {
   const [error, setError] = useState(null);
