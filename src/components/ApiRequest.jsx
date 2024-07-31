@@ -86,6 +86,38 @@ const ApiRequest = () => {
     }
   };
 
+  const fetchData5 = async () => {
+    try {
+
+      const raw = JSON.stringify({
+      });
+
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: raw,
+        redirect: "follow"
+
+      };
+      const targetUrl = 'https://mysite-281y.onrender.com/text_to_speech';
+      fetch(targetUrl, requestOptions)
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+          setApiResponse(data.result);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          setApiResponse(error.message);
+        });
+    } catch (error) {
+      setError(error.message);
+      setApiResponse(error.message);
+    }
+  };
+
 
   const fetchData3 = async () => {
     try {
@@ -174,7 +206,7 @@ const ApiRequest = () => {
           <p className='text-white m-4 p-4 break-words whitespace-pre-line'>{apiResponse}</p>
         </div>
         <div>
-          <button className='text-white border-2 m-4 p-4 rounded-lg' onClick={fetchData}>Fetch Backend Data</button>
+          <button className='text-white border-2 m-4 p-4 rounded-lg' onClick={fetchData5}>Fetch Audio</button>
           <p className='text-white m-4 p-4 break-words whitespace-pre-line'>{apiResponse}</p>
         </div>
         <div>
