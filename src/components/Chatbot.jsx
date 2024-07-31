@@ -140,14 +140,12 @@ const ChatBot = () => {
                     return response.json();
                 })
                 .then(data => {
-                    console.log(data);
-                    console.log(data.result);
                     const newAiResponse = {
                         type: 'ai',
                         text: data.result
                     };
                     setLoading(false);
-                    setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
+                    setMessages(messages => [...messages.slice(0, -1)]);
                     typeWriterEffect(data.result, newAiResponse);
                     setScrollToBottom(true);
                     setUserCanType(true);
