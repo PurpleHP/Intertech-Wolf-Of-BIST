@@ -91,6 +91,7 @@ const ApiRequest = () => {
     try {
 
       const raw = JSON.stringify({
+        "prompt": inputPrompt
       });
 
       const requestOptions = {

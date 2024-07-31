@@ -13,6 +13,8 @@ const ChatBot = () => {
         }
     }, []);
 
+    const [textToSpeechOn, setTextToSpeechOn] = useState(true);
+
     const navigate = useNavigate();
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -29,7 +31,7 @@ const ChatBot = () => {
         typeWriterEffect("Merhaba ben Bilgi Denizi, finansal okuryazarlık eğitmeni olarak görev yapıyorum. Amacım, size finansal konularda en güncel ve doğru bilgileri sağlamak. Samimi ve kibar bir yaklaşım sergileyerek, sorularınızı en içten şekilde yanıtlamak için buradayım.\nFinansal okuryazarlık ve finans konularında geniş bir bilgi birikimine sahibim ve sürekli kendimi güncel bilgilerle yeniliyorum. Bu bilgileri kullanarak, sizlere en doğru ve faydalı bilgileri sunuyorum. Öğrencilerimin sorularını kendi geniş veri setimden inceleyerek titizlikle cevaplıyorum. Ancak, sadece kendi uzmanlık alanımdaki konular hakkında bilgi ve fikir sunuyorum.\nBenimle finansal dünyayı keşfetmek, sorularınıza güvenilir cevaplar bulmak ve finansal okuryazarlıkta ilerlemek için hazırsanız, birlikte aklınızdaki soruları cevaplandıralım!", newAiResponse);
     }, []);
 
-    function typeWriterEffect(text, messageObj) {
+    async function typeWriterEffect(text, messageObj) {
         let i = 0;
         messageObj.text = ""; // Start with an empty string
         function type() {
@@ -43,6 +45,7 @@ const ChatBot = () => {
             }
         }
         type();
+
     }
 
     useEffect(() => {
@@ -161,6 +164,42 @@ const ChatBot = () => {
         }
     }
 
+    /*
+try {
+
+                        const raw = JSON.stringify({
+                          "prompt": data
+                        });
+                  
+                        const requestOptions = {
+                          method: "POST",
+                          headers: {
+                            'Content-Type': 'application/json',
+                          },
+                          body: raw,
+                          redirect: "follow"
+                  
+                        };
+                        const targetUrl = 'https://mysite-281y.onrender.com/text_to_speech';
+                        fetch(targetUrl, requestOptions)
+                          .then(response => response.blob()) // Get the response as a blob
+                          .then(blob => {
+                              const audioUrl = URL.createObjectURL(blob); // Create an object URL from the blob
+                              if (audioRef.current) {
+                                  audioRef.current.src = audioUrl;
+                                  audioRef.current.play().catch(error => {
+                                      console.error('Error playing audio:', error);
+                                  });
+                              }
+                          })
+                          .catch(error => {
+                              console.error('Error fetching audio:', error);
+                          });
+                      } catch (error) {
+                        setError(error.message);
+                      }
+    */
+
     const messagesEndRef = useRef(null);
 
     useEffect(() => {
@@ -199,6 +238,8 @@ const ChatBot = () => {
                 </div>
                 <div className='w-full flex justify-center pb-4'>
                     <div className='flex flex-row w-[85vw]'>
+                        <audio ref={audioRef}></audio>
+                        <button className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={changeTextToSpeech}></button>
                         <button className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={() => navigate("/home")}>Ana Sayfa</button>
                         <input required type="text" onKeyDown={e => e.key === "Enter" ? sendMessage() : ""} className='flex break-words p-2 w-full mx-2 border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none' />
                         <button className='flex px-4 mx-2 py-2 text-center items-center justify-center bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={sendMessage}>Sor</button>
