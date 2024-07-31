@@ -8,6 +8,7 @@ const ApiRequest = () => {
   const [quizAnswers, setQuizAnswers] = useState(null);
 
 
+  const audioRef = useRef(null);
 
   const [education, setEducation] = useState([]);
 
@@ -103,14 +104,18 @@ const ApiRequest = () => {
       };
       const targetUrl = 'https://mysite-281y.onrender.com/text_to_speech';
       fetch(targetUrl, requestOptions)
-        .then(response => response)
-        .then(data => {
-          console.log(data)
-          setApiResponse(data.result);
+        .then(response => response.blob()) // Get the response as a blob
+        .then(blob => {
+            const audioUrl = URL.createObjectURL(blob); // Create an object URL from the blob
+            if (audioRef.current) {
+                audioRef.current.src = audioUrl;
+                audioRef.current.play().catch(error => {
+                    console.error('Error playing audio:', error);
+                });
+            }
         })
         .catch(error => {
-          console.error('Error:', error);
-          setApiResponse(error.message);
+            console.error('Error fetching audio:', error);
         });
     } catch (error) {
       setError(error.message);
@@ -209,6 +214,7 @@ const ApiRequest = () => {
         <div>
           <button className='text-white border-2 m-4 p-4 rounded-lg' onClick={fetchData5}>Fetch Audio</button>
           <p className='text-white m-4 p-4 break-words whitespace-pre-line'>{apiResponse}</p>
+          <audio ref={audioRef}></audio>
         </div>
         <div>
           <button className='text-white border-2 m-4 p-4 rounded-lg' onClick={fetchData3}>Fetch Quiz Paragraph and options Data</button>
