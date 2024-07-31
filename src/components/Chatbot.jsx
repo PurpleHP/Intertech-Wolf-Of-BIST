@@ -13,7 +13,8 @@ const ChatBot = () => {
         }
     }, []);
 
-    const [textToSpeechOn, setTextToSpeechOn] = useState(true);
+    const [textToSpeechOn, setTextToSpeechOn] = useState(false); // Başlangıçta kapalı
+    const audioRef = useRef(null); // Ses dosyasını çalmak için referans
 
     const navigate = useNavigate();
     const [messages, setMessages] = useState([]);
@@ -45,7 +46,6 @@ const ChatBot = () => {
             }
         }
         type();
-
     }
 
     useEffect(() => {
@@ -63,6 +63,10 @@ const ChatBot = () => {
         }
     }, []);
 
+    const changeTextToSpeech = () => {
+        setTextToSpeechOn(!textToSpeechOn);
+    };
+
     const sendMessage = async () => {
         const messageText = document.querySelector('input').value;
         document.querySelector('input').value = '';
@@ -74,7 +78,7 @@ const ChatBot = () => {
             alert("Lütfen daha kısa bir mesaj yazın.");
             return;
         }
-        if(!userCanType){
+        if (!userCanType) {
             alert("Şu anda önceki mesajınızı düşünüyorum. Lütfen bekleyin.");
             return;
         }
@@ -94,17 +98,16 @@ const ChatBot = () => {
                 body: raw,
                 redirect: "follow"
             };
-            const targetUrl = 'https://mysite-281y.onrender.com/process_prompt';
+            const targetUrl = textToSpeechOn ? 'https://mysite-281y.onrender.com/text_to_speech' : 'https://mysite-281y.onrender.com/process_prompt';
             const thinkingMessage = {
                 type: 'ai',
                 text: ''
             };
             setMessages(messages => [...messages, thinkingMessage]);
-            
+
             let loadingInterval;
-            
+
             function startLoadingEffect() {
-                
                 let dots = '';
                 loadingInterval = setInterval(() => {
                     if (dots.length < 3) {
@@ -119,7 +122,7 @@ const ChatBot = () => {
                     });
                 }, 500); // Adjust the interval for the desired speed
             }
-            
+
             function stopLoadingEffect() {
                 clearInterval(loadingInterval);
             }
@@ -142,8 +145,18 @@ const ChatBot = () => {
                     };
                     setLoading(false);
                     setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
-                    const cleanedText = data.result.replace(/\s{2,}/g, ' ').trim();
-                    typeWriterEffect(cleanedText, newAiResponse);
+                    if (textToSpeechOn) {
+                        const audioUrl = data.file.path;
+                        if (audioRef.current) {
+                            audioRef.current.src = audioUrl;
+                            audioRef.current.play().catch(error => {
+                                console.error('Error playing audio:', error);
+                            });
+                        }
+                    } else {
+                        const cleanedText = data.result.replace(/\s{2,}/g, ' ').trim();
+                        typeWriterEffect(cleanedText, newAiResponse);
+                    }
                     setScrollToBottom(true);
                     setUserCanType(false);
                 })
@@ -163,42 +176,6 @@ const ChatBot = () => {
             console.error("Failed to fetch AI response:", error);
         }
     }
-
-    /*
-try {
-
-                        const raw = JSON.stringify({
-                          "prompt": data
-                        });
-                  
-                        const requestOptions = {
-                          method: "POST",
-                          headers: {
-                            'Content-Type': 'application/json',
-                          },
-                          body: raw,
-                          redirect: "follow"
-                  
-                        };
-                        const targetUrl = 'https://mysite-281y.onrender.com/text_to_speech';
-                        fetch(targetUrl, requestOptions)
-                          .then(response => response.blob()) // Get the response as a blob
-                          .then(blob => {
-                              const audioUrl = URL.createObjectURL(blob); // Create an object URL from the blob
-                              if (audioRef.current) {
-                                  audioRef.current.src = audioUrl;
-                                  audioRef.current.play().catch(error => {
-                                      console.error('Error playing audio:', error);
-                                  });
-                              }
-                          })
-                          .catch(error => {
-                              console.error('Error fetching audio:', error);
-                          });
-                      } catch (error) {
-                        setError(error.message);
-                      }
-    */
 
     const messagesEndRef = useRef(null);
 
@@ -239,7 +216,9 @@ try {
                 <div className='w-full flex justify-center pb-4'>
                     <div className='flex flex-row w-[85vw]'>
                         <audio ref={audioRef}></audio>
-                        <button className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={changeTextToSpeech}></button>
+                        <button className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={changeTextToSpeech}>
+                            {textToSpeechOn ? 'Metin Okuma Kapalı' : 'Metin Okuma Açık'}
+                        </button>
                         <button className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={() => navigate("/home")}>Ana Sayfa</button>
                         <input required type="text" onKeyDown={e => e.key === "Enter" ? sendMessage() : ""} className='flex break-words p-2 w-full mx-2 border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none' />
                         <button className='flex px-4 mx-2 py-2 text-center items-center justify-center bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={sendMessage}>Sor</button>
