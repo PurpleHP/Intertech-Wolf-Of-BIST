@@ -66,7 +66,7 @@ const ChatBot = () => {
     }, []);
 
     useEffect(() => {
-       
+       let userLanguage = [];
         setMainUserLanguage(navigator.language || navigator.userLanguage);
         navigator.languages.forEach(language => {
             userLanguage.push(language.toLowerCase());
