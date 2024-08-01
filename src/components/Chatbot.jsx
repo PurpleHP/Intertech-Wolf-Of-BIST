@@ -47,7 +47,7 @@ const ChatBot = () => {
                 i++;
                 setTimeout(type, 5); // typing speed
             } else {
-                setUserCanType(true);
+                setUserCanType(false);
             }
         }
         type();
@@ -185,7 +185,7 @@ const ChatBot = () => {
                 const cleanedText = data.result
                 .replace(/(\s\s+|\n{3,})/g, function(match) {
                     if (match.includes('\n')) {
-                    return '\n';
+                    return ' ';
                     } else {
                     return ' ';
                     }
