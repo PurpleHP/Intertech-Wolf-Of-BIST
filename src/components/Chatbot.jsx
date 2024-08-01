@@ -185,13 +185,13 @@ const ChatBot = () => {
                 const cleanedText = data.result
                 .replace(/(\s\s+|\n{3,})/g, function(match) {
                     if (match.includes('\n')) {
-                    return ' ';
+                    return '\n';
                     } else {
                     return ' ';
                     }
                 })
-                .replace(/\n{2,}/g, ' ') // fazla satirlarin sayisi iki olsun
                 .replace(/\s*\n\s*/g, '\n')
+                .replace(/\n{2,}/g, ' ') // fazla satirlarin sayisi iki olsun
                 .replace(/\s{2,}/g, ' ') // fazla bosluklar tek bosluk olsun
                 .trim();
                 typeWriterEffect(cleanedText, newAiResponse);
