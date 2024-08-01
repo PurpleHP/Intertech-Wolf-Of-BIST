@@ -80,7 +80,7 @@ function Welcome() {
         </div>
         <a
           id="welcome"
-          className="font-bold text-4xl md:text-8xl text-[#D3D3D3]">Hoşgeldiniz</a>
+          className="font-bold mb-3 text-4xl md:text-8xl text-[#D3D3D3]">Hoşgeldiniz</a>
         <div className="flex flex-col md:flex-row gap-5">
           <button
             id="login"
