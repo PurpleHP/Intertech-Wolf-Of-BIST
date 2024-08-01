@@ -12,7 +12,7 @@ const ChatBot = () => {
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(false);
     const [scrollToBottom, setScrollToBottom] = useState(false);
-    const [userCanType, setUserCanType] = useState(true);
+    const [userCanType, setUserCanType] = useState(false);
     const chatContainerRef = useRef(null);
     const audioRef = useRef(null);
     const [textToSpeechOn, setTextToSpeechOn] = useState(false);
@@ -47,7 +47,7 @@ const ChatBot = () => {
                 i++;
                 setTimeout(type, 5); // typing speed
             } else {
-                setUserCanType(false);
+                setUserCanType(true);
             }
         }
         type();
