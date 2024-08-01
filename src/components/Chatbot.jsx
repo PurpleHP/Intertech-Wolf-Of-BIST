@@ -187,7 +187,7 @@ const ChatBot = () => {
                     return ' ';
                     }
                 })
-                .replace(/\n{2,}/g, '\n') // fazla satirlarin sayisi iki olsun
+                .replace(/\n{2,}/g, ' ') // fazla satirlarin sayisi iki olsun
                 .replace(/\s*\n\s*/g, '\n')
                 .replace(/\s{2,}/g, ' ') // fazla bosluklar tek bosluk olsun
                 .trim();
