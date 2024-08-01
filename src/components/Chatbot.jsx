@@ -188,6 +188,8 @@ const ChatBot = () => {
                     }
                 })
                 .replace(/\s*\n\s*/g, '\n')
+                .replace(/\n{2,}/g, '\n\n') // fazla satirlarin sayisi iki olsun
+                .replace(/\s{2,}/g, ' ') // fazla bosluklar tek bosluk olsun
                 .trim();
                 typeWriterEffect(cleanedText, newAiResponse);
                 setScrollToBottom(true);
