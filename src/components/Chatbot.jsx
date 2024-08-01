@@ -165,36 +165,45 @@ const ChatBot = () => {
             startLoadingEffect();
 
             fetch(targetUrl, requestOptions)
-                .then(response => {
-                    stopLoadingEffect();
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok ' + response.statusText);
+            .then(response => {
+                stopLoadingEffect();
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const newAiResponse = {
+                    type: 'ai',
+                    text: ""
+                };
+                setLoading(false);
+                setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
+                const cleanedText = data.result
+                .replace(/(\s\s+|\n{3,})/g, function(match) {
+                    if (match.includes('\n')) {
+                    return '\n\n';
+                    } else {
+                    return ' ';
                     }
-                    return response.json();
                 })
-                .then(data => {
-                    const newAiResponse = {
-                        type: 'ai',
-                        text: ""
-                    };
-                    setLoading(false);
-                    setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
-                    const cleanedText = data.result.replace(/\s{2,}/g, ' ').trim();
-                    typeWriterEffect(cleanedText, newAiResponse);
-                    setScrollToBottom(true);
-                    setUserCanType(true);
-                })
-                .catch(error => {
-                    stopLoadingEffect();
-                    console.error('Error:', error);
-                    alert("Sunucularımızda sorun var. Lütfen daha sonra tekrar deneyin.");
-                    const errorMessage = {
-                        type: 'ai',
-                        text: "Hazine sunucumuz kayboldu! Papağanımız tamir ediyor, daha sonra tekrar deneyin! Argh!"
-                    };
-                    setMessages(messages => [...messages.slice(0, -1), errorMessage]);
-                    setScrollToBottom(true);
-                });
+                .replace(/\s*\n\s*/g, '\n')
+                .trim();
+                typeWriterEffect(cleanedText, newAiResponse);
+                setScrollToBottom(true);
+                setUserCanType(true);
+            })
+            .catch(error => {
+                stopLoadingEffect();
+                console.error('Error:', error);
+                alert("Sunucularımızda sorun var. Lütfen daha sonra tekrar deneyin.");
+                const errorMessage = {
+                    type: 'ai',
+                    text: "Hazine sunucumuz kayboldu! Papağanımız tamir ediyor, daha sonra tekrar deneyin! Argh!"
+                };
+                setMessages(messages => [...messages.slice(0, -1), errorMessage]);
+                setScrollToBottom(true);
+            });
         } catch (error) {
             stopLoadingEffect();
             console.error("Failed to fetch AI response:", error);
