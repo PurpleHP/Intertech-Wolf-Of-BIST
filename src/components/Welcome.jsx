@@ -84,17 +84,17 @@ function Welcome() {
         <div className="flex flex-col md:flex-row gap-5">
           <button
             id="login"
-            className='text-2xl md:text-7xl my-6 bg-[#161A1D] p-3 rounded-lg mx-3 border-2 text-[#D3D3D3] mb-0'
+            className='text-2xl md:text-7xl my-6 bg-[#161A1D] p-6 rounded-lg mx-3 border-2 text-[#D3D3D3] mb-0'
             onClick={handleLoginClick}>Giriş Yap</button>
           <a
             href="login"
             id="login"
-            className='text-2xl md:text-7xl my-6 bg-[#161A1D] p-3 rounded-lg mx-3 border-2 text-[#D3D3D3] mb-0'>Kayıt Ol</a>
+            className='text-2xl md:text-7xl my-6 bg-[#161A1D] p-6 rounded-lg mx-3 border-2 text-[#D3D3D3] mb-0'>Kayıt Ol</a>
         </div>
         <a
           href="home"
           id="courses"
-          className='text-2xl md:text-7xl my-3 md:my-6 bg-[#161A1D] p-3 rounded-lg mx-3 border-2 text-[#D3D3D3]'
+          className='text-2xl md:text-7xl my-3 md:my-6 bg-[#161A1D] p-6 rounded-lg mx-3 border-2 text-[#D3D3D3]'
           style={{ marginTop: '2.5rem' }}>
           Eğitime Gidin
         </a>
