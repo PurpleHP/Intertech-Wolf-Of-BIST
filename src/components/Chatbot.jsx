@@ -4,8 +4,19 @@ import ReactMarkdown from 'react-markdown';
 import UserLogo from '../assets/imageKurt.png';
 import AILogo from '../assets/chatbot.png';
 import LoadingGif from '../assets/chatbot.gif';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeadphones } from '@fortawesome/free-solid-svg-icons';
 
 const ChatBot = () => {
+    const navigate = useNavigate();
+    const [messages, setMessages] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [scrollToBottom, setScrollToBottom] = useState(false);
+    const [userCanType, setUserCanType] = useState(false);
+    const chatContainerRef = useRef(null);
+    const audioRef = useRef(null);
+    const [textToSpeechOn, setTextToSpeechOn] = useState(false);
+
     useEffect(() => {
         const storedUserId = localStorage.getItem('userId');
         if (!storedUserId) {
@@ -13,28 +24,22 @@ const ChatBot = () => {
         }
     }, []);
 
-    const [textToSpeechOn, setTextToSpeechOn] = useState(false); // ses kapali
-    const audioRef = useRef(null);
-
-    const navigate = useNavigate();
-    const [messages, setMessages] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [scrollToBottom, setScrollToBottom] = useState(false);
-    const [userCanType, setUserCanType] = useState(true);
-    const chatContainerRef = useRef(null);
-
     useEffect(() => {
-        const newAiResponse = {
+        const initialAiResponse = {
             type: 'ai',
             text: "",
         };
-        setMessages(messages => [...messages, newAiResponse]);
-        typeWriterEffect("Merhaba ben Bilgi Denizi, finansal okuryazarlık eğitmeni olarak görev yapıyorum. Amacım, size finansal konularda en güncel ve doğru bilgileri sağlamak. Samimi ve kibar bir yaklaşım sergileyerek, sorularınızı en içten şekilde yanıtlamak için buradayım.\nFinansal okuryazarlık ve finans konularında geniş bir bilgi birikimine sahibim ve sürekli kendimi güncel bilgilerle yeniliyorum. Bu bilgileri kullanarak, sizlere en doğru ve faydalı bilgileri sunuyorum. Öğrencilerimin sorularını kendi geniş veri setimden inceleyerek titizlikle cevaplıyorum. Ancak, sadece kendi uzmanlık alanımdaki konular hakkında bilgi ve fikir sunuyorum.\nBenimle finansal dünyayı keşfetmek, sorularınıza güvenilir cevaplar bulmak ve finansal okuryazarlıkta ilerlemek için hazırsanız, birlikte aklınızdaki soruları cevaplandıralım!", newAiResponse);
+        setMessages(messages => [...messages, initialAiResponse]);
+        typeWriterEffect("Merhaba ben Bilgi Denizi, finansal okuryazarlık eğitmeni olarak görev yapıyorum. Amacım, size finansal konularda en güncel ve doğru bilgileri sağlamak. Samimi ve kibar bir yaklaşım sergileyerek, sorularınızı en içten şekilde yanıtlamak için buradayım.\nFinansal okuryazarlık ve finans konularında geniş bir bilgi birikimine sahibim ve sürekli kendimi güncel bilgilerle yeniliyorum. Bu bilgileri kullanarak, sizlere en doğru ve faydalı bilgileri sunuyorum. Öğrencilerimin sorularını kendi geniş veri setimden inceleyerek titizlikle cevaplıyorum. Ancak, sadece kendi uzmanlık alanımdaki konular hakkında bilgi ve fikir sunuyorum.\nBenimle finansal dünyayı keşfetmek, sorularınıza güvenilir cevaplar bulmak ve finansal okuryazarlıkta ilerlemek için hazırsanız, birlikte aklınızdaki soruları cevaplandıralım!", initialAiResponse);
     }, []);
 
     async function typeWriterEffect(text, messageObj) {
+        if (textToSpeechOn) {
+            await fetchTextToSpeech(text);
+        }
+        
         let i = 0;
-        messageObj.text = ""; // Start with an empty string
+        messageObj.text = "";
         function type() {
             if (i < text.length) {
                 messageObj.text += text.charAt(i);
@@ -42,10 +47,41 @@ const ChatBot = () => {
                 i++;
                 setTimeout(type, 5); // typing speed
             } else {
-                setUserCanType(true); // Allow user to type after the message is fully displayed
+                setUserCanType(true);
             }
         }
         type();
+    }
+
+    async function fetchTextToSpeech(text) {
+        try {
+            const cleanedText = text.replace(/\n+/g, ' '); 
+            // Texti duzenlemek lazim cokul bosluklarda AI okumuyor
+
+            const raw = JSON.stringify({ prompt: cleanedText });
+            const requestOptions = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: raw,
+                redirect: "follow"
+            };
+            const response = await fetch('https://mysite-281y.onrender.com/text_to_speech', requestOptions);
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            const blob = await response.blob();
+            const audioUrl = URL.createObjectURL(blob);
+            if (audioRef.current) {
+                audioRef.current.src = audioUrl;
+                audioRef.current.play().catch(error => {
+                    console.error('Error playing audio:', error);
+                });
+            }
+        } catch (error) {
+            console.error('Error fetching audio:', error);
+        }
     }
 
     useEffect(() => {
@@ -63,11 +99,12 @@ const ChatBot = () => {
         }
     }, []);
 
-    const changeTextToSpeech = () => {
-        setTextToSpeechOn(!textToSpeechOn);
-    };
-
     const sendMessage = async () => {
+        if (audioRef.current) {
+            audioRef.current.pause();
+            audioRef.current.currentTime = 0;
+        }
+
         const messageText = document.querySelector('input').value;
         document.querySelector('input').value = '';
         if (messageText.trim().length === 0) {
@@ -98,7 +135,7 @@ const ChatBot = () => {
                 body: raw,
                 redirect: "follow"
             };
-            const targetUrl = textToSpeechOn ? 'https://mysite-281y.onrender.com/text_to_speech' : 'https://mysite-281y.onrender.com/process_prompt';
+            const targetUrl = 'https://mysite-281y.onrender.com/process_prompt';
             const thinkingMessage = {
                 type: 'ai',
                 text: ''
@@ -120,7 +157,7 @@ const ChatBot = () => {
                         updatedMessages[updatedMessages.length - 1].text = `Düşüncelere Yelken Açıyorum${dots}`;
                         return updatedMessages;
                     });
-                }, 500); // Adjust the interval for the desired speed
+                }, 500);
             }
 
             function stopLoadingEffect() {
@@ -131,6 +168,7 @@ const ChatBot = () => {
             startLoadingEffect();
 
             fetch(targetUrl, requestOptions)
+<<<<<<< HEAD
                 .then(response => {
                     stopLoadingEffect();
                     if (!response.ok) {
@@ -167,25 +205,49 @@ const ChatBot = () => {
                             .catch(error => {
                                 console.error('Error fetching audio:', error);
                             });
+=======
+            .then(response => {
+                stopLoadingEffect();
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const newAiResponse = {
+                    type: 'ai',
+                    text: ""
+                };
+                setLoading(false);
+                setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
+                const cleanedText = data.result
+                .replace(/(\s\s+|\n{3,})/g, function(match) {
+                    if (match.includes('\n')) {
+                    return '\n';
+>>>>>>> e282efb77999d501c0ee404affcfa1a73c03460c
                     } else {
-                        const cleanedText = data.process_result.result.replace(/\s{2,}/g, ' ').trim();
-                        typeWriterEffect(cleanedText, newAiResponse);
+                    return ' ';
                     }
-                    setScrollToBottom(true);
-                    setUserCanType(true); // Allow user to type after the message is fully displayed
                 })
-                .catch(error => {
-                    stopLoadingEffect();
-                    console.error('Error:', error);
-                    alert("Sunucularımızda sorun var. Lütfen daha sonra tekrar deneyin.");
-                    const errorMessage = {
-                        type: 'ai',
-                        text: "Hazine sunucumuz kayboldu! Papağanımız tamir ediyor, daha sonra tekrar deneyin! Argh!"
-                    };
-                    setMessages(messages => [...messages.slice(0, -1), errorMessage]);
-                    setScrollToBottom(true);
-                    setUserCanType(true); // Allow user to type after error
-                });
+                .replace(/\s*\n\s*/g, ' ')
+                .replace(/\n{2,}/g, ' ') // fazla satirlarin sayisi iki olsun
+                .replace(/\s{2,}/g, ' ') // fazla bosluklar tek bosluk olsun
+                .trim();
+                typeWriterEffect(cleanedText, newAiResponse);
+                setScrollToBottom(true);
+                setUserCanType(true);
+            })
+            .catch(error => {
+                stopLoadingEffect();
+                console.error('Error:', error);
+                alert("Sunucularımızda sorun var. Lütfen daha sonra tekrar deneyin.");
+                const errorMessage = {
+                    type: 'ai',
+                    text: "Hazine sunucumuz kayboldu! Papağanımız tamir ediyor, daha sonra tekrar deneyin! Argh!"
+                };
+                setMessages(messages => [...messages.slice(0, -1), errorMessage]);
+                setScrollToBottom(true);
+            });
         } catch (error) {
             stopLoadingEffect();
             console.error("Failed to fetch AI response:", error);
@@ -231,8 +293,12 @@ const ChatBot = () => {
                 <div className='w-full flex justify-center pb-4'>
                     <div className='flex flex-row w-[85vw]'>
                         <audio ref={audioRef}></audio>
-                        <button className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={changeTextToSpeech}>
-                            {textToSpeechOn ? 'Metin Okuma Açık' : 'Metin Okuma Kapalı'}
+                        <button 
+                            className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' 
+                            onClick={() => setTextToSpeechOn(!textToSpeechOn)}
+                            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                        >
+                            <FontAwesomeIcon icon={faHeadphones} color={textToSpeechOn ? "white" : "red"} />
                         </button>
                         <button className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={() => navigate("/home")}>Ana Sayfa</button>
                         <input required type="text" onKeyDown={e => e.key === "Enter" ? sendMessage() : ""} className='flex break-words p-2 w-full mx-2 border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none' />
