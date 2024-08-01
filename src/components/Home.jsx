@@ -74,12 +74,9 @@ function App() {
           body: raw,
           redirect: "follow"
         };
-        console.log(storedUserId);
         const targetUrl = 'https://financialtrainerfinal120240716125722.azurewebsites.net/api/Education/getEducationByUser';
         const response = await fetch(targetUrl, requestOptions);
         const data = await response.json();
-
-        console.log("Data:\n", data);
 
         const updatedFormattedEducationIds = formattedEducationIds.map(edu => {
           const course = data.find(d => parseInt(d.eduId) === edu.id);
@@ -90,8 +87,7 @@ function App() {
 
         setFormattedEducationIds(updatedFormattedEducationIds);
         setNotFinishedCourses(notFinishedCourses);
-        console.log("Formatted:\n", updatedFormattedEducationIds);
-        console.log("Not Finished Courses:\n", notFinishedCourses);
+
         setRenderSite(true);
       } catch (error) {
         console.error('Error:', error);

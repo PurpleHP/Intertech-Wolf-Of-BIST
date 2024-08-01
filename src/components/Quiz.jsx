@@ -333,7 +333,6 @@ const Quiz = () => {
                 }
 
                 const data = await response.json();
-                console.log("Education Relation Response:\n", data);
                 return data;
             });
 

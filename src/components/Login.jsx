@@ -26,7 +26,6 @@ function Login() {
       }
       const data = await response.json();
       setApiResponse(data);
-      console.log("Response:\n", data);
       localStorage.setItem('userId', data.userId.toString());
       localStorage.setItem('userName', data.userName);
 

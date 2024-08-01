@@ -88,7 +88,6 @@ function App() {
           <Route path='/BorsaQuiz' element={<BorsaQuiz />} />
           <Route path='/Kripto' element={<Kripto />} />
           <Route path='/KriptoQuiz' element={<KriptoQuiz />} />
-          <Route path='/Api' element={<ApiRequest />} />
           <Route path='/Quiz' element={<Quiz />} />
           <Route path='/CourseTest' element={<CourseTest />} />
           <Route path='/ProgressBar' element={<ProgressBar />} />

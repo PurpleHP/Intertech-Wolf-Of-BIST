@@ -139,7 +139,6 @@ const ChatBot = () => {
                     return response.json();
                 })
                 .then(data => {
-                    console.log('Response from server:', data); // Sunucu yanıtını kontrol etme
                     const newAiResponse = {
                         type: 'ai',
                         text: textToSpeechOn ? data.process_result.result : ""
@@ -148,7 +147,6 @@ const ChatBot = () => {
                     setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
                     if (textToSpeechOn) {
                         const audioUrl = `https://mysite-281y.onrender.com/text_to_speech/${data.file.path}`;
-                        console.log('Audio URL:', audioUrl); // Ses dosyasının URL'sini kontrol etme
                 
                         fetch(audioUrl)
                             .then(response => response.blob())
@@ -158,7 +156,6 @@ const ChatBot = () => {
                                     audioRef.current.src = audioBlobUrl;
                                     audioRef.current.play()
                                         .then(() => {
-                                            console.log('Audio playing');
                                             // Ses çalarken mesajı chatbox'a ekle
                                             typeWriterEffect(data.process_result.result, newAiResponse);
                                         })
