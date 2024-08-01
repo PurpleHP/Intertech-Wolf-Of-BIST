@@ -58,7 +58,7 @@ const ChatBot = () => {
             const cleanedText = text.replace(/\n+/g, ' '); 
             // Texti duzenlemek lazim cokul bosluklarda AI okumuyor
 
-            const raw = JSON.stringify({ prompt: text });
+            const raw = JSON.stringify({ prompt: cleanedText });
             const requestOptions = {
                 method: "POST",
                 headers: {
@@ -190,7 +190,7 @@ const ChatBot = () => {
                     return ' ';
                     }
                 })
-                .replace(/\s*\n\s*/g, '\n')
+                .replace(/\s*\n\s*/g, ' ')
                 .replace(/\n{2,}/g, ' ') // fazla satirlarin sayisi iki olsun
                 .replace(/\s{2,}/g, ' ') // fazla bosluklar tek bosluk olsun
                 .trim();
