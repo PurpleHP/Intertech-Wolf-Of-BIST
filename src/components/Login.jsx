@@ -61,7 +61,6 @@ function Login() {
         }
 
         const data = await response.json();
-        console.log("Education Relation Response:\n", data);
         return data;
       });
 
@@ -90,7 +89,6 @@ function Login() {
       }
 
       setApiResponse(data);
-      console.log("Response:\n", data);
 
       localStorage.setItem('userId', data.userId.toString());
       localStorage.setItem('userName', data.userName);
@@ -141,7 +139,6 @@ function Login() {
               <input className="girisinput" type="email" name="email" placeholder="Email" required />
               <input className="girisinput" type="password" name="passw" placeholder="Şifre" required />
               <button className="girisbutton">Giriş Yap</button>
-              <label className="pass-forgot" htmlFor="chk-pass" aria-hidden="true">Şifremi Unuttum</label>
             </form>
           </div>
         </div>
