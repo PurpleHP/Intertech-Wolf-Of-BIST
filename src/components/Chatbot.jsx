@@ -168,44 +168,6 @@ const ChatBot = () => {
             startLoadingEffect();
 
             fetch(targetUrl, requestOptions)
-<<<<<<< HEAD
-                .then(response => {
-                    stopLoadingEffect();
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok ' + response.statusText);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    const newAiResponse = {
-                        type: 'ai',
-                        text: textToSpeechOn ? data.process_result.result : ""
-                    };
-                    setLoading(false);
-                    setMessages(messages => [...messages.slice(0, -1), newAiResponse]);
-                    if (textToSpeechOn) {
-                        const audioUrl = `https://mysite-281y.onrender.com/text_to_speech/${data.file.path}`;
-                
-                        fetch(audioUrl)
-                            .then(response => response.blob())
-                            .then(blob => {
-                                const audioBlobUrl = URL.createObjectURL(blob); // Create an object URL from the blob
-                                if (audioRef.current) {
-                                    audioRef.current.src = audioBlobUrl;
-                                    audioRef.current.play()
-                                        .then(() => {
-                                            // Ses çalarken mesajı chatbox'a ekle
-                                            typeWriterEffect(data.process_result.result, newAiResponse);
-                                        })
-                                        .catch(error => {
-                                            console.error('Error playing audio:', error);
-                                        });
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Error fetching audio:', error);
-                            });
-=======
             .then(response => {
                 stopLoadingEffect();
                 if (!response.ok) {
@@ -224,7 +186,6 @@ const ChatBot = () => {
                 .replace(/(\s\s+|\n{3,})/g, function(match) {
                     if (match.includes('\n')) {
                     return '\n';
->>>>>>> e282efb77999d501c0ee404affcfa1a73c03460c
                     } else {
                     return ' ';
                     }
