@@ -182,7 +182,7 @@ const ChatBot = () => {
                 const cleanedText = data.result
                 .replace(/(\s\s+|\n{3,})/g, function(match) {
                     if (match.includes('\n')) {
-                    return '\n';
+                    return ' ';
                     } else {
                     return ' ';
                     }
