@@ -123,6 +123,12 @@ function KrediKartlari() {
                     {btnPrevVisible && (
                         <a onClick={changeToPrevParagraph} className="text-white row-start-10 row-end-10 row-span-1 col-start-1 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-geri">Geri</a>
                     )}
+
+                    {(
+                        <a onClick={mainMenu} className="text-white row-start-10 row-end-10 row-span-1 col-start-1 col-span-2 bg-[#161A1D] p-3 rounded-lg text-xl mt-2 ml-12 mb-2 transform transition duration-500 hover:scale-105 flex justify-center items-center fixed-button-anasayfa">Ana Sayfa</a>
+                    )}
+
+
                 </div>
             </div>
             <Footer></Footer>

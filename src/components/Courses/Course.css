@@ -11,11 +11,19 @@
         font-size: 4vw;
     }
 
+    .fixed-button-anasayfa {
+        height: 5em;
+        position: fixed;
+        bottom: calc(20%);
+        left: calc(-5%);
+        z-index: 1000;
+    }
+
     .fixed-button-ileri {
         height: 5em;
         position: fixed;
         bottom: calc(40%);
-        left: calc(0%);
+        left: calc(-5%);
         z-index: 1000;
     }
 
@@ -23,7 +31,7 @@
         height: 5em;
         position: fixed;
         bottom: calc(60%);
-        left: calc(0%);
+        left: calc(-5%);
         z-index: 1000;
     }
 
@@ -68,5 +76,9 @@
         bottom: calc(10%);
         left: calc(25%);
         z-index: 1000;
+    }
+
+    .fixed-button-anasayfa {
+        visibility: hidden;
     }
 }
