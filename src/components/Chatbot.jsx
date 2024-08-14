@@ -5,7 +5,7 @@ import UserLogo from '../assets/imageKurt.png';
 import AILogo from '../assets/chatbot.png';
 import LoadingGif from '../assets/chatbot.gif';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeadphones } from '@fortawesome/free-solid-svg-icons';
+import { faMicrophone, faHeadphones } from '@fortawesome/free-solid-svg-icons';
 
 const ChatBot = () => {
     const navigate = useNavigate();
@@ -15,14 +15,16 @@ const ChatBot = () => {
     const [userCanType, setUserCanType] = useState(false);
     const chatContainerRef = useRef(null);
     const audioRef = useRef(null);
-    const [textToSpeechOn, setTextToSpeechOn] = useState(false);
+    const [textToSpeechOn, setTextToSpeechOn] = useState(false); // State for text-to-speech
+    const [speechToTextOn, setSpeechToTextOn] = useState(false); // State for speech-to-text
 
-    useEffect(() => {
+
+    /* useEffect(() => {
         const storedUserId = localStorage.getItem('userId');
         if (!storedUserId) {
             window.location.href = '/login';
         }
-    }, []);
+    }, []); */ // TODO: Remove this line
 
     useEffect(() => {
         const initialAiResponse = {
@@ -52,6 +54,10 @@ const ChatBot = () => {
         }
         type();
     }
+
+    const toggleSpeechToText = () => {
+        setSpeechToTextOn(!speechToTextOn);
+    };
 
     async function fetchTextToSpeech(text) {
         try {
@@ -254,6 +260,8 @@ const ChatBot = () => {
                 <div className='w-full flex justify-center pb-4'>
                     <div className='flex flex-row w-[85vw]'>
                         <audio ref={audioRef}></audio>
+
+                        {/* Text-to-speech button */}
                         <button 
                             className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' 
                             onClick={() => setTextToSpeechOn(!textToSpeechOn)}
@@ -261,6 +269,17 @@ const ChatBot = () => {
                         >
                             <FontAwesomeIcon icon={faHeadphones} color={textToSpeechOn ? "white" : "red"} />
                         </button>
+
+                        {/* Speech-to-text button */}
+                        <button 
+                            className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' 
+                            onClick={toggleSpeechToText}
+                            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                        >
+                            <FontAwesomeIcon icon={faMicrophone} color={speechToTextOn ? "white" : "red"} />
+                        </button>
+
+
                         <button className='flex whitespace-nowrap px-4 mx-2 py-2 bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={() => navigate("/home")}>Ana Sayfa</button>
                         <input required type="text" onKeyDown={e => e.key === "Enter" ? sendMessage() : ""} className='flex break-words p-2 w-full mx-2 border-2 border-gray-300 rounded-lg focus:border-orange-500 focus:outline-none' />
                         <button className='flex px-4 mx-2 py-2 text-center items-center justify-center bg-[#e28109] text-white rounded hover:bg-[#EB5B00] hover:scale-105' onClick={sendMessage}>Sor</button>
