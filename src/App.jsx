@@ -92,6 +92,7 @@ function App() {
           <Route path='/CourseTest' element={<CourseTest />} />
           <Route path='/ProgressBar' element={<ProgressBar />} />
           <Route path='/Bitki' element={<Bitki />} />
+          <Route path='/api' element={<ApiRequest />} />
         </Routes>
       </div>
     </>
